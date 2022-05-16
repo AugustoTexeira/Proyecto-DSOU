@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Boceto DSOU", "Boceto DSOU\Boceto DSOU.csproj", "{8AA1A1C6-0756-43E0-B218-B00BB899F5DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AA1A1C6-0756-43E0-B218-B00BB899F5DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA1A1C6-0756-43E0-B218-B00BB899F5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA1A1C6-0756-43E0-B218-B00BB899F5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA1A1C6-0756-43E0-B218-B00BB899F5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E95D4D2-0158-4A98-9CD4-FBD1EC4A0AB0}
+	EndGlobalSection
+EndGlobal
