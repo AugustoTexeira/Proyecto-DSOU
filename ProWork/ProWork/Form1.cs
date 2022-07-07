@@ -21,11 +21,14 @@ namespace ProWork
             - Los ojitos no siempre se tachan en las situaciones correctas.
             - Hay sobrelapado en las animaciones de IntoLogin/Register.
         */
+        //Felxibilidad
+        private int yContra;
 
         decimal largo = 1; //Porcentaje de progreso de énfasis. 1 = 100%
         public frmLogin()
         {
             InitializeComponent();
+            yContra = txbContra.Location.Y;
         }
 
         private void frmLogin_Paint(object sender, PaintEventArgs e)
@@ -361,7 +364,7 @@ namespace ProWork
 
         private void tmrIntoRegister_Tick(object sender, EventArgs e)
         {
-            if (txbContra.Location.Y >= 294)
+            if (txbContra.Location.Y >= yContra)
             {
                 txbCContra.Visible = true;
                 btnContra.Visible = true;
