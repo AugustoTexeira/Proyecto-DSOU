@@ -16,6 +16,11 @@ namespace ProWork
             pbx = PictureBox
             frm = Form
         */
+        /*
+         Bugs a arreglar:
+            - Los ojitos no siempre se tachan en las situaciones correctas.
+            - Hay sobrelapado en las animaciones de IntoLogin/Register.
+        */
 
         decimal largo = 1; //Porcentaje de progreso de énfasis. 1 = 100%
         public frmLogin()
@@ -61,9 +66,9 @@ namespace ProWork
         private void pbxOContra_Click(object sender, EventArgs e)
         {
             txbContra.UseSystemPasswordChar = !txbContra.UseSystemPasswordChar;
-            //Rectangle rect = new(pbxOCContra.Location, pbxOCContra.Size);
 
-            this.Invalidate();
+            Rectangle rect = new(btnContra.Location, btnContra.Size);
+            this.Invalidate(rect);
         }
 
         private void txb_Enter(object sender, EventArgs e)
@@ -93,7 +98,7 @@ namespace ProWork
                     pen,
                     txb.Location.X,
                     txb.Location.Y + txb.Height + 5,
-                    (int)(txbNombre.Location.X + txbNombre.Width * largo),
+                    (int)(txb.Location.X + txb.Width * largo),
                     txb.Location.Y + txb.Height + 5
                 );
             }
@@ -109,7 +114,7 @@ namespace ProWork
                     pen,
                     (int)(txbNombre.Location.X + txbNombre.Width * largo),
                     txb.Location.Y + txb.Height + 5,
-                    txbNombre.Location.X + txbNombre.Width,
+                    txb.Location.X + txb.Width,
                     txb.Location.Y + txb.Height + 5
                 );
 
@@ -137,7 +142,7 @@ namespace ProWork
                 pen,
                 txb.Location.X,
                 txb.Location.Y + txb.Height + 5,
-                btnCContra.Location.X + btnCContra.Width,
+                txb.Location.X + txb.Width,
                 txb.Location.Y + txb.Height + 5
             );
         }
@@ -162,27 +167,96 @@ namespace ProWork
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string datos = "";
-            try
+            if (txbCContra.Visible) // Registro
             {
-                MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=baseagencia; Uid=root; Pwd=;");
-
-                conexion.Open();
-
-                MySqlCommand cmd = new("show databases", conexion);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                if (txbCContra.Text == txbContra.Text)
                 {
-                    datos += reader.GetString(0) + "\n";
+                    try
+                    {
+                        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
+                        conexion.Open();
+                        MySqlCommand vRegistro = new("select nombre from usuario;", conexion);
+                        MySqlDataReader reader = vRegistro.ExecuteReader();
+
+                        bool v = true;
+
+                        while (reader.Read())
+                        {
+                            if (txbNombre.Text == reader.GetString(0))
+                            {
+                                v = false;
+                            }
+                        }
+
+                        if (v)
+                        {
+                            MySqlCommand iRegistro = new("insert into usuarios (nombre, contrasenia, administrador) " +
+                                                        "values('" + txbNombre.Text + "','" + txbContra.Text + "' false);",
+                                                        conexion
+                                                        );
+
+                            frmMain main = new(txbNombre.Text, false);
+                            main.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("La cuenta ya existe.");
+                        }
+                        conexion.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString() + "\n Ingrese algo correcto.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.");
                 }
             }
-            catch (Exception ex)
+            else //Login
             {
-                MessageBox.Show(ex.ToString() + "\nIngrese algo correcto");
+                try
+                {
+                    MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
+                    conexion.Open();
+                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario;", conexion);
+                    MySqlDataReader reader = vLogin.ExecuteReader();
+
+                    bool v = false;
+                    bool admin = false;
+
+                    while (reader.Read())
+                    {
+                        if (txbNombre.Text == reader.GetString(0) && txbContra.Text == reader.GetString(1))
+                        {
+                            v = true;
+                            admin = reader.GetBoolean(2);
+                        }
+                    }
+
+                    if (v)
+                    {
+                        frmMain main = new(txbNombre.Text, admin);
+                        main.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString() + "\n Ingrese algo correcto.");
+                }
             }
-            MessageBox.Show(datos);
+
+            //Para dividir una string y recuperar una linea.
+            //var coso = datos.Split("\n").ToList();
+            //MessageBox.Show(coso[1]);
 
         }
 
@@ -190,18 +264,16 @@ namespace ProWork
         {
             if (txbCContra.Visible)
             {
-                txbCContra.Visible = false;
-                btnCContra.Visible = false;
-                btnLogin.Text = "Ingresar";
-                btnSwap.Text = "¿No tienes una cuenta? Regístrate";
+                tmrIntoRegister.Stop();
+                tmrIntoLogin.Start();
             }
             else
             {
-                txbCContra.Visible = true;
-                btnCContra.Visible = true;
-                btnLogin.Text = "Crear";
-                btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
+                tmrIntoLogin.Stop();
+                tmrIntoRegister.Start();
             }
+
+            
 
             InvalidateSubrayado();
         }
@@ -216,11 +288,11 @@ namespace ProWork
             this.Invalidate(rect);
         }
 
-        private void pbxOContra_Paint(object sender, PaintEventArgs e)
+        private void btnContra_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            if (!txbContra.UseSystemPasswordChar)
+            if (txbContra.UseSystemPasswordChar)
             {
                 Pen pen = new(contraste, 3);
 
@@ -234,14 +306,16 @@ namespace ProWork
         private void btnCContra_Click(object sender, EventArgs e)
         {
             txbCContra.UseSystemPasswordChar = !txbCContra.UseSystemPasswordChar;
-            this.Refresh();
+
+            Rectangle rect = new(btnCContra.Location, btnCContra.Size);
+            this.Invalidate(rect);
         }
 
         private void btnCContra_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            if (!txbCContra.UseSystemPasswordChar)
+            if (txbCContra.UseSystemPasswordChar)
             {
                 Pen pen = new(contraste, 3);
 
@@ -250,6 +324,79 @@ namespace ProWork
 
                 e.Graphics.DrawLine(pen, 5, btnCContra.Height - 5, btnCContra.Width - 5, 5);
             }
+        }
+
+        private void tmrIntoLogin_Tick(object sender, EventArgs e)
+        {
+            if (txbCContra.Location.X < this.Width) 
+            {
+                int cambio = (this.Width - txbCContra.Location.X) / 2 + 1;
+
+                txbCContra.Location = new Point(txbCContra.Location.X + cambio, txbCContra.Location.Y);
+                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
+
+                InvalidateSubrayado();
+            }
+            else if (txbContra.Location.Y <= txbCContra.Location.Y)
+            {
+                int cambio = (txbCContra.Location.Y - txbContra.Location.Y) / 4 + 1;
+
+                txbNombre.Location = new Point(txbNombre.Location.X, txbNombre.Location.Y + cambio);
+                txbContra.Location = new Point(txbContra.Location.X, txbContra.Location.Y + cambio);
+                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
+                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+
+
+                InvalidateSubrayado();
+            }
+            else
+            {
+                btnLogin.Text = "Ingresar";
+                btnSwap.Text = "¿No tienes una cuenta? Regístrate";
+                txbCContra.Visible = false;
+                btnCContra.Visible = false;
+                tmrIntoLogin.Stop();
+            }
+        }
+
+        private void tmrIntoRegister_Tick(object sender, EventArgs e)
+        {
+            if (txbContra.Location.Y >= 294)
+            {
+                txbCContra.Visible = true;
+                btnContra.Visible = true;
+
+                int cambio = (294 - txbContra.Location.Y) / 4 - 1;
+
+                txbNombre.Location = new Point(txbNombre.Location.X, txbNombre.Location.Y + cambio);
+                txbContra.Location = new Point(txbContra.Location.X, txbContra.Location.Y + cambio);
+                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
+                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+
+                InvalidateSubrayado();
+            }
+            else if (txbCContra.Location.X >= txbContra.Location.X)
+            {
+                int cambio = (txbContra.Location.X - txbCContra.Location.X) / 2 - 1;
+
+                txbCContra.Location = new Point(txbCContra.Location.X + cambio, txbCContra.Location.Y);
+                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
+
+                InvalidateSubrayado();
+            }
+            else
+            {
+                btnLogin.Text = "Crear";
+                btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
+                txbCContra.Visible = true;
+                btnCContra.Visible = true;
+                tmrIntoRegister.Stop();
+            }
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

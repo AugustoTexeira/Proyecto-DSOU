@@ -25,3 +25,4 @@ C:\Users\Cristian\Desktop\src visual studio\Practico 2 Progr - Cristian Rodrígu
 C:\Users\Cristian\Desktop\src visual studio\Practico 2 Progr - Cristian Rodríguez\ProWork\ProWork\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
 C:\Users\Cristian\Desktop\src visual studio\Practico 2 Progr - Cristian Rodríguez\ProWork\ProWork\bin\Debug\net6.0-windows\ZstdNet.dll
 C:\Users\Cristian\Desktop\src visual studio\Practico 2 Progr - Cristian Rodríguez\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.csproj.CopyComplete
+C:\Users\Cristian\Desktop\src visual studio\Practico 2 Progr - Cristian Rodríguez\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmMain.resources

@@ -63,6 +63,26 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fondo_boton {
+            get {
+                object obj = ResourceManager.GetObject("Fondo boton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icono_Inicio_de_sesion {
+            get {
+                object obj = ResourceManager.GetObject("Icono-Inicio de sesion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Icono_ojo {
             get {
                 object obj = ResourceManager.GetObject("Icono-ojo", resourceCulture);
