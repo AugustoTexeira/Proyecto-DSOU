@@ -42,6 +42,7 @@
             this.btnCContra = new System.Windows.Forms.Button();
             this.tmrIntoLogin = new System.Windows.Forms.Timer(this.components);
             this.tmrIntoRegister = new System.Windows.Forms.Timer(this.components);
+            this.bgwCheck = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,8 @@
             this.btnLogin.BackgroundImage = global::ProWork.Properties.Resources.Fondo_boton;
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
@@ -131,7 +134,6 @@
             this.pnlForeground.Name = "pnlForeground";
             this.pnlForeground.Size = new System.Drawing.Size(882, 673);
             this.pnlForeground.TabIndex = 8;
-            this.pnlForeground.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlForeground_Paint);
             // 
             // mySqlCommand1
             // 
@@ -189,6 +191,12 @@
             this.tmrIntoRegister.Interval = 16;
             this.tmrIntoRegister.Tick += new System.EventHandler(this.tmrIntoRegister_Tick);
             // 
+            // bgwCheck
+            // 
+            this.bgwCheck.WorkerReportsProgress = true;
+            this.bgwCheck.DoWork += new System.ComponentModel.DoWorkEventHandler(this.checkLogin);
+            this.bgwCheck.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheck_RunWorkerCompleted);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -208,6 +216,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuarios";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmLogin_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).EndInit();
             this.ResumeLayout(false);
@@ -229,5 +238,6 @@
         private System.Windows.Forms.Timer tmrIntoLogin;
         private System.Windows.Forms.Timer tmrIntoRegister;
         private TextBox txbNombre;
+        private System.ComponentModel.BackgroundWorker bgwCheck;
     }
 }

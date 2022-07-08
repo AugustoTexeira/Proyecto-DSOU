@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Uxh2gjkRJVLPw496eF4oCDe2+pZphvz6nrPETs3mfqtfBSKrA4F5Q4tDT5f4566WfMeRlSeTd87RTt0yWMnSnA==",
+  "dgSpecHash": "b0/H0ZdVCNaOs+K8qIAF+CSBwhz/abLDx1h+ftT2aaRv/5VPYcs75NvR/NPWR948eE1zcIwrl3zE8jggnowK7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cristian\\Desktop\\src visual studio\\Practico 2 Progr - Cristian Rodríguez\\ProWork\\ProWork\\ProWork.csproj",
+  "projectFilePath": "C:\\Users\\Cristian\\Source\\Repos\\AugustoTexeira\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cristian\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Cristian\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",

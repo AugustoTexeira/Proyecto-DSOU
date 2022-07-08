@@ -5,6 +5,7 @@ namespace ProWork
 {
     public partial class frmLogin : Form
     {
+        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
         //Paleta de colores
         Color enfasis = Color.Blue;
         Color contraste = Color.White;
@@ -18,17 +19,26 @@ namespace ProWork
         */
         /*
          Bugs a arreglar:
-            - Los ojitos no siempre se tachan en las situaciones correctas.
             - Hay sobrelapado en las animaciones de IntoLogin/Register.
         */
         //Felxibilidad
         private int yContra;
+
+        //Procesos
 
         decimal largo = 1; //Porcentaje de progreso de énfasis. 1 = 100%
         public frmLogin()
         {
             InitializeComponent();
             yContra = txbContra.Location.Y;
+            try
+            {
+                conexion.Open();
+            }
+            catch (Exception ex)
+            {
+                if (ex != null) { MessageBox.Show("No se pudo establecer conexión."); }
+            }
         }
 
         private void frmLogin_Paint(object sender, PaintEventArgs e)
@@ -69,9 +79,7 @@ namespace ProWork
         private void pbxOContra_Click(object sender, EventArgs e)
         {
             txbContra.UseSystemPasswordChar = !txbContra.UseSystemPasswordChar;
-
-            Rectangle rect = new(btnContra.Location, btnContra.Size);
-            this.Invalidate(rect);
+            btnContra.Refresh();
         }
 
         private void txb_Enter(object sender, EventArgs e)
@@ -87,7 +95,7 @@ namespace ProWork
             InvalidateSubrayado();
         }
 
-        void subrayar (TextBox txb, PaintEventArgs e, decimal largo)
+        void subrayar(TextBox txb, PaintEventArgs e, decimal largo)
         {
             if (largo == 1)
             {
@@ -133,7 +141,7 @@ namespace ProWork
                 );
             }
         }
-        void subrayar (TextBox txb, PaintEventArgs e)
+        void subrayar(TextBox txb, PaintEventArgs e)
         {
             Pen pen = new(contraste, 5);
 
@@ -152,32 +160,45 @@ namespace ProWork
 
         private void tmrSubrayado_Tick(object sender, EventArgs e)
         {
-            if (largo < (decimal)0.995) 
-            { 
+            if (largo < (decimal)0.995)
+            {
                 largo += decimal.Round((1 - largo) / 3, 4);
 
                 InvalidateSubrayado();
-            } 
-            else 
+            }
+            else
             {
                 largo = 1;
 
                 InvalidateSubrayado();
 
-                tmrSubrayado.Stop(); 
+                tmrSubrayado.Stop();
             }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            txbNombre.Enabled = false;
+            txbContra.Enabled = false;
+            txbCContra.Enabled = false;
+
+
+
+            bgwCheck.RunWorkerAsync();
+            
+            //Para dividir una string y recuperar una linea.
+            //var coso = datos.Split("\n").ToList();
+            //MessageBox.Show(coso[1]);
+
+        }
+        private void checkLogin(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
             if (txbCContra.Visible) // Registro
             {
-                if (txbCContra.Text == txbContra.Text)
+                if (txbCContra.Text == txbContra.Text && txbNombre.Text != "")
                 {
                     try
                     {
-                        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
-                        conexion.Open();
                         MySqlCommand vRegistro = new("select nombre from usuario;", conexion);
                         MySqlDataReader reader = vRegistro.ExecuteReader();
 
@@ -197,16 +218,12 @@ namespace ProWork
                                                         "values('" + txbNombre.Text + "','" + txbContra.Text + "' false);",
                                                         conexion
                                                         );
-
-                            frmMain main = new(txbNombre.Text, false);
-                            main.Show();
-                            this.Hide();
+                            e.Result = new frmMain(txbNombre.Text, false);
                         }
                         else
                         {
                             MessageBox.Show("La cuenta ya existe.");
                         }
-                        conexion.Close();
                     }
                     catch (Exception ex)
                     {
@@ -215,7 +232,7 @@ namespace ProWork
                 }
                 else
                 {
-                    MessageBox.Show("Las contraseñas no coinciden.");
+                    MessageBox.Show("Ingrese todos los campos apropiadamente.");
                 }
             }
             else //Login
@@ -241,26 +258,18 @@ namespace ProWork
 
                     if (v)
                     {
-                        frmMain main = new(txbNombre.Text, admin);
-                        main.Show();
-                        this.Hide();
+                        e.Result = new frmMain(txbNombre.Text, admin);
                     }
                     else
                     {
                         MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
                     }
-
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString() + "\n Ingrese algo correcto.");
                 }
             }
-
-            //Para dividir una string y recuperar una linea.
-            //var coso = datos.Split("\n").ToList();
-            //MessageBox.Show(coso[1]);
-
         }
 
         private void btnSwap_Click(object sender, EventArgs e)
@@ -272,17 +281,15 @@ namespace ProWork
             }
             else
             {
+                txbCContra.Visible = true;
+                btnCContra.Visible = true;
                 tmrIntoLogin.Stop();
                 tmrIntoRegister.Start();
             }
 
-            
+
 
             InvalidateSubrayado();
-        }
-
-        private void pnlForeground_Paint(object sender, PaintEventArgs e)
-        {
         }
 
         void InvalidateSubrayado()
@@ -309,9 +316,7 @@ namespace ProWork
         private void btnCContra_Click(object sender, EventArgs e)
         {
             txbCContra.UseSystemPasswordChar = !txbCContra.UseSystemPasswordChar;
-
-            Rectangle rect = new(btnCContra.Location, btnCContra.Size);
-            this.Invalidate(rect);
+            btnCContra.Refresh();
         }
 
         private void btnCContra_Paint(object sender, PaintEventArgs e)
@@ -331,7 +336,7 @@ namespace ProWork
 
         private void tmrIntoLogin_Tick(object sender, EventArgs e)
         {
-            if (txbCContra.Location.X < this.Width) 
+            if (txbCContra.Location.X < this.Width)
             {
                 int cambio = (this.Width - txbCContra.Location.X) / 2 + 1;
 
@@ -391,15 +396,26 @@ namespace ProWork
             {
                 btnLogin.Text = "Crear";
                 btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
-                txbCContra.Visible = true;
-                btnCContra.Visible = true;
                 tmrIntoRegister.Stop();
             }
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void bgwCheck_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            txbNombre.Enabled = true;
+            txbContra.Enabled = true;
+            txbCContra.Enabled = true;
 
+            if(e.Result != null)
+            {
+                frmMain main = (frmMain)e.Result;
+                main.Show();
+                this.Hide();
+            }
+        }
+
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
         }
     }
 }
