@@ -20,20 +20,15 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmMain";
-        }
-
-        #endregion
+        private DoubleBufferedPanel dplMain;
+        private DoubleBufferedPanel dplMenuP;
+        private System.Windows.Forms.Timer tmrMenu;
+        private Label label1;
+        private DoubleBufferedPanel dplMenuProyectos;
+        private Label label2;
+        private DoubleBufferedPanel dplMenuC;
+        private Label label3;
+        private DoubleBufferedPanel dplMenuConfig;
+        private Label label4;
     }
 }

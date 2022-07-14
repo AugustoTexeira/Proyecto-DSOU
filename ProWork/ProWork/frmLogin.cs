@@ -375,7 +375,7 @@ namespace ProWork
                 ctbCContra.Visible = true;
                 btnContra.Visible = true;
 
-                int cambio = (294 - ctbContra.Location.Y) / 4 - 1;
+                int cambio = (yContra - ctbContra.Location.Y) / 4 - 1;
 
                 ctbNombre.Location = new Point(ctbNombre.Location.X, ctbNombre.Location.Y + cambio);
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);

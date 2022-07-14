@@ -167,7 +167,7 @@
             this.ctbNombre.Location = new System.Drawing.Point(905, 239);
             this.ctbNombre.Name = "ctbNombre";
             this.ctbNombre.PlaceholderText = "Nombre";
-            this.ctbNombre.Size = new System.Drawing.Size(333, 38);
+            this.ctbNombre.Size = new System.Drawing.Size(333, 36);
             this.ctbNombre.TabIndex = 10;
             this.ctbNombre.Enter += new System.EventHandler(this.txb_Enter);
             this.ctbNombre.Leave += new System.EventHandler(this.txb_Leave);
@@ -180,9 +180,9 @@
             this.ctbCContra.ForeColor = System.Drawing.Color.White;
             this.ctbCContra.Location = new System.Drawing.Point(905, 349);
             this.ctbCContra.Name = "ctbCContra";
-            this.ctbCContra.PlaceholderText = "Nombre";
+            this.ctbCContra.PlaceholderText = "Confirmar contraseña";
             this.ctbCContra.Size = new System.Drawing.Size(333, 36);
-            this.ctbCContra.TabIndex = 11;
+            this.ctbCContra.TabIndex = 3;
             this.ctbCContra.Enter += new System.EventHandler(this.txb_Enter);
             this.ctbCContra.Leave += new System.EventHandler(this.txb_Leave);
             // 
@@ -194,7 +194,7 @@
             this.ctbContra.ForeColor = System.Drawing.Color.White;
             this.ctbContra.Location = new System.Drawing.Point(905, 294);
             this.ctbContra.Name = "ctbContra";
-            this.ctbContra.PlaceholderText = "Nombre";
+            this.ctbContra.PlaceholderText = "Contraseña";
             this.ctbContra.Size = new System.Drawing.Size(333, 36);
             this.ctbContra.TabIndex = 12;
             this.ctbContra.Enter += new System.EventHandler(this.txb_Enter);

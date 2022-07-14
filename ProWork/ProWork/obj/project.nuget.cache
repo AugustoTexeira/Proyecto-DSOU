@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G9COMWQAJBGDXIt7RpD7IafELhlyDfFtm/mLsRzZ6FTcHp9xvdXieKouv3BDE5uivMzW/0nJ81aJnFA8gBnWdA==",
+  "dgSpecHash": "QoKwCQkcaAS8D+43k/4nJPFF892b0+653m23Raqb26SKEvlXD6bsVu56ZQuIsx8ZxiNtP+vCdNIipswDzBlfYg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cristian\\source\\repos\\AugustoTexeira\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
+  "projectFilePath": "C:\\Users\\Cristian\\Source\\Repos\\AugustoTexeira\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cristian\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Cristian\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",

@@ -16,28 +16,32 @@ namespace ProWork
         Color enfasis = Color.Blue;
 
         System.Windows.Forms.Timer tmrSubrayado = new ();
-        public CustomTextBox()
+        public CustomTextBox() : base()
         {
-            InitializeComponent();
+            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            //SetStyle(ControlStyles.UserPaint, true);
+            //Font coso = new Font("Segoe UI", 16);
+            //this.Font = coso;
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e) 
         {
-            base.OnPaint(e);
+            ////base.OnPaint(e);
 
-            Pen pen = new(contraste, 5);
+            //Pen pen = new(contraste, 5);
 
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+            //pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
+            //pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
-            e.Graphics.DrawLine
-            (
-                pen,
-                5,
-                0,
-                this.Width - 5,
-                this.Height - 5
-            );
+            //e.Graphics.DrawLine
+            //(
+            //    pen,
+            //    5,
+            //    this.Height - 5,
+            //    this.Width - 5,
+            //    this.Height - 5
+            //);
         }
 
         protected override void OnEnter(EventArgs e)

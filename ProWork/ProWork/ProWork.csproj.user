@@ -4,6 +4,9 @@
     <Compile Update="CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
