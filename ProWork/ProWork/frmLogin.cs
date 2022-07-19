@@ -204,7 +204,7 @@ namespace ProWork
                         MySqlDataReader reader = vRegistro.ExecuteReader();
 
                         bool v = true;
-
+                        
                         while (reader.Read())
                         {
                             if (ctbNombre.Text == reader.GetString(0))
@@ -216,7 +216,7 @@ namespace ProWork
                         if (v)
                         {
                             MySqlCommand iRegistro = new("insert into usuarios (nombre, contrasenia, administrador) " +
-                                                        "values('" + ctbNombre.Text + "','" + ctbContra.Text + "' false);",
+                                                        "values('" + ctbNombre.Text + "', sha2('" + ctbContra.Text + "', 224), false);",
                                                         conexion
                                                         );
                             e.Result = new frmMain(ctbNombre.Text, false);
@@ -242,7 +242,7 @@ namespace ProWork
                 {
                     MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
                     conexion.Open();
-                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario;", conexion);
+                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" +ctbContra.Text + "', 224);", conexion);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
@@ -250,7 +250,7 @@ namespace ProWork
 
                     while (reader.Read())
                     {
-                        if (ctbNombre.Text == reader.GetString(0) && ctbContra.Text == reader.GetString(1))
+                        if (ctbNombre.Text == reader.GetString(0))
                         {
                             v = true;
                             admin = reader.GetBoolean(2);
