@@ -40,6 +40,8 @@ namespace ProWork
             {
                 if (ex != null) { MessageBox.Show("No se pudo establecer conexión."); }
             }
+            //lblVersion.Parent = pbxFondoVersion;
+            lblVersion.BackColor = Color.Transparent;
         }
 
         private void frmLogin_Paint(object sender, PaintEventArgs e)

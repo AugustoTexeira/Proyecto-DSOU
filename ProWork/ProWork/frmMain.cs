@@ -78,7 +78,7 @@ namespace ProWork
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.label1.Location = new System.Drawing.Point(28, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 41);
+            this.label1.Size = new System.Drawing.Size(78, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
             this.label1.MouseEnter += new System.EventHandler(this.dplMenuP_MouseEnter);
@@ -109,7 +109,7 @@ namespace ProWork
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.label2.Location = new System.Drawing.Point(28, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 41);
+            this.label2.Size = new System.Drawing.Size(78, 32);
             this.label2.TabIndex = 0;
             this.label2.Text = "label2";
             this.label2.MouseEnter += new System.EventHandler(this.dplMenuProyectos_MouseEnter);
@@ -135,7 +135,7 @@ namespace ProWork
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.label3.Location = new System.Drawing.Point(28, 11);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 41);
+            this.label3.Size = new System.Drawing.Size(78, 32);
             this.label3.TabIndex = 0;
             this.label3.Text = "label3";
             this.label3.MouseEnter += new System.EventHandler(this.dplMenuC_MouseEnter);
@@ -161,7 +161,7 @@ namespace ProWork
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.label4.Location = new System.Drawing.Point(28, 11);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 41);
+            this.label4.Size = new System.Drawing.Size(78, 32);
             this.label4.TabIndex = 0;
             this.label4.Text = "label4";
             this.label4.MouseEnter += new System.EventHandler(this.dplMenuConfig_MouseEnter);
@@ -169,7 +169,7 @@ namespace ProWork
             // 
             // frmMain
             // 
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(949, 542);
             this.Controls.Add(this.dplMain);
             this.Controls.Add(this.dplMenuConfig);
