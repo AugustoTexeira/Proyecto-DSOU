@@ -852,23 +852,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\augus\\.nuget\\packages\\": {},
+    "C:\\Users\\Cristian\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\augus\\Desktop\\PROWORK\\1\\ProWork\\ProWork\\ProWork.csproj",
+      "projectUniqueName": "C:\\Users\\Cristian\\Source\\Repos\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
       "projectName": "ProWork",
-      "projectPath": "C:\\Users\\augus\\Desktop\\PROWORK\\1\\ProWork\\ProWork\\ProWork.csproj",
-      "packagesPath": "C:\\Users\\augus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\augus\\Desktop\\PROWORK\\1\\ProWork\\ProWork\\obj\\",
+      "projectPath": "C:\\Users\\Cristian\\Source\\Repos\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
+      "packagesPath": "C:\\Users\\Cristian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Cristian\\Source\\Repos\\Proyecto-DSOU\\ProWork\\ProWork\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\augus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Cristian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -918,7 +918,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

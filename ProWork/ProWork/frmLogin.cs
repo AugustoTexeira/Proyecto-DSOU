@@ -24,6 +24,7 @@ namespace ProWork
         */
         //Felxibilidad
         private int yContra;
+        private int xPlus;
 
         //Procesos
 
@@ -32,6 +33,7 @@ namespace ProWork
         {
             InitializeComponent();
             yContra = ctbContra.Location.Y;
+            xPlus = pbPlusUser.Location.X;
             try
             {
                 conexion.Open();
@@ -40,8 +42,6 @@ namespace ProWork
             {
                 if (ex != null) { MessageBox.Show("No se pudo establecer conexión."); }
             }
-            //lblVersion.Parent = pbxFondoVersion;
-            lblVersion.BackColor = Color.Transparent;
         }
 
         private void frmLogin_Paint(object sender, PaintEventArgs e)
@@ -284,6 +284,7 @@ namespace ProWork
             }
             else
             {
+                pbPlusUser.Visible = true;
                 ctbCContra.Visible = true;
                 btnCContra.Visible = true;
                 tmrIntoLogin.Stop();
@@ -346,6 +347,10 @@ namespace ProWork
                 ctbCContra.Location = new Point(ctbCContra.Location.X + cambio, ctbCContra.Location.Y);
                 btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
+                cambio = (this.Width - pbPlusUser.Location.X) / 2 + 1;
+
+                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio / 2, pbPlusUser.Location.Y);
+
                 InvalidateSubrayado();
             }
             else if (ctbContra.Location.Y <= ctbCContra.Location.Y)
@@ -358,6 +363,7 @@ namespace ProWork
                 pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
 
 
+
                 InvalidateSubrayado();
             }
             else
@@ -366,6 +372,7 @@ namespace ProWork
                 btnSwap.Text = "¿No tienes una cuenta? Regístrate";
                 ctbCContra.Visible = false;
                 btnCContra.Visible = false;
+                pbPlusUser.Visible = false;
                 tmrIntoLogin.Stop();
             }
         }
@@ -393,6 +400,10 @@ namespace ProWork
                 ctbCContra.Location = new Point(ctbCContra.Location.X + cambio, ctbCContra.Location.Y);
                 btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
+                cambio = (xPlus - pbPlusUser.Location.X) / 2 - 1;
+
+                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio, pbPlusUser.Location.Y);
+
                 InvalidateSubrayado();
             }
             else
@@ -417,7 +428,7 @@ namespace ProWork
             }
         }
 
-        private void ctbNombre_TextChanged(object sender, EventArgs e)
+        private void frmLogin_Load(object sender, EventArgs e)
         {
 
         }

@@ -12,6 +12,8 @@ namespace ProWork
 {
     public partial class CustomTextBox : TextBox
     {
+        //En proceso
+
         Color contraste = Color.White;
         Color enfasis = Color.Blue;
 

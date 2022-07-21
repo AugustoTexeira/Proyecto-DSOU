@@ -30,5 +30,9 @@
         private Label label3;
         private DoubleBufferedPanel dplMenuConfig;
         private Label label4;
+        private PictureBox pbxInicio;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox4;
     }
 }
