@@ -68,7 +68,7 @@
             this.btnLogin.Location = new System.Drawing.Point(911, 405);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(299, 61);
-            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabIndex = 7;
             this.btnLogin.Text = "Crear";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -89,7 +89,7 @@
             this.btnSwap.Location = new System.Drawing.Point(940, 472);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(239, 29);
-            this.btnSwap.TabIndex = 0;
+            this.btnSwap.TabIndex = 1;
             this.btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
             this.btnSwap.UseVisualStyleBackColor = false;
             this.btnSwap.Click += new System.EventHandler(this.btnSwap_Click);
@@ -214,7 +214,7 @@
             this.ctbNombre.Name = "ctbNombre";
             this.ctbNombre.PlaceholderText = "Nombre";
             this.ctbNombre.Size = new System.Drawing.Size(333, 36);
-            this.ctbNombre.TabIndex = 10;
+            this.ctbNombre.TabIndex = 2;
             this.ctbNombre.Enter += new System.EventHandler(this.txb_Enter);
             this.ctbNombre.Leave += new System.EventHandler(this.txb_Leave);
             // 
@@ -228,7 +228,7 @@
             this.ctbCContra.Name = "ctbCContra";
             this.ctbCContra.PlaceholderText = "Confirmar contraseña";
             this.ctbCContra.Size = new System.Drawing.Size(333, 36);
-            this.ctbCContra.TabIndex = 3;
+            this.ctbCContra.TabIndex = 6;
             this.ctbCContra.Enter += new System.EventHandler(this.txb_Enter);
             this.ctbCContra.Leave += new System.EventHandler(this.txb_Leave);
             // 
@@ -242,7 +242,7 @@
             this.ctbContra.Name = "ctbContra";
             this.ctbContra.PlaceholderText = "Contraseña";
             this.ctbContra.Size = new System.Drawing.Size(333, 36);
-            this.ctbContra.TabIndex = 12;
+            this.ctbContra.TabIndex = 4;
             this.ctbContra.Enter += new System.EventHandler(this.txb_Enter);
             this.ctbContra.Leave += new System.EventHandler(this.txb_Leave);
             // 
@@ -275,6 +275,8 @@
             this.Controls.Add(this.ctbCContra);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prowork";
