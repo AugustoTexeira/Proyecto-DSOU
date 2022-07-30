@@ -182,9 +182,5 @@ namespace PrototipoCustoTextBox
         {
             ButtonClick?.Invoke(this, e);
         }
-
-        private void CustomButton_FontChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

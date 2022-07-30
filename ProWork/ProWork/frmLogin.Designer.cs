@@ -29,35 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tmrSubrayado = new System.Windows.Forms.Timer(this.components);
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pbxFondoVersion = new System.Windows.Forms.PictureBox();
             this.pbxFondoLogo = new System.Windows.Forms.PictureBox();
-            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.pbxUser = new System.Windows.Forms.PictureBox();
             this.btnContra = new System.Windows.Forms.Button();
             this.btnCContra = new System.Windows.Forms.Button();
             this.tmrIntoLogin = new System.Windows.Forms.Timer(this.components);
             this.tmrIntoRegister = new System.Windows.Forms.Timer(this.components);
             this.bgwCheck = new System.ComponentModel.BackgroundWorker();
-            this.ctbNombre = new ProWork.CustomTextBox();
-            this.ctbCContra = new ProWork.CustomTextBox();
-            this.ctbContra = new ProWork.CustomTextBox();
             this.pbPlusUser = new System.Windows.Forms.PictureBox();
             this.btnLogin = new PrototipoCustoTextBox.CustomButton();
+            this.ctbContra = new PrototipoCustoTextBox.UnderlinedTextBox();
+            this.ctbCContra = new PrototipoCustoTextBox.UnderlinedTextBox();
+            this.ctbNombre = new PrototipoCustoTextBox.UnderlinedTextBox();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tmrSubrayado
-            // 
-            this.tmrSubrayado.Interval = 16;
-            this.tmrSubrayado.Tick += new System.EventHandler(this.tmrSubrayado_Tick);
             // 
             // btnSwap
             // 
@@ -123,13 +116,6 @@
             this.pbxFondoLogo.TabIndex = 0;
             this.pbxFondoLogo.TabStop = false;
             // 
-            // mySqlCommand1
-            // 
-            this.mySqlCommand1.CacheAge = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.EnableCaching = false;
-            this.mySqlCommand1.Transaction = null;
-            // 
             // pbxUser
             // 
             this.pbxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -143,15 +129,16 @@
             // 
             // btnContra
             // 
+            this.btnContra.BackColor = System.Drawing.Color.Transparent;
             this.btnContra.FlatAppearance.BorderSize = 0;
             this.btnContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContra.Image = global::ProWork.Properties.Resources.ojitosi321;
-            this.btnContra.Location = new System.Drawing.Point(1189, 293);
+            this.btnContra.Location = new System.Drawing.Point(1189, 305);
             this.btnContra.Name = "btnContra";
-            this.btnContra.Size = new System.Drawing.Size(37, 36);
+            this.btnContra.Size = new System.Drawing.Size(37, 26);
             this.btnContra.TabIndex = 3;
-            this.btnContra.UseVisualStyleBackColor = true;
+            this.btnContra.UseVisualStyleBackColor = false;
             this.btnContra.Click += new System.EventHandler(this.pbxOContra_Click);
             this.btnContra.Paint += new System.Windows.Forms.PaintEventHandler(this.btnContra_Paint);
             // 
@@ -161,9 +148,9 @@
             this.btnCContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnCContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCContra.Image = global::ProWork.Properties.Resources.ojitosi321;
-            this.btnCContra.Location = new System.Drawing.Point(1189, 349);
+            this.btnCContra.Location = new System.Drawing.Point(1189, 347);
             this.btnCContra.Name = "btnCContra";
-            this.btnCContra.Size = new System.Drawing.Size(37, 36);
+            this.btnCContra.Size = new System.Drawing.Size(37, 26);
             this.btnCContra.TabIndex = 5;
             this.btnCContra.UseVisualStyleBackColor = true;
             this.btnCContra.Click += new System.EventHandler(this.btnCContra_Click);
@@ -184,48 +171,6 @@
             this.bgwCheck.WorkerReportsProgress = true;
             this.bgwCheck.DoWork += new System.ComponentModel.DoWorkEventHandler(this.checkLogin);
             this.bgwCheck.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwCheck_RunWorkerCompleted);
-            // 
-            // ctbNombre
-            // 
-            this.ctbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ctbNombre.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ctbNombre.ForeColor = System.Drawing.Color.White;
-            this.ctbNombre.Location = new System.Drawing.Point(893, 239);
-            this.ctbNombre.Name = "ctbNombre";
-            this.ctbNombre.PlaceholderText = "Nombre";
-            this.ctbNombre.Size = new System.Drawing.Size(333, 36);
-            this.ctbNombre.TabIndex = 2;
-            this.ctbNombre.Enter += new System.EventHandler(this.txb_Enter);
-            this.ctbNombre.Leave += new System.EventHandler(this.txb_Leave);
-            // 
-            // ctbCContra
-            // 
-            this.ctbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbCContra.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ctbCContra.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ctbCContra.ForeColor = System.Drawing.Color.White;
-            this.ctbCContra.Location = new System.Drawing.Point(893, 349);
-            this.ctbCContra.Name = "ctbCContra";
-            this.ctbCContra.PlaceholderText = "Confirmar contraseña";
-            this.ctbCContra.Size = new System.Drawing.Size(333, 36);
-            this.ctbCContra.TabIndex = 6;
-            this.ctbCContra.Enter += new System.EventHandler(this.txb_Enter);
-            this.ctbCContra.Leave += new System.EventHandler(this.txb_Leave);
-            // 
-            // ctbContra
-            // 
-            this.ctbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbContra.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ctbContra.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ctbContra.ForeColor = System.Drawing.Color.White;
-            this.ctbContra.Location = new System.Drawing.Point(893, 293);
-            this.ctbContra.Name = "ctbContra";
-            this.ctbContra.PlaceholderText = "Contraseña";
-            this.ctbContra.Size = new System.Drawing.Size(333, 36);
-            this.ctbContra.TabIndex = 4;
-            this.ctbContra.Enter += new System.EventHandler(this.txb_Enter);
-            this.ctbContra.Leave += new System.EventHandler(this.txb_Leave);
             // 
             // pbPlusUser
             // 
@@ -253,15 +198,57 @@
             this.btnLogin.Texto = "Button";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
             // 
+            // ctbContra
+            // 
+            this.ctbContra.Ancho = 5;
+            this.ctbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.ctbContra.Contraste = System.Drawing.Color.White;
+            this.ctbContra.Enfasis = System.Drawing.Color.Blue;
+            this.ctbContra.Location = new System.Drawing.Point(913, 305);
+            this.ctbContra.Name = "ctbContra";
+            this.ctbContra.PlaceholderText = "Contraseña";
+            this.ctbContra.Size = new System.Drawing.Size(313, 36);
+            this.ctbContra.TabIndex = 17;
+            this.ctbContra.txbText = "";
+            this.ctbContra.UsePasswordChar = false;
+            // 
+            // ctbCContra
+            // 
+            this.ctbCContra.Ancho = 5;
+            this.ctbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.ctbCContra.Contraste = System.Drawing.Color.White;
+            this.ctbCContra.Enfasis = System.Drawing.Color.Blue;
+            this.ctbCContra.Location = new System.Drawing.Point(913, 347);
+            this.ctbCContra.Name = "ctbCContra";
+            this.ctbCContra.PlaceholderText = "Placeholder";
+            this.ctbCContra.Size = new System.Drawing.Size(313, 36);
+            this.ctbCContra.TabIndex = 18;
+            this.ctbCContra.txbText = "";
+            this.ctbCContra.UsePasswordChar = false;
+            // 
+            // ctbNombre
+            // 
+            this.ctbNombre.Ancho = 5;
+            this.ctbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.ctbNombre.Contraste = System.Drawing.Color.White;
+            this.ctbNombre.Enfasis = System.Drawing.Color.Blue;
+            this.ctbNombre.Location = new System.Drawing.Point(913, 263);
+            this.ctbNombre.Name = "ctbNombre";
+            this.ctbNombre.PlaceholderText = "Nombre";
+            this.ctbNombre.Size = new System.Drawing.Size(313, 36);
+            this.ctbNombre.TabIndex = 19;
+            this.ctbNombre.txbText = "";
+            this.ctbNombre.UsePasswordChar = false;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.pbPlusUser);
-            this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnCContra);
             this.Controls.Add(this.btnContra);
             this.Controls.Add(this.pbxUser);
@@ -276,8 +263,6 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prowork";
-            this.Load += new System.EventHandler(this.frmLogin_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmLogin_Paint);
             this.pnlForeground.ResumeLayout(false);
             this.pnlForeground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).EndInit();
@@ -285,28 +270,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Timer tmrSubrayado;
         private Button btnSwap;
         private Panel pnlForeground;
-        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private PictureBox pbxUser;
         private Button btnContra;
         private Button btnCContra;
         private System.Windows.Forms.Timer tmrIntoLogin;
         private System.Windows.Forms.Timer tmrIntoRegister;
         private System.ComponentModel.BackgroundWorker bgwCheck;
-        private CustomTextBox ctbNombre;
-        private CustomTextBox ctbCContra;
-        private CustomTextBox ctbContra;
         private PictureBox pbxFondoLogo;
         private Label lblVersion;
         private PictureBox pbxFondoVersion;
         private PictureBox pbPlusUser;
         private PrototipoCustoTextBox.CustomButton btnLogin;
+        private PrototipoCustoTextBox.UnderlinedTextBox ctbContra;
+        private PrototipoCustoTextBox.UnderlinedTextBox ctbCContra;
+        private PrototipoCustoTextBox.UnderlinedTextBox ctbNombre;
     }
 }

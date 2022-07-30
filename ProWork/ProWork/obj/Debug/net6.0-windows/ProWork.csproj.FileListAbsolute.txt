@@ -54,7 +54,6 @@ C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.pdb
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
-C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.CustomTextBox.resources
 C:\Users\augus\Desktop\PROWORK\1\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.exe
 C:\Users\augus\Desktop\PROWORK\1\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.deps.json
 C:\Users\augus\Desktop\PROWORK\1\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.runtimeconfig.json
@@ -114,3 +113,4 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\PrototipoCustoTextBox.CustomButton.resources
+C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\PrototipoCustoTextBox.UnderlinedTextBox.resources

@@ -13,7 +13,7 @@ namespace ProWork
         /* 
          Nomenclatura:
             txb = TextBox
-            ctb = CustomTextBox(Con doble buffering)
+            ctb = UnderlinedTextBox
             btn = Button
             pbx = PictureBox
             frm = Form
@@ -26,9 +26,6 @@ namespace ProWork
         private int yContra;
         private int xPlus;
 
-        //Procesos
-
-        decimal largo = 1; //Porcentaje de progreso de énfasis. 1 = 100%
         public frmLogin()
         {
             InitializeComponent();
@@ -44,139 +41,10 @@ namespace ProWork
             }
         }
 
-        private void frmLogin_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            if (ctbNombre.Focused)
-            {
-                subrayar(ctbNombre, e, largo);
-                subrayar(ctbContra, e);
-                subrayar(ctbCContra, e);
-            }
-            else if (ctbContra.Focused)
-            {
-                subrayar(ctbNombre, e);
-                subrayar(ctbContra, e, largo);
-                subrayar(ctbCContra, e);
-            }
-            else if (ctbCContra.Focused)
-            {
-                subrayar(ctbNombre, e);
-                subrayar(ctbContra, e);
-                subrayar(ctbCContra, e, largo);
-            }
-            else if (ctbCContra.Visible)
-            {
-                subrayar(ctbNombre, e);
-                subrayar(ctbContra, e);
-                subrayar(ctbCContra, e);
-            }
-            else
-            {
-                subrayar(ctbNombre, e);
-                subrayar(ctbContra, e);
-            }
-        }
-
         private void pbxOContra_Click(object sender, EventArgs e)
         {
-            ctbContra.UseSystemPasswordChar = !ctbContra.UseSystemPasswordChar;
+            ctbContra.UsePasswordChar = !ctbContra.UsePasswordChar;
             btnContra.Refresh();
-        }
-
-        private void txb_Enter(object sender, EventArgs e)
-        {
-            largo = 0;
-
-            tmrSubrayado.Start();
-        }
-        private void txb_Leave(object sender, EventArgs e)
-        {
-            tmrSubrayado.Stop();
-
-            InvalidateSubrayado();
-        }
-
-        void subrayar(TextBox ctb, PaintEventArgs e, decimal largo)
-        {
-            if (largo == 1)
-            {
-                Pen pen = new(enfasis, 5);
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine
-                (
-                    pen,
-                    ctb.Location.X,
-                    ctb.Location.Y + ctb.Height + 5,
-                    (int)(ctb.Location.X + ctb.Width * largo),
-                    ctb.Location.Y + ctb.Height + 5
-                );
-            }
-            else
-            {
-                Pen pen = new(contraste, 5);
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine
-                (
-                    pen,
-                    (int)(ctbNombre.Location.X + ctbNombre.Width * largo),
-                    ctb.Location.Y + ctb.Height + 5,
-                    ctb.Location.X + ctb.Width,
-                    ctb.Location.Y + ctb.Height + 5
-                );
-
-                pen.Color = enfasis;
-
-                e.Graphics.DrawLine
-                (
-                    pen,
-                    ctb.Location.X,
-                    ctb.Location.Y + ctb.Height + 5,
-                    (int)(ctbNombre.Location.X + ctbNombre.Width * largo),
-                    ctb.Location.Y + ctb.Height + 5
-                );
-            }
-        }
-        void subrayar(TextBox ctb, PaintEventArgs e)
-        {
-            Pen pen = new(contraste, 5);
-
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-            e.Graphics.DrawLine
-            (
-                pen,
-                ctb.Location.X,
-                ctb.Location.Y + ctb.Height + 5,
-                ctb.Location.X + ctb.Width,
-                ctb.Location.Y + ctb.Height + 5
-            );
-        }
-
-        private void tmrSubrayado_Tick(object sender, EventArgs e)
-        {
-            if (largo < (decimal)0.995)
-            {
-                largo += decimal.Round((1 - largo) / 3, 4);
-
-                InvalidateSubrayado();
-            }
-            else
-            {
-                largo = 1;
-
-                InvalidateSubrayado();
-
-                tmrSubrayado.Stop();
-            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -185,14 +53,7 @@ namespace ProWork
             ctbContra.Enabled = false;
             ctbCContra.Enabled = false;
 
-
-
             bgwCheck.RunWorkerAsync();
-            
-            //Para dividir una string y recuperar una linea.
-            //var coso = datos.Split("\n").ToList();
-            //MessageBox.Show(coso[1]);
-
         }
         private void checkLogin(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
@@ -290,23 +151,13 @@ namespace ProWork
                 tmrIntoLogin.Stop();
                 tmrIntoRegister.Start();
             }
-
-
-
-            InvalidateSubrayado();
-        }
-
-        void InvalidateSubrayado()
-        {
-            Rectangle rect = new(ctbNombre.Location.X - 5, ctbNombre.Location.Y, ctbNombre.Location.X + ctbNombre.Width + 5, ctbCContra.Location.Y + ctbCContra.Height);
-            this.Invalidate(rect);
         }
 
         private void btnContra_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            if (ctbContra.UseSystemPasswordChar)
+            if (ctbContra.UsePasswordChar)
             {
                 Pen pen = new(contraste, 3);
 
@@ -319,7 +170,7 @@ namespace ProWork
 
         private void btnCContra_Click(object sender, EventArgs e)
         {
-            ctbCContra.UseSystemPasswordChar = !ctbCContra.UseSystemPasswordChar;
+            ctbCContra.UsePasswordChar = !ctbCContra.UsePasswordChar;
             btnCContra.Refresh();
         }
 
@@ -327,7 +178,7 @@ namespace ProWork
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            if (ctbCContra.UseSystemPasswordChar)
+            if (ctbCContra.UsePasswordChar)
             {
                 Pen pen = new(contraste, 3);
 
@@ -350,8 +201,6 @@ namespace ProWork
                 cambio = (this.Width - pbPlusUser.Location.X) / 2 + 1;
 
                 pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio / 2, pbPlusUser.Location.Y);
-
-                InvalidateSubrayado();
             }
             else if (ctbContra.Location.Y <= ctbCContra.Location.Y)
             {
@@ -361,10 +210,6 @@ namespace ProWork
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);
                 btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
                 pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
-
-
-
-                InvalidateSubrayado();
             }
             else
             {
@@ -390,8 +235,6 @@ namespace ProWork
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);
                 btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
                 pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
-
-                InvalidateSubrayado();
             }
             else if (ctbCContra.Location.X >= ctbContra.Location.X)
             {
@@ -403,8 +246,6 @@ namespace ProWork
                 cambio = (xPlus - pbPlusUser.Location.X) / 2 - 1;
 
                 pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio, pbPlusUser.Location.Y);
-
-                InvalidateSubrayado();
             }
             else
             {
@@ -426,11 +267,6 @@ namespace ProWork
                 main.Show();
                 this.Hide();
             }
-        }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

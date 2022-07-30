@@ -51,7 +51,6 @@
             this.Controls.Add(this.lbl);
             this.Name = "CustomButton";
             this.Size = new System.Drawing.Size(163, 54);
-            this.FontChanged += new System.EventHandler(this.CustomButton_FontChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CustomButton_Paint);
             this.Enter += new System.EventHandler(this.lbl_MouseEnter);
             this.Leave += new System.EventHandler(this.lbl_MouseLeave);
