@@ -368,7 +368,7 @@ namespace ProWork
             }
             else
             {
-                btnLogin.Text = "Ingresar";
+                btnLogin.Texto = "Ingresar";
                 btnSwap.Text = "¿No tienes una cuenta? Regístrate";
                 ctbCContra.Visible = false;
                 btnCContra.Visible = false;
@@ -408,7 +408,7 @@ namespace ProWork
             }
             else
             {
-                btnLogin.Text = "Crear";
+                btnLogin.Texto = "Crear";
                 btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
                 tmrIntoRegister.Stop();
             }

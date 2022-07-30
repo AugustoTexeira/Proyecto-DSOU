@@ -113,3 +113,4 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.pdb
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
+C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\PrototipoCustoTextBox.CustomButton.resources

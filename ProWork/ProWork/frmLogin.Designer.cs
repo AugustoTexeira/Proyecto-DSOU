@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnLogin = new System.Windows.Forms.Button();
             this.tmrSubrayado = new System.Windows.Forms.Timer(this.components);
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
@@ -47,31 +46,13 @@
             this.ctbCContra = new ProWork.CustomTextBox();
             this.ctbContra = new ProWork.CustomTextBox();
             this.pbPlusUser = new System.Windows.Forms.PictureBox();
+            this.btnLogin = new PrototipoCustoTextBox.CustomButton();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnLogin
-            // 
-            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.BackgroundImage = global::ProWork.Properties.Resources.Fondo_boton;
-            this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(911, 405);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(299, 61);
-            this.btnLogin.TabIndex = 7;
-            this.btnLogin.Text = "Crear";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // tmrSubrayado
             // 
@@ -257,12 +238,28 @@
             this.pbPlusUser.TabIndex = 13;
             this.pbPlusUser.TabStop = false;
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Contraste = System.Drawing.Color.AliceBlue;
+            this.btnLogin.Curva = 26;
+            this.btnLogin.Enfasis = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnLogin.Location = new System.Drawing.Point(925, 414);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(6);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Secundario = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
+            this.btnLogin.Size = new System.Drawing.Size(276, 49);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Texto = "Button";
+            this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.pbPlusUser);
             this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnCContra);
@@ -270,7 +267,6 @@
             this.Controls.Add(this.pbxUser);
             this.Controls.Add(this.btnSwap);
             this.Controls.Add(this.pnlForeground);
-            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.ctbContra);
             this.Controls.Add(this.ctbCContra);
             this.DoubleBuffered = true;
@@ -294,7 +290,6 @@
         }
 
         #endregion
-        private Button btnLogin;
         private System.Windows.Forms.Timer tmrSubrayado;
         private Button btnSwap;
         private Panel pnlForeground;
@@ -312,5 +307,6 @@
         private Label lblVersion;
         private PictureBox pbxFondoVersion;
         private PictureBox pbPlusUser;
+        private PrototipoCustoTextBox.CustomButton btnLogin;
     }
 }
