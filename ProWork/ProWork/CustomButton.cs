@@ -11,30 +11,11 @@ using System.Drawing.Drawing2D;
 using System.Windows.Input;
 using System.Drawing.Text;
 
-namespace PrototipoCustoTextBox
+namespace ProWork
 {
     public partial class CustomButton : UserControl
     {
         private LinearGradientBrush brush;
-
-        private Color enfasis = Color.Blue;
-        public Color Enfasis
-        {
-            get { return enfasis; }
-            set { enfasis = value; updateBrush(); }
-        }
-        private Color secundario = Color.SkyBlue;
-        public Color Secundario
-        {
-            get { return secundario; }
-            set { secundario = value; updateBrush(); }
-        }
-        private Color contraste = Color.AliceBlue;
-        public Color Contraste
-        {
-            get { return contraste; }
-            set { contraste = value;}
-        }
 
         private int curva = 40;
         private float mc = 20;
@@ -63,8 +44,8 @@ namespace PrototipoCustoTextBox
             brush = new LinearGradientBrush(
                 new Point(0, 0),
                 new Point(this.Width, 0),
-                enfasis,
-                secundario
+                Estilo.enfasis,
+                Estilo.degrEnfasis
                 );
         }
 
@@ -74,7 +55,7 @@ namespace PrototipoCustoTextBox
             
 
             Pen pen;
-            if (hovered) { pen = new(contraste, 2); } else { pen = new(brush, 2); }
+            if (hovered) { pen = new(Estilo.Contraste, 2); } else { pen = new(brush, 2); }
 
             ////Rectangulos
 
@@ -117,7 +98,7 @@ namespace PrototipoCustoTextBox
             stringFormat.LineAlignment = StringAlignment.Center;
 
             //Broche
-            SolidBrush bTexto = new(contraste);
+            SolidBrush bTexto = new(Estilo.Contraste);
 
             //Dibujado
             e.Graphics.DrawString(texto, this.Font, bTexto, this.ClientRectangle, stringFormat);
@@ -132,8 +113,8 @@ namespace PrototipoCustoTextBox
             brush = new(
                 new Point(0, 0),
                 new Point(this.Width, 0),
-                enfasis,
-                secundario
+                Estilo.enfasis,
+                Estilo.degrEnfasis
                 );
             this.Invalidate();
         }

@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ProWork",
+    "\\ProWork\\ProWork"
   ],
-  "SelectedNode": "\\ProWork.sln",
+  "SelectedNode": "\\ProWork\\ProWork\\frmLogin.cs",
   "PreviewInSolutionExplorer": false
 }

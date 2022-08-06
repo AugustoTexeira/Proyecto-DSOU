@@ -41,10 +41,10 @@
             this.tmrIntoRegister = new System.Windows.Forms.Timer(this.components);
             this.bgwCheck = new System.ComponentModel.BackgroundWorker();
             this.pbPlusUser = new System.Windows.Forms.PictureBox();
-            this.btnLogin = new PrototipoCustoTextBox.CustomButton();
-            this.ctbContra = new PrototipoCustoTextBox.UnderlinedTextBox();
-            this.ctbCContra = new PrototipoCustoTextBox.UnderlinedTextBox();
-            this.ctbNombre = new PrototipoCustoTextBox.UnderlinedTextBox();
+            this.btnLogin = new ProWork.CustomButton();
+            this.ctbCContra = new ProWork.UnderlinedTextBox();
+            this.ctbContra = new ProWork.UnderlinedTextBox();
+            this.ctbNombre = new ProWork.UnderlinedTextBox();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
@@ -59,7 +59,7 @@
             this.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSwap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSwap.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSwap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
             this.btnSwap.Location = new System.Drawing.Point(940, 472);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(239, 29);
@@ -92,7 +92,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(135, 35);
             this.lblVersion.TabIndex = 2;
-            this.lblVersion.Text = "Versión 1.0";
+            this.lblVersion.Text = "Versión 0.1";
             // 
             // pbxFondoVersion
             // 
@@ -185,25 +185,32 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Contraste = System.Drawing.Color.AliceBlue;
-            this.btnLogin.Curva = 26;
-            this.btnLogin.Enfasis = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.btnLogin.Curva = 16;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLogin.Location = new System.Drawing.Point(925, 414);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(6);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Secundario = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(233)))), ((int)(((byte)(237)))));
             this.btnLogin.Size = new System.Drawing.Size(276, 49);
             this.btnLogin.TabIndex = 6;
-            this.btnLogin.Texto = "Button";
+            this.btnLogin.Texto = "Crear";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // ctbCContra
+            // 
+            this.ctbCContra.Ancho = 5;
+            this.ctbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.ctbCContra.Location = new System.Drawing.Point(913, 347);
+            this.ctbCContra.Name = "ctbCContra";
+            this.ctbCContra.PlaceholderText = "Confirmar contraseña";
+            this.ctbCContra.Size = new System.Drawing.Size(313, 36);
+            this.ctbCContra.TabIndex = 18;
+            this.ctbCContra.txbText = "";
+            this.ctbCContra.UsePasswordChar = false;
             // 
             // ctbContra
             // 
             this.ctbContra.Ancho = 5;
             this.ctbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbContra.Contraste = System.Drawing.Color.White;
-            this.ctbContra.Enfasis = System.Drawing.Color.Blue;
             this.ctbContra.Location = new System.Drawing.Point(913, 305);
             this.ctbContra.Name = "ctbContra";
             this.ctbContra.PlaceholderText = "Contraseña";
@@ -212,26 +219,10 @@
             this.ctbContra.txbText = "";
             this.ctbContra.UsePasswordChar = false;
             // 
-            // ctbCContra
-            // 
-            this.ctbCContra.Ancho = 5;
-            this.ctbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbCContra.Contraste = System.Drawing.Color.White;
-            this.ctbCContra.Enfasis = System.Drawing.Color.Blue;
-            this.ctbCContra.Location = new System.Drawing.Point(913, 347);
-            this.ctbCContra.Name = "ctbCContra";
-            this.ctbCContra.PlaceholderText = "Placeholder";
-            this.ctbCContra.Size = new System.Drawing.Size(313, 36);
-            this.ctbCContra.TabIndex = 18;
-            this.ctbCContra.txbText = "";
-            this.ctbCContra.UsePasswordChar = false;
-            // 
             // ctbNombre
             // 
             this.ctbNombre.Ancho = 5;
             this.ctbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbNombre.Contraste = System.Drawing.Color.White;
-            this.ctbNombre.Enfasis = System.Drawing.Color.Blue;
             this.ctbNombre.Location = new System.Drawing.Point(913, 263);
             this.ctbNombre.Name = "ctbNombre";
             this.ctbNombre.PlaceholderText = "Nombre";
@@ -286,9 +277,9 @@
         private Label lblVersion;
         private PictureBox pbxFondoVersion;
         private PictureBox pbPlusUser;
-        private PrototipoCustoTextBox.CustomButton btnLogin;
-        private PrototipoCustoTextBox.UnderlinedTextBox ctbContra;
-        private PrototipoCustoTextBox.UnderlinedTextBox ctbCContra;
-        private PrototipoCustoTextBox.UnderlinedTextBox ctbNombre;
+        private ProWork.CustomButton btnLogin;
+        private UnderlinedTextBox ctbCContra;
+        private UnderlinedTextBox ctbContra;
+        private UnderlinedTextBox ctbNombre;
     }
 }

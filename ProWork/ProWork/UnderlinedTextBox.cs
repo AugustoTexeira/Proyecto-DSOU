@@ -8,22 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PrototipoCustoTextBox
+namespace ProWork
 {
     public partial class UnderlinedTextBox : UserControl
     {
-        private Color contraste = Color.Black;
-        private Color enfasis = Color.Blue;
-        public Color Contraste
-        {
-            get { return contraste; }
-            set { contraste = value; txb.ForeColor = value; }
-        }
-        public Color Enfasis
-        {
-            get { return enfasis; }
-            set { enfasis = value; }
-        }
         private int ancho = 5;
         public int Ancho
         {
@@ -61,6 +49,7 @@ namespace PrototipoCustoTextBox
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            txb.ForeColor = Estilo.Contraste;
         }
 
         private void UnderlinedTextBox_Paint(object sender, PaintEventArgs e)
@@ -73,7 +62,7 @@ namespace PrototipoCustoTextBox
             }
             else
             {
-                Pen pen = new(contraste, ancho);
+                Pen pen = new(Estilo.Contraste, ancho);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -125,7 +114,7 @@ namespace PrototipoCustoTextBox
         {
             if (largo == 1)
             {
-                Pen pen = new(enfasis, ancho);
+                Pen pen = new(Estilo.enfasis, ancho);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -140,7 +129,7 @@ namespace PrototipoCustoTextBox
             }
             else
             {
-                Pen pen = new(contraste, ancho);
+                Pen pen = new(Estilo.Contraste, ancho);
 
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
@@ -153,7 +142,7 @@ namespace PrototipoCustoTextBox
                     txb.Height + ancho / 2
                 );
 
-                pen.Color = enfasis;
+                pen.Color = Estilo.enfasis;
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
 
                 e.Graphics.DrawLine

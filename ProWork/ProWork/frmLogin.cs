@@ -6,10 +6,6 @@ namespace ProWork
     public partial class frmLogin : Form
     {
         MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
-        //Paleta de colores
-        public Color enfasis = Color.Blue;
-        public Color contraste = Color.White;
-        public Color fondoprincipal = Color.DarkBlue;
         /* 
          Nomenclatura:
             txb = TextBox
@@ -17,10 +13,6 @@ namespace ProWork
             btn = Button
             pbx = PictureBox
             frm = Form
-        */
-        /*
-         Bugs a arreglar:
-            - Hay sobrelapado en las animaciones de IntoLogin/Register.
         */
         //Felxibilidad
         private int yContra;
@@ -59,7 +51,7 @@ namespace ProWork
         {
             if (ctbCContra.Visible) // Registro
             {
-                if (ctbCContra.Text == ctbContra.Text && ctbNombre.Text != "")
+                if (ctbCContra.txbText == ctbContra.txbText && ctbNombre.txbText != "")
                 {
                     try
                     {
@@ -70,7 +62,7 @@ namespace ProWork
                         
                         while (reader.Read())
                         {
-                            if (ctbNombre.Text == reader.GetString(0))
+                            if (ctbNombre.txbText == reader.GetString(0))
                             {
                                 v = false;
                             }
@@ -79,10 +71,10 @@ namespace ProWork
                         if (v)
                         {
                             MySqlCommand iRegistro = new("insert into usuarios (nombre, contrasenia, administrador) " +
-                                                        "values('" + ctbNombre.Text + "', sha2('" + ctbContra.Text + "', 224), false);",
+                                                        "values('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
                                                         conexion
                                                         );
-                            e.Result = new frmMain(ctbNombre.Text, false);
+                            e.Result = new frmMain(ctbNombre.txbText, false);
                         }
                         else
                         {
@@ -105,7 +97,7 @@ namespace ProWork
                 {
                     MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
                     conexion.Open();
-                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" +ctbContra.Text + "', 224);", conexion);
+                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" +ctbContra.txbText + "', 224);", conexion);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
@@ -113,7 +105,7 @@ namespace ProWork
 
                     while (reader.Read())
                     {
-                        if (ctbNombre.Text == reader.GetString(0))
+                        if (ctbNombre.txbText == reader.GetString(0))
                         {
                             v = true;
                             admin = reader.GetBoolean(2);
@@ -122,7 +114,7 @@ namespace ProWork
 
                     if (v)
                     {
-                        e.Result = new frmMain(ctbNombre.Text, admin);
+                        e.Result = new frmMain(ctbNombre.txbText, admin);
                     }
                     else
                     {
@@ -159,7 +151,7 @@ namespace ProWork
 
             if (ctbContra.UsePasswordChar)
             {
-                Pen pen = new(contraste, 3);
+                Pen pen = new(Estilo.Contraste, 3);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
@@ -180,7 +172,7 @@ namespace ProWork
 
             if (ctbCContra.UsePasswordChar)
             {
-                Pen pen = new(contraste, 3);
+                Pen pen = new(Estilo.Contraste, 3);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;

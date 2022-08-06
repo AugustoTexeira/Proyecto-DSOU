@@ -1,4 +1,4 @@
-﻿namespace PrototipoCustoTextBox
+﻿namespace ProWork
 {
     partial class CustomButton
     {
