@@ -12,18 +12,7 @@ namespace ProWork
 {
     public partial class UnderlinedTextBox : UserControl
     {
-        private int ancho = 5;
-        public int Ancho
-        {
-            get { return ancho; }
-            set
-            {
-                ancho = value;
-                this.Height = txb.Height + ancho;
-                InvalidateSubrayado();
-            }
-        }
-        decimal largo = 0;
+        private decimal largo = 0;
         public string PlaceholderText
         {
             [
@@ -62,34 +51,35 @@ namespace ProWork
             }
             else
             {
-                Pen pen = new(Estilo.Contraste, ancho);
+                Pen pen = new(Estilo.Contraste, Estilo.anchoLinea);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
                 e.Graphics.DrawLine(
                     pen,
-                    ancho / 2,
-                    txb.Height + ancho / 2,
-                    this.Width - ancho / 2 - 1,
-                    txb.Height + ancho / 2
+                    Estilo.medioAnchoLinea,
+                    txb.Height + Estilo.medioAnchoLinea,
+                    this.Width - Estilo.medioAnchoLinea - 1,
+                    txb.Height + Estilo.medioAnchoLinea
                     );
             }
         }
 
         private void UnderlinedTextBox_Resize(object sender, EventArgs e)
         {
-            if (this.Height > txb.Height)
+            if (this.Height > txb.Height + Estilo.anchoLinea)
             {
-                ancho = this.Height - txb.Height;
+                this.Height = txb.Height + Estilo.anchoLinea + 1;
             }
-            txb.Location = new(ancho / 2, 0);
-            txb.Width = this.Width - ancho;
+            txb.Location = new(Estilo.medioAnchoLinea, 0);
+            txb.Width = this.Width - Estilo.anchoLinea;
         }
 
         private void UnderlinedTextBox_Load(object sender, EventArgs e)
         {
-            txb.SetBounds(ancho / 2, 0, this.Width - ancho, this.Height - ancho);
+            txb.SetBounds(Estilo.medioAnchoLinea, 0, this.Width - Estilo.anchoLinea, this.Height - Estilo.anchoLinea);
             this.BackColor = Parent.BackColor;
+            this.Height = txb.Height + Estilo.anchoLinea + 1;
             txb.BackColor = Parent.BackColor;
         }
 
@@ -114,32 +104,32 @@ namespace ProWork
         {
             if (largo == 1)
             {
-                Pen pen = new(Estilo.enfasis, ancho);
+                Pen pen = new(Estilo.enfasis, Estilo.anchoLinea);
 
                 pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
                 e.Graphics.DrawLine(
                     pen,
-                    ancho / 2,
-                    txb.Height + ancho / 2,
-                    this.Width - ancho / 2 - 1,
-                    txb.Height + ancho / 2
+                    Estilo.medioAnchoLinea,
+                    txb.Height + Estilo.medioAnchoLinea,
+                    this.Width - Estilo.medioAnchoLinea - 1,
+                    txb.Height + Estilo.medioAnchoLinea
                     );
             }
             else
             {
-                Pen pen = new(Estilo.Contraste, ancho);
+                Pen pen = new(Estilo.Contraste, Estilo.anchoLinea);
 
                 pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
 
                 e.Graphics.DrawLine
                 (
                     pen,
-                    (int)((txb.Width + ancho / 2 - 1) * largo),
-                    txb.Height + ancho / 2,
-                    txb.Width + ancho / 2 - 1,
-                    txb.Height + ancho / 2
+                    (int)((txb.Width + Estilo.medioAnchoLinea - 1) * largo),
+                    txb.Height + Estilo.medioAnchoLinea,
+                    txb.Width + Estilo.medioAnchoLinea - 1,
+                    txb.Height + Estilo.medioAnchoLinea
                 );
 
                 pen.Color = Estilo.enfasis;
@@ -148,16 +138,16 @@ namespace ProWork
                 e.Graphics.DrawLine
                 (
                     pen,
-                    ancho / 2,
-                    txb.Location.Y + txb.Height + ancho / 2,
-                    (int)((txb.Width + ancho / 2 - 1) * largo),
-                    txb.Location.Y + txb.Height + ancho / 2
+                    Estilo.medioAnchoLinea,
+                    txb.Location.Y + txb.Height + Estilo.medioAnchoLinea,
+                    (int)((txb.Width + Estilo.medioAnchoLinea - 1) * largo),
+                    txb.Location.Y + txb.Height + Estilo.medioAnchoLinea
                 );
             }
         }
         private void InvalidateSubrayado()
         {
-            Rectangle rect = new(0, txb.Height, this.Width, txb.Height + ancho);
+            Rectangle rect = new(0, txb.Height, this.Width, txb.Height + Estilo.anchoLinea);
             this.Invalidate(rect);
         }
 

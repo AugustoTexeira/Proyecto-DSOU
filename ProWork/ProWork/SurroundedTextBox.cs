@@ -13,33 +13,16 @@ namespace ProWork
 {
     public partial class SurroundedTextBox : UserControl
     {
-        Pen pen;
-        private int ancho = 6;
-        public int ma = 3;
         float largo = 0.0F;
-        private string tex = "Placeholder";
-        public Font Titulo
+        public Font fontTitulo
         {
             get { return lbl.Font; }
             set { lbl.Font = value; }
         }
-        public int Ancho
+        public string textTitulo
         {
-            get { return ancho / 2; }
-            set 
-            {
-                    ancho = value * 2; ma = value;
-                    this.Invalidate();
-            }
-        }
-        public string Tex
-        {
-            get { return tex; }
-            set 
-            {
-                tex = value.ToString();
-                lbl.Text = tex;
-            }
+            get { return lbl.Text; }
+            set { lbl.Text = value; }
         }
         public string rtbText
         {
@@ -49,31 +32,27 @@ namespace ProWork
             get { return rtb.Text; }
             set { rtb.Text = value; }
         }
-
-        private int curva = 40;
-        private int mc = 20;
         public SurroundedTextBox()
         {
             InitializeComponent();
-            lbl.Location = new(mc, 0);
+            lbl.Location = new(Estilo.mediaCurva, 0);
             rtb.BackColor = this.BackColor;
         }   
 
         private void ProWorkBigText_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality; //Anti-Aliasing
-            int ma = ancho / 2; //Es la mitad del ancho, creo.
-            pen = new Pen(Estilo.Contraste, ma);
+            Pen pen;
 
-            //Pone un color plano si no se esta hacinedo el degrade
+            //Pone un color plano si no se esta hacinedo el degradado
 
             switch (largo)
             {
                 case 0.0F:
-                    pen.Color = Estilo.Contraste;
+                    pen = new(Estilo.Contraste, Estilo.anchoLinea);
                     break;
                 case 1.0F:
-                    pen.Color = Estilo.enfasis;
+                    pen = new(Estilo.enfasis, Estilo.anchoLinea);
                     break;
                  default:
                     LinearGradientBrush brush = new(new Point(0, lbl.Height), new Point(this.Width, this.Height), Estilo.enfasis, Estilo.Contraste);
@@ -81,45 +60,43 @@ namespace ProWork
                     blend.Factors = new float[] { 0.0F, 0.0F, 1.0F, 1.0F };
                     blend.Positions = new float[] { 0.0F, largo, largo * 1.5F, 1.0F };
                     brush.Blend = blend;
-                    pen = new Pen(brush, ma);
+                    pen = new Pen(brush, Estilo.anchoLinea);
                     break;
             }
 
-            //Copie solo las lineas del CustomButton
-
             //Linea superior
-            e.Graphics.DrawLine(pen, mc + ma - 1, ma + lbl.Height, this.Width - mc - 1 , ma + lbl.Height);
+            e.Graphics.DrawLine(pen, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1, Estilo.medioAnchoLinea + lbl.Height, this.Width - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1, Estilo.medioAnchoLinea + lbl.Height);
 
             //Lineas medio
-            e.Graphics.DrawLine(pen, ma, mc + lbl.Height, ma, this.Height - mc);
-            e.Graphics.DrawLine(pen, this.Width - ma, mc + 1 + lbl.Height, this.Width - ma, this.Height - mc + 1);
+            e.Graphics.DrawLine(pen, Estilo.medioAnchoLinea, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1 + lbl.Height, Estilo.medioAnchoLinea, this.Height - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1);
+            e.Graphics.DrawLine(pen, this.Width - Estilo.medioAnchoLinea, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1 + lbl.Height, this.Width - Estilo.medioAnchoLinea, this.Height - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1);
 
             //Linea inferior
-            e.Graphics.DrawLine(pen, mc, this.Height - ma, this.Width - mc, this.Height - ma);
+            e.Graphics.DrawLine(pen, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1, this.Height - Estilo.medioAnchoLinea, this.Width - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1, this.Height - Estilo.medioAnchoLinea);
 
             //Por ahora solo copie los "DrawArc"
 
             //pen.Color = Color.FromArgb(128, 255, 0, 0);
 
             //Superior izquierda (No cambien "curva" por 0)
-            e.Graphics.DrawArc(pen, ma, ma + lbl.Height, curva, curva, 180, 90);
+            e.Graphics.DrawArc(pen, Estilo.medioAnchoLinea, Estilo.medioAnchoLinea + lbl.Height, Estilo.curva, Estilo.curva, 180, 90);
 
             //Superior derecha
-            e.Graphics.DrawArc(pen, this.Width - curva - ma, ma + lbl.Height, curva, curva, 270, 90);
+            e.Graphics.DrawArc(pen, this.Width - Estilo.curva - Estilo.medioAnchoLinea, Estilo.medioAnchoLinea + lbl.Height, Estilo.curva, Estilo.curva, 270, 90);
 
             //Inferior izquierda
-            e.Graphics.DrawArc(pen, ma, this.Height - curva - ma, curva, curva, 90, 90);
+            e.Graphics.DrawArc(pen, Estilo.medioAnchoLinea, this.Height - Estilo.curva - Estilo.medioAnchoLinea, Estilo.curva, Estilo.curva, 90, 90);
 
             //Inferior derecha
-            e.Graphics.DrawArc(pen, this.Width - curva - ma, this.Height - curva - ma, curva, curva, 0, 90);
+            e.Graphics.DrawArc(pen, this.Width - Estilo.curva - Estilo.medioAnchoLinea, this.Height - Estilo.curva - Estilo.medioAnchoLinea, Estilo.curva, Estilo.curva, 0, 90);
         }
 
         private void ProWorkBigText_Resize(object sender, EventArgs e)
         {
-            lbl.Location = new(mc, 0);
-            rtb.Location = new(curva / 2, lbl.Height + curva / 2);
-            rtb.Width = this.Width - curva;
-            rtb.Height = this.Height - curva - lbl.Height;
+            lbl.Location = new(Estilo.mediaCurva, 0);
+            rtb.Location = new(Estilo.mediaCurva, lbl.Height + Estilo.mediaCurva);
+            rtb.Width = this.Width - Estilo.curva;
+            rtb.Height = this.Height - Estilo.curva - lbl.Height;
         }
 
         private void tmrSurayado_Tick(object sender, EventArgs e)
@@ -178,6 +155,17 @@ namespace ProWork
         private void ProWorkBigText_FontChanged(object sender, EventArgs e)
         {
             rtb.Font = this.Font;
+        }
+
+        private void SurroundedTextBox_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Parent.BackColor;
+            rtb.BackColor = Parent.BackColor;
+        }
+
+        private void lbl_Click(object sender, EventArgs e)
+        {
+            rtb.Focus();
         }
     }
 }

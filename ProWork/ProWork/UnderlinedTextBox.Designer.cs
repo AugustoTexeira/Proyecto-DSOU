@@ -67,8 +67,7 @@
         }
 
         #endregion
-
-        private TextBox txb;
         private System.Windows.Forms.Timer tmrSubrayado;
+        public TextBox txb;
     }
 }

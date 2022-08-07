@@ -45,6 +45,7 @@
             this.ctbCContra = new ProWork.UnderlinedTextBox();
             this.ctbContra = new ProWork.UnderlinedTextBox();
             this.ctbNombre = new ProWork.UnderlinedTextBox();
+            this.surroundedTextBox1 = new ProWork.SurroundedTextBox();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
@@ -60,10 +61,9 @@
             this.btnSwap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
-            this.btnSwap.Location = new System.Drawing.Point(822, 354);
-            this.btnSwap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSwap.Location = new System.Drawing.Point(939, 472);
             this.btnSwap.Name = "btnSwap";
-            this.btnSwap.Size = new System.Drawing.Size(209, 22);
+            this.btnSwap.Size = new System.Drawing.Size(239, 29);
             this.btnSwap.TabIndex = 1;
             this.btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
             this.btnSwap.UseVisualStyleBackColor = false;
@@ -78,9 +78,8 @@
             this.pnlForeground.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlForeground.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))), ((int)(((byte)(15)))));
             this.pnlForeground.Location = new System.Drawing.Point(0, 0);
-            this.pnlForeground.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlForeground.Name = "pnlForeground";
-            this.pnlForeground.Size = new System.Drawing.Size(750, 505);
+            this.pnlForeground.Size = new System.Drawing.Size(857, 673);
             this.pnlForeground.TabIndex = 8;
             // 
             // lblVersion
@@ -90,18 +89,19 @@
             this.lblVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblVersion.ForeColor = System.Drawing.Color.White;
-            this.lblVersion.Location = new System.Drawing.Point(12, 468);
+            this.lblVersion.Location = new System.Drawing.Point(14, 624);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(107, 28);
+            this.lblVersion.Size = new System.Drawing.Size(135, 35);
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "Versión 0.1";
             // 
             // pbxFondoVersion
             // 
             this.pbxFondoVersion.Image = global::ProWork.Properties.Resources.Version_fondo1;
-            this.pbxFondoVersion.Location = new System.Drawing.Point(-25, 404);
+            this.pbxFondoVersion.Location = new System.Drawing.Point(-29, 539);
+            this.pbxFondoVersion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbxFondoVersion.Name = "pbxFondoVersion";
-            this.pbxFondoVersion.Size = new System.Drawing.Size(188, 160);
+            this.pbxFondoVersion.Size = new System.Drawing.Size(215, 213);
             this.pbxFondoVersion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxFondoVersion.TabIndex = 1;
             this.pbxFondoVersion.TabStop = false;
@@ -109,9 +109,10 @@
             // pbxFondoLogo
             // 
             this.pbxFondoLogo.Image = global::ProWork.Properties.Resources.Logo_en_login;
-            this.pbxFondoLogo.Location = new System.Drawing.Point(68, 44);
+            this.pbxFondoLogo.Location = new System.Drawing.Point(78, 59);
+            this.pbxFondoLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbxFondoLogo.Name = "pbxFondoLogo";
-            this.pbxFondoLogo.Size = new System.Drawing.Size(627, 425);
+            this.pbxFondoLogo.Size = new System.Drawing.Size(717, 567);
             this.pbxFondoLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxFondoLogo.TabIndex = 0;
             this.pbxFondoLogo.TabStop = false;
@@ -120,10 +121,9 @@
             // 
             this.pbxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbxUser.Image = global::ProWork.Properties.Resources.Usuario;
-            this.pbxUser.Location = new System.Drawing.Point(890, 44);
-            this.pbxUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbxUser.Location = new System.Drawing.Point(1017, 59);
             this.pbxUser.Name = "pbxUser";
-            this.pbxUser.Size = new System.Drawing.Size(91, 106);
+            this.pbxUser.Size = new System.Drawing.Size(104, 141);
             this.pbxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxUser.TabIndex = 9;
             this.pbxUser.TabStop = false;
@@ -138,10 +138,9 @@
             this.btnContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContra.ForeColor = System.Drawing.Color.White;
-            this.btnContra.Location = new System.Drawing.Point(1040, 229);
-            this.btnContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnContra.Location = new System.Drawing.Point(1189, 305);
             this.btnContra.Name = "btnContra";
-            this.btnContra.Size = new System.Drawing.Size(33, 20);
+            this.btnContra.Size = new System.Drawing.Size(38, 27);
             this.btnContra.TabIndex = 3;
             this.btnContra.UseVisualStyleBackColor = false;
             this.btnContra.Click += new System.EventHandler(this.pbxOContra_Click);
@@ -154,10 +153,9 @@
             this.btnCContra.FlatAppearance.BorderSize = 0;
             this.btnCContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnCContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCContra.Location = new System.Drawing.Point(1040, 260);
-            this.btnCContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCContra.Location = new System.Drawing.Point(1189, 348);
             this.btnCContra.Name = "btnCContra";
-            this.btnCContra.Size = new System.Drawing.Size(32, 20);
+            this.btnCContra.Size = new System.Drawing.Size(37, 27);
             this.btnCContra.TabIndex = 5;
             this.btnCContra.UseVisualStyleBackColor = true;
             this.btnCContra.Click += new System.EventHandler(this.btnCContra_Click);
@@ -182,9 +180,10 @@
             // pbPlusUser
             // 
             this.pbPlusUser.Image = global::ProWork.Properties.Resources.MasUsuario;
-            this.pbPlusUser.Location = new System.Drawing.Point(975, 79);
+            this.pbPlusUser.Location = new System.Drawing.Point(1114, 105);
+            this.pbPlusUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbPlusUser.Name = "pbPlusUser";
-            this.pbPlusUser.Size = new System.Drawing.Size(32, 28);
+            this.pbPlusUser.Size = new System.Drawing.Size(37, 37);
             this.pbPlusUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPlusUser.TabIndex = 13;
             this.pbPlusUser.TabStop = false;
@@ -193,59 +192,65 @@
             // 
             this.btnLogin.Curva = 16;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.Location = new System.Drawing.Point(809, 310);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnLogin.Location = new System.Drawing.Point(925, 413);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(242, 37);
+            this.btnLogin.Size = new System.Drawing.Size(277, 49);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Texto = "Crear";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
             // 
             // ctbCContra
             // 
-            this.ctbCContra.Ancho = 2;
             this.ctbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbCContra.Location = new System.Drawing.Point(799, 260);
-            this.ctbCContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ctbCContra.Location = new System.Drawing.Point(913, 348);
             this.ctbCContra.Name = "ctbCContra";
             this.ctbCContra.PlaceholderText = "Confirmar contraseña";
-            this.ctbCContra.Size = new System.Drawing.Size(274, 27);
+            this.ctbCContra.Size = new System.Drawing.Size(313, 38);
             this.ctbCContra.TabIndex = 18;
             this.ctbCContra.txbText = "";
             this.ctbCContra.UsePasswordChar = false;
             // 
             // ctbContra
             // 
-            this.ctbContra.Ancho = 2;
             this.ctbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbContra.Location = new System.Drawing.Point(799, 229);
-            this.ctbContra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ctbContra.Location = new System.Drawing.Point(914, 305);
             this.ctbContra.Name = "ctbContra";
             this.ctbContra.PlaceholderText = "Contraseña";
-            this.ctbContra.Size = new System.Drawing.Size(274, 27);
+            this.ctbContra.Size = new System.Drawing.Size(313, 38);
             this.ctbContra.TabIndex = 17;
             this.ctbContra.txbText = "";
             this.ctbContra.UsePasswordChar = false;
             // 
             // ctbNombre
             // 
-            this.ctbNombre.Ancho = 2;
             this.ctbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctbNombre.Location = new System.Drawing.Point(799, 197);
-            this.ctbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ctbNombre.Location = new System.Drawing.Point(913, 263);
             this.ctbNombre.Name = "ctbNombre";
             this.ctbNombre.PlaceholderText = "Nombre";
-            this.ctbNombre.Size = new System.Drawing.Size(274, 27);
+            this.ctbNombre.Size = new System.Drawing.Size(313, 38);
             this.ctbNombre.TabIndex = 19;
             this.ctbNombre.txbText = "";
             this.ctbNombre.UsePasswordChar = false;
             // 
+            // surroundedTextBox1
+            // 
+            this.surroundedTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.surroundedTextBox1.fontTitulo = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.surroundedTextBox1.Location = new System.Drawing.Point(889, 508);
+            this.surroundedTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.surroundedTextBox1.Name = "surroundedTextBox1";
+            this.surroundedTextBox1.rtbText = "";
+            this.surroundedTextBox1.Size = new System.Drawing.Size(337, 142);
+            this.surroundedTextBox1.TabIndex = 20;
+            this.surroundedTextBox1.textTitulo = "SurroundedTextBox";
+            // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(1104, 505);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.surroundedTextBox1);
             this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.pbPlusUser);
@@ -259,7 +264,6 @@
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -291,5 +295,6 @@
         private UnderlinedTextBox ctbCContra;
         private UnderlinedTextBox ctbContra;
         private UnderlinedTextBox ctbNombre;
+        private SurroundedTextBox surroundedTextBox1;
     }
 }

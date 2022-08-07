@@ -40,10 +40,11 @@
             this.rtb.BackColor = System.Drawing.Color.Yellow;
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtb.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.rtb.Location = new System.Drawing.Point(258, 156);
+            this.rtb.Location = new System.Drawing.Point(29, 90);
+            this.rtb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rtb.Name = "rtb";
             this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.rtb.Size = new System.Drawing.Size(100, 100);
+            this.rtb.Size = new System.Drawing.Size(114, 133);
             this.rtb.TabIndex = 0;
             this.rtb.Text = "";
             this.rtb.Enter += new System.EventHandler(this.rtb_Enter);
@@ -56,9 +57,10 @@
             this.lbl.ForeColor = System.Drawing.Color.White;
             this.lbl.Location = new System.Drawing.Point(0, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(245, 37);
+            this.lbl.Size = new System.Drawing.Size(313, 46);
             this.lbl.TabIndex = 1;
             this.lbl.Text = "SurroundedTextBox";
+            this.lbl.Click += new System.EventHandler(this.lbl_Click);
             // 
             // tmrSurayado
             // 
@@ -70,15 +72,17 @@
             this.tmrSurayadont.Interval = 16;
             this.tmrSurayadont.Tick += new System.EventHandler(this.tmrSurayadont_Tick);
             // 
-            // ProWorkBigText
+            // SurroundedTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.rtb);
             this.DoubleBuffered = true;
-            this.Name = "ProWorkBigText";
-            this.Size = new System.Drawing.Size(762, 471);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "SurroundedTextBox";
+            this.Size = new System.Drawing.Size(338, 238);
+            this.Load += new System.EventHandler(this.SurroundedTextBox_Load);
             this.FontChanged += new System.EventHandler(this.ProWorkBigText_FontChanged);
             this.Click += new System.EventHandler(this.ProWorkBigText_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ProWorkBigText_Paint);
@@ -89,10 +93,9 @@
         }
 
         #endregion
-
-        private RichTextBox rtb;
         private Label lbl;
         private System.Windows.Forms.Timer tmrSurayado;
         private System.Windows.Forms.Timer tmrSurayadont;
+        public RichTextBox rtb;
     }
 }

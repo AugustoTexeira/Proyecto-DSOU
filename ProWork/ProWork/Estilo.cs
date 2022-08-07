@@ -29,5 +29,9 @@ namespace ProWork
                 contrasteLigero = Color.FromArgb(r, g, b);
             }
         }
+        public const int anchoLinea = 6;
+        public const int medioAnchoLinea = 3;
+        public const int curva = 40;
+        public const int mediaCurva = 20;
     }
 }
