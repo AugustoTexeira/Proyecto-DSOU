@@ -13,6 +13,9 @@
     <Compile Update="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SurroundedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UnderlinedTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
