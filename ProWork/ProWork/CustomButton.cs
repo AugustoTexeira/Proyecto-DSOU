@@ -16,14 +16,6 @@ namespace ProWork
     public partial class CustomButton : UserControl
     {
         private LinearGradientBrush brush;
-
-        private int curva = 40;
-        private float mc = 20;
-        public int Curva
-        {
-            get { return curva; }
-            set { curva = value; mc = value / 2; }
-        }
         private bool hovered = false;
         private string texto = "Button";
         public string Texto
@@ -55,40 +47,13 @@ namespace ProWork
             
 
             Pen pen;
-            if (hovered) { pen = new(Estilo.Contraste, 2); } else { pen = new(brush, 2); }
+            if (hovered) { pen = new(Estilo.Contraste, Estilo.anchoLinea); } else { pen = new(brush, Estilo.anchoLinea); }
 
-            ////Rectangulos
+            //Relleno
+            Estilo.RellenarMarco(brush, sender, e, this.ClientRectangle);
 
-            //Superior
-            e.Graphics.FillRectangle(brush, mc - 1, 0, this.Width - curva + 2, mc);
-            e.Graphics.DrawLine(pen, mc, 0, this.Width - mc, 0);
-
-            //Medio
-            e.Graphics.FillRectangle(brush, 0, mc - 1,this.Width, this.Height - curva + 2);
-            e.Graphics.DrawLine(pen, 0, mc, 0, this.Height - mc);
-            e.Graphics.DrawLine(pen, this.Width - 1, mc, this.Width - 1, this.Height - mc);
-
-            //Inferior
-            e.Graphics.FillRectangle(brush, mc - 1, this.Height - mc,  this.Width - curva + 2, mc);
-            e.Graphics.DrawLine(pen, mc, this.Height - 1, this.Width - mc, this.Height - 1);
-
-            ////Esquinas
-            
-            //Superior izquierda
-            e.Graphics.FillPie(brush, 0, 0, curva - 1, curva - 1, 180, 90);
-            e.Graphics.DrawArc(pen, 0, 0, curva, curva, 180, 90);
-
-            //Superior derecha
-            e.Graphics.FillPie(brush, this.Width - curva, 0, curva - 1, curva - 1, 270, 90);
-            e.Graphics.DrawArc(pen, this.Width - curva - 1, 0, curva, curva, 270, 90);
-
-            //Inferior izquierda
-            e.Graphics.FillPie(brush, 0, this.Height - curva, curva - 1, curva - 1, 90, 90);
-            e.Graphics.DrawArc(pen, 0, this.Height - curva - 1, curva, curva, 90, 90);
-
-            //Inferior derecha
-            e.Graphics.FillPie(brush, this.Width - curva, this.Height - curva, curva - 1, curva - 1, 0, 90);
-            e.Graphics.DrawArc(pen, this.Width - curva - 1, this.Height - curva - 1, curva, curva, 0, 90);
+            //Borde
+            Estilo.Enmarcar(pen, sender, e, this.ClientRectangle);
 
             ////Texto
             

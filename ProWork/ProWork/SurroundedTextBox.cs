@@ -64,31 +64,7 @@ namespace ProWork
                     break;
             }
 
-            //Linea superior
-            e.Graphics.DrawLine(pen, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1, Estilo.medioAnchoLinea + lbl.Height, this.Width - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1, Estilo.medioAnchoLinea + lbl.Height);
-
-            //Lineas medio
-            e.Graphics.DrawLine(pen, Estilo.medioAnchoLinea, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1 + lbl.Height, Estilo.medioAnchoLinea, this.Height - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1);
-            e.Graphics.DrawLine(pen, this.Width - Estilo.medioAnchoLinea, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1 + lbl.Height, this.Width - Estilo.medioAnchoLinea, this.Height - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1);
-
-            //Linea inferior
-            e.Graphics.DrawLine(pen, Estilo.mediaCurva + Estilo.medioAnchoLinea - 1, this.Height - Estilo.medioAnchoLinea, this.Width - Estilo.mediaCurva - Estilo.medioAnchoLinea + 1, this.Height - Estilo.medioAnchoLinea);
-
-            //Por ahora solo copie los "DrawArc"
-
-            //pen.Color = Color.FromArgb(128, 255, 0, 0);
-
-            //Superior izquierda (No cambien "curva" por 0)
-            e.Graphics.DrawArc(pen, Estilo.medioAnchoLinea, Estilo.medioAnchoLinea + lbl.Height, Estilo.curva, Estilo.curva, 180, 90);
-
-            //Superior derecha
-            e.Graphics.DrawArc(pen, this.Width - Estilo.curva - Estilo.medioAnchoLinea, Estilo.medioAnchoLinea + lbl.Height, Estilo.curva, Estilo.curva, 270, 90);
-
-            //Inferior izquierda
-            e.Graphics.DrawArc(pen, Estilo.medioAnchoLinea, this.Height - Estilo.curva - Estilo.medioAnchoLinea, Estilo.curva, Estilo.curva, 90, 90);
-
-            //Inferior derecha
-            e.Graphics.DrawArc(pen, this.Width - Estilo.curva - Estilo.medioAnchoLinea, this.Height - Estilo.curva - Estilo.medioAnchoLinea, Estilo.curva, Estilo.curva, 0, 90);
+            Estilo.Enmarcar(pen, sender, e, new(0, lbl.Height, this.Width, this.ClientSize.Height - lbl.Height));
         }
 
         private void ProWorkBigText_Resize(object sender, EventArgs e)

@@ -33,5 +33,102 @@ namespace ProWork
         public const int medioAnchoLinea = 3;
         public const int curva = 40;
         public const int mediaCurva = 20;
+        public static void Enmarcar (Pen pen, object sender, PaintEventArgs e, Rectangle posicion)
+        {
+            int c;
+            int mc;
+
+            if (curva > posicion.Height && posicion.Width >= posicion.Height) 
+            {
+                c = posicion.Height;
+            }
+            else if (curva > posicion.Width)
+            {
+                c = posicion.Width;
+            }
+            else
+            {
+                c = curva;
+            }
+
+            if (c % 2 != 0) { c++; }
+            mc = c / 2;
+
+            ////Lados
+
+            //Linea superior
+            e.Graphics.DrawLine(pen, posicion.X + mc + medioAnchoLinea - 1, posicion.Y + medioAnchoLinea, posicion.X + posicion.Width - mc - medioAnchoLinea, medioAnchoLinea + posicion.Y);
+
+            //Lineas medio
+            e.Graphics.DrawLine(pen, posicion.X + medioAnchoLinea, posicion.Y + mc + medioAnchoLinea - 1, posicion.X + medioAnchoLinea, posicion.Y + posicion.Height - mc - medioAnchoLinea); // Izquierda
+            e.Graphics.DrawLine(pen, posicion.X + posicion.Width - medioAnchoLinea - 1, posicion.Y + mc + medioAnchoLinea - 1, posicion.X + posicion.Width - medioAnchoLinea - 1, posicion.Y + posicion.Height - mc - medioAnchoLinea + 1); //Derecha
+
+            //Linea inferior
+            e.Graphics.DrawLine(pen, posicion.X + mc + medioAnchoLinea, posicion.Y + posicion.Height - medioAnchoLinea - 1, posicion.X + posicion.Width - mc - medioAnchoLinea , posicion.Y + posicion.Height - medioAnchoLinea - 1);
+
+            ////Esquinas
+
+            //Superior izquierda
+            e.Graphics.DrawArc(pen, posicion.X + medioAnchoLinea, posicion.Y + medioAnchoLinea, c, c, 180, 90);
+
+            //Superior derecha
+            e.Graphics.DrawArc(pen, posicion.X + posicion.Width - c - medioAnchoLinea - 1, posicion.Y + medioAnchoLinea, c, c, 270, 90);
+
+            //Inferior izquierda
+            e.Graphics.DrawArc(pen, posicion.X + medioAnchoLinea, posicion.Y + posicion.Height - c - medioAnchoLinea - 1, c, c, 90, 90);
+
+            //Inferior derecha
+            e.Graphics.DrawArc(pen, posicion.X + posicion.Width - c - medioAnchoLinea - 1, posicion.Y + posicion.Height - c - medioAnchoLinea - 1, c, c, 0, 90);
+        }
+        public static void RellenarMarco (Brush brush, object sender, PaintEventArgs e, Rectangle posicion)
+        {
+            ////Ajustar a espacio y evitar flickering.
+            
+            int c;
+            int mc;
+
+            if (curva > posicion.Height && posicion.Width >= posicion.Height)
+            {
+                c = posicion.Height;
+            }
+            else if (curva > posicion.Width)
+            {
+                c = posicion.Width;
+            }
+            else
+            {
+                c = curva;
+            }
+
+            if (c % 2 != 0) { c--; }
+            mc = c / 2;
+
+            ////Rectangulos
+
+            //Superior
+            e.Graphics.FillRectangle(brush, posicion.X + mc + medioAnchoLinea - 1, posicion.Y + medioAnchoLinea, posicion.Width - c + 2, mc - medioAnchoLinea);
+
+            //Medio
+            e.Graphics.FillRectangle(brush, posicion.X + medioAnchoLinea, posicion.Y + mc - 1, posicion.Width - anchoLinea, posicion.Height - c + 2);
+
+            //Inferior
+            e.Graphics.FillRectangle(brush, posicion.X + mc + medioAnchoLinea - 1, posicion.Y + posicion.Height - mc, posicion.X + posicion.Width - c + 2, mc - medioAnchoLinea);
+
+            ////Esquinas
+
+            ////Esquinas
+
+            //Superior izquierda
+            e.Graphics.FillPie(brush, posicion.X + medioAnchoLinea, posicion.Y + medioAnchoLinea, c, c, 180, 90);
+
+            //Superior derecha
+            e.Graphics.FillPie(brush, posicion.X + posicion.Width - c - medioAnchoLinea - 1, posicion.Y + medioAnchoLinea, c, c, 270, 90);
+
+            //Inferior izquierda
+            e.Graphics.FillPie(brush, posicion.X + medioAnchoLinea, posicion.Y + posicion.Height - c - medioAnchoLinea - 1, c, c, 90, 90);
+
+            //Inferior derecha
+            e.Graphics.FillPie(brush, posicion.X + posicion.Width - c - medioAnchoLinea - 1, posicion.Y + posicion.Height - c - medioAnchoLinea - 1, c, c, 0, 90);
+        }
     }
 }

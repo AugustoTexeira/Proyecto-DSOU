@@ -190,12 +190,11 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Curva = 16;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnLogin.Location = new System.Drawing.Point(925, 413);
+            this.btnLogin.Location = new System.Drawing.Point(914, 413);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(277, 49);
+            this.btnLogin.Size = new System.Drawing.Size(297, 51);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Texto = "Crear";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
@@ -237,11 +236,11 @@
             // 
             this.surroundedTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.surroundedTextBox1.fontTitulo = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.surroundedTextBox1.Location = new System.Drawing.Point(889, 508);
+            this.surroundedTextBox1.Location = new System.Drawing.Point(893, 508);
             this.surroundedTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.surroundedTextBox1.Name = "surroundedTextBox1";
             this.surroundedTextBox1.rtbText = "";
-            this.surroundedTextBox1.Size = new System.Drawing.Size(337, 142);
+            this.surroundedTextBox1.Size = new System.Drawing.Size(357, 118);
             this.surroundedTextBox1.TabIndex = 20;
             this.surroundedTextBox1.textTitulo = "SurroundedTextBox";
             // 
