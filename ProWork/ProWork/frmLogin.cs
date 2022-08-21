@@ -1,11 +1,12 @@
 using MySql.Data.MySqlClient;
 using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace ProWork
 {
     public partial class frmLogin : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
+        MySqlConnection conexion = new MySqlConnection("Server=sql10.freemysqlhosting.net; Database=sql10514108; Uid=sql10514108; Pwd=EAj4GZlXdk;");
         /* 
          Nomenclatura:
             txb = TextBox
@@ -67,13 +68,14 @@ namespace ProWork
                                 v = false;
                             }
                         }
-
+                        reader.Close();
                         if (v)
                         {
-                            MySqlCommand iRegistro = new("insert into usuarios (nombre, contrasenia, administrador) " +
-                                                        "values('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
+                            MySqlCommand iRegistro = new("insert into usuario (nombre, contrasenia, administrador) " +
+                                                        "values ('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
                                                         conexion
                                                         );
+                            iRegistro.ExecuteNonQuery();
                             e.Result = new frmMain(ctbNombre.txbText, false);
                         }
                         else
@@ -95,8 +97,10 @@ namespace ProWork
             {
                 try
                 {
-                    MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
-                    conexion.Open();
+                    if (!conexion.Ping())
+                    {
+                        conexion.Open();
+                    }
                     MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" +ctbContra.txbText + "', 224);", conexion);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 

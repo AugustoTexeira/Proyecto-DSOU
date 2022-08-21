@@ -35,7 +35,7 @@ namespace ProWork
         public SurroundedTextBox()
         {
             InitializeComponent();
-            lbl.Location = new(Estilo.mediaCurva, 0);
+            lbl.Location = new(Estilo.curva / 2, 0);
             rtb.BackColor = this.BackColor;
         }   
 
@@ -69,8 +69,8 @@ namespace ProWork
 
         private void ProWorkBigText_Resize(object sender, EventArgs e)
         {
-            lbl.Location = new(Estilo.mediaCurva, 0);
-            rtb.Location = new(Estilo.mediaCurva, lbl.Height + Estilo.mediaCurva);
+            lbl.Location = new(Estilo.curva / 2, 0);
+            rtb.Location = new(Estilo.curva / 2, lbl.Height + Estilo.curva / 2);
             rtb.Width = this.Width - Estilo.curva;
             rtb.Height = this.Height - Estilo.curva - lbl.Height;
         }

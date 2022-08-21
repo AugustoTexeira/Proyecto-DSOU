@@ -29,22 +29,21 @@ namespace ProWork
                 contrasteLigero = Color.FromArgb(r, g, b);
             }
         }
-        public const int anchoLinea = 6;
-        public const int medioAnchoLinea = 3;
-        public const int curva = 40;
-        public const int mediaCurva = 20;
+        public const int anchoLinea = 4;
+        public const int medioAnchoLinea = 2;
+        public const int curva = 20;
         public static void Enmarcar (Pen pen, object sender, PaintEventArgs e, Rectangle posicion)
         {
             int c;
             int mc;
 
-            if (curva > posicion.Height && posicion.Width >= posicion.Height) 
+            if (curva + medioAnchoLinea > posicion.Height && posicion.Width >= posicion.Height)
             {
-                c = posicion.Height;
+                c = posicion.Height - medioAnchoLinea;
             }
-            else if (curva > posicion.Width)
+            else if (curva + medioAnchoLinea > posicion.Width)
             {
-                c = posicion.Width;
+                c = posicion.Width - medioAnchoLinea;
             }
             else
             {
@@ -87,13 +86,13 @@ namespace ProWork
             int c;
             int mc;
 
-            if (curva > posicion.Height && posicion.Width >= posicion.Height)
+            if (curva + medioAnchoLinea > posicion.Height && posicion.Width >= posicion.Height)
             {
-                c = posicion.Height;
+                c = posicion.Height - medioAnchoLinea;
             }
-            else if (curva > posicion.Width)
+            else if (curva + medioAnchoLinea > posicion.Width)
             {
-                c = posicion.Width;
+                c = posicion.Width - medioAnchoLinea;
             }
             else
             {

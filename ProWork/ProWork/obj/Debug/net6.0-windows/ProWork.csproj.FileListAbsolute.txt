@@ -146,3 +146,4 @@ C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.SurroundedTextBox.resources
+C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ControlCuentas.resources

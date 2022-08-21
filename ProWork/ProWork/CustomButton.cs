@@ -44,7 +44,7 @@ namespace ProWork
         private void CustomButton_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            
+            e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
             Pen pen;
             if (hovered) { pen = new(Estilo.Contraste, Estilo.anchoLinea); } else { pen = new(brush, Estilo.anchoLinea); }

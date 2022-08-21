@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
+            this.controlCuentas1 = new ProWork.ControlCuentas();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pbxFondoVersion = new System.Windows.Forms.PictureBox();
             this.pbxFondoLogo = new System.Windows.Forms.PictureBox();
@@ -45,7 +46,6 @@
             this.ctbCContra = new ProWork.UnderlinedTextBox();
             this.ctbContra = new ProWork.UnderlinedTextBox();
             this.ctbNombre = new ProWork.UnderlinedTextBox();
-            this.surroundedTextBox1 = new ProWork.SurroundedTextBox();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
@@ -72,6 +72,7 @@
             // pnlForeground
             // 
             this.pnlForeground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.pnlForeground.Controls.Add(this.controlCuentas1);
             this.pnlForeground.Controls.Add(this.lblVersion);
             this.pnlForeground.Controls.Add(this.pbxFondoVersion);
             this.pnlForeground.Controls.Add(this.pbxFondoLogo);
@@ -79,8 +80,19 @@
             this.pnlForeground.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(240)))), ((int)(((byte)(252)))), ((int)(((byte)(15)))));
             this.pnlForeground.Location = new System.Drawing.Point(0, 0);
             this.pnlForeground.Name = "pnlForeground";
-            this.pnlForeground.Size = new System.Drawing.Size(857, 673);
+            this.pnlForeground.Size = new System.Drawing.Size(857, 692);
             this.pnlForeground.TabIndex = 8;
+            // 
+            // controlCuentas1
+            // 
+            this.controlCuentas1.AutoScroll = true;
+            this.controlCuentas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.controlCuentas1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.controlCuentas1.Location = new System.Drawing.Point(332, 6);
+            this.controlCuentas1.Margin = new System.Windows.Forms.Padding(6);
+            this.controlCuentas1.Name = "controlCuentas1";
+            this.controlCuentas1.Size = new System.Drawing.Size(348, 671);
+            this.controlCuentas1.TabIndex = 20;
             // 
             // lblVersion
             // 
@@ -205,7 +217,7 @@
             this.ctbCContra.Location = new System.Drawing.Point(913, 348);
             this.ctbCContra.Name = "ctbCContra";
             this.ctbCContra.PlaceholderText = "Confirmar contraseña";
-            this.ctbCContra.Size = new System.Drawing.Size(313, 38);
+            this.ctbCContra.Size = new System.Drawing.Size(313, 36);
             this.ctbCContra.TabIndex = 18;
             this.ctbCContra.txbText = "";
             this.ctbCContra.UsePasswordChar = false;
@@ -216,7 +228,7 @@
             this.ctbContra.Location = new System.Drawing.Point(914, 305);
             this.ctbContra.Name = "ctbContra";
             this.ctbContra.PlaceholderText = "Contraseña";
-            this.ctbContra.Size = new System.Drawing.Size(313, 38);
+            this.ctbContra.Size = new System.Drawing.Size(312, 36);
             this.ctbContra.TabIndex = 17;
             this.ctbContra.txbText = "";
             this.ctbContra.UsePasswordChar = false;
@@ -227,29 +239,16 @@
             this.ctbNombre.Location = new System.Drawing.Point(913, 263);
             this.ctbNombre.Name = "ctbNombre";
             this.ctbNombre.PlaceholderText = "Nombre";
-            this.ctbNombre.Size = new System.Drawing.Size(313, 38);
+            this.ctbNombre.Size = new System.Drawing.Size(313, 36);
             this.ctbNombre.TabIndex = 19;
             this.ctbNombre.txbText = "";
             this.ctbNombre.UsePasswordChar = false;
-            // 
-            // surroundedTextBox1
-            // 
-            this.surroundedTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.surroundedTextBox1.fontTitulo = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.surroundedTextBox1.Location = new System.Drawing.Point(893, 508);
-            this.surroundedTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.surroundedTextBox1.Name = "surroundedTextBox1";
-            this.surroundedTextBox1.rtbText = "";
-            this.surroundedTextBox1.Size = new System.Drawing.Size(357, 118);
-            this.surroundedTextBox1.TabIndex = 20;
-            this.surroundedTextBox1.textTitulo = "SurroundedTextBox";
             // 
             // frmLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(1262, 673);
-            this.Controls.Add(this.surroundedTextBox1);
+            this.ClientSize = new System.Drawing.Size(1262, 692);
             this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.pbPlusUser);
@@ -294,6 +293,6 @@
         private UnderlinedTextBox ctbCContra;
         private UnderlinedTextBox ctbContra;
         private UnderlinedTextBox ctbNombre;
-        private SurroundedTextBox surroundedTextBox1;
+        private ControlCuentas controlCuentas1;
     }
 }
