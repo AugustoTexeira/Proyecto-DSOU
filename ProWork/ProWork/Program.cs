@@ -19,7 +19,7 @@ namespace ProWork
             Estilo.degrContraste = Color.LightGray;
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmLogin());
+            Application.Run(new frmPrueba());
         }
     }
 }

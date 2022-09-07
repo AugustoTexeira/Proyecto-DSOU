@@ -147,3 +147,8 @@ C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.SurroundedTextBox.resources
 C:\Users\Cristian\Source\Repos\AugustoTexeira\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ControlCuentas.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Carpeta.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ControlCuentas.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.FileHolder.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmPrueba.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Archivo.resources
