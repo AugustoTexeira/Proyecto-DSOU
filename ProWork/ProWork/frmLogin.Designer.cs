@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
-            this.controlCuentas1 = new ProWork.ControlCuentas();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pbxFondoVersion = new System.Windows.Forms.PictureBox();
             this.pbxFondoLogo = new System.Windows.Forms.PictureBox();
@@ -72,7 +71,6 @@
             // pnlForeground
             // 
             this.pnlForeground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.pnlForeground.Controls.Add(this.controlCuentas1);
             this.pnlForeground.Controls.Add(this.lblVersion);
             this.pnlForeground.Controls.Add(this.pbxFondoVersion);
             this.pnlForeground.Controls.Add(this.pbxFondoLogo);
@@ -82,17 +80,6 @@
             this.pnlForeground.Name = "pnlForeground";
             this.pnlForeground.Size = new System.Drawing.Size(857, 692);
             this.pnlForeground.TabIndex = 8;
-            // 
-            // controlCuentas1
-            // 
-            this.controlCuentas1.AutoScroll = true;
-            this.controlCuentas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.controlCuentas1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.controlCuentas1.Location = new System.Drawing.Point(332, 6);
-            this.controlCuentas1.Margin = new System.Windows.Forms.Padding(6);
-            this.controlCuentas1.Name = "controlCuentas1";
-            this.controlCuentas1.Size = new System.Drawing.Size(348, 671);
-            this.controlCuentas1.TabIndex = 20;
             // 
             // lblVersion
             // 
@@ -210,6 +197,7 @@
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Texto = "Crear";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // ctbCContra
             // 
@@ -266,6 +254,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prowork";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmLogin_FormClosed);
             this.pnlForeground.ResumeLayout(false);
             this.pnlForeground.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).EndInit();
@@ -293,6 +282,5 @@
         private UnderlinedTextBox ctbCContra;
         private UnderlinedTextBox ctbContra;
         private UnderlinedTextBox ctbNombre;
-        private ControlCuentas controlCuentas1;
     }
 }

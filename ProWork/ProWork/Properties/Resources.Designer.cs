@@ -63,16 +63,6 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Ajustes_Blanco {
-            get {
-                object obj = ResourceManager.GetObject("Ajustes Blanco", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Ajustes_Gris {
             get {
                 object obj = ResourceManager.GetObject("Ajustes Gris", resourceCulture);
@@ -106,6 +96,16 @@ namespace ProWork.Properties {
         internal static System.Drawing.Bitmap Fondo_boton {
             get {
                 object obj = ResourceManager.GetObject("Fondo boton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fondo_seleccion_tema {
+            get {
+                object obj = ResourceManager.GetObject("Fondo_seleccion_tema", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,59 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Personalizado {
+            get {
+                object obj = ResourceManager.GetObject("Personalizado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Proyectos_Blanco {
             get {
                 object obj = ResourceManager.GetObject("Proyectos Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Selección_Tema {
+            get {
+                object obj = ResourceManager.GetObject("Selección_Tema", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tema {
+            get {
+                object obj = ResourceManager.GetObject("Tema", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tema_claro {
+            get {
+                object obj = ResourceManager.GetObject("Tema_claro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tema_oscuro {
+            get {
+                object obj = ResourceManager.GetObject("Tema_oscuro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

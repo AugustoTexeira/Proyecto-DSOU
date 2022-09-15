@@ -303,7 +303,7 @@ namespace ProWork
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (Application.OpenForms.Count == 0) { Application.Exit(); }
         }
 
         private void dplMenuProyectos_MouseEnter(object sender, EventArgs e)

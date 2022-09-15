@@ -14,6 +14,9 @@ namespace ProWork
         private static Color contraste = Color.White;
         public static Color contrasteLigero = Color.Gray;
         public static Color degrContraste = Color.LightGray;
+        public static Color contrasteEnfasis = Color.White;
+
+        public static byte selectedStyle = 0; //0 = Modo oscuro; 1 = Modo claro; El resto son personalizados.
         public static Color Contraste
         {
             get { return contraste; }
@@ -112,8 +115,6 @@ namespace ProWork
 
             //Inferior
             e.Graphics.FillRectangle(brush, posicion.X + mc + medioAnchoLinea - 1, posicion.Y + posicion.Height - mc, posicion.X + posicion.Width - c + 2, mc - medioAnchoLinea);
-
-            ////Esquinas
 
             ////Esquinas
 

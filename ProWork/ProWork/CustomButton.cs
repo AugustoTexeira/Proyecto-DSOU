@@ -63,7 +63,7 @@ namespace ProWork
             stringFormat.LineAlignment = StringAlignment.Center;
 
             //Broche
-            SolidBrush bTexto = new(Estilo.Contraste);
+            SolidBrush bTexto = new(Estilo.contrasteEnfasis);
 
             //Dibujado
             e.Graphics.DrawString(texto, this.Font, bTexto, this.ClientRectangle, stringFormat);

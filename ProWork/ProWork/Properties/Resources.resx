@@ -118,14 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ojitosi32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Iconos y recursos\ojitosi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Home Gris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Home Gris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Ojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ojo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Personalizado" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Personalizado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo en login" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo en login.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icono-ojo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Iconos y recursos\Icono-ojo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Contactos Blanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Contactos Blanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Icono-Inicio de sesion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Iconos y recursos\Icono-Inicio de sesion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,11 +148,8 @@
   <data name="Fondo boton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Iconos y recursos\Fondo boton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ojitosi321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Iconos y recursos\ojitosi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Icono-Registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Iconos y recursos\Icono-Registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Tema_oscuro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tema oscuro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ojitosi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Iconos y recursos\ojitosi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,40 +157,46 @@
   <data name="Version fondo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Version fondo1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Version fondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Version fondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Usuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ojito no" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Iconos y recursos\Ojito no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MasUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MasUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ojitosi32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Iconos y recursos\ojitosi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ajustes Blanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ajustes Blanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Contactos Gris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Contactos Gris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ajustes Gris" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ajustes Gris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Contactos Gris" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Contactos Gris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Version fondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Version fondo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Home Blanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Home Blanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Contactos Blanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Contactos Blanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Tema_claro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tema claro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Home Gris" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Home Gris.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Usuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fondo_seleccion_tema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fondo seleccion tema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Proyectos Blanco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Proyectos Blanco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tema1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ojito no" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Iconos y recursos\Ojito no.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ojitosi321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Iconos y recursos\ojitosi32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icono-Registro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Iconos y recursos\Icono-Registro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MasUsuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasUsuario.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Selección_Tema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Selección Tema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

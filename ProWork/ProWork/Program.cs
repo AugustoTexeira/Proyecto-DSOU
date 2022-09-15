@@ -1,5 +1,6 @@
 namespace ProWork
 {
+    using MySql.Data.MySqlClient;
     internal static class Program
     {
         /// <summary>
@@ -19,7 +20,9 @@ namespace ProWork
             Estilo.degrContraste = Color.LightGray;
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmPrueba());
+            frmLogin frm = new();
+            frm.Show();
+            Application.Run();
         }
     }
 }

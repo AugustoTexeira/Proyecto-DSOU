@@ -174,5 +174,10 @@ namespace ProWork
         {
             txb.Font = this.Font;
         }
+
+        private void UnderlinedTextBox_BackColorChanged(object sender, EventArgs e)
+        {
+            txb.BackColor = this.BackColor;
+        }
     }
 }

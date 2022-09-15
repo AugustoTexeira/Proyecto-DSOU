@@ -6,7 +6,7 @@ namespace ProWork
 {
     public partial class frmLogin : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=sql10.freemysqlhosting.net; Database=sql10514108; Uid=sql10514108; Pwd=EAj4GZlXdk;");
+        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
         /* 
          Nomenclatura:
             txb = TextBox
@@ -76,7 +76,8 @@ namespace ProWork
                                                         conexion
                                                         );
                             iRegistro.ExecuteNonQuery();
-                            e.Result = new frmMain(ctbNombre.txbText, false);
+                            e.Result = new frmPruebaa(conexion, ctbNombre.txbText, false);
+                            //e.Result = new frmMain(ctbNombre.txbText, false);
                         }
                         else
                         {
@@ -116,9 +117,11 @@ namespace ProWork
                         }
                     }
 
+                    reader.Close();
+
                     if (v)
                     {
-                        e.Result = new frmMain(ctbNombre.txbText, admin);
+                        e.Result = new frmPruebaa(conexion, ctbNombre.txbText, admin);
                     }
                     else
                     {
@@ -259,10 +262,15 @@ namespace ProWork
 
             if(e.Result != null)
             {
-                frmMain main = (frmMain)e.Result;
+                frmPruebaa main = (frmPruebaa)e.Result;
                 main.Show();
-                this.Hide();
+                this.Close();
             }
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0) { Application.Exit(); }
         }
     }
 }

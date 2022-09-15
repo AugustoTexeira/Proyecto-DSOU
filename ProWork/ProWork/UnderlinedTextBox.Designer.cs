@@ -57,6 +57,7 @@
             this.Name = "UnderlinedTextBox";
             this.Size = new System.Drawing.Size(259, 41);
             this.Load += new System.EventHandler(this.UnderlinedTextBox_Load);
+            this.BackColorChanged += new System.EventHandler(this.UnderlinedTextBox_BackColorChanged);
             this.FontChanged += new System.EventHandler(this.UnderlinedTextBox_FontChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UnderlinedTextBox_Paint);
             this.Enter += new System.EventHandler(this.UnderlinedTextBox_Enter);

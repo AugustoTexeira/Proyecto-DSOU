@@ -1,13 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="De Configuración %28Cristian%29\ConfigContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="frmAccConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="De Configuración (Cristian)\AccountList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Archivo.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Carpeta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ControlCuentas.cs">
+    <Compile Update="De Configuración (Cristian)\ControlCuentas.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="CustomButton.cs">
@@ -25,7 +34,13 @@
     <Compile Update="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmPrueba.cs">
+    <Compile Update="De Configuración (Cristian)\AccountItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="frmPruebaa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmTinyRegister.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="SurroundedTextBox.cs">
