@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
+namespace ProWork
+{
+    public partial class Ruta : UserControl
+    {
+        MySqlConnection conexion;
+        public Ruta()
+        {
+            InitializeComponent();
+        }
+
+        public void Conectar(MySqlConnection conexion)
+        {
+            this.conexion = conexion;
+        }
+        public void DefinirRuta(object sender)
+        {
+            if (!conexion.Ping())
+            {
+                conexion.Open();
+            }
+            MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta order by 1;", conexion);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            this.Controls.Clear();
+            while (reader.Read())
+            {
+                lblRuta lbl = new lblRuta(reader.GetInt32(0), $"/{reader.GetString(2)}");
+                lbl.Dock = DockStyle.Left;
+                lbl.Font = this.Font;
+                lbl.ForeColor = Estilo.Contraste;
+                this.Controls.Add(lbl);
+            }
+            reader.Close();
+        }
+
+        private void Ruta_FontChanged(object sender, EventArgs e)
+        {
+            this.Height = this.Font.Height;
+        }
+    }
+
+    public class lblRuta : Label
+    {
+        public int id;
+        public lblRuta(int id, string nom)
+        {
+            this.id = id;
+            this.Text = nom;
+        }
+    }
+}

@@ -28,27 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlConfig = new ProWork.De_Configuración__Cristian_.ConfigContainer();
+            this.pyc = new ProWork.ProyectosContainer();
             this.SuspendLayout();
             // 
-            // ctlConfig
+            // pyc
             // 
-            this.ctlConfig.AutoScroll = true;
-            this.ctlConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.ctlConfig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlConfig.Location = new System.Drawing.Point(0, 0);
-            this.ctlConfig.MinimumSize = new System.Drawing.Size(736, 540);
-            this.ctlConfig.Name = "ctlConfig";
-            this.ctlConfig.Padding = new System.Windows.Forms.Padding(20);
-            this.ctlConfig.Size = new System.Drawing.Size(812, 649);
-            this.ctlConfig.TabIndex = 0;
+            this.pyc.BackColor = System.Drawing.SystemColors.ControlText;
+            this.pyc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pyc.Location = new System.Drawing.Point(0, 0);
+            this.pyc.Name = "pyc";
+            this.pyc.Size = new System.Drawing.Size(812, 649);
+            this.pyc.TabIndex = 0;
             // 
             // frmPruebaa
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(812, 649);
-            this.Controls.Add(this.ctlConfig);
+            this.Controls.Add(this.pyc);
             this.Name = "frmPruebaa";
             this.Text = "frmPruebaa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPruebaa_FormClosed);
@@ -58,6 +55,6 @@
 
         #endregion
 
-        private De_Configuración__Cristian_.ConfigContainer ctlConfig;
+        private ProyectosContainer pyc;
     }
 }

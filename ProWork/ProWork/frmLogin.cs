@@ -6,7 +6,7 @@ namespace ProWork
 {
     public partial class frmLogin : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
+        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=prowork; Uid=root; Pwd=;");
         /* 
          Nomenclatura:
             txb = TextBox
@@ -71,7 +71,7 @@ namespace ProWork
                         reader.Close();
                         if (v)
                         {
-                            MySqlCommand iRegistro = new("insert into usuario (nombre, contrasenia, administrador) " +
+                            MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
                                                         "values ('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
                                                         conexion
                                                         );
@@ -102,7 +102,7 @@ namespace ProWork
                     {
                         conexion.Open();
                     }
-                    MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" +ctbContra.txbText + "', 224);", conexion);
+                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" +ctbContra.txbText + "', 224);", conexion);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;

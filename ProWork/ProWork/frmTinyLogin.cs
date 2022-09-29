@@ -47,7 +47,7 @@ namespace ProWork
                 {
                     connection.Open();
                 }
-                MySqlCommand vLogin = new("select nombre, contrasenia, administrador from usuario where contrasenia=sha2('" + utbContra.txbText + "', 224);", connection);
+                MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", connection);
                 MySqlDataReader reader = vLogin.ExecuteReader();
 
                 bool v = false;

@@ -13,7 +13,7 @@ namespace ProWork
 {
     public partial class frmPruebaa : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=dbprowork; Uid=root; Pwd=;");
+        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=prowork; Uid=root; Pwd=;");
         private string user;
         private bool admin;
         public frmPruebaa()
@@ -22,7 +22,8 @@ namespace ProWork
             this.BackColor = Estilo.fondo;
             admin = true;
             conexion.Open();
-            ctlConfig.conectar(conexion, "usuario", false);
+
+            pyc.Conectar(conexion);
         }
         public frmPruebaa(MySqlConnection connection, string user, bool admin)
         {
@@ -32,7 +33,7 @@ namespace ProWork
             this.admin = admin;
             conexion = connection;
 
-            ctlConfig.conectar(conexion, user, admin);
+            pyc.Conectar(conexion);
         }
         private void Cerrar(object sender, EventArgs e)
         {
@@ -43,5 +44,6 @@ namespace ProWork
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
         }
+
     }
 }

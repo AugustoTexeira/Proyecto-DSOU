@@ -26,11 +26,15 @@ namespace ProWork
         public void Conectar(MySqlConnection conexion) 
         { 
             this.conexion = conexion;
+            MostrarCarpetas();
         }
         public void MostrarCarpetas()
         {
-            conexion.Open();
-            MySqlCommand nombres = new("select id,string1 from strings, autostring where IF(id IN (select idcar2 from autostring),0,1) group by id;", conexion);
+            if(!conexion.Ping())
+            {
+                conexion.Open();
+            }
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", conexion);
             MySqlDataReader reader = nombres.ExecuteReader();
             while (reader.Read())
             {
@@ -103,8 +107,11 @@ namespace ProWork
         private void Open(object sender, EventArgs e)
         {
             Truncate();
-            conexion.Open();
-            MySqlCommand nombres = new("select id,string1 from strings where IF(id IN(select idcar2 from strings,autostring where idcar = " + sender.ToString() + " and id = idcar),1,0);", conexion);
+            if(!conexion.Ping())
+            {
+                conexion.Open();
+            }
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where IF(idcarpeta IN(select idcarpeta from carpeta where carpetaPadre = " + sender.ToString() + "),1,0);", conexion);
             MySqlDataReader reader = nombres.ExecuteReader();
             while (reader.Read())
             {
@@ -113,7 +120,10 @@ namespace ProWork
                 carpeta.Nombre = reader.GetString(1);
                 this.Add(carpeta);
             }
-            conexion.Close();
+            reader.Close();
+            Entrar.Invoke(sender, e);
         }
+
+        public event EventHandler Entrar;
     }
 }

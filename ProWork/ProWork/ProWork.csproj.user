@@ -43,6 +43,12 @@
     <Compile Update="frmTinyRegister.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ProyectosContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Ruta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="SurroundedTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

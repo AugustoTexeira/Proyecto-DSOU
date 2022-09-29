@@ -61,7 +61,7 @@ namespace ProWork
                     reader.Close();
                     if (v)
                     {
-                        MySqlCommand iRegistro = new("insert into usuario (nombre, contrasenia, administrador) " +
+                        MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
                                                     "values ('" + utbNombre.txbText + "', sha2('" + utbContra.txbText + "', 224), false);",
                                                     connection
                                                     );
