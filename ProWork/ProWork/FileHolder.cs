@@ -19,9 +19,11 @@ namespace ProWork
         public const short FileSize = 100;
         private List<Carpeta> carpetas = new List<Carpeta>();
         private List<Archivo> archivos = new List<Archivo>();
+
         public FileHolder()
         {
             InitializeComponent();
+            ContextMenuStrip contexto = new();
         }
         public void Conectar(MySqlConnection conexion) 
         { 
@@ -33,9 +35,11 @@ namespace ProWork
             if(!conexion.Ping())
             {
                 conexion.Open();
+
             }
             MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", conexion);
             MySqlDataReader reader = nombres.ExecuteReader();
+            Truncate();
             while (reader.Read())
             {
                 Carpeta carpeta = new Carpeta();
@@ -44,6 +48,7 @@ namespace ProWork
                 this.Add(carpeta);
             }
             conexion.Close();
+            Entrar.Invoke(null, null);
         }
         private void FileHolder_Resize(object sender, EventArgs e)
         {
@@ -104,7 +109,7 @@ namespace ProWork
             archivos.Clear();
         }
 
-        private void Open(object sender, EventArgs e)
+        public void Open(object sender, EventArgs e)
         {
             Truncate();
             if(!conexion.Ping())
@@ -125,5 +130,13 @@ namespace ProWork
         }
 
         public event EventHandler Entrar;
+
+        private void FileHolder_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                cms.Show(this, e.Location);
+            }
+        }
     }
 }

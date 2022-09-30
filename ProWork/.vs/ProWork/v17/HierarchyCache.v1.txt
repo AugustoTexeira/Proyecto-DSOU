@@ -1,0 +1,230 @@
+﻿++Solución "ProWork" ‎(1 de 1 proyecto)
+i:{00000000-0000-0000-0000-000000000000}:ProWork.sln
+++ProWork
+i:{00000000-0000-0000-0000-000000000000}:ProWork
+++Dependencias
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:>362
+++Properties
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\properties\
+++De Configuración (Cristian)
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\
+++Iconos y recursos
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\
+++Resources
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\
+++Archivo.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\archivo.cs
+++Carpeta.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\carpeta.cs
+++Carpeta.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\carpeta.designer.cs
+++Carpeta.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\carpeta.resx
+++CustomButton.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\custombutton.cs
+++DoubleBufferedPanel.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\doublebufferedpanel.cs
+++Estilo.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\estilo.cs
+++FileHolder.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\fileholder.cs
+++frmAccConfig.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmaccconfig.cs
+++frmLogin.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmlogin.cs
+++frmMain.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmmain.cs
+++frmPruebaa.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmpruebaa.cs
+++frmTinyLogin.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinylogin.cs
+++frmTinyRegister.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinyregister.cs
+++Program.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\program.cs
+++ProyectosContainer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\proyectoscontainer.cs
+++Ruta.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\ruta.cs
+++SurroundedTextBox.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\surroundedtextbox.cs
+++UnderlinedTextBox.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\underlinedtextbox.cs
+++Analizadores
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:analizadores
+++Marcos de trabajo
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:marcos de trabajo
+++Paquetes
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:paquetes
+++Resources.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\properties\resources.resx
+++AccountItem.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountitem.cs
+++AccountList.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountlist.cs
+++ConfigContainer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\configcontainer.cs
+++ControlCuentas.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\controlcuentas.cs
+++Fondo boton.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\fondo boton.png
+++Fondo Inicio.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\fondo inicio.png
+++Fondo Inicio.svg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\fondo inicio.svg
+++Icono-Inicio de sesion.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\icono-inicio de sesion.png
+++Icono-ojo.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\icono-ojo.png
+++Icono-Registro.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\icono-registro.png
+++Ojito no.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\ojito no.png
+++Ojito si.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\ojito si.png
+++ojitosi.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\ojitosi.png
+++ojitosi32.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\ojitosi32.png
+++VISUALES .cdr
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\iconos y recursos\visuales .cdr
+++Ajustes Blanco.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\ajustes blanco.png
+++Ajustes Gris.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\ajustes gris.png
+++blackman.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\blackman.jpg
+++blackman1.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\blackman1.jpg
+++blindwoman.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\blindwoman.jpg
+++Contactos Blanco.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\contactos blanco.png
+++Contactos Gris.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\contactos gris.png
+++dyedhair.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\dyedhair.jpg
+++Fondo seleccion tema.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\fondo seleccion tema.png
+++Home Blanco.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\home blanco.png
+++Home Gris.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\home gris.png
+++Logo en login.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\logo en login.png
+++MasUsuario.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\masusuario.png
+++Ojo.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\ojo.png
+++Personalizado.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\personalizado.png
+++Proyectos Blanco.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\proyectos blanco.png
+++Selección del tema.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\selección del tema.jpg
+++Selección Tema.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\selección tema.png
+++Tema claro.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\tema claro.png
+++Tema claro1.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\tema claro1.png
+++Tema oscuro.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\tema oscuro.png
+++Tema.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\tema.jpg
+++Tema1.jpg
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\tema1.jpg
+++Usuario.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\usuario.png
+++Version fondo.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\version fondo.png
+++Version fondo1.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\version fondo1.png
+++Archivo.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\archivo.designer.cs
+++Archivo.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\archivo.resx
+++CustomButton.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\custombutton.designer.cs
+++CustomButton.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\custombutton.resx
+++FileHolder.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\fileholder.designer.cs
+++FileHolder.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\fileholder.resx
+++frmAccConfig.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmaccconfig.designer.cs
+++frmAccConfig.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmaccconfig.resx
+++frmLogin.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmlogin.designer.cs
+++frmLogin.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmlogin.resx
+++frmMain.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmmain.designer.cs
+++frmMain.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmmain.resx
+++frmPruebaa.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmpruebaa.designer.cs
+++frmPruebaa.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmpruebaa.resx
+++frmTinyLogin.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinylogin.designer.cs
+++frmTinyLogin.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinylogin.resx
+++frmTinyRegister.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinyregister.designer.cs
+++frmTinyRegister.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\frmtinyregister.resx
+++ProyectosContainer.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\proyectoscontainer.designer.cs
+++ProyectosContainer.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\proyectoscontainer.resx
+++Ruta.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\ruta.designer.cs
+++Ruta.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\ruta.resx
+++SurroundedTextBox.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\surroundedtextbox.designer.cs
+++SurroundedTextBox.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\surroundedtextbox.resx
+++UnderlinedTextBox.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\underlinedtextbox.designer.cs
+++UnderlinedTextBox.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\underlinedtextbox.resx
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++System.Text.Json.SourceGeneration
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++System.Windows.Forms.Analyzers
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\program files\dotnet\packs\microsoft.windowsdesktop.app.ref\6.0.3\analyzers\dotnet\system.windows.forms.analyzers.dll
+++System.Windows.Forms.Analyzers.CSharp
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\program files\dotnet\packs\microsoft.windowsdesktop.app.ref\6.0.3\analyzers\dotnet\cs\system.windows.forms.analyzers.csharp.dll
+++Microsoft.NETCore.App
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\microsoft.netcore.app
+++Microsoft.WindowsDesktop.App.WindowsForms
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\microsoft.windowsdesktop.app.windowsforms
+++MySql.Data (8.0.29)
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:>370
+++Resources.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\properties\resources.designer.cs
+++AccountItem.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountitem.designer.cs
+++AccountItem.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountitem.resx
+++AccountList.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountlist.designer.cs
+++AccountList.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\accountlist.resx
+++ConfigContainer.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\configcontainer.designer.cs
+++ConfigContainer.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\configcontainer.resx
+++ControlCuentas.Designer.cs
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\controlcuentas.designer.cs
+++ControlCuentas.resx
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\de configuración (cristian)\controlcuentas.resx
+++Carpetas.png
+i:{b167a096-e3a2-4a03-970e-25cbf8a85452}:c:\users\julian\documents\github\proyecto-dsou\prowork\prowork\resources\carpetas.png

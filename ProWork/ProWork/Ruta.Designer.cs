@@ -32,11 +32,14 @@
             // 
             // Ruta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Coral;
+            this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Ruta";
-            this.Size = new System.Drawing.Size(649, 34);
+            this.Size = new System.Drawing.Size(1205, 73);
+            this.Load += new System.EventHandler(this.Ruta_Load);
             this.FontChanged += new System.EventHandler(this.Ruta_FontChanged);
             this.ResumeLayout(false);
 

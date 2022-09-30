@@ -25,9 +25,9 @@ namespace ProWork
 
         private void Carpeta_Load(object sender, EventArgs e)
         {
-            this.BackColor = this.Parent.BackColor;
+            this.BackColor = Estilo.fondo;
             lbl.ForeColor = Estilo.Contraste;
-            pcb.BackColor = this.Parent.BackColor;
+            pcb.BackColor = Estilo.fondo;
         }
         public event EventHandler CarpetaDoubleClick;
 

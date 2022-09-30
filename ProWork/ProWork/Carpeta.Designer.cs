@@ -48,7 +48,7 @@
             // pcb
             // 
             this.pcb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcb.Image = global::ProWork.Properties.Resources.Logo_en_login;
+            this.pcb.Image = global::ProWork.Properties.Resources.Carpetas;
             this.pcb.Location = new System.Drawing.Point(0, 0);
             this.pcb.Name = "pcb";
             this.pcb.Size = new System.Drawing.Size(100, 69);

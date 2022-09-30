@@ -28,7 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.añadirCarpetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.añadirCarpetaToolStripMenuItem});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(181, 48);
+            // 
+            // añadirCarpetaToolStripMenuItem
+            // 
+            this.añadirCarpetaToolStripMenuItem.Name = "añadirCarpetaToolStripMenuItem";
+            this.añadirCarpetaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.añadirCarpetaToolStripMenuItem.Text = "Añadir carpeta";
             // 
             // FileHolder
             // 
@@ -37,12 +54,16 @@
             this.AutoScroll = true;
             this.Name = "FileHolder";
             this.Size = new System.Drawing.Size(455, 403);
-            this.Load += new System.EventHandler(this.FileHolder_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FileHolder_MouseClick);
             this.Resize += new System.EventHandler(this.FileHolder_Resize);
+            this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private ContextMenuStrip cms;
+        private ToolStripMenuItem añadirCarpetaToolStripMenuItem;
     }
 }

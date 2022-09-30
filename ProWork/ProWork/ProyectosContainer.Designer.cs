@@ -42,12 +42,12 @@
             // 
             // rt
             // 
-            this.rt.BackColor = System.Drawing.Color.Coral;
+            this.rt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.rt.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rt.Location = new System.Drawing.Point(24, 6);
-            this.rt.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.rt.Location = new System.Drawing.Point(13, 5);
+            this.rt.Margin = new System.Windows.Forms.Padding(5);
             this.rt.Name = "rt";
-            this.rt.Size = new System.Drawing.Size(1205, 73);
+            this.rt.Size = new System.Drawing.Size(759, 32);
             this.rt.TabIndex = 1;
             // 
             // ProyectosContainer
@@ -59,6 +59,7 @@
             this.Controls.Add(this.flh);
             this.Name = "ProyectosContainer";
             this.Size = new System.Drawing.Size(1280, 720);
+            this.Load += new System.EventHandler(this.ProyectosContainer_Load);
             this.ResumeLayout(false);
 
         }
