@@ -34,6 +34,7 @@
             // lbl
             // 
             this.lbl.BackColor = System.Drawing.Color.Transparent;
+            this.lbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl.Location = new System.Drawing.Point(0, 0);
             this.lbl.Name = "lbl";

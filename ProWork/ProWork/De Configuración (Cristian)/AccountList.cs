@@ -14,7 +14,6 @@ namespace ProWork
 {
     public partial class AccountList : UserControl
     {
-        MySqlConnection conexion = new();
         public bool userAdmin = false; //Si el usuario actual (el que usa la app) es admin
         public string User;
         public AccountList()
@@ -22,19 +21,11 @@ namespace ProWork
             InitializeComponent();
         }
 
-        public void Conectar(MySqlConnection conexion)
-        {
-            this.conexion = conexion;
-        }
-
         public void ResetElementos()
         {
-            if (!conexion.Ping())
-            {
-                conexion.Open();
-            }
+            Program.tryToConnect();
 
-            MySqlCommand select = new MySqlCommand("Select nombre, administrador from usuario order by nombre;", conexion);
+            MySqlCommand select = new MySqlCommand("Select nombre, administrador from usuario order by nombre;", Program.connection);
             MySqlDataReader lector = select.ExecuteReader();
 
             this.Controls.Clear();
@@ -43,7 +34,7 @@ namespace ProWork
 
             while (lector.Read())
             {
-                AccountItem item = new AccountItem(conexion);
+                AccountItem item = new AccountItem();
 
                 item.Text = lector.GetString(0);
                 item.isAdmin = lector.GetBoolean(1);

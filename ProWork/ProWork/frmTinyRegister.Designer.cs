@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblRegistrarme = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.utbNombre = new ProWork.UnderlinedTextBox();
             this.utbContra = new ProWork.UnderlinedTextBox();
             this.utbCContra = new ProWork.UnderlinedTextBox();
@@ -39,25 +39,16 @@
             this.bgwCheck = new System.ComponentModel.BackgroundWorker();
             this.pbPlusUser = new System.Windows.Forms.PictureBox();
             this.pbxUser = new System.Windows.Forms.PictureBox();
+            this.tmrIntoRegister = new System.Windows.Forms.Timer(this.components);
+            this.tmrIntoLogin = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblRegistrarme
-            // 
-            this.lblRegistrarme.AutoSize = true;
-            this.lblRegistrarme.Font = new System.Drawing.Font("Raleway", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblRegistrarme.ForeColor = System.Drawing.Color.White;
-            this.lblRegistrarme.Location = new System.Drawing.Point(65, 285);
-            this.lblRegistrarme.Name = "lblRegistrarme";
-            this.lblRegistrarme.Size = new System.Drawing.Size(452, 83);
-            this.lblRegistrarme.TabIndex = 1;
-            this.lblRegistrarme.Text = "REGISTRARME";
-            // 
             // utbNombre
             // 
             this.utbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.utbNombre.Location = new System.Drawing.Point(119, 394);
+            this.utbNombre.Location = new System.Drawing.Point(119, 356);
             this.utbNombre.Name = "utbNombre";
             this.utbNombre.PlaceholderText = "Nombre";
             this.utbNombre.Size = new System.Drawing.Size(344, 36);
@@ -68,7 +59,7 @@
             // utbContra
             // 
             this.utbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.utbContra.Location = new System.Drawing.Point(119, 445);
+            this.utbContra.Location = new System.Drawing.Point(119, 407);
             this.utbContra.Name = "utbContra";
             this.utbContra.PlaceholderText = "Contraseña";
             this.utbContra.Size = new System.Drawing.Size(344, 36);
@@ -79,7 +70,7 @@
             // utbCContra
             // 
             this.utbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.utbCContra.Location = new System.Drawing.Point(119, 496);
+            this.utbCContra.Location = new System.Drawing.Point(119, 458);
             this.utbCContra.Name = "utbCContra";
             this.utbCContra.PlaceholderText = "Confirmar contraseña";
             this.utbCContra.Size = new System.Drawing.Size(344, 36);
@@ -90,7 +81,7 @@
             // cbtCrear
             // 
             this.cbtCrear.Font = new System.Drawing.Font("Raleway", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cbtCrear.Location = new System.Drawing.Point(108, 614);
+            this.cbtCrear.Location = new System.Drawing.Point(108, 576);
             this.cbtCrear.Name = "cbtCrear";
             this.cbtCrear.Size = new System.Drawing.Size(366, 68);
             this.cbtCrear.TabIndex = 5;
@@ -103,7 +94,7 @@
             this.lblLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLogin.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLogin.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblLogin.Location = new System.Drawing.Point(119, 544);
+            this.lblLogin.Location = new System.Drawing.Point(119, 506);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(344, 25);
             this.lblLogin.TabIndex = 6;
@@ -123,7 +114,7 @@
             this.btnContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnContra.ForeColor = System.Drawing.Color.White;
-            this.btnContra.Location = new System.Drawing.Point(425, 445);
+            this.btnContra.Location = new System.Drawing.Point(425, 407);
             this.btnContra.Name = "btnContra";
             this.btnContra.Size = new System.Drawing.Size(38, 36);
             this.btnContra.TabIndex = 7;
@@ -141,7 +132,7 @@
             this.btnCContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
             this.btnCContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCContra.ForeColor = System.Drawing.Color.White;
-            this.btnCContra.Location = new System.Drawing.Point(425, 496);
+            this.btnCContra.Location = new System.Drawing.Point(425, 458);
             this.btnCContra.Name = "btnCContra";
             this.btnCContra.Size = new System.Drawing.Size(38, 36);
             this.btnCContra.TabIndex = 8;
@@ -157,7 +148,7 @@
             // pbPlusUser
             // 
             this.pbPlusUser.Image = global::ProWork.Properties.Resources.MasUsuario;
-            this.pbPlusUser.Location = new System.Drawing.Point(356, 138);
+            this.pbPlusUser.Location = new System.Drawing.Point(356, 176);
             this.pbPlusUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbPlusUser.Name = "pbPlusUser";
             this.pbPlusUser.Size = new System.Drawing.Size(61, 77);
@@ -169,12 +160,22 @@
             // 
             this.pbxUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbxUser.Image = global::ProWork.Properties.Resources.Usuario;
-            this.pbxUser.Location = new System.Drawing.Point(210, 70);
+            this.pbxUser.Location = new System.Drawing.Point(210, 108);
             this.pbxUser.Name = "pbxUser";
             this.pbxUser.Size = new System.Drawing.Size(174, 212);
             this.pbxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxUser.TabIndex = 14;
             this.pbxUser.TabStop = false;
+            // 
+            // tmrIntoRegister
+            // 
+            this.tmrIntoRegister.Interval = 16;
+            this.tmrIntoRegister.Tick += new System.EventHandler(this.tmrIntoRegister_Tick);
+            // 
+            // tmrIntoLogin
+            // 
+            this.tmrIntoLogin.Interval = 16;
+            this.tmrIntoLogin.Tick += new System.EventHandler(this.tmrIntoLogin_Tick);
             // 
             // frmTinyRegister
             // 
@@ -190,7 +191,6 @@
             this.Controls.Add(this.utbCContra);
             this.Controls.Add(this.utbContra);
             this.Controls.Add(this.utbNombre);
-            this.Controls.Add(this.lblRegistrarme);
             this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -202,12 +202,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private Label lblRegistrarme;
         private UnderlinedTextBox utbNombre;
         private UnderlinedTextBox utbContra;
         private UnderlinedTextBox utbCContra;
@@ -218,5 +216,7 @@
         private System.ComponentModel.BackgroundWorker bgwCheck;
         private PictureBox pbPlusUser;
         private PictureBox pbxUser;
+        private System.Windows.Forms.Timer tmrIntoRegister;
+        private System.Windows.Forms.Timer tmrIntoLogin;
     }
 }

@@ -13,27 +13,19 @@ namespace ProWork
 {
     public partial class frmPruebaa : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=prowork; Uid=root; Pwd=;");
-        private string user;
-        private bool admin;
         public frmPruebaa()
         {
             InitializeComponent();
+            
             this.BackColor = Estilo.fondo;
-            admin = true;
-            conexion.Open();
-
-            pyc.Conectar(conexion);
         }
-        public frmPruebaa(MySqlConnection connection, string user, bool admin)
+        public frmPruebaa(string user, bool admin)
         {
             InitializeComponent();
             this.BackColor = Estilo.fondo;
-            this.user = user;
-            this.admin = admin;
-            conexion = connection;
-
-            pyc.Conectar(conexion);
+            De_Configuración__Cristian_.ConfigContainer contenedor = new(user, admin);
+            contenedor.Dock = DockStyle.Fill;
+            this.Controls.Add(contenedor);
         }
         private void Cerrar(object sender, EventArgs e)
         {

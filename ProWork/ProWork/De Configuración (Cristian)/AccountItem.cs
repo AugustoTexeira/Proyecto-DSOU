@@ -15,7 +15,6 @@ namespace ProWork
     public partial class AccountItem : UserControl
     {
         private string text = "Placeholder";
-        private MySqlConnection connection;
         public bool isAdmin = false; //Para decidir el dibujo
         public bool userAdmin = false; //Para mostrar botones
         public bool isCurrentUser = false; //Para decidir el dibujo
@@ -40,12 +39,10 @@ namespace ProWork
             get { return text; }
             set { text = value; this.Refresh(); }
         }
-        public AccountItem(MySqlConnection con)
+        public AccountItem()
         {
             InitializeComponent();
             this.Height = (int)(this.Font.Height * 1.5);
-            connection = con;
-
         }
 
         private void AccountItem_Paint(object sender, PaintEventArgs e)
@@ -207,7 +204,7 @@ namespace ProWork
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            frmAccConfig config = new frmAccConfig(connection, Text);
+            frmAccConfig config = new frmAccConfig(Text);
             config.CambioExitoso += CallReset;
             config.Show();
         }
@@ -229,15 +226,12 @@ namespace ProWork
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar SU cuenta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (!connection.Ping())
-                    {
-                        connection.Open();
-                    }
+                    Program.tryToConnect();
 
-                    MySqlCommand cmd = new($"delete from usuario where nombre='{Text}';", connection);
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{Text}';", Program.connection);
                     cmd.ExecuteNonQuery();
 
-                    frmTinyRegister register = new frmTinyRegister(connection);
+                    frmTinyRegister register = new frmTinyRegister();
                     register.Show();
                     this.ParentForm.Close();
                 }
@@ -246,12 +240,9 @@ namespace ProWork
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar la cuenta {Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (!connection.Ping())
-                    {
-                        connection.Open();
-                    }
+                    Program.tryToConnect();
 
-                    MySqlCommand cmd = new($"delete from usuario where nombre='{Text}';", connection);
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{Text}';", Program.connection);
                     cmd.ExecuteNonQuery();
                     ResetParent.Invoke(null, e);
                 }

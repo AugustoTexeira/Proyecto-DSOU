@@ -28,24 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pyc = new ProWork.ProyectosContainer();
             this.SuspendLayout();
-            // 
-            // pyc
-            // 
-            this.pyc.BackColor = System.Drawing.SystemColors.ControlText;
-            this.pyc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pyc.Location = new System.Drawing.Point(0, 0);
-            this.pyc.Name = "pyc";
-            this.pyc.Size = new System.Drawing.Size(812, 649);
-            this.pyc.TabIndex = 0;
             // 
             // frmPruebaa
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(812, 649);
-            this.Controls.Add(this.pyc);
             this.Name = "frmPruebaa";
             this.Text = "frmPruebaa";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPruebaa_FormClosed);
@@ -54,7 +43,5 @@
         }
 
         #endregion
-
-        private ProyectosContainer pyc;
     }
 }

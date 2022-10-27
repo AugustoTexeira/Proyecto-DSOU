@@ -14,18 +14,15 @@ namespace ProWork
 {
     public partial class frmTinyRegister : Form
     {
-        private MySqlConnection connection;
+        private int yContra;
+        private int xPlus;
         public frmTinyRegister()
         {
             InitializeComponent();
+            yContra = utbContra.Location.Y;
+            xPlus = pbPlusUser.Location.X;
             this.BackColor = Estilo.fondo;
-        }
-        public frmTinyRegister(MySqlConnection con)
-        {
-            InitializeComponent();
             this.BackColor = Estilo.fondo;
-            lblRegistrarme.ForeColor = Estilo.Contraste;
-            connection = con;
         }
 
         private void cbtCrear_Click(object sender, EventArgs e)
@@ -42,46 +39,85 @@ namespace ProWork
 
         private void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (utbCContra.txbText == utbContra.txbText && utbNombre.txbText != "")
+            if (utbCContra.Visible) // Registro
+            {
+                if (utbCContra.txbText == utbContra.txbText && utbNombre.txbText != "")
+                {
+                    try
+                    {
+                        MySqlCommand vRegistro = new("select nombre from usuario;", Program.connection);
+                        MySqlDataReader reader = vRegistro.ExecuteReader();
+
+                        bool v = true;
+
+                        while (reader.Read())
+                        {
+                            if (utbNombre.txbText == reader.GetString(0))
+                            {
+                                v = false;
+                            }
+                        }
+                        reader.Close();
+                        if (v)
+                        {
+                            MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
+                                                        "values ('" + utbNombre.txbText + "', sha2('" + utbContra.txbText + "', 224), false);",
+                                                        Program.connection
+                                                        );
+                            iRegistro.ExecuteNonQuery();
+                            e.Result = new frmPruebaa(utbNombre.txbText, false);
+                            //e.Result = new frmMain(utbNombre.txbText, false);
+                        }
+                        else
+                        {
+                            MessageBox.Show("La cuenta ya existe.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString() + "\n Ingrese algo correcto.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese todos los campos apropiadamente.");
+                }
+            }
+            else //Login
             {
                 try
                 {
-                    MySqlCommand vRegistro = new("select nombre from usuario;", connection);
-                    MySqlDataReader reader = vRegistro.ExecuteReader();
+                    Program.tryToConnect();
+                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", Program.connection);
+                    MySqlDataReader reader = vLogin.ExecuteReader();
 
-                    bool v = true;
+                    bool v = false;
+                    bool admin = false;
 
                     while (reader.Read())
                     {
                         if (utbNombre.txbText == reader.GetString(0))
                         {
-                            v = false;
+                            v = true;
+                            admin = reader.GetBoolean(2);
                         }
                     }
+
                     reader.Close();
+
                     if (v)
                     {
-                        MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
-                                                    "values ('" + utbNombre.txbText + "', sha2('" + utbContra.txbText + "', 224), false);",
-                                                    connection
-                                                    );
-                        iRegistro.ExecuteNonQuery();
-                        //e.Result = new frmMain(utbNombre.txbText, false);
-                        e.Result = new frmPruebaa();
+                        e.Result = new frmPruebaa(utbNombre.txbText, admin);
                     }
                     else
                     {
-                        MessageBox.Show("La cuenta ya existe.");
+                        MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString() + "\n\nIngrese algo correcto.");
+                    MessageBox.Show(ex.ToString() + "\n Ingrese algo correcto.");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Ingrese todos los campos apropiadamente.");
             }
         }
 
@@ -158,9 +194,87 @@ namespace ProWork
 
         private void lblLogin_Click(object sender, EventArgs e)
         {
-            frmTinyLogin login = new(connection);
-            login.Show();
-            this.Close();
+            if (utbCContra.Visible)
+            {
+                tmrIntoRegister.Stop();
+                tmrIntoLogin.Start();
+            }
+            else
+            {
+                pbPlusUser.Visible = true;
+                utbCContra.Visible = true;
+                btnCContra.Visible = true;
+                tmrIntoLogin.Stop();
+                tmrIntoRegister.Start();
+            }
+        }
+
+        private void tmrIntoRegister_Tick(object sender, EventArgs e)
+        {
+            if (utbContra.Location.Y >= yContra)
+            {
+                utbCContra.Visible = true;
+                btnContra.Visible = true;
+
+                int cambio = (yContra - utbContra.Location.Y) / 4 - 1;
+
+                utbNombre.Location = new Point(utbNombre.Location.X, utbNombre.Location.Y + cambio);
+                utbContra.Location = new Point(utbContra.Location.X, utbContra.Location.Y + cambio);
+                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
+                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+            }
+            else if (utbCContra.Location.X >= utbContra.Location.X)
+            {
+                int cambio = (utbContra.Location.X - utbCContra.Location.X) / 2 - 1;
+
+                utbCContra.Location = new Point(utbCContra.Location.X + cambio, utbCContra.Location.Y);
+                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
+
+                cambio = (xPlus - pbPlusUser.Location.X) / 2 - 1;
+
+                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio, pbPlusUser.Location.Y);
+            }
+            else
+            {
+                cbtCrear.Texto = "Crear";
+                lblLogin.Text = "¿Tienes una cuenta? Inicia sesión";
+                this.Text = "Registrarme";
+                tmrIntoRegister.Stop();
+            }
+        }
+
+        private void tmrIntoLogin_Tick(object sender, EventArgs e)
+        {
+            if (utbCContra.Location.X < this.Width)
+            {
+                int cambio = (this.Width - utbCContra.Location.X) / 2 + 1;
+
+                utbCContra.Location = new Point(utbCContra.Location.X + cambio, utbCContra.Location.Y);
+                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
+
+                cambio = (this.Width - pbPlusUser.Location.X) / 2 + 1;
+
+                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio / 2, pbPlusUser.Location.Y);
+            }
+            else if (utbContra.Location.Y <= utbCContra.Location.Y)
+            {
+                int cambio = (utbCContra.Location.Y - utbContra.Location.Y) / 4 + 1;
+
+                utbNombre.Location = new Point(utbNombre.Location.X, utbNombre.Location.Y + cambio);
+                utbContra.Location = new Point(utbContra.Location.X, utbContra.Location.Y + cambio);
+                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
+                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+            }
+            else
+            {
+                cbtCrear.Texto = "Ingresar";
+                lblLogin.Text = "¿No tienes una cuenta? Regístrate";
+                this.Text = "Iniciar sesión";
+                utbCContra.Visible = false;
+                btnCContra.Visible = false;
+                pbPlusUser.Visible = false;
+                tmrIntoLogin.Stop();
+            }
         }
     }
 }

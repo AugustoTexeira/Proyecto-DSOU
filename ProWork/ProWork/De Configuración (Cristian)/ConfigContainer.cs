@@ -18,21 +18,16 @@ namespace ProWork.De_Configuración__Cristian_
          * acl = AccountList
          * 
          */
-        private MySqlConnection connection;
         public ConfigContainer()
         {
             InitializeComponent();
         }
-        public ConfigContainer(MySqlConnection con)
+        public ConfigContainer(string user, bool admin)
         {
             InitializeComponent();
-            connection = con;
-        }
-        public void conectar (MySqlConnection con, string user, bool admin)
-        {
+
             aclCuentas.User = user;
             aclCuentas.userAdmin = admin;
-            connection = con;
         }
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)
@@ -80,7 +75,6 @@ namespace ProWork.De_Configuración__Cristian_
             lblPersonalizado.ForeColor = Estilo.Contraste;
             lblCuentas.ForeColor = Estilo.Contraste;
             aclCuentas.BackColor = Estilo.fondo;
-            aclCuentas.Conectar(connection);
             aclCuentas.ResetElementos();
             switch (Estilo.selectedStyle)
             {
@@ -189,7 +183,7 @@ namespace ProWork.De_Configuración__Cristian_
 
         private void cbtAnadir_Click(object sender, EventArgs e)
         {
-            frmTinyRegister registro = new(connection);
+            frmTinyRegister registro = new();
             registro.Show();
             this.ParentForm.Close();
         }

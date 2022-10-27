@@ -13,25 +13,16 @@ namespace ProWork
 {
     public partial class Ruta : UserControl
     {
-        MySqlConnection conexion;
         public Ruta()
         {
             InitializeComponent();
-        }
-
-        public void Conectar(MySqlConnection conexion)
-        {
-            this.conexion = conexion;
         }
         public void DefinirRuta(object sender)
         {
             if (sender != null)
             {
-                if (!conexion.Ping())
-                {
-                    conexion.Open();
-                }
-                MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta;", conexion);
+                Program.tryToConnect();
+                MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta;", Program.connection);
                 MySqlDataReader reader = cmd.ExecuteReader();
                 this.Controls.Clear();
 

@@ -14,8 +14,6 @@ namespace ProWork
     public partial class FileHolder : UserControl
     {
 
-        MySqlConnection conexion;
-
         public const short FileSize = 100;
         private List<Carpeta> carpetas = new List<Carpeta>();
         private List<Archivo> archivos = new List<Archivo>();
@@ -25,19 +23,10 @@ namespace ProWork
             InitializeComponent();
             ContextMenuStrip contexto = new();
         }
-        public void Conectar(MySqlConnection conexion) 
-        { 
-            this.conexion = conexion;
-            MostrarCarpetas();
-        }
         public void MostrarCarpetas()
         {
-            if(!conexion.Ping())
-            {
-                conexion.Open();
-
-            }
-            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", conexion);
+            Program.tryToConnect();
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", Program.connection);
             MySqlDataReader reader = nombres.ExecuteReader();
             Truncate();
             while (reader.Read())
@@ -47,7 +36,7 @@ namespace ProWork
                 carpeta.Nombre = reader.GetString(1);
                 this.Add(carpeta);
             }
-            conexion.Close();
+            reader.Close();
             Entrar.Invoke(null, null);
         }
         private void FileHolder_Resize(object sender, EventArgs e)
@@ -112,11 +101,8 @@ namespace ProWork
         public void Open(object sender, EventArgs e)
         {
             Truncate();
-            if(!conexion.Ping())
-            {
-                conexion.Open();
-            }
-            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where IF(idcarpeta IN(select idcarpeta from carpeta where carpetaPadre = " + sender.ToString() + "),1,0);", conexion);
+            Program.tryToConnect();
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where IF(idcarpeta IN(select idcarpeta from carpeta where carpetaPadre = " + sender.ToString() + "),1,0);", Program.connection);
             MySqlDataReader reader = nombres.ExecuteReader();
             while (reader.Read())
             {

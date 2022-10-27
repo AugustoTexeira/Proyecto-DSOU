@@ -20,12 +20,6 @@ namespace ProWork
             rt.Clack += DatosPasar;
         }
 
-        public void Conectar(MySqlConnection conexion)
-        {
-            flh.Conectar(conexion);
-            rt.Conectar(conexion);
-        }
-
         private void PasarDatos(object sender, EventArgs e)
         {
             rt.DefinirRuta(sender);

@@ -6,7 +6,6 @@ namespace ProWork
 {
     public partial class frmLogin : Form
     {
-        MySqlConnection conexion = new MySqlConnection("Server=localhost; Database=prowork; Uid=root; Pwd=;");
         /* 
          Nomenclatura:
             txb = TextBox
@@ -24,14 +23,7 @@ namespace ProWork
             InitializeComponent();
             yContra = ctbContra.Location.Y;
             xPlus = pbPlusUser.Location.X;
-            try
-            {
-                conexion.Open();
-            }
-            catch (Exception ex)
-            {
-                if (ex != null) { MessageBox.Show("No se pudo establecer conexión."); }
-            }
+            Program.tryToConnect();
         }
 
         private void pbxOContra_Click(object sender, EventArgs e)
@@ -56,7 +48,7 @@ namespace ProWork
                 {
                     try
                     {
-                        MySqlCommand vRegistro = new("select nombre from usuario;", conexion);
+                        MySqlCommand vRegistro = new("select nombre from usuario;", Program.connection);
                         MySqlDataReader reader = vRegistro.ExecuteReader();
 
                         bool v = true;
@@ -73,10 +65,10 @@ namespace ProWork
                         {
                             MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
                                                         "values ('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
-                                                        conexion
+                                                        Program.connection
                                                         );
                             iRegistro.ExecuteNonQuery();
-                            e.Result = new frmPruebaa(conexion, ctbNombre.txbText, false);
+                            e.Result = new frmPruebaa(ctbNombre.txbText, false);
                             //e.Result = new frmMain(ctbNombre.txbText, false);
                         }
                         else
@@ -98,11 +90,8 @@ namespace ProWork
             {
                 try
                 {
-                    if (!conexion.Ping())
-                    {
-                        conexion.Open();
-                    }
-                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" +ctbContra.txbText + "', 224);", conexion);
+                    Program.tryToConnect();
+                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" +ctbContra.txbText + "', 224);", Program.connection);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
@@ -121,7 +110,7 @@ namespace ProWork
 
                     if (v)
                     {
-                        e.Result = new frmPruebaa(conexion, ctbNombre.txbText, admin);
+                        e.Result = new frmPruebaa(ctbNombre.txbText, admin);
                     }
                     else
                     {

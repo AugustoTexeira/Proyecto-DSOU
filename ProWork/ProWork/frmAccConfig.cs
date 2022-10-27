@@ -13,16 +13,14 @@ namespace ProWork
 {
     public partial class frmAccConfig : Form
     {
-        private MySqlConnection connection;
         public frmAccConfig()
         {
             InitializeComponent();
         }
-        public frmAccConfig(MySqlConnection con, string user)
+        public frmAccConfig(string user)
         {
             InitializeComponent();
-
-            connection = con;
+            this.Text = "⚙️ Configuración: " + user;
             utbNombre.PlaceholderText = user;
             utbContra.PlaceholderText = "Vacío: Contraseña anterior";
             utbCContra.PlaceholderText = "Vacío: Contraseña anterior";
@@ -32,13 +30,10 @@ namespace ProWork
         {
             if (utbCContra.txbText == utbContra.txbText)
             {
-                if(!connection.Ping())
-                {
-                    connection.Open();
-                }
+                Program.tryToConnect();
                 if (utbNombre.txbText != "" && utbContra.txbText != "")
                 {
-                    MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}', contrasenia=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}';", connection);
+                    MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}', password=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}';", Program.connection);
                     cmd.ExecuteNonQuery();
                     CambioExitoso.Invoke(utbNombre.txbText, e);
                     this.Close();
@@ -47,7 +42,7 @@ namespace ProWork
                 {
                     if (utbNombre.txbText != "")
                     {
-                        MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}' where nombre='{utbNombre.PlaceholderText}';", connection);
+                        MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}' where nombre='{utbNombre.PlaceholderText}';", Program.connection);
                         cmd.ExecuteNonQuery();
 
                         CambioExitoso.Invoke(utbNombre.txbText, e);
@@ -57,7 +52,7 @@ namespace ProWork
                     {
                         if (utbContra.txbText != "")
                         {
-                            MySqlCommand cmd = new($"update usuario set contrasenia=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}';", connection);
+                            MySqlCommand cmd = new($"update usuario set password=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}';", Program.connection);
                             cmd.ExecuteNonQuery();
 
                             CambioExitoso.Invoke(null, e);
