@@ -16,23 +16,17 @@ namespace ProWork
     {
         private string text = "Placeholder";
         public bool isAdmin = false; //Para decidir el dibujo
-        public bool userAdmin = false; //Para mostrar botones
         public bool isCurrentUser = false; //Para decidir el dibujo
-
-        /*BUGS
-         * Es posible que, al mover el mouse rapidamente del hover de config pero manteniendolo en el hover del item, se dibuje el fondo normal siendo que se deberia dibujar el del fondo.
-         * 
-         */
 
         //Para evitar flickering en los botones contextuales, necesito 3 booleanos.
 
         private bool hovered
         { 
-            get { if (hoveredI || hoveredU || hoveredC) { return true; } else { return false; } }
+            get { if (hoveredI > 0 || hoveredU || hoveredC) { return true; } else { return false; } }
         }
-        private bool hoveredI = false;
+        private byte hoveredI = 0; //Item
         private bool hoveredU = false;
-        private bool hoveredC = false;
+        private bool hoveredC = false; //Config
 
         public override string Text
         {
@@ -48,7 +42,7 @@ namespace ProWork
         private void AccountItem_Paint(object sender, PaintEventArgs e)
         {
             //Botones
-            if (hovered && (userAdmin || isCurrentUser))
+            if (hovered && (Program.userAdmin || isCurrentUser))
             {
                 showButtons();
             }
@@ -165,14 +159,14 @@ namespace ProWork
         }
         private void AccountItem_MouseEnter(object sender, EventArgs e)
         {
-            hoveredI = true;
+            hoveredI++;
             this.Refresh();
         }
 
         private async void AccountItem_MouseLeave(object sender, EventArgs e)
         {
             await Task.Delay(1);
-            hoveredI = false;
+            hoveredI--;
             this.Refresh();
         }
 

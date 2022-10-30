@@ -54,19 +54,21 @@
             // 
             // btnSwap
             // 
-            this.btnSwap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.btnSwap.BackColor = System.Drawing.Color.Transparent;
             this.btnSwap.FlatAppearance.BorderSize = 0;
             this.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSwap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
+            this.btnSwap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
-            this.btnSwap.Location = new System.Drawing.Point(939, 472);
+            this.btnSwap.Location = new System.Drawing.Point(914, 472);
             this.btnSwap.Name = "btnSwap";
-            this.btnSwap.Size = new System.Drawing.Size(239, 29);
+            this.btnSwap.Size = new System.Drawing.Size(297, 29);
             this.btnSwap.TabIndex = 1;
             this.btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
             this.btnSwap.UseVisualStyleBackColor = false;
             this.btnSwap.Click += new System.EventHandler(this.btnSwap_Click);
+            this.btnSwap.MouseEnter += new System.EventHandler(this.btnSwap_MouseEnter);
+            this.btnSwap.MouseLeave += new System.EventHandler(this.btnSwap_MouseLeave);
             // 
             // pnlForeground
             // 

@@ -65,7 +65,9 @@ namespace ProWork
                                                         Program.connection
                                                         );
                             iRegistro.ExecuteNonQuery();
-                            e.Result = new frmPruebaa(utbNombre.txbText, false);
+                            Program.userAdmin = false;
+                            Program.user = utbNombre.txbText;
+                            e.Result = true;
                             //e.Result = new frmMain(utbNombre.txbText, false);
                         }
                         else
@@ -107,7 +109,9 @@ namespace ProWork
 
                     if (v)
                     {
-                        e.Result = new frmPruebaa(utbNombre.txbText, admin);
+                        Program.userAdmin = admin;
+                        Program.user = utbNombre.txbText;
+                        e.Result = true;
                     }
                     else
                     {
@@ -129,7 +133,7 @@ namespace ProWork
 
             if (e.Result != null)
             {
-                frmPruebaa main = (frmPruebaa)e.Result;
+                frmPruebaa main = new();
                 main.Show();
                 this.Close();
             }

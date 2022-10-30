@@ -68,8 +68,9 @@ namespace ProWork
                                                         Program.connection
                                                         );
                             iRegistro.ExecuteNonQuery();
-                            e.Result = new frmPruebaa(ctbNombre.txbText, false);
-                            //e.Result = new frmMain(ctbNombre.txbText, false);
+                            Program.user = ctbNombre.txbText;
+                            Program.userAdmin = false;
+                            e.Result = true;
                         }
                         else
                         {
@@ -110,7 +111,9 @@ namespace ProWork
 
                     if (v)
                     {
-                        e.Result = new frmPruebaa(ctbNombre.txbText, admin);
+                        Program.user = ctbNombre.txbText;
+                        Program.userAdmin = admin;
+                        e.Result = true;
                     }
                     else
                     {
@@ -251,7 +254,7 @@ namespace ProWork
 
             if(e.Result != null)
             {
-                frmPruebaa main = (frmPruebaa)e.Result;
+                frmPruebaa main = new();
                 main.Show();
                 this.Close();
             }
@@ -260,6 +263,16 @@ namespace ProWork
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
+        }
+
+        private void btnSwap_MouseEnter(object sender, EventArgs e)
+        {
+            btnSwap.Font = new(btnSwap.Font, FontStyle.Underline);
+        }
+
+        private void btnSwap_MouseLeave(object sender, EventArgs e)
+        {
+            btnSwap.Font = new(btnSwap.Font, FontStyle.Regular);
         }
     }
 }

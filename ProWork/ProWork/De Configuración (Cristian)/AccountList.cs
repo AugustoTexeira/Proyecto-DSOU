@@ -14,7 +14,6 @@ namespace ProWork
 {
     public partial class AccountList : UserControl
     {
-        public bool userAdmin = false; //Si el usuario actual (el que usa la app) es admin
         public string User;
         public AccountList()
         {
@@ -40,7 +39,6 @@ namespace ProWork
                 item.isAdmin = lector.GetBoolean(1);
                 if (lector.GetString(0) == User) { item.isCurrentUser = true; }
                 if (lector.GetString(0) == User && lector.GetBoolean(1) == true) { item.isAdmin = true; }
-                item.userAdmin = userAdmin;
                 item.Width = this.Width - SystemInformation.VerticalScrollBarWidth - 10;
                 item.Location = new Point(0, Estilo.medioAnchoLinea + i * item.Height);
                 item.ResetParent += CallReset;

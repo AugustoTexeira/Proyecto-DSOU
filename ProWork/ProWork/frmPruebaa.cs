@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
+using ProWork.De_Configuración__Cristian_;
 namespace ProWork
 {
     public partial class frmPruebaa : Form
@@ -16,20 +16,10 @@ namespace ProWork
         public frmPruebaa()
         {
             InitializeComponent();
-            
             this.BackColor = Estilo.fondo;
-        }
-        public frmPruebaa(string user, bool admin)
-        {
-            InitializeComponent();
-            this.BackColor = Estilo.fondo;
-            De_Configuración__Cristian_.ConfigContainer contenedor = new(user, admin);
+            ContactosContainer contenedor = new();
             contenedor.Dock = DockStyle.Fill;
             this.Controls.Add(contenedor);
-        }
-        private void Cerrar(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void frmPruebaa_FormClosed(object sender, FormClosedEventArgs e)

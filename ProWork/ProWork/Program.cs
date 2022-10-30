@@ -3,7 +3,9 @@ namespace ProWork
     using MySql.Data.MySqlClient;
     internal static class Program
     {
-        public static MySqlConnection connection;
+        public static MySqlConnection connection = new("Server=localhost; Database=prowork; Uid=root; Pwd=;");
+        public static bool userAdmin = false;
+        public static string user = "";
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -13,33 +15,23 @@ namespace ProWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-            
-            connection = new("Server=localhost; Database=prowork; Uid=root; Pwd=;");
-            try
-            {
-                ApplicationConfiguration.Initialize();
-                connection.Open();
+            ApplicationConfiguration.Initialize();
 
-                Estilo.enfasis = Color.FromArgb(5, 49, 247);
-                Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
-                Estilo.fondo = Color.FromArgb(15, 12, 15);
-                Estilo.Contraste = Color.White;
-                Estilo.contrasteLigero = Color.Gray;
-                Estilo.degrContraste = Color.LightGray;
+            tryToConnect();
 
-                frmLogin frm = new();
-                frm.CreateControl();
-                frm.Show();
-                Application.Run();
-            }
-            catch (Exception ex)
-            {
-                if (ex != null) 
-                { 
-                    MessageBox.Show("No se pudo establecer conexión.");
-                    Application.Exit();
-                }
-            }
+            Estilo.enfasis = Color.FromArgb(5, 49, 247);
+            Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
+            Estilo.fondo = Color.FromArgb(15, 12, 15);
+            Estilo.Contraste = Color.White;
+            Estilo.contrasteLigero = Color.Gray;
+            Estilo.degrContraste = Color.LightGray;
+
+
+            frmLogin frm = new();
+            frm.CreateControl();
+            frm.Show();
+
+            Application.Run();
         }
 
         public static void tryToConnect()
@@ -51,9 +43,16 @@ namespace ProWork
                     connection.Open();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                if (ex != null) { MessageBox.Show("No se pudo establecer conexión."); }
+                if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes) 
+                { 
+                    tryToConnect(); 
+                } 
+                else 
+                { 
+                    Application.Exit(); 
+                }
             }
         }
     }

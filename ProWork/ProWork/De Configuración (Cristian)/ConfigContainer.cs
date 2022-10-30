@@ -22,12 +22,11 @@ namespace ProWork.De_Configuración__Cristian_
         {
             InitializeComponent();
         }
-        public ConfigContainer(string user, bool admin)
+        public ConfigContainer(string user)
         {
             InitializeComponent();
 
             aclCuentas.User = user;
-            aclCuentas.userAdmin = admin;
         }
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)

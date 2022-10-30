@@ -70,6 +70,7 @@ namespace ProWork
         private void ProWorkBigText_Resize(object sender, EventArgs e)
         {
             lbl.Location = new(Estilo.curva / 2, 0);
+            lbl.Height = this.fontTitulo.Height;
             rtb.Location = new(Estilo.curva / 2, lbl.Height + Estilo.curva / 2);
             rtb.Width = this.Width - Estilo.curva;
             rtb.Height = this.Height - Estilo.curva - lbl.Height;
@@ -142,6 +143,11 @@ namespace ProWork
         private void lbl_Click(object sender, EventArgs e)
         {
             rtb.Focus();
+        }
+
+        private void rtb_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer", e.LinkText);
         }
     }
 }

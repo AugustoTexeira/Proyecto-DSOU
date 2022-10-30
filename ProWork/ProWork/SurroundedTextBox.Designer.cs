@@ -47,6 +47,7 @@
             this.rtb.Size = new System.Drawing.Size(114, 133);
             this.rtb.TabIndex = 0;
             this.rtb.Text = "";
+            this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
             this.rtb.Enter += new System.EventHandler(this.rtb_Enter);
             this.rtb.Leave += new System.EventHandler(this.rtb_Leave);
             // 
