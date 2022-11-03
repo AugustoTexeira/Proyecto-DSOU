@@ -22,33 +22,24 @@ namespace ProWork.De_Configuración__Cristian_
         {
             InitializeComponent();
         }
-        public ConfigContainer(string user)
-        {
-            InitializeComponent();
-
-            aclCuentas.User = user;
-        }
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)
         {
-            aclCuentas.Width = this.Width / 5 * 4;
+            lst.Width = Width - Padding.Right;
 
             if (this.Width < 960)
             {
                 pbxClaro.Location = new(this.Padding.Left + (this.Width - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
-                pbxPersonalizado.Location = new(this.Width - Padding.Right - pbxPersonalizado.Width, pbxPersonalizado.Location.Y);
             }
             else
             {
                 pbxClaro.Location = new(this.Padding.Left + (960 - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
-                pbxPersonalizado.Location = new(960 - Padding.Right - pbxPersonalizado.Width, pbxPersonalizado.Location.Y);
             }
 
             lblClaro.Location = new(pbxClaro.Location.X, lblClaro.Location.Y);
-            lblPersonalizado.Location = new(pbxPersonalizado.Location.X, lblPersonalizado.Location.Y);
 
-            aclCuentas.Height = this.Height - aclCuentas.Location.Y - cbtAnadir.Height * 2;
-            cbtAnadir.Location = new(cbtAnadir.Location.X, aclCuentas.Location.Y + aclCuentas.Height + Estilo.anchoLinea);
+            lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2;
+            cbtAnadir.Location = new(cbtAnadir.Location.X, lst.Location.Y + lst.Height + Estilo.anchoLinea);
 
             this.Refresh();
         }
@@ -61,7 +52,7 @@ namespace ProWork.De_Configuración__Cristian_
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
 
-            e.Graphics.DrawLine(pen, new(Padding.Left, aclCuentas.Location.Y - 79), new(this.Width - Padding.Right, aclCuentas.Location.Y - 79));
+            e.Graphics.DrawLine(pen, new(Padding.Left, lst.Location.Y - 79), new(this.Width - Padding.Right, lst.Location.Y - 79));
         }
 
         private void ConfigContainer_Load(object sender, EventArgs e)
@@ -71,10 +62,10 @@ namespace ProWork.De_Configuración__Cristian_
             lblTema.ForeColor = Estilo.Contraste;
             lblClaro.ForeColor = Estilo.Contraste;
             lblOscuro.ForeColor = Estilo.Contraste;
-            lblPersonalizado.ForeColor = Estilo.Contraste;
             lblCuentas.ForeColor = Estilo.Contraste;
-            aclCuentas.BackColor = Estilo.fondo;
-            aclCuentas.ResetElementos();
+            lst.BackColor = Estilo.fondo;
+            lst.mode = 0;
+            lst.ResetElementos(new("select idusuario, nombre, administrador from usuario", Program.connection));
             switch (Estilo.selectedStyle)
             {
                 case 0:
@@ -82,9 +73,6 @@ namespace ProWork.De_Configuración__Cristian_
                     break;
                 case 1:
                     pbxClaro.Image = Properties.Resources.Selección_Tema;
-                    break;
-                default:
-                    pbxPersonalizado.Image = Properties.Resources.Selección_Tema;
                     break;
             }
         }
@@ -113,18 +101,6 @@ namespace ProWork.De_Configuración__Cristian_
             lblClaro.ForeColor = Estilo.Contraste;
         }
 
-        private void pbxPersonalizado_MouseEnter(object sender, EventArgs e)
-        {
-            if (Estilo.selectedStyle < 2) { pbxPersonalizado.Image = Properties.Resources.Fondo_seleccion_tema; }
-            lblPersonalizado.ForeColor = Estilo.enfasis;
-        }
-
-        private void pbxPersonalizado_MouseLeave(object sender, EventArgs e)
-        {
-            if (Estilo.selectedStyle < 2) { pbxPersonalizado.Image = null; }
-            lblPersonalizado.ForeColor = Estilo.Contraste;
-        }
-
         private void pbxClaro_Click(object sender, EventArgs e)
         {
             Estilo.selectedStyle = 1;
@@ -137,7 +113,6 @@ namespace ProWork.De_Configuración__Cristian_
 
             pbxClaro.Image = Properties.Resources.Selección_Tema;
             pbxOscuro.Image = null;
-            pbxPersonalizado.Image = null;
 
             RecolorControl();
         }
@@ -154,7 +129,6 @@ namespace ProWork.De_Configuración__Cristian_
 
             pbxOscuro.Image = Properties.Resources.Selección_Tema;
             pbxClaro.Image = null;
-            pbxPersonalizado.Image = null;
 
             RecolorControl();
         }
@@ -162,7 +136,6 @@ namespace ProWork.De_Configuración__Cristian_
         private void pbxPersonalizado_Click(object sender, EventArgs e)
         {
             Estilo.selectedStyle = 2;
-            pbxPersonalizado.Image = Properties.Resources.Selección_Tema;
             pbxOscuro.Image = null;
             pbxClaro.Image = null;
         }
@@ -173,9 +146,8 @@ namespace ProWork.De_Configuración__Cristian_
             lblClaro.ForeColor = Estilo.Contraste;
             lblCuentas.ForeColor = Estilo.Contraste;
             lblOscuro.ForeColor = Estilo.Contraste;
-            lblPersonalizado.ForeColor = Estilo.Contraste;
             lblTema.ForeColor = Estilo.Contraste;
-            aclCuentas.BackColor = Estilo.fondo;
+            lst.BackColor = Estilo.fondo;
 
             Form.ActiveForm.Refresh();
         }
@@ -185,6 +157,42 @@ namespace ProWork.De_Configuración__Cristian_
             frmTinyRegister registro = new();
             registro.Show();
             this.ParentForm.Close();
+        }
+
+        private void lst_trashClicked(object sender, EventArgs e)
+        {
+            if (((Item)sender).Text == Program.user)
+            {
+                if (MessageBox.Show($"¿Esta seguro que desea eliminar SU cuenta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Program.tryToConnect();
+
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
+                    cmd.ExecuteNonQuery();
+
+                    frmTinyRegister register = new frmTinyRegister();
+                    register.Show();
+                    this.ParentForm.Close();
+                }
+            }
+            else
+            {
+                if (MessageBox.Show($"¿Esta seguro que desea eliminar la cuenta {((Item)sender).Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Program.tryToConnect();
+
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
+                    cmd.ExecuteNonQuery();
+                    lst.ResetElementos(null);
+                }
+            }
+        }
+
+        private void lst_gearClicked(object sender, EventArgs e)
+        {
+            frmAccConfig config = new frmAccConfig(((Item)sender).Text);
+            config.CambioExitoso += ((Item)sender).CallReset;
+            config.Show();
         }
     }
 }

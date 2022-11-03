@@ -17,7 +17,24 @@ namespace ProWork
 
             ApplicationConfiguration.Initialize();
 
-            tryToConnect();
+            try
+            {
+                if (!connection.Ping())
+                {
+                    connection.Open();
+                }
+            }
+            catch
+            {
+                if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    tryToConnect();
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
 
             Estilo.enfasis = Color.FromArgb(5, 49, 247);
             Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
@@ -50,10 +67,12 @@ namespace ProWork
                     tryToConnect(); 
                 } 
                 else 
-                { 
+                {
                     Application.Exit(); 
                 }
             }
         }
+
+        
     }
 }

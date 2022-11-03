@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.clt = new ProWork.ContactosList();
+            this.clt = new ProWork.List();
             this.cbnAniadir = new ProWork.CustomButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblContactos = new System.Windows.Forms.Label();
             this.srbBuscar = new ProWork.searchBar();
             this.SuspendLayout();
             // 
@@ -43,6 +43,9 @@
             this.clt.Name = "clt";
             this.clt.Size = new System.Drawing.Size(931, 441);
             this.clt.TabIndex = 0;
+            this.clt.gearClicked += new System.EventHandler(this.clt_gearClicked);
+            this.clt.trashClicked += new System.EventHandler(this.clt_trashClicked);
+            this.clt.itemClicked += new System.EventHandler(this.clt_itemClicked);
             // 
             // cbnAniadir
             // 
@@ -56,16 +59,16 @@
             this.cbnAniadir.ButtonClick += new System.EventHandler(this.cbnAniadir_Click);
             this.cbnAniadir.Click += new System.EventHandler(this.cbnAniadir_Click);
             // 
-            // label1
+            // lblContactos
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Raleway", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(23, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 55);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Contactos";
+            this.lblContactos.AutoSize = true;
+            this.lblContactos.Font = new System.Drawing.Font("Raleway", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContactos.ForeColor = System.Drawing.Color.White;
+            this.lblContactos.Location = new System.Drawing.Point(23, 20);
+            this.lblContactos.Name = "lblContactos";
+            this.lblContactos.Size = new System.Drawing.Size(219, 55);
+            this.lblContactos.TabIndex = 3;
+            this.lblContactos.Text = "Contactos";
             // 
             // srbBuscar
             // 
@@ -76,7 +79,6 @@
             this.srbBuscar.Name = "srbBuscar";
             this.srbBuscar.Size = new System.Drawing.Size(931, 40);
             this.srbBuscar.TabIndex = 4;
-            this.srbBuscar.Load += new System.EventHandler(this.searchBar1_Load);
             // 
             // ContactosContainer
             // 
@@ -84,7 +86,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.Controls.Add(this.srbBuscar);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblContactos);
             this.Controls.Add(this.cbnAniadir);
             this.Controls.Add(this.clt);
             this.Name = "ContactosContainer";
@@ -98,9 +100,9 @@
 
         #endregion
 
-        private ContactosList clt;
+        private List clt;
         private CustomButton cbnAniadir;
-        private Label label1;
+        private Label lblContactos;
         private searchBar srbBuscar;
     }
 }

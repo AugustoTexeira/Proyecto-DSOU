@@ -217,9 +217,10 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.SurroundedTextBox.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.UnderlinedTextBox.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ContactosContainer.resources
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ContactosItem.resources
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ContactosList.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAñadirContacto.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmContactosConfig.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.searchBar.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmMostrarContacto.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.enhancedPictureBox.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Item.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.List.resources

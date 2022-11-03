@@ -27,9 +27,32 @@ namespace ProWork
 
         private void cbtAniadir_ButtonClick(object sender, EventArgs e)
         {
-            if(utbNombre.txbText != "")
+            if(utbNombre.txbText != "" && utbCorreo.txbText.Contains('@'))
             {
-                if(!bgwConfirmar.IsBusy)
+                Program.tryToConnect();
+                cmd = new($"select correoElectronico from contacto", Program.connection);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                bool v = true;
+
+                while (reader.Read())
+                {
+                    if (utbCorreo.txbText == reader.GetString(0))
+                    {
+                        v = false;
+                        break;
+                    }
+                }
+                reader.Close();
+
+                if(!v)
+                {
+                    MessageBox.Show("El contacto debe tener un correo electrónico válido.");
+                    return;
+                }
+
+                if (!bgwConfirmar.IsBusy)
                 {
                     cmd = new($"insert into contacto(correoElectronico, nombre, número, descripcion) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", Program.connection);
                     bgwConfirmar.RunWorkerAsync();
@@ -37,12 +60,13 @@ namespace ProWork
             }
             else
             {
-                MessageBox.Show("El contacto debe tener nombre.");
+                MessageBox.Show("El contacto debe tener nombre y un correo electrónico válido.");
             }
         }
 
         private void bgwConfirmar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            CambioExitoso.Invoke(sender, e);
             this.Close();
         }
 
@@ -50,5 +74,6 @@ namespace ProWork
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
         }
+        public event EventHandler CambioExitoso;
     }
 }

@@ -113,6 +113,16 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ContactoOscuro {
+            get {
+                object obj = ResourceManager.GetObject("ContactoOscuro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Contactos_Blanco {
             get {
                 object obj = ResourceManager.GetObject("Contactos Blanco", resourceCulture);

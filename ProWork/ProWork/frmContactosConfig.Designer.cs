@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.utbEmail = new ProWork.UnderlinedTextBox();
             this.utbTel = new ProWork.UnderlinedTextBox();
             this.stbDesc = new ProWork.SurroundedTextBox();
             this.cbtGuardar = new ProWork.CustomButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.enhancedPictureBox1 = new ProWork.enhancedPictureBox();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Purple;
-            this.pictureBox1.Location = new System.Drawing.Point(190, 36);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // txbNombre
             // 
@@ -103,6 +93,16 @@
             this.cbtGuardar.Texto = "Guardar";
             this.cbtGuardar.ButtonClick += new System.EventHandler(this.cbtGuardar_ButtonClick);
             // 
+            // enhancedPictureBox1
+            // 
+            this.enhancedPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.enhancedPictureBox1.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
+            this.enhancedPictureBox1.Circle = false;
+            this.enhancedPictureBox1.Location = new System.Drawing.Point(190, 36);
+            this.enhancedPictureBox1.Name = "enhancedPictureBox1";
+            this.enhancedPictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.enhancedPictureBox1.TabIndex = 6;
+            // 
             // frmContactosConfig
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -113,26 +113,24 @@
             this.Controls.Add(this.utbTel);
             this.Controls.Add(this.utbEmail);
             this.Controls.Add(this.txbNombre);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.enhancedPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmContactosConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmContactosConfig";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmContactosConfig_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private PictureBox pictureBox1;
         private TextBox txbNombre;
         private UnderlinedTextBox utbEmail;
         private UnderlinedTextBox utbTel;
         private SurroundedTextBox stbDesc;
         private CustomButton cbtGuardar;
+        private enhancedPictureBox enhancedPictureBox1;
     }
 }

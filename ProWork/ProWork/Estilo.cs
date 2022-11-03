@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace ProWork
 {
@@ -129,6 +131,39 @@ namespace ProWork
 
             //Inferior derecha
             e.Graphics.FillPie(brush, posicion.X + posicion.Width - c - medioAnchoLinea - 1, posicion.Y + posicion.Height - c - medioAnchoLinea - 1, c, c, 0, 90);
+        }
+        public static Bitmap ResizeImage(Image image, int width, int height) //Esta funcion no es mía, fue copiada y pegada de https://stackoverflow.com/questions/1922040/how-to-resize-an-image-c-sharp - CR
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
+
+        public static Image sizeToHeight(Image image, int height)
+        {
+            return ResizeImage(image, (int)(height * ((double)image.Width / image.Height)), height);
+        }
+        public static Image sizeToWidth(Image image, int width)
+        {
+            return ResizeImage(image, width, (int)(width * ((double)image.Width / image.Height)));
         }
     }
 }

@@ -32,10 +32,9 @@
             this.utbCorreo = new ProWork.UnderlinedTextBox();
             this.stbDesc = new ProWork.SurroundedTextBox();
             this.cbtAniadir = new ProWork.CustomButton();
-            this.pbx = new System.Windows.Forms.PictureBox();
             this.utbTel = new ProWork.UnderlinedTextBox();
             this.bgwConfirmar = new System.ComponentModel.BackgroundWorker();
-            ((System.ComponentModel.ISupportInitialize)(this.pbx)).BeginInit();
+            this.enhancedPictureBox1 = new ProWork.enhancedPictureBox();
             this.SuspendLayout();
             // 
             // utbNombre
@@ -82,16 +81,6 @@
             this.cbtAniadir.Texto = "Confirmar";
             this.cbtAniadir.ButtonClick += new System.EventHandler(this.cbtAniadir_ButtonClick);
             // 
-            // pbx
-            // 
-            this.pbx.Image = global::ProWork.Properties.Resources.Tema_oscuro;
-            this.pbx.Location = new System.Drawing.Point(150, 36);
-            this.pbx.Name = "pbx";
-            this.pbx.Size = new System.Drawing.Size(100, 100);
-            this.pbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbx.TabIndex = 4;
-            this.pbx.TabStop = false;
-            // 
             // utbTel
             // 
             this.utbTel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
@@ -108,24 +97,33 @@
             this.bgwConfirmar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwConfirmar_DoWork);
             this.bgwConfirmar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwConfirmar_RunWorkerCompleted);
             // 
+            // enhancedPictureBox1
+            // 
+            this.enhancedPictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.enhancedPictureBox1.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
+            this.enhancedPictureBox1.Circle = false;
+            this.enhancedPictureBox1.Location = new System.Drawing.Point(150, 36);
+            this.enhancedPictureBox1.Name = "enhancedPictureBox1";
+            this.enhancedPictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.enhancedPictureBox1.TabIndex = 5;
+            // 
             // frmAñadirContacto
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(817, 415);
             this.Controls.Add(this.utbTel);
-            this.Controls.Add(this.pbx);
             this.Controls.Add(this.cbtAniadir);
             this.Controls.Add(this.stbDesc);
             this.Controls.Add(this.utbCorreo);
             this.Controls.Add(this.utbNombre);
+            this.Controls.Add(this.enhancedPictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frmAñadirContacto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "➕ Añadir";
+            this.Text = "➕ Añadir contacto";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAñadirContacto_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.pbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -136,8 +134,8 @@
         private UnderlinedTextBox utbCorreo;
         private SurroundedTextBox stbDesc;
         private CustomButton cbtAniadir;
-        private PictureBox pbx;
         private UnderlinedTextBox utbTel;
         private System.ComponentModel.BackgroundWorker bgwConfirmar;
+        private enhancedPictureBox enhancedPictureBox1;
     }
 }

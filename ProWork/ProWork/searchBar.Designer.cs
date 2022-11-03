@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.txb = new System.Windows.Forms.TextBox();
+            this.epb = new ProWork.enhancedPictureBox();
             this.SuspendLayout();
             // 
             // txb
@@ -43,10 +44,22 @@
             this.txb.Size = new System.Drawing.Size(665, 40);
             this.txb.TabIndex = 0;
             // 
+            // epb
+            // 
+            this.epb.BackColor = System.Drawing.Color.Transparent;
+            this.epb.BkgImage = global::ProWork.Properties.Resources.Buscar;
+            this.epb.Circle = false;
+            this.epb.Location = new System.Drawing.Point(35, 6);
+            this.epb.Margin = new System.Windows.Forms.Padding(6);
+            this.epb.Name = "epb";
+            this.epb.Size = new System.Drawing.Size(38, 28);
+            this.epb.TabIndex = 1;
+            // 
             // searchBar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.Controls.Add(this.epb);
             this.Controls.Add(this.txb);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -65,5 +78,6 @@
         #endregion
 
         public TextBox txb;
+        private enhancedPictureBox epb;
     }
 }

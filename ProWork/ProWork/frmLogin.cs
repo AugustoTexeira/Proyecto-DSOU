@@ -58,6 +58,7 @@ namespace ProWork
                             if (ctbNombre.txbText == reader.GetString(0))
                             {
                                 v = false;
+                                break;
                             }
                         }
                         reader.Close();

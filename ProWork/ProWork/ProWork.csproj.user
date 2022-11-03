@@ -4,13 +4,16 @@
     <Compile Update="ContactosContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ContactosList.cs">
+    <Compile Update="List.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="De Configuración %28Cristian%29\ConfigContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ContactosItem.cs">
+    <Compile Update="Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="enhancedPictureBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="frmAccConfig.cs">

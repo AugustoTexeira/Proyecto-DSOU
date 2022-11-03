@@ -17,7 +17,7 @@ namespace ProWork
         {
             InitializeComponent();
             this.BackColor = Estilo.fondo;
-            ContactosContainer contenedor = new();
+            ConfigContainer contenedor = new();
             contenedor.Dock = DockStyle.Fill;
             this.Controls.Add(contenedor);
         }
@@ -26,6 +26,5 @@ namespace ProWork
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
         }
-
     }
 }
