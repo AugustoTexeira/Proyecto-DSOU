@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Drawing.Drawing2D;
+﻿using System.Drawing.Drawing2D;
 
 namespace ProWork
 {
@@ -28,8 +19,8 @@ namespace ProWork
         public Image BkgImage
         {
             get { return bkgImage; }
-            set 
-            { 
+            set
+            {
                 bkgImage = value;
                 txtBrush = new(Estilo.ResizeImage(bkgImage, Width, Height));
                 Refresh();
@@ -42,7 +33,7 @@ namespace ProWork
 
         private void enhancedPictureBox_Paint(object sender, PaintEventArgs e)
         {
-            if(txtBrush != null)
+            if (txtBrush != null)
             {
                 if (circle)
                 {
@@ -64,7 +55,7 @@ namespace ProWork
 
         private void enhancedPictureBox_Layout(object sender, LayoutEventArgs e)
         {
-            if(bkgImage != null && txtBrush.Image.Size != Size)
+            if (bkgImage != null && txtBrush.Image.Size != Size)
             {
                 txtBrush = new(Estilo.ResizeImage(bkgImage, (int)Width, (int)Height));
             }
@@ -72,25 +63,17 @@ namespace ProWork
 
         public void sizeToHeight(int height)
         {
-            if(bkgImage != null && height > 0 && (int)(height * ((double)bkgImage.Height / bkgImage.Width)) > 0)
+            if (bkgImage != null && height > 0 && (int)(height * ((double)bkgImage.Height / bkgImage.Width)) > 0)
             {
-                Size = new((int)(height * ((double)bkgImage.Height / bkgImage.Width)), height);
-            }
-            else
-            {
-                //Testing
-                //MessageBox.Show(
-                //    $"Height: {height}\n" +
-                //    $"bkgImage.Height: {bkgImage.Height}\n" +
-                //    $"bkgImage.Width: {bkgImage.Width}\n" +
-                //    $"bkgImage.Height / bkgImage.Width: {(double)bkgImage.Height / bkgImage.Width}\n" +
-                //    $"height * (bkgImage.Height / bkgImage.Width): {height * ((double)bkgImage.Height / bkgImage.Width)}"
-                //    );
+                Size = new((int)(height * ((double)bkgImage.Width / bkgImage.Height)), height);
             }
         }
         public void sizeToWidth(int width)
         {
-            Size = new(width, width * (bkgImage.Width / Height));
+            if (bkgImage != null && width > 0 && (int)(width * ((double)bkgImage.Width / bkgImage.Height)) > 0)
+            {
+                Size = new(width, (int)(width * ((double)bkgImage.Height / bkgImage.Width)));
+            }
         }
     }
 }

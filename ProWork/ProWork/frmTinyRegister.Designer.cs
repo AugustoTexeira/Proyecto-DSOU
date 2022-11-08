@@ -30,17 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.utbNombre = new ProWork.UnderlinedTextBox();
-            this.utbContra = new ProWork.UnderlinedTextBox();
-            this.utbCContra = new ProWork.UnderlinedTextBox();
             this.cbtCrear = new ProWork.CustomButton();
             this.lblLogin = new System.Windows.Forms.Label();
-            this.btnContra = new System.Windows.Forms.Button();
-            this.btnCContra = new System.Windows.Forms.Button();
             this.bgwCheck = new System.ComponentModel.BackgroundWorker();
             this.pbPlusUser = new System.Windows.Forms.PictureBox();
             this.pbxUser = new System.Windows.Forms.PictureBox();
             this.tmrIntoRegister = new System.Windows.Forms.Timer(this.components);
             this.tmrIntoLogin = new System.Windows.Forms.Timer(this.components);
+            this.utbContra = new ProWork.PasswordUnderlinedTextBox();
+            this.utbCContra = new ProWork.PasswordUnderlinedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlusUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxUser)).BeginInit();
             this.SuspendLayout();
@@ -51,32 +49,10 @@
             this.utbNombre.Location = new System.Drawing.Point(119, 356);
             this.utbNombre.Name = "utbNombre";
             this.utbNombre.PlaceholderText = "Nombre";
-            this.utbNombre.Size = new System.Drawing.Size(344, 36);
+            this.utbNombre.Size = new System.Drawing.Size(344, 45);
             this.utbNombre.TabIndex = 2;
             this.utbNombre.txbText = "";
             this.utbNombre.UsePasswordChar = false;
-            // 
-            // utbContra
-            // 
-            this.utbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.utbContra.Location = new System.Drawing.Point(119, 407);
-            this.utbContra.Name = "utbContra";
-            this.utbContra.PlaceholderText = "Contraseña";
-            this.utbContra.Size = new System.Drawing.Size(344, 36);
-            this.utbContra.TabIndex = 3;
-            this.utbContra.txbText = "";
-            this.utbContra.UsePasswordChar = true;
-            // 
-            // utbCContra
-            // 
-            this.utbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.utbCContra.Location = new System.Drawing.Point(119, 458);
-            this.utbCContra.Name = "utbCContra";
-            this.utbCContra.PlaceholderText = "Confirmar contraseña";
-            this.utbCContra.Size = new System.Drawing.Size(344, 36);
-            this.utbCContra.TabIndex = 4;
-            this.utbCContra.txbText = "";
-            this.utbCContra.UsePasswordChar = true;
             // 
             // cbtCrear
             // 
@@ -103,42 +79,6 @@
             this.lblLogin.Click += new System.EventHandler(this.lblLogin_Click);
             this.lblLogin.MouseEnter += new System.EventHandler(this.lblLogin_MouseEnter);
             this.lblLogin.MouseLeave += new System.EventHandler(this.lblLogin_MouseLeave);
-            // 
-            // btnContra
-            // 
-            this.btnContra.BackColor = System.Drawing.Color.Transparent;
-            this.btnContra.BackgroundImage = global::ProWork.Properties.Resources.ojitosi32;
-            this.btnContra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnContra.FlatAppearance.BorderSize = 0;
-            this.btnContra.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
-            this.btnContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnContra.ForeColor = System.Drawing.Color.White;
-            this.btnContra.Location = new System.Drawing.Point(425, 407);
-            this.btnContra.Name = "btnContra";
-            this.btnContra.Size = new System.Drawing.Size(38, 36);
-            this.btnContra.TabIndex = 7;
-            this.btnContra.UseVisualStyleBackColor = false;
-            this.btnContra.Click += new System.EventHandler(this.btnContra_Click);
-            this.btnContra.Paint += new System.Windows.Forms.PaintEventHandler(this.btnContra_Paint);
-            // 
-            // btnCContra
-            // 
-            this.btnCContra.BackColor = System.Drawing.Color.Transparent;
-            this.btnCContra.BackgroundImage = global::ProWork.Properties.Resources.ojitosi32;
-            this.btnCContra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCContra.FlatAppearance.BorderSize = 0;
-            this.btnCContra.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnCContra.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(75)))));
-            this.btnCContra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCContra.ForeColor = System.Drawing.Color.White;
-            this.btnCContra.Location = new System.Drawing.Point(425, 458);
-            this.btnCContra.Name = "btnCContra";
-            this.btnCContra.Size = new System.Drawing.Size(38, 36);
-            this.btnCContra.TabIndex = 8;
-            this.btnCContra.UseVisualStyleBackColor = false;
-            this.btnCContra.Click += new System.EventHandler(this.btnCContra_Click);
-            this.btnCContra.Paint += new System.Windows.Forms.PaintEventHandler(this.btnCContra_Paint);
             // 
             // bgwCheck
             // 
@@ -177,6 +117,28 @@
             this.tmrIntoLogin.Interval = 16;
             this.tmrIntoLogin.Tick += new System.EventHandler(this.tmrIntoLogin_Tick);
             // 
+            // utbContra
+            // 
+            this.utbContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.utbContra.Location = new System.Drawing.Point(119, 407);
+            this.utbContra.Name = "utbContra";
+            this.utbContra.PlaceholderText = "Contraseña";
+            this.utbContra.Size = new System.Drawing.Size(344, 45);
+            this.utbContra.TabIndex = 16;
+            this.utbContra.txbText = "";
+            this.utbContra.UsePasswordChar = true;
+            // 
+            // utbCContra
+            // 
+            this.utbCContra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.utbCContra.Location = new System.Drawing.Point(119, 458);
+            this.utbCContra.Name = "utbCContra";
+            this.utbCContra.PlaceholderText = "Confirmar Contraseña";
+            this.utbCContra.Size = new System.Drawing.Size(344, 45);
+            this.utbCContra.TabIndex = 17;
+            this.utbCContra.txbText = "";
+            this.utbCContra.UsePasswordChar = true;
+            // 
             // frmTinyRegister
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -184,13 +146,11 @@
             this.ClientSize = new System.Drawing.Size(582, 753);
             this.Controls.Add(this.pbPlusUser);
             this.Controls.Add(this.pbxUser);
-            this.Controls.Add(this.btnCContra);
-            this.Controls.Add(this.btnContra);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.cbtCrear);
-            this.Controls.Add(this.utbCContra);
-            this.Controls.Add(this.utbContra);
             this.Controls.Add(this.utbNombre);
+            this.Controls.Add(this.utbContra);
+            this.Controls.Add(this.utbCContra);
             this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -207,16 +167,14 @@
 
         #endregion
         private UnderlinedTextBox utbNombre;
-        private UnderlinedTextBox utbContra;
-        private UnderlinedTextBox utbCContra;
         private CustomButton cbtCrear;
         private Label lblLogin;
-        private Button btnContra;
-        private Button btnCContra;
         private System.ComponentModel.BackgroundWorker bgwCheck;
         private PictureBox pbPlusUser;
         private PictureBox pbxUser;
         private System.Windows.Forms.Timer tmrIntoRegister;
         private System.Windows.Forms.Timer tmrIntoLogin;
+        private PasswordUnderlinedTextBox utbContra;
+        private PasswordUnderlinedTextBox utbCContra;
     }
 }

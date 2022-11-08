@@ -49,6 +49,7 @@
             // 
             // cbnAniadir
             // 
+            this.cbnAniadir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbnAniadir.Font = new System.Drawing.Font("Raleway", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cbnAniadir.Location = new System.Drawing.Point(699, 628);
             this.cbnAniadir.Name = "cbnAniadir";

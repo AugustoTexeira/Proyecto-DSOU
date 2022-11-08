@@ -17,6 +17,7 @@ namespace ProWork
         {
             InitializeComponent();
             flh.Entrar += PasarDatos;
+            flh.BackColor = Color.White;
             rt.Clack += DatosPasar;
         }
 

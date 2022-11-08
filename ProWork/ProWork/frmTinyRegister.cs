@@ -133,7 +133,7 @@ namespace ProWork
 
             if (e.Result != null)
             {
-                frmPruebaa main = new();
+                frmMain main = new();
                 main.Show();
                 this.Close();
             }
@@ -142,50 +142,8 @@ namespace ProWork
         private void frmTinyRegister_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
+            Dispose();
         }
-
-        private void btnContra_Paint(object sender, PaintEventArgs e)
-        {
-            Pen pen = new(Estilo.fondo, (int)(Estilo.medioAnchoLinea * 1.5));
-
-            if (utbContra.UsePasswordChar)
-            {
-                pen.Color = Estilo.Contraste;
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine(pen, 5, btnContra.Height - 5, btnContra.Width - 5, 5);
-            }
-        }
-
-        private void btnContra_Click(object sender, EventArgs e)
-        {
-            utbContra.UsePasswordChar = !utbContra.UsePasswordChar;
-            btnContra.Refresh();
-        }
-
-        private void btnCContra_Paint(object sender, PaintEventArgs e)
-        {
-            Pen pen = new(Estilo.fondo, (int)(Estilo.medioAnchoLinea * 1.5));
-
-            if (utbCContra.UsePasswordChar)
-            {
-                pen.Color = Estilo.Contraste;
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine(pen, 5, btnCContra.Height - 5, btnCContra.Width - 5, 5);
-            }
-        }
-
-        private void btnCContra_Click(object sender, EventArgs e)
-        {
-            utbCContra.UsePasswordChar = !utbCContra.UsePasswordChar;
-            btnCContra.Refresh();
-        }
-
         private void lblLogin_MouseEnter(object sender, EventArgs e)
         {
             lblLogin.Font = new(lblLogin.Font, FontStyle.Underline);
@@ -207,7 +165,6 @@ namespace ProWork
             {
                 pbPlusUser.Visible = true;
                 utbCContra.Visible = true;
-                btnCContra.Visible = true;
                 tmrIntoLogin.Stop();
                 tmrIntoRegister.Start();
             }
@@ -218,13 +175,11 @@ namespace ProWork
             if (utbContra.Location.Y >= yContra)
             {
                 utbCContra.Visible = true;
-                btnContra.Visible = true;
 
                 int cambio = (yContra - utbContra.Location.Y) / 4 - 1;
 
                 utbNombre.Location = new Point(utbNombre.Location.X, utbNombre.Location.Y + cambio);
                 utbContra.Location = new Point(utbContra.Location.X, utbContra.Location.Y + cambio);
-                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
                 pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
             }
             else if (utbCContra.Location.X >= utbContra.Location.X)
@@ -232,7 +187,6 @@ namespace ProWork
                 int cambio = (utbContra.Location.X - utbCContra.Location.X) / 2 - 1;
 
                 utbCContra.Location = new Point(utbCContra.Location.X + cambio, utbCContra.Location.Y);
-                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
                 cambio = (xPlus - pbPlusUser.Location.X) / 2 - 1;
 
@@ -254,7 +208,6 @@ namespace ProWork
                 int cambio = (this.Width - utbCContra.Location.X) / 2 + 1;
 
                 utbCContra.Location = new Point(utbCContra.Location.X + cambio, utbCContra.Location.Y);
-                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
                 cambio = (this.Width - pbPlusUser.Location.X) / 2 + 1;
 
@@ -266,7 +219,6 @@ namespace ProWork
 
                 utbNombre.Location = new Point(utbNombre.Location.X, utbNombre.Location.Y + cambio);
                 utbContra.Location = new Point(utbContra.Location.X, utbContra.Location.Y + cambio);
-                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
                 pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
             }
             else
@@ -275,7 +227,6 @@ namespace ProWork
                 lblLogin.Text = "¿No tienes una cuenta? Regístrate";
                 this.Text = "Iniciar sesión";
                 utbCContra.Visible = false;
-                btnCContra.Visible = false;
                 pbPlusUser.Visible = false;
                 tmrIntoLogin.Stop();
             }

@@ -16,31 +16,41 @@ namespace ProWork
         public ContactosContainer()
         {
             InitializeComponent();
+            BackColor = Estilo.fondo;
+            srbBuscar.BackColor = Estilo.fondo;
+            lblContactos.ForeColor = Estilo.Contraste;
+            clt.mode = 1;
             clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
             srbBuscar.txb.KeyPress += txb_KeyPress;
             if(!Program.userAdmin)
             {
                 cbnAniadir.Visible = false;
             }
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+        }
+
+        private void colorSwap(object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+            lblContactos.ForeColor = Estilo.Contraste;
         }
 
         private void cbnAniadir_Click(object sender, EventArgs e)
         {
             frmAñadirContacto frm = new();
-            frm.CambioExitoso += callReset;
+            frm.CambioExitoso += ResetElementos;
             frm.Show();
         }
-        private void callReset(object sender, EventArgs e)
+        public void ResetElementos(object sender, EventArgs e)
         {
-            clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
+            clt.ResetElementos(null);
         }
 
         private void ContactosContainer_Layout(object sender, LayoutEventArgs e)
         {
-            cbnAniadir.Location = new(this.Width - cbnAniadir.Width - 25, this.Height - cbnAniadir.Height - 25);
             srbBuscar.Width = Width - srbBuscar.Location.X - 25;
             clt.Width = srbBuscar.Width;
-            clt.Height = cbnAniadir.Location.Y - clt.Location.Y - 25;
+            clt.Height = this.Height - cbnAniadir.Height - 25 - clt.Location.Y - 25;
         }
         private void txb_KeyPress(object sender, KeyPressEventArgs e)
         {

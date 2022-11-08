@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ProWork
+﻿namespace ProWork
 {
     public partial class ControlCuentas : UserControl
     {
@@ -86,9 +76,9 @@ namespace ProWork
 
             //Lista
 
-           for (int i = 0; i < lista.Count; i++)
+            for (int i = 0; i < lista.Count; i++)
             {
-                if(hovered)
+                if (hovered)
                 {
                     if (mY >= (i - 1) * this.Font.Height - shift && mY < (i + 1) * this.Font.Height - shift && !scrollHovered)
                     {
@@ -108,8 +98,8 @@ namespace ProWork
                 e.Graphics.DrawString("Nombre: " + lista[i], this.Font, new SolidBrush(Estilo.Contraste), Estilo.medioAnchoLinea, i * this.Font.Height - shift);
             }
 
-            if (mY >= (lista.Count - 1) * this.Font.Height - shift && mY < (lista.Count) * this.Font.Height - shift) 
-            { 
+            if (mY >= (lista.Count - 1) * this.Font.Height - shift && mY < (lista.Count) * this.Font.Height - shift)
+            {
                 pen.Color = Estilo.enfasis;
             }
             e.Graphics.DrawLine(pen, Estilo.medioAnchoLinea, lista.Count * this.Font.Height + Estilo.medioAnchoLinea - shift, this.Width - Estilo.anchoLinea * 12, Estilo.medioAnchoLinea + lista.Count * this.Font.Height - shift);
@@ -157,7 +147,7 @@ namespace ProWork
                     this.Height / (lista.Count * this.Font.Height / shift) +  //le aniado y1 a y2
                     scbHeight + lwLim); //(lwLim)En caso de que la scrollbar fuese a salirse de pantalla, reduzco su tamanio para evitarlo
             }
-            
+
 
             ////Testing stats
 
@@ -165,14 +155,14 @@ namespace ProWork
                 "shift: " + shift.ToString() + "\n" +
             //    "mY: " + mY.ToString() + "\n" +
                 "aimShift: " + aimShift.ToString() + "\n"
-                 //    "vSpeed: " + vSpeed.ToString() + "\n"
-                 //  "y1: " + (this.Height / (lista.Count * this.Font.Height / shift)).ToString() + "\n" +
-                 //  "y2: " + (this.Height * this.Height / ((lista.Count + 2) * this.Font.Height)).ToString() + "\n" +
-                 //"height: " + this.Height.ToString() + "\n" +
-                 //"coso: " + (this.Height / (lista.Count * this.Font.Height / shift) + this.Height * this.Height / ((lista.Count + 2) * this.Font.Height)).ToString() + "\n" +
-                 //  "y2: " + (lista.Count * this.Font.Height).ToString()
-                 //"lwlim: " + (this.Height - (this.Height / (lista.Count * this.Font.Height / shift) + this.Height * this.Height / ((lista.Count + 2) * this.Font.Height))).ToString()
-                 //"%shift: " + (shift % this.Font.Height).ToString()
+                //    "vSpeed: " + vSpeed.ToString() + "\n"
+                //  "y1: " + (this.Height / (lista.Count * this.Font.Height / shift)).ToString() + "\n" +
+                //  "y2: " + (this.Height * this.Height / ((lista.Count + 2) * this.Font.Height)).ToString() + "\n" +
+                //"height: " + this.Height.ToString() + "\n" +
+                //"coso: " + (this.Height / (lista.Count * this.Font.Height / shift) + this.Height * this.Height / ((lista.Count + 2) * this.Font.Height)).ToString() + "\n" +
+                //  "y2: " + (lista.Count * this.Font.Height).ToString()
+                //"lwlim: " + (this.Height - (this.Height / (lista.Count * this.Font.Height / shift) + this.Height * this.Height / ((lista.Count + 2) * this.Font.Height))).ToString()
+                //"%shift: " + (shift % this.Font.Height).ToString()
                 ,
                 this.Font, new SolidBrush(Color.Red), 0, 0);
         }
@@ -200,7 +190,7 @@ namespace ProWork
         {
         }
 
-        
+
 
         private void ControlCuentas_MouseEnter(object sender, EventArgs e)
         {
@@ -232,7 +222,7 @@ namespace ProWork
         {
             if (held)
             {
-                if(!scrollHovered)
+                if (!scrollHovered)
                 {
                     if (shift < 0 && mY - e.Y < 0)
                     {
@@ -249,7 +239,7 @@ namespace ProWork
                 }
                 else
                 {
-                    aimShift += (e.Y * 100 / this.Height) * shiftAltura() ;
+                    aimShift += (e.Y * 100 / this.Height) * shiftAltura();
                     tmrScroll.Start();
                 }
             }
@@ -315,7 +305,7 @@ namespace ProWork
                 scrollHovered = false;
                 this.Refresh();
             }
-            
+
             if (!tmrDragScroll.Enabled && !tmrScroll.Enabled && (held || released || Math.Ceiling((double)(mY / this.Font.Height)) != Math.Ceiling((double)(e.Y / this.Font.Height))))
             {
                 this.Refresh();
@@ -378,7 +368,7 @@ namespace ProWork
             }
             this.Refresh();
         }
-        private int shiftAltura ()
+        private int shiftAltura()
         {
             return lista.Count * this.Font.Height - this.Height;
         }

@@ -16,6 +16,12 @@ namespace ProWork
         public searchBar()
         {
             InitializeComponent();
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+        }
+
+        private void colorSwap(object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
         }
 
         private void searchBar_Paint(object sender, PaintEventArgs e)

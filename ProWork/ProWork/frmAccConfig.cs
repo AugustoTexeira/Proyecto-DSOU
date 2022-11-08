@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace ProWork
 {
@@ -33,20 +24,33 @@ namespace ProWork
                 Program.tryToConnect();
                 if (utbNombre.txbText != "" && utbContra.txbText != "")
                 {
-                    MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}', password=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}';", Program.connection);
-                    cmd.ExecuteNonQuery();
-                    CambioExitoso.Invoke(utbNombre.txbText, e);
-                    this.Close();
+                    MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}', password=sha2('{utbContra.txbText}', 224) where nombre='{utbNombre.PlaceholderText}' and not exists(select administrador from(select administrador, nombre from usuario)as t where nombre ='{utbNombre.txbText}');", Program.connection);
+                    if(cmd.ExecuteNonQuery() == 1)
+                    {
+                        Program.user = utbNombre.txbText;
+                        CambioExitoso.Invoke(utbNombre.txbText, e);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya existe una cuenta con ese nombre.");
+                    }
                 }
                 else
                 {
                     if (utbNombre.txbText != "")
                     {
-                        MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}' where nombre='{utbNombre.PlaceholderText}';", Program.connection);
-                        cmd.ExecuteNonQuery();
-
-                        CambioExitoso.Invoke(utbNombre.txbText, e);
-                        this.Close();
+                        MySqlCommand cmd = new($"update usuario set nombre='{utbNombre.txbText}' where nombre='{utbNombre.PlaceholderText}' and not exists(select administrador from(select administrador, nombre from usuario)as t where nombre ='{utbNombre.PlaceholderText}');", Program.connection);
+                        if (cmd.ExecuteNonQuery() == 1)
+                        {
+                            Program.user = utbNombre.txbText;
+                            CambioExitoso.Invoke(utbNombre.txbText, e);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ya existe una cuenta con ese nombre.");
+                        }
                     }
                     else
                     {
@@ -75,6 +79,7 @@ namespace ProWork
         private void frmAccConfig_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
+            Dispose();
         }
     }
 }

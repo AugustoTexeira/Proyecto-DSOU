@@ -27,19 +27,72 @@ namespace ProWork
 
             reader.Close();
 
-            this.Text = $"Configuración del contacto {nombre}";
+            this.Text = $"Información del contacto {nombre}";
             lblNombre.Text = nombre;
-            this.BackColor = Estilo.fondo;
+
+            BackColor = Estilo.fondo;
             lblNombre.BackColor = Estilo.fondo;
-            rtb.BackColor = Estilo.fondo;
-            lblEmail.ForeColor = Estilo.Contraste;
             lblNombre.ForeColor = Estilo.Contraste;
+            rtb.BackColor = Estilo.fondo;
+            rtb.ForeColor = Estilo.Contraste;
+
+            lblEmail.ForeColor = Estilo.Contraste;
+            lblEmail.LinkColor = Estilo.Contraste;
+            lblEmail.DisabledLinkColor = Estilo.Contraste;
+            lblEmail.ActiveLinkColor = Estilo.Contraste;
+            lblEmail.VisitedLinkColor = Estilo.Contraste;
+
             lblTel.ForeColor = Estilo.Contraste;
+            lblTel.LinkColor = Estilo.Contraste;
+            lblTel.DisabledLinkColor = Estilo.Contraste;
+            lblTel.ActiveLinkColor = Estilo.Contraste;
+            lblTel.VisitedLinkColor = Estilo.Contraste;
+
+            if (Estilo.fondo == Color.White)
+            {
+                epb.BkgImage = Properties.Resources.ContactoModoClaro;
+            }
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += swapColor;
+        }
+
+        private void swapColor (object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+            lblNombre.BackColor = Estilo.fondo;
+            lblNombre.ForeColor = Estilo.Contraste;
+            rtb.BackColor = Estilo.fondo;
+            rtb.ForeColor = Estilo.Contraste;
+
+            lblEmail.ForeColor = Estilo.Contraste;
+            lblEmail.LinkColor = Estilo.Contraste;
+            lblEmail.DisabledLinkColor = Estilo.Contraste;
+            lblEmail.ActiveLinkColor = Estilo.Contraste;
+            lblEmail.VisitedLinkColor = Estilo.Contraste;
+
+            lblTel.ForeColor = Estilo.Contraste;
+            lblTel.LinkColor = Estilo.Contraste;
+            lblTel.DisabledLinkColor = Estilo.Contraste;
+            lblTel.ActiveLinkColor = Estilo.Contraste;
+            lblTel.VisitedLinkColor = Estilo.Contraste;
+            if ((bool)sender)
+            {
+                epb.BkgImage = Properties.Resources.ContactoModoClaro;
+            }
+            else
+            {
+                epb.BkgImage = Properties.Resources.ContactoOscuro;
+            }
         }
 
         private void rtb_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void frmMostrarContacto_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0) { Application.Exit(); }
+            Dispose();
         }
     }
 }

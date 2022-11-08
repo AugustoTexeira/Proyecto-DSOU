@@ -113,6 +113,16 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ContactoModoClaro {
+            get {
+                object obj = ResourceManager.GetObject("ContactoModoClaro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ContactoOscuro {
             get {
                 object obj = ResourceManager.GetObject("ContactoOscuro", resourceCulture);
@@ -213,6 +223,16 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_DSOU_azul {
+            get {
+                object obj = ResourceManager.GetObject("Logo_DSOU_azul", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo_en_login {
             get {
                 object obj = ResourceManager.GetObject("Logo en login", resourceCulture);
@@ -293,6 +313,26 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OjoModoClaro {
+            get {
+                object obj = ResourceManager.GetObject("OjoModoClaro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OJoOcultoModoClaro {
+            get {
+                object obj = ResourceManager.GetObject("OJoOcultoModoClaro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Personalizado {
             get {
                 object obj = ResourceManager.GetObject("Personalizado", resourceCulture);
@@ -306,6 +346,16 @@ namespace ProWork.Properties {
         internal static System.Drawing.Bitmap Proyectos_Blanco {
             get {
                 object obj = ResourceManager.GetObject("Proyectos Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Proyectos_Gris {
+            get {
+                object obj = ResourceManager.GetObject("Proyectos_Gris", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -14,8 +14,8 @@ namespace ProWork
         public static Color degrEnfasis = Color.FromArgb(5, 233, 237);
         public static Color fondo = Color.FromArgb(15, 12, 15);
         private static Color contraste = Color.White;
-        public static Color contrasteLigero = Color.Gray;
-        public static Color degrContraste = Color.LightGray;
+        public static Color contrasteLigero = Color.FromArgb(102, 102, 102);
+        public static Color degrContraste = Color.FromArgb(204, 204, 204);
         public static Color contrasteEnfasis = Color.White;
 
         public static byte selectedStyle = 0; //0 = Modo oscuro; 1 = Modo claro; El resto son personalizados.
@@ -25,13 +25,6 @@ namespace ProWork
             set 
             { 
                 contraste = value;
-                int r;
-                int g;
-                int b;
-                if (fondo.R < contraste.R) { r = fondo.R + (Math.Abs(fondo.R - contraste.R) / 2); } else { r = contraste.R + (Math.Abs(contraste.R - fondo.R) / 2); }
-                if (fondo.G < contraste.G) { g = fondo.G + (Math.Abs(fondo.G - contraste.G) / 2); } else { g = contraste.G + (Math.Abs(contraste.G - fondo.G) / 2); }
-                if (fondo.B < contraste.B) { b = fondo.B + (Math.Abs(fondo.B - contraste.B) / 2); } else { b = contraste.B + (Math.Abs(contraste.B - fondo.B) / 2); }
-                contrasteLigero = Color.FromArgb(r, g, b);
             }
         }
         public const int anchoLinea = 4;
@@ -153,7 +146,6 @@ namespace ProWork
                     graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
                 }
             }
-
             return destImage;
         }
 
@@ -163,7 +155,7 @@ namespace ProWork
         }
         public static Image sizeToWidth(Image image, int width)
         {
-            return ResizeImage(image, width, (int)(width * ((double)image.Width / image.Height)));
+            return ResizeImage(image, width, (int)(width * ((double)image.Height / image.Width)));
         }
     }
 }

@@ -22,14 +22,8 @@ namespace ProWork
         {
             InitializeComponent();
             yContra = ctbContra.Location.Y;
-            xPlus = pbPlusUser.Location.X;
+            xPlus = epbPlusUser.Location.X;
             Program.tryToConnect();
-        }
-
-        private void pbxOContra_Click(object sender, EventArgs e)
-        {
-            ctbContra.UsePasswordChar = !ctbContra.UsePasswordChar;
-            btnContra.Refresh();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -48,27 +42,10 @@ namespace ProWork
                 {
                     try
                     {
-                        MySqlCommand vRegistro = new("select nombre from usuario;", Program.connection);
-                        MySqlDataReader reader = vRegistro.ExecuteReader();
-
-                        bool v = true;
-                        
-                        while (reader.Read())
+                        Program.tryToConnect();
+                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{ctbNombre.txbText}')", Program.connection);
+                        if(Registro.ExecuteNonQuery() == 1)
                         {
-                            if (ctbNombre.txbText == reader.GetString(0))
-                            {
-                                v = false;
-                                break;
-                            }
-                        }
-                        reader.Close();
-                        if (v)
-                        {
-                            MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
-                                                        "values ('" + ctbNombre.txbText + "', sha2('" + ctbContra.txbText + "', 224), false);",
-                                                        Program.connection
-                                                        );
-                            iRegistro.ExecuteNonQuery();
                             Program.user = ctbNombre.txbText;
                             Program.userAdmin = false;
                             e.Result = true;
@@ -93,7 +70,7 @@ namespace ProWork
                 try
                 {
                     Program.tryToConnect();
-                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" +ctbContra.txbText + "', 224);", Program.connection);
+                    MySqlCommand vLogin = new($"select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", Program.connection);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
@@ -137,47 +114,10 @@ namespace ProWork
             }
             else
             {
-                pbPlusUser.Visible = true;
+                epbPlusUser.Visible = true;
                 ctbCContra.Visible = true;
-                btnCContra.Visible = true;
                 tmrIntoLogin.Stop();
                 tmrIntoRegister.Start();
-            }
-        }
-
-        private void btnContra_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            if (ctbContra.UsePasswordChar)
-            {
-                Pen pen = new(Estilo.Contraste, 3);
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine(pen, 5, btnContra.Height - 5, btnContra.Width - 5, 5);
-            }
-        }
-
-        private void btnCContra_Click(object sender, EventArgs e)
-        {
-            ctbCContra.UsePasswordChar = !ctbCContra.UsePasswordChar;
-            btnCContra.Refresh();
-        }
-
-        private void btnCContra_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            if (ctbCContra.UsePasswordChar)
-            {
-                Pen pen = new(Estilo.Contraste, 3);
-
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-
-                e.Graphics.DrawLine(pen, 5, btnCContra.Height - 5, btnCContra.Width - 5, 5);
             }
         }
 
@@ -188,11 +128,10 @@ namespace ProWork
                 int cambio = (this.Width - ctbCContra.Location.X) / 2 + 1;
 
                 ctbCContra.Location = new Point(ctbCContra.Location.X + cambio, ctbCContra.Location.Y);
-                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
-                cambio = (this.Width - pbPlusUser.Location.X) / 2 + 1;
+                cambio = (this.Width - epbPlusUser.Location.X) / 2 + 1;
 
-                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio / 2, pbPlusUser.Location.Y);
+                epbPlusUser.Location = new Point(epbPlusUser.Location.X + cambio / 2, epbPlusUser.Location.Y);
             }
             else if (ctbContra.Location.Y <= ctbCContra.Location.Y)
             {
@@ -200,16 +139,14 @@ namespace ProWork
 
                 ctbNombre.Location = new Point(ctbNombre.Location.X, ctbNombre.Location.Y + cambio);
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);
-                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
-                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+                epbUser.Location = new Point(epbUser.Location.X, epbUser.Location.Y + cambio);
             }
             else
             {
                 btnLogin.Texto = "Ingresar";
                 btnSwap.Text = "¿No tienes una cuenta? Regístrate";
                 ctbCContra.Visible = false;
-                btnCContra.Visible = false;
-                pbPlusUser.Visible = false;
+                epbPlusUser.Visible = false;
                 tmrIntoLogin.Stop();
             }
         }
@@ -219,25 +156,22 @@ namespace ProWork
             if (ctbContra.Location.Y >= yContra)
             {
                 ctbCContra.Visible = true;
-                btnContra.Visible = true;
 
                 int cambio = (yContra - ctbContra.Location.Y) / 4 - 1;
 
                 ctbNombre.Location = new Point(ctbNombre.Location.X, ctbNombre.Location.Y + cambio);
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);
-                btnContra.Location = new Point(btnContra.Location.X, btnContra.Location.Y + cambio);
-                pbxUser.Location = new Point(pbxUser.Location.X, pbxUser.Location.Y + cambio);
+                epbUser.Location = new Point(epbUser.Location.X, epbUser.Location.Y + cambio);
             }
             else if (ctbCContra.Location.X >= ctbContra.Location.X)
             {
                 int cambio = (ctbContra.Location.X - ctbCContra.Location.X) / 2 - 1;
 
                 ctbCContra.Location = new Point(ctbCContra.Location.X + cambio, ctbCContra.Location.Y);
-                btnCContra.Location = new Point(btnCContra.Location.X + cambio, btnCContra.Location.Y);
 
-                cambio = (xPlus - pbPlusUser.Location.X) / 2 - 1;
+                cambio = (xPlus - epbPlusUser.Location.X) / 2 - 1;
 
-                pbPlusUser.Location = new Point(pbPlusUser.Location.X + cambio, pbPlusUser.Location.Y);
+                epbPlusUser.Location = new Point(epbPlusUser.Location.X + cambio, epbPlusUser.Location.Y);
             }
             else
             {
@@ -255,7 +189,7 @@ namespace ProWork
 
             if(e.Result != null)
             {
-                frmPruebaa main = new();
+                frmMain main = new();
                 main.Show();
                 this.Close();
             }
@@ -264,6 +198,7 @@ namespace ProWork
         private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
+            this.Dispose();
         }
 
         private void btnSwap_MouseEnter(object sender, EventArgs e)

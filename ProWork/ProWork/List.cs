@@ -19,6 +19,12 @@ namespace ProWork
         public List()
         {
             InitializeComponent();
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+        }
+
+        private void colorSwap(object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
         }
 
         public void ResetElementos(MySqlCommand select)
@@ -55,7 +61,6 @@ namespace ProWork
                         item.Font = this.Font;
                         item.Width = this.Width - SystemInformation.VerticalScrollBarWidth - 10;
                         item.Location = new Point(0, Estilo.medioAnchoLinea + i * item.Height);
-                        item.ResetParent += CallReset;
                         item.gearClicked += gearClicked;
                         item.trashClicked += trashClicked;
                         item.Click += itemClicked;
@@ -76,7 +81,6 @@ namespace ProWork
                         item.Font = this.Font;
                         item.Width = this.Width - SystemInformation.VerticalScrollBarWidth - 10;
                         item.Location = new Point(0, Estilo.medioAnchoLinea + i * item.Height);
-                        item.ResetParent += CallReset;
                         item.gearClicked += gearClicked;
                         item.trashClicked += trashClicked;
                         item.Click += itemClicked;

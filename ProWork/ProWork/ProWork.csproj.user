@@ -4,13 +4,25 @@
     <Compile Update="ContactosContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="frmAniadirAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Grafica.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="graficaContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="InicioContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="List.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="De Configuración %28Cristian%29\ConfigContainer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Item.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="enhancedPictureBox.cs">
@@ -18,9 +30,6 @@
     </Compile>
     <Compile Update="frmAccConfig.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="De Configuración (Cristian)\AccountList.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Archivo.cs">
       <SubType>UserControl</SubType>
@@ -49,19 +58,22 @@
     <Compile Update="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="De Configuración (Cristian)\AccountItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="frmMostrarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmPruebaa.cs">
+    <Compile Update="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmTinyRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="mainMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="PasswordUnderlinedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Properties\frmCreditos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ProyectosContainer.cs">

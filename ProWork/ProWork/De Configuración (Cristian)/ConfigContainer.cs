@@ -14,6 +14,7 @@ namespace ProWork.De_Configuración__Cristian_
 {
     public partial class ConfigContainer : UserControl
     {
+        public static event EventHandler ColorSwap;
         /*NOMENCLATURA
          * acl = AccountList
          * 
@@ -38,7 +39,7 @@ namespace ProWork.De_Configuración__Cristian_
 
             lblClaro.Location = new(pbxClaro.Location.X, lblClaro.Location.Y);
 
-            lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2;
+            lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2 - Estilo.anchoLinea;
             cbtAnadir.Location = new(cbtAnadir.Location.X, lst.Location.Y + lst.Height + Estilo.anchoLinea);
 
             this.Refresh();
@@ -77,6 +78,11 @@ namespace ProWork.De_Configuración__Cristian_
             }
         }
 
+        public void ResetElementos(MySqlCommand cmd)
+        {
+            lst.ResetElementos(cmd);
+        }
+
         private void pbxOscuro_MouseEnter(object sender, EventArgs e)
         {
             if (Estilo.selectedStyle != 0) { pbxOscuro.Image = Properties.Resources.Fondo_seleccion_tema; }
@@ -113,7 +119,7 @@ namespace ProWork.De_Configuración__Cristian_
 
             pbxClaro.Image = Properties.Resources.Selección_Tema;
             pbxOscuro.Image = null;
-
+            ColorSwap.Invoke(true, e);
             RecolorControl();
         }
 
@@ -130,6 +136,7 @@ namespace ProWork.De_Configuración__Cristian_
             pbxOscuro.Image = Properties.Resources.Selección_Tema;
             pbxClaro.Image = null;
 
+            ColorSwap.Invoke(false, e);
             RecolorControl();
         }
 
@@ -148,8 +155,6 @@ namespace ProWork.De_Configuración__Cristian_
             lblOscuro.ForeColor = Estilo.Contraste;
             lblTema.ForeColor = Estilo.Contraste;
             lst.BackColor = Estilo.fondo;
-
-            Form.ActiveForm.Refresh();
         }
 
         private void cbtAnadir_Click(object sender, EventArgs e)
@@ -193,6 +198,31 @@ namespace ProWork.De_Configuración__Cristian_
             frmAccConfig config = new frmAccConfig(((Item)sender).Text);
             config.CambioExitoso += ((Item)sender).CallReset;
             config.Show();
+        }
+
+        private void lst_itemClicked(object sender, EventArgs e)
+        {
+            if (!Program.userAdmin) { return; }
+
+            int i = 0;
+
+            foreach (Item item in lst.Controls)
+            {
+                if(item.mode == 2)
+                {
+                    i++;
+                }
+            }
+
+            if(((Item)sender).Text == Program.user && i == 1)
+            {
+                MessageBox.Show("Siempre debe existir por lo menos un administrador.\nSi desea descenderse, primero otorgue privilegios de administrador a otro usuario.");
+                return;
+            }
+
+            frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 0);
+            frm.ascendido += ((Item)sender).cambioPrivilegio;
+            frm.Show();
         }
     }
 }

@@ -7,17 +7,37 @@ namespace ProWork
     {
         private enhancedPictureBox epbConfig = new();
         private enhancedPictureBox epbDelete = new();
-        public byte mode = 0; // 0=usuarios; 1=contactos; 2=usuario admin; >2 = indefinido
+        private byte pmode = 0; // 0=usuarios; 1=contactos; 2=usuario admin; >2 = indefinido
+        public byte mode
+        {
+            get { return pmode; }
+            set 
+            { 
+                pmode = value; 
+                if (text == Program.user)
+                {
+                    switch (pmode)
+                    {
+                        case 0:
+                            Program.userAdmin = false;
+                            break;
+                        case 2:
+                            Program.userAdmin = true;
+                            break;
+                    }
+                }
+            }
+        }
         private string text = "Placeholder";
         public static TextureBrush defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, 1, 1));
         public static Image trashImage = Estilo.ResizeImage(Properties.Resources.Basura, 1, 1);
         public static Image gearImage = Estilo.ResizeImage(Properties.Resources.Configuración, 1, 1);
-        //Si sobra tiempo habría que reducir el codigo redundante (sale de una copia de AccountItem, habria que hacerles una clase padre y dejar que hereden)
         private bool hovered
         {
             get { return (hover > 0); }
         }
         private byte hover = 0;
+        private static bool theme = false; //Oscuro = false; Claro = true;
 
         public override string Text
         {
@@ -28,13 +48,29 @@ namespace ProWork
         public Item()
         {
             InitializeComponent();
-            this.Height = (int)(this.Font.Height * 1.5);
-            if (defaultImage.Image.Height != (int)(Height / 1.5))
-            {
-                defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, (int)(Height / 1.5), (int)(Height / 1.5)));
-                defaultImage.TranslateTransform(Height / 4 + 1, Height / 4 + 1);
-            }
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
 
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwapS;
+            this.Height = (int)(this.Font.Height * 1.5);
+
+            if(Estilo.fondo == Color.White)
+            {
+                if (defaultImage.Image.Height != (int)(Height / 1.5) && !theme)
+                {
+                    defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoModoClaro, (int)(Height / 1.5), (int)(Height / 1.5)));
+                    defaultImage.TranslateTransform(Height / 4 + 1, Height / 4 + 1);
+                }
+                theme = true;
+            }
+            else
+            {
+                if (defaultImage.Image.Height != (int)(Height / 1.5) && theme)
+                {
+                    defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoModoClaro, (int)(Height / 1.5), (int)(Height / 1.5)));
+                    defaultImage.TranslateTransform(Height / 4 + 1, Height / 4 + 1);
+                }
+                theme = false;
+            }
             if (Program.userAdmin)
             {
                 //Config
@@ -67,6 +103,40 @@ namespace ProWork
                 Controls.Add(epbDelete);
             }
         }
+        public void cambioPrivilegio(object sender, EventArgs e)
+        {
+            if((bool)sender)
+            {
+                mode = 2;
+            }
+            else
+            {
+                mode = 0;
+                if (text == Program.user) { Program.userAdmin = false; }
+            }
+            Refresh();
+        }
+
+        private void colorSwap(object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+        }
+        private static void colorSwapS(object sender, EventArgs e)
+        {
+            if ((bool)sender)
+            {
+                int transform = (int)defaultImage.Transform.OffsetX;
+                defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoModoClaro, defaultImage.Image.Height, defaultImage.Image.Height));
+                defaultImage.TranslateTransform(transform, transform);
+            }
+            else
+            {
+                int transform = (int)defaultImage.Transform.OffsetX;
+                defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, defaultImage.Image.Height, defaultImage.Image.Height));
+                defaultImage.TranslateTransform(transform, transform);
+            }
+            theme = (bool)sender;
+        }
 
         private void ContactosItem_Paint(object sender, PaintEventArgs e)
         {
@@ -85,12 +155,26 @@ namespace ProWork
             //Degradado on hover
             if (hovered)
             {
-                LinearGradientBrush grdBrush = new(
+                LinearGradientBrush grdBrush;
+                if(Estilo.fondo == Color.White)
+                {
+                    grdBrush = new(
+                    new(0, 0),
+                    new(this.Width, 0),
+                    Estilo.fondo,
+                    Estilo.degrContraste
+                    );
+                }
+                else
+                {
+                    grdBrush = new(
                     new(0, 0),
                     new(this.Width, 0),
                     Estilo.fondo,
                     Estilo.contrasteLigero
                     );
+                }
+                
 
                 e.Graphics.FillRectangle(grdBrush, 0, 0, this.Width, this.Height);
             }
@@ -129,12 +213,12 @@ namespace ProWork
                 case 1:
                     e.Graphics.SmoothingMode = SmoothingMode.None;
 
-                    GraphicsPath path = new GraphicsPath();
+                    //GraphicsPath path = new GraphicsPath();
 
-                    path.AddEllipse(Height / 4, Height / 4, Height / 2, Height / 2);
-                    e.Graphics.FillPath(defaultImage, path);
+                    //path.AddEllipse();
+                    e.Graphics.FillRectangle(defaultImage, new(Height / 4, Height / 4, Height / 2, Height / 2 ));
 
-                    e.Graphics.DrawPath(new(Estilo.Contraste, 3), path);
+                    //e.Graphics.DrawPath(new(Estilo.Contraste, 3), path);
 
                     e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                     break;
@@ -154,10 +238,21 @@ namespace ProWork
         {
             this.Height = (int)(this.Font.Height * 1.5);
 
-            if (defaultImage.Image.Height != (int)(Height / 2))
+            if(theme)
             {
-                defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, (int)(Height / 2), (int)(Height / 2)));
-                defaultImage.TranslateTransform(Height / 4 + 0.5F, Height / 4 + 0.5F);
+                if (defaultImage.Image.Height != (int)(Height / 2))
+                {
+                    defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoModoClaro, (int)(Height / 2), (int)(Height / 2)));
+                    defaultImage.TranslateTransform(Height / 4 + 0.5F, Height / 4 + 0.5F);
+                }
+            }
+            else
+            {
+                if (defaultImage.Image.Height != (int)(Height / 2))
+                {
+                    defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, (int)(Height / 2), (int)(Height / 2)));
+                    defaultImage.TranslateTransform(Height / 4 + 0.5F, Height / 4 + 0.5F);
+                }
             }
             if (trashImage.Height != (int)(Height / 2) && Program.userAdmin)
             {
@@ -245,7 +340,6 @@ namespace ProWork
         {
             trashClicked.Invoke(this, e);
         }
-        public event EventHandler ResetParent;
         public event EventHandler gearClicked;
         public event EventHandler trashClicked;
 

@@ -32,7 +32,7 @@
             this.lblTel = new System.Windows.Forms.LinkLabel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.rtb = new System.Windows.Forms.RichTextBox();
-            this.enhancedPictureBox1 = new ProWork.enhancedPictureBox();
+            this.epb = new ProWork.enhancedPictureBox();
             this.SuspendLayout();
             // 
             // lblEmail
@@ -94,21 +94,22 @@
     "a-attachment";
             this.rtb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtb_KeyPress);
             // 
-            // enhancedPictureBox1
+            // epb
             // 
-            this.enhancedPictureBox1.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
-            this.enhancedPictureBox1.Circle = true;
-            this.enhancedPictureBox1.Location = new System.Drawing.Point(190, 36);
-            this.enhancedPictureBox1.Name = "enhancedPictureBox1";
-            this.enhancedPictureBox1.Size = new System.Drawing.Size(150, 150);
-            this.enhancedPictureBox1.TabIndex = 16;
+            this.epb.BackColor = System.Drawing.Color.Transparent;
+            this.epb.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
+            this.epb.Circle = true;
+            this.epb.Location = new System.Drawing.Point(190, 36);
+            this.epb.Name = "epb";
+            this.epb.Size = new System.Drawing.Size(150, 150);
+            this.epb.TabIndex = 16;
             // 
             // frmMostrarContacto
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(531, 657);
-            this.Controls.Add(this.enhancedPictureBox1);
+            this.Controls.Add(this.epb);
             this.Controls.Add(this.rtb);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblTel);
@@ -120,6 +121,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMostrarContacto";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMostrarContacto_FormClosed);
             this.ResumeLayout(false);
 
         }
@@ -129,6 +131,6 @@
         private LinkLabel lblTel;
         private Label lblNombre;
         private RichTextBox rtb;
-        private enhancedPictureBox enhancedPictureBox1;
+        private enhancedPictureBox epb;
     }
 }

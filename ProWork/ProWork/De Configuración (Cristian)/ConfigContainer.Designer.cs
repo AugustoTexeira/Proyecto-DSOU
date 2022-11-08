@@ -160,6 +160,7 @@
             this.lst.TabIndex = 15;
             this.lst.gearClicked += new System.EventHandler(this.lst_gearClicked);
             this.lst.trashClicked += new System.EventHandler(this.lst_trashClicked);
+            this.lst.itemClicked += new System.EventHandler(this.lst_itemClicked);
             // 
             // ConfigContainer
             // 
@@ -174,7 +175,7 @@
             this.Controls.Add(this.lblTema);
             this.Controls.Add(this.lblConfig);
             this.Controls.Add(this.cbtAnadir);
-            this.MinimumSize = new System.Drawing.Size(736, 540);
+            this.DoubleBuffered = true;
             this.Name = "ConfigContainer";
             this.Padding = new System.Windows.Forms.Padding(20);
             this.Size = new System.Drawing.Size(1238, 761);

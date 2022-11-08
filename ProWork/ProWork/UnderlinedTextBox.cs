@@ -126,9 +126,9 @@ namespace ProWork
                 e.Graphics.DrawLine
                 (
                     pen,
-                    (int)((txb.Width + Estilo.medioAnchoLinea - 1) * largo),
+                    (int)((Width - Estilo.medioAnchoLinea - 1) * largo),
                     txb.Height + Estilo.medioAnchoLinea,
-                    txb.Width + Estilo.medioAnchoLinea - 1,
+                    Width + Estilo.medioAnchoLinea - 1,
                     txb.Height + Estilo.medioAnchoLinea
                 );
 
@@ -140,7 +140,7 @@ namespace ProWork
                     pen,
                     Estilo.medioAnchoLinea,
                     txb.Location.Y + txb.Height + Estilo.medioAnchoLinea,
-                    (int)((txb.Width + Estilo.medioAnchoLinea - 1) * largo),
+                    (int)((Width - Estilo.medioAnchoLinea - 1) * largo),
                     txb.Location.Y + txb.Height + Estilo.medioAnchoLinea
                 );
             }

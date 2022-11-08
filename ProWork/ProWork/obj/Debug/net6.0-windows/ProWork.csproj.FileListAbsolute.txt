@@ -204,13 +204,10 @@ C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Archivo.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Carpeta.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.CustomButton.resources
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.AccountItem.resources
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.AccountList.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.ConfigContainer.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ControlCuentas.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.FileHolder.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAccConfig.resources
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmPruebaa.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmTinyRegister.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ProyectosContainer.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Ruta.resources
@@ -224,3 +221,10 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.enhancedPictureBox.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Item.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.List.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.mainMenu.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.InicioContainer.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAniadirAdministrador.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Properties.frmCreditos.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.PasswordUnderlinedTextBox.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Grafica.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.graficaContainer.resources

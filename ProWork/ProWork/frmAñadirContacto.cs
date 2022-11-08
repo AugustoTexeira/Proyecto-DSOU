@@ -73,6 +73,7 @@ namespace ProWork
         private void frmAñadirContacto_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
+            Dispose();
         }
         public event EventHandler CambioExitoso;
     }
