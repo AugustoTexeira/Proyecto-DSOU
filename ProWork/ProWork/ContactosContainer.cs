@@ -63,7 +63,7 @@ namespace ProWork
                 else
                 {
                     string texto = srbBuscar.txb.Text.Replace($"\\", String.Empty);
-                    clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripcion) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripcion != '{texto}';", Program.connection));
+                    clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';", Program.connection));
                 }
                 e.Handled = true;
             }

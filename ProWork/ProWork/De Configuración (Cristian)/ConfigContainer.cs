@@ -27,8 +27,6 @@ namespace ProWork.De_Configuración__Cristian_
             lblClaro.Location = new(pbxClaro.Location.X, lblClaro.Location.Y);
             pbxClaro.Anchor = AnchorStyles.Top;
             lblClaro.Anchor = AnchorStyles.Top;
-
-            
         }
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)
@@ -62,7 +60,6 @@ namespace ProWork.De_Configuración__Cristian_
             lblCuentas.ForeColor = Estilo.Contraste;
             lst.BackColor = Estilo.fondo;
             lst.mode = 0;
-            lst.ResetElementos(new("select idusuario, nombre, administrador from usuario", Program.connection));
             switch (Estilo.selectedStyle)
             {
                 case 0:
@@ -72,6 +69,21 @@ namespace ProWork.De_Configuración__Cristian_
                     pbxClaro.Image = Properties.Resources.Selección_Tema;
                     break;
             }
+            Program.tryToConnect();
+            lst.ResetElementos(new("select idusuario, nombre, administrador from usuario", Program.connection));
+            //MySqlCommand cmd = new("Select fecha, count(fecha) from carga order by fecha", Program.connection);
+
+            //MySqlDataReader rdr = cmd.ExecuteReader();
+            //List<Point> buffer = new List<Point>();
+            //int i = 0;
+            //while (rdr.Read())
+            //{
+            //    buffer.Add(new(i, rdr.GetInt32(1)));
+            //    i++;
+            //}
+            //rdr.Read();
+            //grf.Scale = new(10, 10);
+            //grf.Points = buffer.ToArray();
         }
 
         public void ResetElementos(MySqlCommand cmd)
@@ -233,6 +245,15 @@ namespace ProWork.De_Configuración__Cristian_
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grf_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void grf_Load_1(object sender, EventArgs e)
         {
 
         }

@@ -38,7 +38,9 @@
             this.lblTema = new System.Windows.Forms.Label();
             this.lst = new ProWork.List();
             this.lblDudas = new System.Windows.Forms.LinkLabel();
-            this.grf = new ProWork.graficaContainer();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.grf = new ProWork.Grafica();
+            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOscuro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClaro)).BeginInit();
@@ -52,7 +54,7 @@
             this.cbtAnadir.Location = new System.Drawing.Point(20, 735);
             this.cbtAnadir.Margin = new System.Windows.Forms.Padding(20);
             this.cbtAnadir.Name = "cbtAnadir";
-            this.cbtAnadir.Size = new System.Drawing.Size(601, 55);
+            this.cbtAnadir.Size = new System.Drawing.Size(673, 55);
             this.cbtAnadir.TabIndex = 1;
             this.cbtAnadir.Texto = "Cuenta nueva  ➕";
             this.cbtAnadir.ButtonClick += new System.EventHandler(this.cbtAnadir_Click);
@@ -166,7 +168,7 @@
             this.lst.Location = new System.Drawing.Point(20, 401);
             this.lst.Margin = new System.Windows.Forms.Padding(6, 6, 6, 20);
             this.lst.Name = "lst";
-            this.lst.Size = new System.Drawing.Size(601, 318);
+            this.lst.Size = new System.Drawing.Size(673, 318);
             this.lst.TabIndex = 15;
             this.lst.gearClicked += new System.EventHandler(this.lst_gearClicked);
             this.lst.trashClicked += new System.EventHandler(this.lst_trashClicked);
@@ -193,28 +195,56 @@
             this.lblDudas.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
             this.lblDudas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDudas_LinkClicked);
             // 
+            // datePicker
+            // 
+            this.datePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.datePicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.datePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.datePicker.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.datePicker.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.datePicker.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.datePicker.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.datePicker.Location = new System.Drawing.Point(747, 401);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(115, 25);
+            this.datePicker.TabIndex = 18;
+            this.datePicker.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
+            this.datePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // grf
             // 
             this.grf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.grf.devMode = false;
-            this.grf.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.grf.HighlightDots = false;
+            this.grf.Downwards = false;
+            this.grf.highlightDots = false;
             this.grf.isBarGraph = false;
-            this.grf.Location = new System.Drawing.Point(630, 401);
+            this.grf.Location = new System.Drawing.Point(747, 432);
             this.grf.Name = "grf";
             this.grf.onlyDots = false;
             this.grf.Points = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 3),
-        new System.Drawing.Point(2, 2),
-        new System.Drawing.Point(7, 10),
-        new System.Drawing.Point(24, 20)};
-            this.grf.Scale = new System.Drawing.Size(30, 30);
-            this.grf.Size = new System.Drawing.Size(481, 389);
-            this.grf.TabIndex = 17;
-            this.grf.XAxis = "t";
-            this.grf.YAxis = "Actividad";
+        new System.Drawing.Point(0, 0),
+        new System.Drawing.Point(2, 10),
+        new System.Drawing.Point(5, 13),
+        new System.Drawing.Point(10, 5)};
+            this.grf.realCoordsOfPoints = new System.Drawing.Point[] {
+        new System.Drawing.Point(0, 358),
+        new System.Drawing.Point(71, 119),
+        new System.Drawing.Point(179, 47),
+        new System.Drawing.Point(358, 238)};
+            this.grf.Scale = new System.Drawing.Size(10, 15);
+            this.grf.Size = new System.Drawing.Size(358, 358);
+            this.grf.TabIndex = 19;
+            this.grf.XOffset = 0;
+            this.grf.YOffset = 0;
+            this.grf.Load += new System.EventHandler(this.grf_Load_1);
+            // 
+            // mySqlCommand1
+            // 
+            this.mySqlCommand1.CacheAge = 0;
+            this.mySqlCommand1.Connection = null;
+            this.mySqlCommand1.EnableCaching = false;
+            this.mySqlCommand1.Transaction = null;
             // 
             // dateTimePicker1
             // 
@@ -226,18 +256,18 @@
             this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.dateTimePicker1.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(974, 401);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1001, 401);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(137, 25);
-            this.dateTimePicker1.TabIndex = 18;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePicker1.Size = new System.Drawing.Size(110, 25);
+            this.dateTimePicker1.TabIndex = 20;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
             // 
             // ConfigContainer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.grf);
+            this.Controls.Add(this.datePicker);
             this.Controls.Add(this.lblDudas);
             this.Controls.Add(this.lst);
             this.Controls.Add(this.lblCuentas);
@@ -248,6 +278,7 @@
             this.Controls.Add(this.lblTema);
             this.Controls.Add(this.lblConfig);
             this.Controls.Add(this.cbtAnadir);
+            this.Controls.Add(this.grf);
             this.DoubleBuffered = true;
             this.Name = "ConfigContainer";
             this.Padding = new System.Windows.Forms.Padding(20);
@@ -273,7 +304,9 @@
         private Label lblTema;
         private List lst;
         private LinkLabel lblDudas;
-        private graficaContainer grf;
+        private DateTimePicker datePicker;
+        private Grafica grf;
+        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
         private DateTimePicker dateTimePicker1;
     }
 }

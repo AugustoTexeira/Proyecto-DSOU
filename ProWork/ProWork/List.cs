@@ -1,4 +1,5 @@
-﻿using System;
+﻿global using System.Data.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,7 +28,7 @@ namespace ProWork
             BackColor = Estilo.fondo;
         }
 
-        public void ResetElementos(MySqlCommand select)
+        public async void ResetElementos(MySqlCommand select)
         {
             Program.tryToConnect();
             if (select != null)
@@ -35,7 +36,9 @@ namespace ProWork
                 cmd = select;
             }
 
-            MySqlDataReader lector = cmd.ExecuteReader();
+            DbDataReader lector = await cmd.ExecuteReaderAsync();
+
+            
 
             this.Controls.Clear();
 
@@ -44,7 +47,7 @@ namespace ProWork
             switch (mode)
             {
                 case 0:
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         Item item = new Item();
 
@@ -71,7 +74,7 @@ namespace ProWork
                     break;
                 case 1:
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         Item item = new Item();
 
@@ -91,7 +94,7 @@ namespace ProWork
                     break;
             }
 
-            lector.Close();
+            await lector.CloseAsync();
             this.Refresh();
         }
         private void CallReset(object sender, EventArgs e)

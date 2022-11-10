@@ -7,7 +7,7 @@ namespace ProWork
     {
         public static string[] Scope = { DriveService.Scope.Drive };
         public static string ApplicationName = "Patata";
-        public static MySqlConnection connection = new("Server=localhost; Database=prowork; Uid=root; Pwd=;");
+        public static MySqlConnection connection = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
         public static bool userAdmin = false;
         public static string user = "";
         /// <summary>
@@ -37,27 +37,6 @@ namespace ProWork
             Application.Run();
         }
 
-        private static void DisplaySchemaTableInfo(DataTableReader reader, int ordinal)
-        {
-            // Given a DataTableReader, display schema
-            // information about a particular column.
-            try
-            {
-                DataTable schemaTable = reader.GetSchemaTable();
-                DataRow row = schemaTable.Rows[ordinal];
-                foreach (DataColumn col in schemaTable.Columns)
-                {
-                    MessageBox.Show("{0}: {1}",
-                        col.ColumnName);
-                }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                Console.WriteLine("{0} is an invalid column number.",
-                    ordinal);
-            }
-        }
-
         private static void environmentalTryToConnect()
         {
             try
@@ -80,13 +59,13 @@ namespace ProWork
             }
         }
 
-        public static void tryToConnect()
+        public static async void tryToConnect()
         {
             try
             {
                 if (!connection.Ping())
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                 }
             }
             catch
