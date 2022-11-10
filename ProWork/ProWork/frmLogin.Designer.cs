@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
+            this.graficaContainer1 = new ProWork.graficaContainer();
             this.lblVersion = new System.Windows.Forms.Label();
             this.pbxFondoVersion = new System.Windows.Forms.PictureBox();
             this.pbxFondoLogo = new System.Windows.Forms.PictureBox();
@@ -43,7 +44,6 @@
             this.epbPlusUser = new ProWork.enhancedPictureBox();
             this.ctbContra = new ProWork.PasswordUnderlinedTextBox();
             this.ctbCContra = new ProWork.PasswordUnderlinedTextBox();
-            this.graficaContainer1 = new ProWork.graficaContainer();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoVersion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
@@ -82,6 +82,26 @@
             this.pnlForeground.Size = new System.Drawing.Size(857, 692);
             this.pnlForeground.TabIndex = 8;
             // 
+            // graficaContainer1
+            // 
+            this.graficaContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.graficaContainer1.devMode = true;
+            this.graficaContainer1.HighlightDots = true;
+            this.graficaContainer1.isBarGraph = false;
+            this.graficaContainer1.Location = new System.Drawing.Point(78, 59);
+            this.graficaContainer1.Name = "graficaContainer1";
+            this.graficaContainer1.onlyDots = false;
+            this.graficaContainer1.Points = new System.Drawing.Point[] {
+        new System.Drawing.Point(0, 20),
+        new System.Drawing.Point(1, 3),
+        new System.Drawing.Point(2, 2),
+        new System.Drawing.Point(3, 5)};
+            this.graficaContainer1.Scale = new System.Drawing.Size(50, 50);
+            this.graficaContainer1.Size = new System.Drawing.Size(699, 567);
+            this.graficaContainer1.TabIndex = 3;
+            this.graficaContainer1.XAxis = "x";
+            this.graficaContainer1.YAxis = "y";
+            // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
@@ -112,7 +132,7 @@
             this.pbxFondoLogo.Location = new System.Drawing.Point(78, 59);
             this.pbxFondoLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbxFondoLogo.Name = "pbxFondoLogo";
-            this.pbxFondoLogo.Size = new System.Drawing.Size(717, 567);
+            this.pbxFondoLogo.Size = new System.Drawing.Size(699, 567);
             this.pbxFondoLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxFondoLogo.TabIndex = 0;
             this.pbxFondoLogo.TabStop = false;
@@ -197,22 +217,6 @@
             this.ctbCContra.TabIndex = 23;
             this.ctbCContra.txbText = "";
             this.ctbCContra.UsePasswordChar = true;
-            // 
-            // graficaContainer1
-            // 
-            this.graficaContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.graficaContainer1.Location = new System.Drawing.Point(78, 59);
-            this.graficaContainer1.Name = "graficaContainer1";
-            this.graficaContainer1.Points = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 9),
-        new System.Drawing.Point(2, 5),
-        new System.Drawing.Point(5, 5),
-        new System.Drawing.Point(6, 7),
-        new System.Drawing.Point(8, 9)};
-            this.graficaContainer1.Size = new System.Drawing.Size(717, 567);
-            this.graficaContainer1.TabIndex = 3;
-            this.graficaContainer1.XAxis = "x";
-            this.graficaContainer1.YAxis = "y";
             // 
             // frmLogin
             // 

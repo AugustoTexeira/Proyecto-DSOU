@@ -4,6 +4,9 @@
     <Compile Update="ContactosContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="De Configuración %28Cristian%29\frmUserStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmAniadirAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>

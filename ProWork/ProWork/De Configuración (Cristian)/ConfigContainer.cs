@@ -22,27 +22,23 @@ namespace ProWork.De_Configuración__Cristian_
         public ConfigContainer()
         {
             InitializeComponent();
+            pbxClaro.Location = new(this.Padding.Left + (this.Width - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
+            pbxClaro.Location = new(this.Padding.Left + (960 - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
+            lblClaro.Location = new(pbxClaro.Location.X, lblClaro.Location.Y);
+            pbxClaro.Anchor = AnchorStyles.Top;
+            lblClaro.Anchor = AnchorStyles.Top;
+
+            
         }
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)
         {
-            lst.Width = Width - Padding.Right;
+            //lst.Width = Width - Padding.Right;
 
-            if (this.Width < 960)
-            {
-                pbxClaro.Location = new(this.Padding.Left + (this.Width - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
-            }
-            else
-            {
-                pbxClaro.Location = new(this.Padding.Left + (960 - this.Padding.Left - this.Padding.Right) / 2 - pbxClaro.Width / 2, pbxClaro.Location.Y);
-            }
+            //lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2 - Estilo.anchoLinea;
+            //cbtAnadir.Location = new(cbtAnadir.Location.X, lst.Location.Y + lst.Height + Estilo.anchoLinea);
 
-            lblClaro.Location = new(pbxClaro.Location.X, lblClaro.Location.Y);
-
-            lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2 - Estilo.anchoLinea;
-            cbtAnadir.Location = new(cbtAnadir.Location.X, lst.Location.Y + lst.Height + Estilo.anchoLinea);
-
-            this.Refresh();
+            Invalidate();
         }
 
         private void ConfigContainer_Paint(object sender, PaintEventArgs e)
@@ -223,6 +219,22 @@ namespace ProWork.De_Configuración__Cristian_
             frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 0);
             frm.ascendido += ((Item)sender).cambioPrivilegio;
             frm.Show();
+        }
+
+        private void lblDudas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Properties.frmCreditos frm = new();
+            frm.Show();
+        }
+
+        private void lst_statsClicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

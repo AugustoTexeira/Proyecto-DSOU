@@ -37,18 +37,24 @@
             this.lblCuentas = new System.Windows.Forms.Label();
             this.lblTema = new System.Windows.Forms.Label();
             this.lst = new ProWork.List();
+            this.lblDudas = new System.Windows.Forms.LinkLabel();
+            this.grf = new ProWork.graficaContainer();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOscuro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClaro)).BeginInit();
             this.SuspendLayout();
             // 
             // cbtAnadir
             // 
-            this.cbtAnadir.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbtAnadir.Location = new System.Drawing.Point(20, 602);
+            this.cbtAnadir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbtAnadir.Font = new System.Drawing.Font("Raleway", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbtAnadir.Location = new System.Drawing.Point(20, 735);
+            this.cbtAnadir.Margin = new System.Windows.Forms.Padding(20);
             this.cbtAnadir.Name = "cbtAnadir";
-            this.cbtAnadir.Size = new System.Drawing.Size(140, 39);
+            this.cbtAnadir.Size = new System.Drawing.Size(601, 55);
             this.cbtAnadir.TabIndex = 1;
-            this.cbtAnadir.Texto = "Añadir   ➕";
+            this.cbtAnadir.Texto = "Cuenta nueva  ➕";
             this.cbtAnadir.ButtonClick += new System.EventHandler(this.cbtAnadir_Click);
             this.cbtAnadir.Click += new System.EventHandler(this.cbtAnadir_Click);
             // 
@@ -151,21 +157,88 @@
             // 
             // lst
             // 
+            this.lst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lst.AutoScroll = true;
+            this.lst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(20)))), ((int)(((byte)(30)))));
             this.lst.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lst.Location = new System.Drawing.Point(20, 401);
-            this.lst.Margin = new System.Windows.Forms.Padding(6);
+            this.lst.Margin = new System.Windows.Forms.Padding(6, 6, 6, 20);
             this.lst.Name = "lst";
-            this.lst.Size = new System.Drawing.Size(398, 195);
+            this.lst.Size = new System.Drawing.Size(601, 318);
             this.lst.TabIndex = 15;
             this.lst.gearClicked += new System.EventHandler(this.lst_gearClicked);
             this.lst.trashClicked += new System.EventHandler(this.lst_trashClicked);
             this.lst.itemClicked += new System.EventHandler(this.lst_itemClicked);
             // 
+            // lblDudas
+            // 
+            this.lblDudas.ActiveLinkColor = System.Drawing.SystemColors.Highlight;
+            this.lblDudas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDudas.AutoSize = true;
+            this.lblDudas.BackColor = System.Drawing.Color.Transparent;
+            this.lblDudas.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.lblDudas.Font = new System.Drawing.Font("Raleway", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDudas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.lblDudas.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblDudas.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.lblDudas.Location = new System.Drawing.Point(855, 39);
+            this.lblDudas.Name = "lblDudas";
+            this.lblDudas.Size = new System.Drawing.Size(250, 32);
+            this.lblDudas.TabIndex = 16;
+            this.lblDudas.TabStop = true;
+            this.lblDudas.Text = "¿Dudas? Contáctanos.";
+            this.lblDudas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblDudas.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.lblDudas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDudas_LinkClicked);
+            // 
+            // grf
+            // 
+            this.grf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.grf.devMode = false;
+            this.grf.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.grf.HighlightDots = false;
+            this.grf.isBarGraph = false;
+            this.grf.Location = new System.Drawing.Point(630, 401);
+            this.grf.Name = "grf";
+            this.grf.onlyDots = false;
+            this.grf.Points = new System.Drawing.Point[] {
+        new System.Drawing.Point(0, 3),
+        new System.Drawing.Point(2, 2),
+        new System.Drawing.Point(7, 10),
+        new System.Drawing.Point(24, 20)};
+            this.grf.Scale = new System.Drawing.Size(30, 30);
+            this.grf.Size = new System.Drawing.Size(481, 389);
+            this.grf.TabIndex = 17;
+            this.grf.XAxis = "t";
+            this.grf.YAxis = "Actividad";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(974, 401);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(137, 25);
+            this.dateTimePicker1.TabIndex = 18;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // ConfigContainer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.grf);
+            this.Controls.Add(this.lblDudas);
             this.Controls.Add(this.lst);
             this.Controls.Add(this.lblCuentas);
             this.Controls.Add(this.lblClaro);
@@ -178,7 +251,7 @@
             this.DoubleBuffered = true;
             this.Name = "ConfigContainer";
             this.Padding = new System.Windows.Forms.Padding(20);
-            this.Size = new System.Drawing.Size(1238, 761);
+            this.Size = new System.Drawing.Size(1134, 810);
             this.Load += new System.EventHandler(this.ConfigContainer_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ConfigContainer_Paint);
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.ConfigContainer_Layout);
@@ -199,5 +272,8 @@
         private Label lblCuentas;
         private Label lblTema;
         private List lst;
+        private LinkLabel lblDudas;
+        private graficaContainer grf;
+        private DateTimePicker dateTimePicker1;
     }
 }

@@ -251,7 +251,7 @@ namespace ProWork
 
         private void mainMenu_Layout(object sender, LayoutEventArgs e)
         {
-            pnlConfig.Location = new(0, (int)(Height - pnlConfig.Height * 1.3F));
+            pnlConfig.Location = new(0, (int)(Height - pnlConfig.Height - 20));
         }
         private void Paqnosequeje(object sender, EventArgs e)
         {

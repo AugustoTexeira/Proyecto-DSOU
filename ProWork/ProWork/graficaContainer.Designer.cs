@@ -35,21 +35,28 @@
             // 
             this.grf.BackColor = System.Drawing.Color.Transparent;
             this.grf.Downwards = false;
+            this.grf.highlightDots = false;
+            this.grf.isBarGraph = false;
             this.grf.Location = new System.Drawing.Point(0, 0);
             this.grf.Name = "grf";
+            this.grf.onlyDots = false;
             this.grf.Points = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 0),
-        new System.Drawing.Point(13, 5)};
+        new System.Drawing.Point(1, 3),
+        new System.Drawing.Point(2, 2),
+        new System.Drawing.Point(3, 5),
+        new System.Drawing.Point(5, 0)};
             this.grf.realCoordsOfPoints = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 356),
-        new System.Drawing.Point(390, 241)};
-            this.grf.Scale = new System.Drawing.Size(15, 15);
+        new System.Drawing.Point(4, 345),
+        new System.Drawing.Point(9, 348),
+        new System.Drawing.Point(13, 338),
+        new System.Drawing.Point(22, 356)};
+            this.grf.Scale = new System.Drawing.Size(100, 100);
             this.grf.Size = new System.Drawing.Size(451, 356);
             this.grf.TabIndex = 0;
             this.grf.XOffset = 0;
             this.grf.YOffset = 0;
             this.grf.Click += new System.EventHandler(this.grf_Click);
-            this.grf.Paint += new System.Windows.Forms.PaintEventHandler(this.grf_Paint);
+            this.grf.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graficaContainer_MouseClick);
             // 
             // graficaContainer
             // 

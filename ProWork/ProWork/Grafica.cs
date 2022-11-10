@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Collections;
 using System.Drawing.Drawing2D;
-using System.Collections;
 
 namespace ProWork
 {
     public partial class Grafica : UserControl
     {
+        public bool highlightDots { get; set; } = false;
+        public bool onlyDots { get; set; } = false;
+        private LinearGradientBrush brush;
+        private bool ibg = false;
+        public bool isBarGraph
+        {
+            get { return ibg; }
+            set { ibg = value; Invalidate(); }
+        }
         private int xOffset = 0;
         private int yOffset = 0;
         public int XOffset
         {
             get { return xOffset; }
-            set 
-            { 
+            set
+            {
                 xOffset = value;
                 if (!tmrBlend.Enabled)
                 {
@@ -46,8 +46,8 @@ namespace ProWork
         public Point[] realCoordsOfPoints
         {
             get { return rc; }
-            set 
-            { 
+            set
+            {
                 rc = value;
                 if (realCoordsOfPointsChanged != null)
                 {
@@ -60,13 +60,13 @@ namespace ProWork
         public Point[] Points
         {
             get { return originalPoints; }
-            set 
+            set
             {
                 if (value.Length == 0) { return; }
                 originalPoints = value;
-
                 Array.Sort(originalPoints, new xComparer());
-                
+
+
                 if (rc == null)
                 {
                     realCoordsOfPoints = new Point[Points.Length];
@@ -80,7 +80,7 @@ namespace ProWork
                     }
                     return;
                 }
-                if(rc.Length < originalPoints.Length)
+                if (rc.Length < originalPoints.Length)
                 {
                     Point[] buffer = new Point[value.Length];
                     for (int i = 0; i < value.Length; i++)
@@ -89,35 +89,49 @@ namespace ProWork
                         {
                             buffer[i] = rc[i];
                         }
-                        else
+                        else if(rc.Length != 0) 
                         {
                             buffer[i] = rc.Last();
                         }
                     }
                     rc = buffer;
-
                 }
-                if(!tmrBlend.Enabled)
+                if (!tmrBlend.Enabled)
                 {
                     tmrBlend.Start();
                 }
             }
         }
-        private Size scale;
+        private Size scale = new(10, 10);
         public new Size Scale
         {
             get { return scale; }
             set
             {
+                
+                if (value.Width < 1)
+                {
+                    value.Width = 1;
+                }
+                if (scale.Height < 1)
+                {
+                    value.Height = 1;
+                }
                 scale = value;
 
-                if (scale.Width < 1)
+                if (Points != null)
                 {
-                    scale.Width = 1;
-                }
-                if(scale.Height < 1)
-                {
-                    scale.Height = 1;
+                    int yscale = Height / Scale.Height;
+                    int xscale = Width / Scale.Width;
+                    Point[] aimPoints = new Point[Points.Length];
+
+                    for (int i = 0; i < realCoordsOfPoints.Length; i++)
+                    {
+                        if (aimPoints.Length > i)
+                        {
+                            aimPoints[i] = new((Points[i].X + xOffset) * xscale, Height - (Points[i].Y + yOffset) * yscale);
+                        }
+                    }
                 }
                 if (!tmrBlend.Enabled)
                 {
@@ -126,10 +140,10 @@ namespace ProWork
             }
         }
         private bool downwards = false;
-        public bool Downwards 
+        public bool Downwards
         {
             get { return downwards; }
-            set 
+            set
             {
                 downwards = value;
                 Grafica_Layout(this, null);
@@ -138,82 +152,97 @@ namespace ProWork
         public Grafica()
         {
             InitializeComponent();
-            Scale = new(15, 15);
-            Points = new Point[2] { new(0, 0), new(5, 0), };
+            Points = new Point[] { new(0, 0) };
+            Scale = new(1, 1);
         }
 
         private void Grafica_Paint(object sender, PaintEventArgs e)
         {
-            if(realCoordsOfPoints != null && realCoordsOfPoints.Length > 1 && Scale != null)
+            Pen dottedPen = new(Color.FromArgb(64, Estilo.Contraste.R, Estilo.Contraste.G, Estilo.Contraste.B), 1);
+            dottedPen.DashStyle = DashStyle.Solid;
+            if (onlyDots)
             {
-                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                e.Graphics.CompositingQuality = CompositingQuality.HighQuality;
-                GraphicsPath path = new GraphicsPath();
-
-
-                float maxHeight = 0;
-                //float minHeight = Height;
-
-                foreach (Point point in Points)
-                {
-                    if (Height - point.Y > maxHeight) { maxHeight = Height - point.Y; }
-                    //if (Height - point.Y < minHeight) { minHeight = Height - point.Y; }
-                }
-                //minHeight /= Height;
-                maxHeight /= Height;
-
-                LinearGradientBrush brush = new(new(0, Height), new(0, 0), Color.FromArgb(128, Estilo.degrEnfasis.R, Estilo.degrEnfasis.G, Estilo.degrEnfasis.B), Estilo.enfasis);
-
-                Blend blend = new(4);
-                blend.Factors = new float[] { 0, 1, 0 };
-                blend.Positions = new float[] { 0, maxHeight, 1 };
-
-                brush.Blend = blend;
-
-                path.AddLines(realCoordsOfPoints);
-                path.AddLine(realCoordsOfPoints.Last(), new(realCoordsOfPoints.Last().X, Height));
-                path.AddLine(new(realCoordsOfPoints.Last().X, Height), new(realCoordsOfPoints[0].X, Height));
-
-                e.Graphics.FillPath(brush, path);
-
-
-
-                Pen dottedPen = new(Color.FromArgb(64, Estilo.Contraste.R, Estilo.Contraste.G, Estilo.Contraste.B), Estilo.medioAnchoLinea);
-                dottedPen.DashStyle = DashStyle.Dash;
-
                 foreach (Point point in realCoordsOfPoints)
                 {
                     e.Graphics.DrawLine(dottedPen, new(0, point.Y), point);
                     e.Graphics.DrawLine(dottedPen, new(point.X, Height), point);
                 }
-
-
-                e.Graphics.DrawLines(new(Estilo.Contraste, Estilo.medioAnchoLinea), realCoordsOfPoints);
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
                 foreach (Point point in realCoordsOfPoints)
                 {
-                    e.Graphics.FillEllipse(new SolidBrush(Estilo.Contraste), new(new Point(point.X - Estilo.medioAnchoLinea * 3, point.Y - Estilo.medioAnchoLinea * 3), new(Estilo.anchoLinea * 3, Estilo.anchoLinea * 3)));
+                    e.Graphics.FillEllipse(new SolidBrush(Estilo.Contraste), new(new Point(point.X - Estilo.anchoLinea, point.Y - Estilo.anchoLinea), new(Estilo.anchoLinea * 2, Estilo.anchoLinea * 2)));
+                }
+                return;
+            }
+            if (realCoordsOfPoints != null && realCoordsOfPoints.Length > 1)
+            {
+                GraphicsPath path = new GraphicsPath();
+                int xscale = Width / Scale.Width;
+
+                if (isBarGraph)
+                {
+                    foreach (Point point in realCoordsOfPoints)
+                    {
+
+                        path.AddRectangle(new Rectangle(point.X, point.Y, xscale, Height - point.Y));
+                    }
+
+                    e.Graphics.FillPath(brush, path);
+
+                    foreach (Point point in realCoordsOfPoints)
+                    {
+                        e.Graphics.DrawLine(dottedPen, new(0, point.Y), point);
+                    }
+                    e.Graphics.DrawPath(new(Estilo.Contraste, Estilo.medioAnchoLinea), path);
+                }
+                else
+                {
+                    path.AddLines(realCoordsOfPoints);
+                    path.AddLine(realCoordsOfPoints.Last(), new(realCoordsOfPoints.Last().X, Height));
+                    path.AddLine(new(realCoordsOfPoints.Last().X, Height), new(realCoordsOfPoints[0].X, Height));
+
+                    e.Graphics.FillPath(brush, path);
+
+                    if (highlightDots)
+                    {
+                        foreach (Point point in realCoordsOfPoints)
+                        {
+                            e.Graphics.DrawLine(dottedPen, new(0, point.Y), point);
+                            e.Graphics.DrawLine(dottedPen, new(point.X, Height), point);
+                        }
+                        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                        foreach (Point point in realCoordsOfPoints)
+                        {
+                            e.Graphics.FillEllipse(new SolidBrush(Estilo.Contraste), new(new Point(point.X - Estilo.anchoLinea, point.Y - Estilo.anchoLinea), new(Estilo.anchoLinea * 2, Estilo.anchoLinea * 2)));
+                        }
+                    }
+
+
+                    e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    e.Graphics.DrawPath(new(Color.White, Estilo.medioAnchoLinea), path);
                 }
             }
         }
 
         private void Grafica_Layout(object sender, LayoutEventArgs e)
         {
-            Refresh();
+            brush = new(new(0, Height), new(0, 0), Color.FromArgb(Estilo.degrEnfasis.R, Estilo.degrEnfasis.G, Estilo.degrEnfasis.B), Estilo.enfasis);
+            tmrBlend.Start();
         }
 
         private void tmrBlend_Tick(object sender, EventArgs e)
         {
-            int yscale = Height / Scale.Height;
-            int xscale = Width / Scale.Width;
+            double yscale = (double)Height / Scale.Height;
+            double xscale = (double)Width / Scale.Width;
             Point[] aimPoints = new Point[Points.Length];
-
             int contador = 0;
 
             for (int i = 0; i < realCoordsOfPoints.Length; i++)
             {
-                if(aimPoints.Length > i)
+                if (aimPoints.Length > i)
                 {
-                    aimPoints[i] = new((Points[i].X + xOffset) * xscale, Height - (Points[i].Y + yOffset) * yscale);
+                    aimPoints[i] = new((int)((Points[i].X + xOffset) * xscale) + xOffset, (int)(Height - (Points[i].Y + yOffset) * yscale) + yOffset);
 
                     if (realCoordsOfPoints[i].Y <= aimPoints[i].Y + 3 && realCoordsOfPoints[i].Y >= aimPoints[i].Y - 3 && realCoordsOfPoints[i].X <= aimPoints[i].X + 3 && realCoordsOfPoints[i].X >= aimPoints[i].X - 3)
                     {
@@ -231,20 +260,16 @@ namespace ProWork
 
             if (contador >= realCoordsOfPoints.Length)
             {
-                if (!(realCoordsOfPoints[0].Y <= aimPoints[0].Y + 3) || !(realCoordsOfPoints[0].Y >= aimPoints[0].Y - 3))
-                {
-                    MessageBox.Show("Que");
-                }
-                realCoordsOfPoints = aimPoints;
-                Refresh();
                 tmrBlend.Stop();
+                realCoordsOfPoints = aimPoints;
+                Invalidate();
             }
             else
             {
                 Point[] buffer = realCoordsOfPoints;
                 for (int i = 0; i < realCoordsOfPoints.Length; i++)
                 {
-                    if(i < Points.Length)
+                    if (i < Points.Length)
                     {
                         buffer[i] = new((int)(realCoordsOfPoints[i].X + (aimPoints[i].X - realCoordsOfPoints[i].X) / 3d), (int)(realCoordsOfPoints[i].Y + (aimPoints[i].Y - realCoordsOfPoints[i].Y) / 3d));
                     }
@@ -254,15 +279,15 @@ namespace ProWork
                     }
                 }
                 realCoordsOfPoints = buffer;
-                Refresh();
+                Invalidate();
             }
         }
     }
-}
-public class xComparer : IComparer
-{
-    public int Compare(object x, object y)
+    public class xComparer : IComparer
     {
-        return ((Point)x).X - ((Point)y).X;
+        public int Compare(object x, object y)
+        {
+            return ((Point)x).X - ((Point)y).X;
+        }
     }
 }

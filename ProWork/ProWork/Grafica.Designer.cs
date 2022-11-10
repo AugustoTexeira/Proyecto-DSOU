@@ -49,7 +49,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer tmrBlend;
+        public System.Windows.Forms.Timer tmrBlend;
     }
 }

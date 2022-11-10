@@ -228,3 +228,10 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.PasswordUnderlinedTextBox.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Grafica.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.graficaContainer.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Auth.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Core.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Drive.v3.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.frmUserStats.resources

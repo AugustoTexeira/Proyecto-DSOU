@@ -44,6 +44,18 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.57.0, )"
+            },
+            "Google.Apis.Core": {
+              "target": "Package",
+              "version": "[1.57.0, )"
+            },
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.57.0.2859, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.29, )"

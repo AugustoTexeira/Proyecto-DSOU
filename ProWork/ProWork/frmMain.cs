@@ -163,7 +163,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 1:
-                            if (proyectosContainer.Location.Y < 2)
+                            if (proyectosContainer.Location.Y < 3)
                             {
                                 inicioContainer.Location = new(proyectosContainer.Location.X, Height);
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, 0);
@@ -174,13 +174,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = proyectosContainer.Location.Y / 5;
+                                int cambio = proyectosContainer.Location.Y / 3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y - cambio);
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y - cambio);
                             }
                             break;
                         case 2:
-                            if (contactosContainer.Location.Y < 2)
+                            if (contactosContainer.Location.Y < 3)
                             {
                                 inicioContainer.Location = new(contactosContainer.Location.X, Height);
                                 contactosContainer.Location = new(contactosContainer.Location.X, 0);
@@ -191,13 +191,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = contactosContainer.Location.Y / 5;
+                                int cambio = contactosContainer.Location.Y / 3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y - cambio);
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y - cambio);
                             }
                             break;
                         case 3:
-                            if (configContainer.Location.Y < 2)
+                            if (configContainer.Location.Y < 3)
                             {
                                 inicioContainer.Location = new(configContainer.Location.X, Height);
                                 configContainer.Location = new(configContainer.Location.X, 0);
@@ -208,7 +208,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = configContainer.Location.Y / 5;
+                                int cambio = configContainer.Location.Y / 3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y - cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y - cambio);
                             }
@@ -219,7 +219,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 2:
-                            if (contactosContainer.Location.Y < 2)
+                            if (contactosContainer.Location.Y < 3)
                             {
                                 proyectosContainer.Location = new(contactosContainer.Location.X, Height);
                                 contactosContainer.Location = new(contactosContainer.Location.X, 0);
@@ -230,13 +230,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = contactosContainer.Location.Y / 5;
+                                int cambio = contactosContainer.Location.Y / 3;
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y - cambio);
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y - cambio);
                             }
                             break;
                         case 3:
-                            if (configContainer.Location.Y < 2)
+                            if (configContainer.Location.Y < 3)
                             {
                                 proyectosContainer.Location = new(configContainer.Location.X, Height);
                                 configContainer.Location = new(configContainer.Location.X, 0);
@@ -247,7 +247,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = configContainer.Location.Y / 5;
+                                int cambio = configContainer.Location.Y / 3;
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y - cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y - cambio);
                             }
@@ -258,7 +258,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 3:
-                            if (configContainer.Location.Y < 2)
+                            if (configContainer.Location.Y < 3)
                             {
                                 contactosContainer.Location = new(configContainer.Location.X, Height);
                                 configContainer.Location = new(configContainer.Location.X, 0);
@@ -269,7 +269,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = configContainer.Location.Y / 5;
+                                int cambio = configContainer.Location.Y / 3;
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y - cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y - cambio);
                             }
@@ -287,7 +287,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 0:
-                            if (inicioContainer.Location.Y > -2)
+                            if (inicioContainer.Location.Y > -3)
                             {
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, Height);
                                 inicioContainer.Location = new(inicioContainer.Location.X, 0);
@@ -298,7 +298,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = inicioContainer.Location.Y / -5;
+                                int cambio = inicioContainer.Location.Y / -3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y + cambio);
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y + cambio);
                             }
@@ -309,7 +309,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 0:
-                            if (inicioContainer.Location.Y > -2)
+                            if (inicioContainer.Location.Y > -3)
                             {
                                 contactosContainer.Location = new(contactosContainer.Location.X, Height);
                                 inicioContainer.Location = new(inicioContainer.Location.X, 0);
@@ -320,13 +320,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = inicioContainer.Location.Y / -5;
+                                int cambio = inicioContainer.Location.Y / -3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y + cambio);
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y + cambio);
                             }
                             break;
                         case 1:
-                            if (proyectosContainer.Location.Y > -2)
+                            if (proyectosContainer.Location.Y > -3)
                             {
                                 contactosContainer.Location = new(contactosContainer.Location.X, Height);
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, 0);
@@ -337,7 +337,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = proyectosContainer.Location.Y / -5;
+                                int cambio = proyectosContainer.Location.Y / -3;
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y + cambio);
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y + cambio);
                             }
@@ -348,7 +348,7 @@ namespace ProWork
                     switch (menu.SelectedScreen)
                     {
                         case 0:
-                            if (inicioContainer.Location.Y > -2)
+                            if (inicioContainer.Location.Y > -3)
                             {
                                 configContainer.Location = new(configContainer.Location.X, Height);
                                 inicioContainer.Location = new(inicioContainer.Location.X, 0);
@@ -359,13 +359,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = inicioContainer.Location.Y / -5;
+                                int cambio = inicioContainer.Location.Y / -3;
                                 inicioContainer.Location = new(inicioContainer.Location.X, inicioContainer.Location.Y + cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y + cambio);
                             }
                             break;
                         case 1:
-                            if (proyectosContainer.Location.Y > -2)
+                            if (proyectosContainer.Location.Y > -3)
                             {
                                 configContainer.Location = new(configContainer.Location.X, Height);
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, 0);
@@ -376,13 +376,13 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = proyectosContainer.Location.Y / -5;
+                                int cambio = proyectosContainer.Location.Y / -3;
                                 proyectosContainer.Location = new(proyectosContainer.Location.X, proyectosContainer.Location.Y + cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y + cambio);
                             }
                             break;
                         case 2:
-                            if (contactosContainer.Location.Y > -2)
+                            if (contactosContainer.Location.Y > -3)
                             {
                                 configContainer.Location = new(configContainer.Location.X, Height);
                                 contactosContainer.Location = new(contactosContainer.Location.X, 0);
@@ -393,7 +393,7 @@ namespace ProWork
                             }
                             else
                             {
-                                int cambio = contactosContainer.Location.Y / 5;
+                                int cambio = contactosContainer.Location.Y / 3;
                                 contactosContainer.Location = new(contactosContainer.Location.X, contactosContainer.Location.Y - cambio);
                                 configContainer.Location = new(configContainer.Location.X, configContainer.Location.Y - cambio);
                             }

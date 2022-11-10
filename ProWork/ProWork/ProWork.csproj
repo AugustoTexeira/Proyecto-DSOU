@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.57.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.57.0" />
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.57.0.2859" />
     <PackageReference Include="MySql.Data" Version="8.0.29" />
   </ItemGroup>
 

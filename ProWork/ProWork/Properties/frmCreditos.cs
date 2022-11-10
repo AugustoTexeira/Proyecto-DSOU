@@ -22,26 +22,53 @@ namespace ProWork.Properties
         public frmCreditos()
         {
             InitializeComponent();
-            lbl.Text = "Alan Moreira \nAugusto Texeira\nJulián Pinto \nCristian Rodríguez";
             BackColor = Estilo.fondo;
-            lbl.ForeColor = Estilo.fondo;
+            linksAlan.VisitedLinkColor = BackColor;
+            linksAlan.LinkColor = BackColor;
+            linksAlan.DisabledLinkColor = BackColor;
+            linksAlan.ActiveLinkColor = BackColor;
+            linkAugusto.VisitedLinkColor = BackColor;
+            linkAugusto.LinkColor = BackColor;
+            linkAugusto.DisabledLinkColor = BackColor;
+            linkAugusto.ActiveLinkColor = BackColor;
+            linkPinto.VisitedLinkColor = BackColor;
+            linkPinto.LinkColor = BackColor;
+            linkPinto.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
+            linkCristian.VisitedLinkColor = BackColor;
+            linkCristian.LinkColor = BackColor;
+            linkCristian.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
         }
 
         private void colorSwap(object sender, EventArgs e)
         {
             BackColor = Estilo.fondo;
-            lbl.ForeColor = Estilo.fondo;
+            linksAlan.ForeColor = Estilo.fondo;
+
+            linksAlan.VisitedLinkColor = BackColor;
+            linksAlan.LinkColor = BackColor;
+            linksAlan.DisabledLinkColor = BackColor;
+            linksAlan.ActiveLinkColor = BackColor;
+            linkAugusto.VisitedLinkColor = BackColor;
+            linkAugusto.LinkColor = BackColor;
+            linkAugusto.DisabledLinkColor = BackColor;
+            linkAugusto.ActiveLinkColor = BackColor;
+            linkPinto.VisitedLinkColor = BackColor;
+            linkPinto.LinkColor = BackColor;
+            linkPinto.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
+            linkCristian.VisitedLinkColor = BackColor;
+            linkCristian.LinkColor = BackColor;
+            linkCristian.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
         }
 
         private void epb_Click(object sender, EventArgs e)
         {
-            r = BackColor.R;
-            g = BackColor.G;
-            b = BackColor.B;
-            tmr60.Start();
-            tmr15.Start();
-            tmr30.Start();
+
+            System.Diagnostics.Process.Start("explorer", "https://ezponjares.wixsite.com/dsou");
         }
 
         private void frmCreditos_FormClosed(object sender, FormClosedEventArgs e)
@@ -69,7 +96,22 @@ namespace ProWork.Properties
                 }
             }
             BackColor = Color.FromArgb(255, r, g, b);
-            lbl.ForeColor = BackColor;
+            linksAlan.VisitedLinkColor = BackColor;
+            linksAlan.LinkColor = BackColor;
+            linksAlan.DisabledLinkColor = BackColor;
+            linksAlan.ActiveLinkColor = BackColor;
+            linkAugusto.VisitedLinkColor = BackColor;
+            linkAugusto.LinkColor = BackColor;
+            linkAugusto.DisabledLinkColor = BackColor;
+            linkAugusto.ActiveLinkColor = BackColor;
+            linkPinto.VisitedLinkColor = BackColor;
+            linkPinto.LinkColor = BackColor;
+            linkPinto.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
+            linkCristian.VisitedLinkColor = BackColor;
+            linkCristian.LinkColor = BackColor;
+            linkCristian.DisabledLinkColor = BackColor;
+            linkCristian.ActiveLinkColor = BackColor;
         }
 
         private void tmr15_Tick(object sender, EventArgs e)
@@ -110,6 +152,40 @@ namespace ProWork.Properties
                     rd = true;
                 }
             }
+        }
+
+        private void linksAlan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText("Email: cucho11moreira@gmail.com\n Teléfono: 097 414 433");
+            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+        }
+
+        private void linkAugusto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText("Email: augustotexeira23@gmail.com\n Teléfono: 092 313 392");
+            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+        }
+
+        private void linkPinto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText("Email: julianpinto444@gmail.com\n Teléfono: 091287027");
+            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+        }
+
+        private void linkCristian_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Clipboard.SetText("Email: ezponjares@gmail.com\n Teléfono: 098479701");
+            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+        }
+
+        private void epb_DoubleClick(object sender, EventArgs e)
+        {
+            r = BackColor.R;
+            g = BackColor.G;
+            b = BackColor.B;
+            tmr60.Start();
+            tmr15.Start();
+            tmr30.Start();
         }
     }
 }

@@ -136,5 +136,6 @@ namespace ProWork
         public event EventHandler gearClicked;
         public event EventHandler trashClicked;
         public event EventHandler itemClicked;
+        public event EventHandler statsClicked;
     }
 }
