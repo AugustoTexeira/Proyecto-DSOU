@@ -17,5 +17,52 @@ namespace ProWork
             InitializeComponent();
             BackColor = Estilo.fondo;
         }
+
+        private void crearbtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog selectArchivos = new OpenFileDialog();
+            selectArchivos.Multiselect = true;
+
+            if (selectArchivos.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string archivo in selectArchivos.FileNames)
+                {
+                    MessageBox.Show(archivo);
+                }
+            }
+        }
+
+        private void InicioContainer_Load(object sender, EventArgs e)
+        {
+            epbNuevoProyecto.AllowDrop = true;
+        }
+
+        private void epbNuevoProyecto_DragDrop(object sender, DragEventArgs e)
+        {
+           OpenFileDialog selectArchivos = new OpenFileDialog();
+            selectArchivos.Multiselect = true;
+
+            if (selectArchivos.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string archivo in selectArchivos.FileNames)
+                {
+                    MessageBox.Show(archivo);
+                }
+            }
+        }
+
+        private void epbNuevoProyecto_DragDropEnter(object sender, DragEventArgs e)
+        {
+            OpenFileDialog selectArchivos = new OpenFileDialog();
+            selectArchivos.Multiselect = true;
+
+            if (selectArchivos.ShowDialog() == DialogResult.OK)
+            {
+                foreach (string archivo in selectArchivos.FileNames)
+                {
+                    MessageBox.Show(archivo);
+                }
+            }
+        }
     }
 }
