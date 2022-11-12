@@ -37,7 +37,7 @@ namespace ProWork
             }
         }
 
-        private void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
+        private async void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
         {
             if (utbCContra.Visible) // Registro
             {
@@ -45,7 +45,8 @@ namespace ProWork
                 {
                     try
                     {
-                        MySqlCommand vRegistro = new("select nombre from usuario;", Program.connection);
+                        var con = await Program.openConnectionAsync();
+                        MySqlCommand vRegistro = new("select nombre from usuario;", con);
                         MySqlDataReader reader = vRegistro.ExecuteReader();
 
                         bool v = true;
@@ -62,7 +63,7 @@ namespace ProWork
                         {
                             MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
                                                         "values ('" + utbNombre.txbText + "', sha2('" + utbContra.txbText + "', 224), false);",
-                                                        Program.connection
+                                                        con
                                                         );
                             iRegistro.ExecuteNonQuery();
                             Program.userAdmin = false;
@@ -74,6 +75,7 @@ namespace ProWork
                         {
                             MessageBox.Show("La cuenta ya existe.");
                         }
+                        await Program.closeOpenConnectionAsync(con);
                     }
                     catch (Exception ex)
                     {
@@ -89,14 +91,14 @@ namespace ProWork
             {
                 try
                 {
-                    Program.tryToConnect();
-                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", Program.connection);
-                    MySqlDataReader reader = vLogin.ExecuteReader();
+                    var con = await Program.openConnectionAsync();
+                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", con);
+                    MySqlDataReader reader = await vLogin.ExecuteReaderAsync();
 
                     bool v = false;
                     bool admin = false;
 
-                    while (reader.Read())
+                    while (await reader.ReadAsync())
                     {
                         if (utbNombre.txbText == reader.GetString(0))
                         {
@@ -104,8 +106,6 @@ namespace ProWork
                             admin = reader.GetBoolean(2);
                         }
                     }
-
-                    reader.Close();
 
                     if (v)
                     {
@@ -117,6 +117,8 @@ namespace ProWork
                     {
                         MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
                     }
+                    await reader.CloseAsync();
+                    await Program.closeOpenConnectionAsync(con);
                 }
                 catch (Exception ex)
                 {

@@ -14,7 +14,6 @@ namespace ProWork.De_Configuración__Cristian_
 {
     public partial class ConfigContainer : UserControl
     {
-        private bool itemExecuting;
         public static event EventHandler ColorSwap;
         private DateTime startDateMemory = new();
         /*NOMENCLATURA
@@ -77,77 +76,75 @@ namespace ProWork.De_Configuración__Cristian_
 
         public async Task ResetElementos()
         {
-            await Program.waitForOpenConnection();
-            await lst.ResetElementos(new("select idusuario, nombre, administrador from usuario order by nombre", Program.connection));
+            await lst.ResetElementos(new("select idusuario, nombre, administrador from usuario order by nombre"));
+            var con = await Program.openConnectionAsync();
 
+            con = await Program.openConnectionAsync();
             List<Point> buffer = new List<Point>();
 
-            MySqlCommand cmd = new("Select fecha, count(fecha) from carga group by fecha order by fecha", Program.connection);
+            MySqlCommand cmd = new("Select fecha, count(fecha) from carga group by fecha order by fecha", con);
 
-            
+
             MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
-            await rdr.ReadAsync();
-            List<DateTime> datelist = new();
-            List<long> countList = new();
-
-            dtpStart.Value = rdr.GetDateTime(0);
-            grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
-
-            TimeSpan ts = dtpEnd.Value - rdr.GetDateTime(0);
-
-
-            ts = dtpEnd.Value - rdr.GetDateTime(0);
-            datelist.Add(rdr.GetDateTime(0));
-            countList.Add(rdr.GetInt64(1));
-
-            while (await rdr.ReadAsync())
+            if (rdr.HasRows)
             {
-                if (rdr.GetDateTime(0) < dtpStart.Value)
-                {
-                    dtpStart.Value = rdr.GetDateTime(0);
-                    startDateMemory = dtpStart.Value;
-                }
-                if (rdr.GetInt64(1) * 1.2 > grf.Scale.Height)
-                {
-                    grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
-                }
+                await rdr.ReadAsync();
+                List<DateTime> datelist = new();
+                List<long> countList = new();
+
+                dtpStart.Value = rdr.GetDateTime(0);
+                grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
+
+                TimeSpan ts = dtpEnd.Value - rdr.GetDateTime(0);
+
+
+                ts = dtpEnd.Value - rdr.GetDateTime(0);
                 datelist.Add(rdr.GetDateTime(0));
                 countList.Add(rdr.GetInt64(1));
+
+                while (await rdr.ReadAsync())
+                {
+                    if (rdr.GetDateTime(0) < dtpStart.Value)
+                    {
+                        dtpStart.Value = rdr.GetDateTime(0);
+                        startDateMemory = dtpStart.Value;
+                    }
+                    if (rdr.GetInt64(1) * 1.2 > grf.Scale.Height)
+                    {
+                        grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
+                    }
+                    datelist.Add(rdr.GetDateTime(0));
+                    countList.Add(rdr.GetInt64(1));
+                }
+                string s = "";
+                for (int i = 0; i < datelist.Count; i++)
+                {
+                    ts = datelist[i] - dtpStart.Value;
+                    buffer.Add(new((int)ts.TotalDays, (int)countList[i]));
+                    s += buffer[i].ToString();
+                }
+
+                ts = dtpEnd.Value - dtpStart.Value;
+
+                grf.Points = buffer.ToArray();
+                grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+
+                DateTime shift = dtpEnd.Value;
+                shift.AddDays(-1);
+                dtpStart.MaxDate = shift;
+                shift = dtpStart.Value;
+                shift.AddDays(2);
+                dtpEnd.MinDate = shift;
             }
             await rdr.CloseAsync();
-            string s = "";
-            for (int i = 0; i < datelist.Count; i++)
-            {
-                ts = datelist[i] - dtpStart.Value;
-                buffer.Add(new ((int)ts.TotalDays, (int)countList[i]));
-                s += buffer[i].ToString();
-            }
-
-            ts = dtpEnd.Value - dtpStart.Value;
-
-            grf.Points = buffer.ToArray();
-            grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
-
-            DateTime shift = dtpEnd.Value;
-            shift.AddDays(-1);
-            dtpStart.MaxDate = shift;
-            shift = dtpStart.Value;
-            shift.AddDays(2);
-            dtpEnd.MinDate = shift;
+            await Program.closeOpenConnectionAsync(con);
+            MessageBox.Show(this.Controls.Count.ToString());
         }
 
         private async void lst_itemEnterHover(object sender, EventArgs e)
         {
-            if(itemExecuting)
-            {
-                return;
-            }
-            itemExecuting = true;
-            MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", Program.connection);
-            if (Program.connection.State == ConnectionState.Executing)
-            {
-
-            }
+            var con = await Program.openConnectionAsync();
+            MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", con);
             MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
 
             TimeSpan ts;
@@ -159,7 +156,7 @@ namespace ProWork.De_Configuración__Cristian_
             }
             grf.Points = buffer.ToArray();
             await rdr.CloseAsync();
-            itemExecuting = false;
+            await Program.closeOpenConnectionAsync(con);
         }
 
 
@@ -275,13 +272,13 @@ namespace ProWork.De_Configuración__Cristian_
 
         private async void lst_trashClicked(object sender, EventArgs e)
         {
-            await Program.waitForOpenConnection();
+            var con = await Program.openConnectionAsync();
             if (((Item)sender).Text == Program.user)
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar SU cuenta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
 
-                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", con);
                     cmd.ExecuteNonQuery();
 
                     frmTinyRegister register = new frmTinyRegister();
@@ -293,11 +290,12 @@ namespace ProWork.De_Configuración__Cristian_
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar la cuenta {((Item)sender).Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
+                    MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", con);
                     cmd.ExecuteNonQuery();
                     await lst.ResetElementos(null);
                 }
             }
+            await Program.closeOpenConnectionAsync(con);
         }
 
         private void lst_gearClicked(object sender, EventArgs e)

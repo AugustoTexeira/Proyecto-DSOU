@@ -7,9 +7,10 @@ namespace ProWork
     {
         public static string[] Scope = { DriveService.Scope.Drive };
         public static string ApplicationName = "Patata";
-        public static MySqlConnection connection = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
         public static bool userAdmin = false;
         public static string user = "";
+        private static MySqlConnection sql = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4");
+        private static bool executingsql = false;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -19,9 +20,9 @@ namespace ProWork
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-            ApplicationConfiguration.Initialize();
+            sql.Open();
 
-            environmentalTryToConnect();
+            ApplicationConfiguration.Initialize();
 
             Estilo.enfasis = Color.FromArgb(5, 49, 247);
             Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
@@ -36,60 +37,87 @@ namespace ProWork
 
             Application.Run();
         }
-
-        public static async Task waitForOpenConnection ()
+        public async static Task closeOpenConnectionAsync (MySqlConnection con)
         {
-            while(connection.State != ConnectionState.Open)
+            if (con.ConnectionString == sql.ConnectionString)
             {
-                await Task.Delay(100);
-                if (connection.State == ConnectionState.Closed)
-                {
-                    await tryToConnect();
-                }
+                executingsql = false;
+                return;
+            }
+            else
+            {
+                await con.CloseAsync();
+                return;
             }
         }
-
-        private async static Task environmentalTryToConnect()
+        public static void closeOpenConnection(MySqlConnection con)
         {
-            try
+            if (con.ConnectionString == sql.ConnectionString)
             {
-                if (connection.State != ConnectionState.Open && connection.State != ConnectionState.Executing && connection.State != ConnectionState.Connecting)
-                {
-                    connection.Open();
-                }
+                executingsql = false;
             }
-            catch
+            else
             {
-                if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    await environmentalTryToConnect();
-                }
-                else
-                {
-                    Environment.Exit(0);
-                }
+                con.Close();
             }
         }
-
-        public async static Task tryToConnect()
+        public async static Task<MySqlConnection> openConnectionAsync ()
         {
-            try
+            await Task.Delay(5);
+            if (!executingsql)
             {
-                if (connection.State != ConnectionState.Open && connection.State != ConnectionState.Executing && connection.State != ConnectionState.Connecting)
-                {
-                    await connection.OpenAsync();
-                }
+                executingsql = true;
+                return sql;
             }
-            catch
+            else
             {
-                if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes) 
-                { 
-                    await tryToConnect(); 
-                } 
-                else 
+                var con = await openConnectionAsync();
+                return con;
+                //MySqlConnection con = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
+                //try
+                //{
+                //    await con.OpenAsync();
+                //}
+                //catch
+                //{
+                //    if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //    {
+                //        return await openConnectionAsync();
+                //    }
+                //    else
+                //    {
+                //        Application.Exit();
+                //    }
+                //}
+                //return con;
+            }
+        }
+        public static MySqlConnection openConnection()
+        {
+            if (!executingsql)
+            {
+                executingsql = true;
+                return sql;
+            }
+            else
+            {
+                MySqlConnection con = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
+                try
                 {
-                    Application.Exit(); 
+                    con.Open();
                 }
+                catch
+                {
+                    if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        return openConnection();
+                    }
+                    else
+                    {
+                        Application.Exit();
+                    }
+                }
+                return con;
             }
         }
     }

@@ -21,10 +21,10 @@ namespace ProWork
 
         private async void cbtAniadir_ButtonClick(object sender, EventArgs e)
         {
-            await Program.waitForOpenConnection();
             if(utbNombre.txbText != "" && utbCorreo.txbText.Contains('@'))
             {
-                cmd = new($"select correoElectronico from contacto", Program.connection);
+                var con = await Program.openConnectionAsync();
+                cmd = new($"select correoElectronico from contacto", con);
 
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync();
 
@@ -46,9 +46,10 @@ namespace ProWork
                     return;
                 }
 
-                cmd = new($"insert into contacto(correoElectronico, nombre, número, descripción) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", Program.connection);
+                cmd = new($"insert into contacto(correoElectronico, nombre, número, descripción) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", con);
                 await cmd.ExecuteNonQueryAsync();
                 CambioExitoso.Invoke(sender, e);
+                await Program.closeOpenConnectionAsync(con);
                 this.Close();
             }
             else

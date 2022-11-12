@@ -19,7 +19,7 @@ namespace ProWork
             srbBuscar.BackColor = Estilo.fondo;
             lblContactos.ForeColor = Estilo.Contraste;
             clt.mode = 1;
-            clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
+            clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;"));
             srbBuscar.txb.KeyPress += txb_KeyPress;
             if(!Program.userAdmin)
             {
@@ -40,9 +40,9 @@ namespace ProWork
             frm.CambioExitoso += ResetElementos;
             frm.Show();
         }
-        public void ResetElementos(object sender, EventArgs e)
+        public async void ResetElementos(object sender, EventArgs e)
         {
-            clt.ResetElementos(null);
+            await clt.ResetElementos(null);
         }
 
         private void ContactosContainer_Layout(object sender, LayoutEventArgs e)
@@ -51,54 +51,58 @@ namespace ProWork
             clt.Width = srbBuscar.Width;
             clt.Height = this.Height - cbnAniadir.Height - 25 - clt.Location.Y - 25;
         }
-        private void txb_KeyPress(object sender, KeyPressEventArgs e)
+        private async void txb_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Enter)
             {
+                var con = await Program.openConnectionAsync();
                 if(srbBuscar.txb.Text == "")
                 {
-                    clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
+                    await clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", con));
                 }
                 else
                 {
                     string texto = srbBuscar.txb.Text.Replace($"\\", String.Empty);
-                    clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';", Program.connection));
+                    await clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';", con));
                 }
+                await Program.closeOpenConnectionAsync(con);
                 e.Handled = true;
             }
         }
 
         private async void clt_gearClicked(object sender, EventArgs e)
         {
-            await Program.waitForOpenConnection();
-            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", Program.connection);
+            var con = await Program.openConnectionAsync();
+            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", con);
             MySqlDataReader reader = await cmd.ExecuteReaderAsync();
             frmContactosConfig config = new(((Item)sender).id, ((Item)sender).Text, reader);
             config.CambioExitoso += ((Item)sender).CallReset;
             await reader.CloseAsync();
+            await Program.closeOpenConnectionAsync(con);
             config.Show();
         }
 
         private async void clt_trashClicked(object sender, EventArgs e)
         {
-            await Program.waitForOpenConnection();
             if (MessageBox.Show($"¿Esta seguro que desea eliminar el contacto {((Item)sender).Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-
-                MySqlCommand cmd = new($"delete from contacto where idcontacto='{((Item)sender).id}';", Program.connection);
+                var con = await Program.openConnectionAsync();
+                MySqlCommand cmd = new($"delete from contacto where idcontacto='{((Item)sender).id}';", con);
                 await cmd.ExecuteNonQueryAsync();
-                clt.ResetElementos(null);
+                await clt.ResetElementos(null);
+                await Program.closeOpenConnectionAsync(con);
             }
         }
 
         private async void clt_itemClicked(object sender, EventArgs e)
         {
-            await Program.waitForOpenConnection();
+            var con = await Program.openConnectionAsync();
 
-            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", Program.connection);
+            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", con);
             MySqlDataReader reader = await cmd.ExecuteReaderAsync();
             frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text, reader);
             await reader.CloseAsync();
+            await Program.closeOpenConnectionAsync(con);
             frm.Show();
         }
     }

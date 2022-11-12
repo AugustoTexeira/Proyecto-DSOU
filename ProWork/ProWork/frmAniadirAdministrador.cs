@@ -35,13 +35,13 @@ namespace ProWork
 
         }
 
-        private void cbtAscender_Click(object sender, EventArgs e)
+        private async void cbtAscender_Click(object sender, EventArgs e)
         {
-            Program.tryToConnect();
+            var con = await Program.openConnectionAsync();
             if (Text[..1] == "A")
             {
                 //update usuario set administrador = true where idusuario=3 and exists (select administrador from (select * from usuario) as u where nombre='Pepe' and password=SHA2('Pep', 224))
-                MySqlCommand cmd = new($"update usuario set administrador=true where idusuario={id} and exists (select administrador from (select * from usuario) as u where nombre='{Program.user}' and password=SHA2('{utbContra.txbText}', 224))", Program.connection);
+                MySqlCommand cmd = new($"update usuario set administrador=true where idusuario={id} and exists (select administrador from (select * from usuario) as u where nombre='{Program.user}' and password=SHA2('{utbContra.txbText}', 224))", con);
                 if(cmd.ExecuteNonQuery() == 1)
                 {
                     ascendido.Invoke(true, e);
@@ -54,7 +54,7 @@ namespace ProWork
             }
             else
             {
-                MySqlCommand cmd = new($"update usuario set administrador=false where idusuario={id} and exists (select administrador from (select * from usuario) as u where nombre='{Program.user}' and password=SHA2('{utbContra.txbText}', 224))", Program.connection);
+                MySqlCommand cmd = new($"update usuario set administrador=false where idusuario={id} and exists (select administrador from (select * from usuario) as u where nombre='{Program.user}' and password=SHA2('{utbContra.txbText}', 224))", con);
                 if (cmd.ExecuteNonQuery() == 1)
                 {
                     ascendido.Invoke(false, e);
@@ -65,6 +65,7 @@ namespace ProWork
                     MessageBox.Show("Contraseña incorrecta");
                 }
             }
+            await Program.closeOpenConnectionAsync(con);
         }
 
         public event EventHandler ascendido;

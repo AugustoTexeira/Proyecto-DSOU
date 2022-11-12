@@ -39,7 +39,7 @@ namespace ProWork
 
         public event EventHandler CambioExitoso;
 
-        private void cbtGuardar_ButtonClick(object sender, EventArgs e)
+        private async void cbtGuardar_ButtonClick(object sender, EventArgs e)
         {
             if (txbNombre.Text == "")
             {
@@ -56,9 +56,11 @@ namespace ProWork
                 MessageBox.Show("El nombre y/o teléfono del contacto no puede exeder treinta caracteres.");
                 return;
             }
-            MySqlCommand cmd = new($"update contacto set correoElectronico='{utbEmail.txbText}', nombre='{txbNombre.Text}', número='{utbTel.txbText}', descripción='{stbDesc.rtbText}' where idcontacto={id}", Program.connection);
+            var con = await Program.openConnectionAsync();
+            MySqlCommand cmd = new($"update contacto set correoElectronico='{utbEmail.txbText}', nombre='{txbNombre.Text}', número='{utbTel.txbText}', descripción='{stbDesc.rtbText}' where idcontacto={id}", con);
             cmd.ExecuteNonQuery();
             CambioExitoso.Invoke(txbNombre.Text, e);
+            await Program.closeOpenConnectionAsync(con);
             this.Close();
         }
 

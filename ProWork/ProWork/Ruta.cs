@@ -17,13 +17,13 @@ namespace ProWork
         {
             InitializeComponent();
         }
-        public void DefinirRuta(object sender)
+        public async void DefinirRuta(object sender)
         {
             if (sender != null)
             {
-                Program.tryToConnect();
-                MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta;", Program.connection);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                var con = await Program.openConnectionAsync();
+                MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta;", con);
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync();
                 this.Controls.Clear();
 
                 while (reader.Read())
@@ -39,6 +39,7 @@ namespace ProWork
                     this.Controls.Add(lbl);
                 }
                 reader.Close();
+                await Program.closeOpenConnectionAsync(con);
             }
             else
             {

@@ -35,12 +35,12 @@ namespace ProWork
 
         public async Task ResetElementos(MySqlCommand select)
         {
-            //Program.tryToConnect();
+            var con = await Program.openConnectionAsync();
             if (select != null)
             {
                 cmd = select;
+                select.Connection = con;
             }
-
             MySqlDataReader lector = await cmd.ExecuteReaderAsync();
             this.Controls.Clear();
 
@@ -97,16 +97,14 @@ namespace ProWork
                     }
                     break;
             }
+            this.Invalidate();
 
             await lector.CloseAsync();
-            this.Invalidate();
+            await Program.closeOpenConnectionAsync(con);
+            return;
         }
         public event EventHandler itemEnterHover;
         public event EventHandler itemExitHover;
-        private void CallReset(object sender, EventArgs e)
-        {
-            ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
-        }
 
         private void AccountList_Paint(object sender, PaintEventArgs e)
         {

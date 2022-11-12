@@ -31,7 +31,6 @@ namespace ProWork
             InitializeComponent();
             yContra = ctbContra.Location.Y;
             xPlus = epbPlusUser.Location.X;
-            Program.tryToConnect();
 
             //UserCredential credencial;
 
@@ -90,7 +89,8 @@ namespace ProWork
                 {
                     try
                     {
-                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{ctbNombre.txbText}')", Program.connection);
+                        MySqlConnection con = Program.openConnection();
+                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{ctbNombre.txbText}')", con);
                         if(Registro.ExecuteNonQuery() == 1)
                         {
                             Program.user = ctbNombre.txbText;
@@ -101,6 +101,7 @@ namespace ProWork
                         {
                             MessageBox.Show("La cuenta ya existe.");
                         }
+                        Program.closeOpenConnection(con);
                     }
                     catch (Exception ex)
                     {
@@ -116,7 +117,8 @@ namespace ProWork
             {
                 try
                 {
-                    MySqlCommand vLogin = new($"select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", Program.connection);
+                    MySqlConnection con = Program.openConnection();
+                    MySqlCommand vLogin = new($"select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
                     bool v = false;
                     bool admin = false;
@@ -131,7 +133,7 @@ namespace ProWork
                     }
 
                     reader.Close();
-
+                    Program.closeOpenConnection(con);
                     if (v)
                     {
                         Program.user = ctbNombre.txbText;
@@ -168,6 +170,11 @@ namespace ProWork
 
         private void tmrIntoLogin_Tick(object sender, EventArgs e)
         {
+            ctbCContra.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            ctbNombre.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            ctbContra.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            epbUser.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            epbPlusUser.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             if (ctbCContra.Location.X < this.Width)
             {
                 int cambio = (this.Width - ctbCContra.Location.X) / 2 + 1;
@@ -188,22 +195,37 @@ namespace ProWork
             }
             else
             {
+
+                ctbCContra.Anchor = AnchorStyles.Right;
+                ctbNombre.Anchor = AnchorStyles.Right;
+                ctbContra.Anchor = AnchorStyles.Right;
+                epbUser.Anchor = AnchorStyles.Right;
+                epbPlusUser.Anchor = AnchorStyles.Right;
                 btnLogin.Texto = "Ingresar";
                 btnSwap.Text = "¿No tienes una cuenta? Regístrate";
                 ctbCContra.Visible = false;
                 epbPlusUser.Visible = false;
                 tmrIntoLogin.Stop();
             }
+            ctbCContra.Anchor = AnchorStyles.Right;
+            ctbNombre.Anchor = AnchorStyles.Right;
+            ctbContra.Anchor = AnchorStyles.Right;
+            epbUser.Anchor = AnchorStyles.Right;
+            epbPlusUser.Anchor = AnchorStyles.Right;
         }
 
         private void tmrIntoRegister_Tick(object sender, EventArgs e)
         {
+            ctbCContra.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            ctbNombre.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            ctbContra.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            epbUser.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            epbPlusUser.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             if (ctbContra.Location.Y >= yContra)
             {
                 ctbCContra.Visible = true;
 
                 int cambio = (yContra - ctbContra.Location.Y) / 4 - 1;
-
                 ctbNombre.Location = new Point(ctbNombre.Location.X, ctbNombre.Location.Y + cambio);
                 ctbContra.Location = new Point(ctbContra.Location.X, ctbContra.Location.Y + cambio);
                 epbUser.Location = new Point(epbUser.Location.X, epbUser.Location.Y + cambio);
@@ -220,10 +242,21 @@ namespace ProWork
             }
             else
             {
+                yContra = ctbContra.Location.Y;
+                ctbCContra.Anchor = AnchorStyles.Right;
+                ctbNombre.Anchor = AnchorStyles.Right;
+                ctbContra.Anchor = AnchorStyles.Right;
+                epbUser.Anchor = AnchorStyles.Right;
+                epbPlusUser.Anchor = AnchorStyles.Right;
                 btnLogin.Texto = "Crear";
                 btnSwap.Text = "¿Tienes una cuenta? Inicia sesión";
                 tmrIntoRegister.Stop();
             }
+            ctbCContra.Anchor = AnchorStyles.Right;
+            ctbNombre.Anchor = AnchorStyles.Right;
+            ctbContra.Anchor = AnchorStyles.Right;
+            epbUser.Anchor = AnchorStyles.Right;
+            epbPlusUser.Anchor = AnchorStyles.Right;
         }
 
         private void bgwCheck_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -256,14 +289,26 @@ namespace ProWork
             btnSwap.Font = new(btnSwap.Font, FontStyle.Regular);
         }
 
-        private void graficaContainer1_Click(object sender, EventArgs e)
+        private void pnlForeground_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void graficaContainer1_Load(object sender, EventArgs e)
+        private void frmLogin_Layout(object sender, LayoutEventArgs e)
         {
+        }
 
+        private void frmLogin_Resize(object sender, EventArgs e)
+        {
+            if (ctbCContra.Visible)
+            {
+                yContra = ctbContra.Location.Y;
+                xPlus = epbPlusUser.Location.X;
+            }
+            else
+            {
+                xPlus = epbUser.Location.X + 97;
+            }
         }
     }
 }

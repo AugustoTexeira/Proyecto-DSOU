@@ -22,10 +22,10 @@ namespace ProWork
             InitializeComponent();
             ContextMenuStrip contexto = new();
         }
-        public void MostrarCarpetas()
+        public async void MostrarCarpetas()
         {
-            Program.tryToConnect();
-            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", Program.connection);
+            var con = await Program.openConnectionAsync();
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where carpetaPadre is NULL;", con);
             MySqlDataReader reader = nombres.ExecuteReader();
             Truncate();
             while (reader.Read())
@@ -35,8 +35,9 @@ namespace ProWork
                 carpeta.Nombre = reader.GetString(1);
                 this.Add(carpeta);
             }
-            reader.Close();
             Entrar.Invoke(null, null);
+            await reader.CloseAsync();
+            await Program.closeOpenConnectionAsync(con);
         }
         private void FileHolder_Resize(object sender, EventArgs e)
         {
@@ -97,21 +98,22 @@ namespace ProWork
             archivos.Clear();
         }
 
-        public void Open(object sender, EventArgs e)
+        public async void Open(object sender, EventArgs e)
         {
             Truncate();
-            Program.tryToConnect();
-            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where IF(idcarpeta IN(select idcarpeta from carpeta where carpetaPadre = " + sender.ToString() + "),1,0);", Program.connection);
-            MySqlDataReader reader = nombres.ExecuteReader();
-            while (reader.Read())
+            var con = await Program.openConnectionAsync();
+            MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where IF(idcarpeta IN(select idcarpeta from carpeta where carpetaPadre = " + sender.ToString() + "),1,0);", con);
+            MySqlDataReader reader = await nombres.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
             {
                 Carpeta carpeta = new Carpeta();
                 carpeta.id = reader.GetInt32(0);
                 carpeta.Nombre = reader.GetString(1);
                 this.Add(carpeta);
             }
-            reader.Close();
             Entrar.Invoke(sender, e);
+            await reader.CloseAsync();
+            await Program.closeOpenConnectionAsync(con);
         }
 
         public event EventHandler Entrar;
