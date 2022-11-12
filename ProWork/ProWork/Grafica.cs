@@ -227,7 +227,10 @@ namespace ProWork
 
         private void Grafica_Layout(object sender, LayoutEventArgs e)
         {
-            brush = new(new(0, Height), new(0, 0), Color.FromArgb(Estilo.degrEnfasis.R, Estilo.degrEnfasis.G, Estilo.degrEnfasis.B), Estilo.enfasis);
+            if (ClientSize.Height != 0)
+            {
+                brush = new(new(0, ClientSize.Height), new(0, 0), Color.FromArgb(Estilo.degrEnfasis.R, Estilo.degrEnfasis.G, Estilo.degrEnfasis.B), Estilo.enfasis);
+            }
             tmrBlend.Start();
         }
 

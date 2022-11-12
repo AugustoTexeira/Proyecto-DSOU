@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace ProWork
 {
@@ -69,28 +68,37 @@ namespace ProWork
             }
         }
 
-        private void clt_gearClicked(object sender, EventArgs e)
+        private async void clt_gearClicked(object sender, EventArgs e)
         {
-            frmContactosConfig config = new(((Item)sender).id, ((Item)sender).Text);
+            await Program.waitForOpenConnection();
+            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", Program.connection);
+            MySqlDataReader reader = await cmd.ExecuteReaderAsync();
+            frmContactosConfig config = new(((Item)sender).id, ((Item)sender).Text, reader);
             config.CambioExitoso += ((Item)sender).CallReset;
+            await reader.CloseAsync();
             config.Show();
         }
 
-        private void clt_trashClicked(object sender, EventArgs e)
+        private async void clt_trashClicked(object sender, EventArgs e)
         {
+            await Program.waitForOpenConnection();
             if (MessageBox.Show($"¿Esta seguro que desea eliminar el contacto {((Item)sender).Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                Program.tryToConnect();
 
                 MySqlCommand cmd = new($"delete from contacto where idcontacto='{((Item)sender).id}';", Program.connection);
-                cmd.ExecuteNonQuery();
+                await cmd.ExecuteNonQueryAsync();
                 clt.ResetElementos(null);
             }
         }
 
-        private void clt_itemClicked(object sender, EventArgs e)
+        private async void clt_itemClicked(object sender, EventArgs e)
         {
-            frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text);
+            await Program.waitForOpenConnection();
+
+            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", Program.connection);
+            MySqlDataReader reader = await cmd.ExecuteReaderAsync();
+            frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text, reader);
+            await reader.CloseAsync();
             frm.Show();
         }
     }

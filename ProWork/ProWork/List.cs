@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
 
 namespace ProWork
@@ -16,11 +15,17 @@ namespace ProWork
     public partial class List : UserControl
     {
         public byte mode = 0; // 0=usuarios; 1=contactos; >1 = indefinido
-        private MySqlCommand cmd;
+        private MySqlCommand cmd = new();
         public List()
         {
             InitializeComponent();
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+            itemEnterHover += paqnosequeje;
+            itemExitHover += paqnosequeje;
+        }
+        private void paqnosequeje(object sender, EventArgs e)
+        {
+
         }
 
         private void colorSwap(object sender, EventArgs e)
@@ -28,18 +33,15 @@ namespace ProWork
             BackColor = Estilo.fondo;
         }
 
-        public async void ResetElementos(MySqlCommand select)
+        public async Task ResetElementos(MySqlCommand select)
         {
-            Program.tryToConnect();
+            //Program.tryToConnect();
             if (select != null)
             {
                 cmd = select;
             }
 
-            DbDataReader lector = await cmd.ExecuteReaderAsync();
-
-            
-
+            MySqlDataReader lector = await cmd.ExecuteReaderAsync();
             this.Controls.Clear();
 
             int i = 0;
@@ -67,6 +69,8 @@ namespace ProWork
                         item.gearClicked += gearClicked;
                         item.trashClicked += trashClicked;
                         item.Click += itemClicked;
+                        item.enterHover += itemEnterHover;
+                        item.exitHover += itemExitHover;
                         this.Controls.Add(item);
 
                         i++;
@@ -95,8 +99,10 @@ namespace ProWork
             }
 
             await lector.CloseAsync();
-            this.Refresh();
+            this.Invalidate();
         }
+        public event EventHandler itemEnterHover;
+        public event EventHandler itemExitHover;
         private void CallReset(object sender, EventArgs e)
         {
             ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", Program.connection));
@@ -133,7 +139,7 @@ namespace ProWork
                 this.Controls[i].Width = this.Width - SystemInformation.VerticalScrollBarWidth - 10;
             }
             this.AutoScroll = true;
-            Refresh();
+            Invalidate();
         }
 
         public event EventHandler gearClicked;

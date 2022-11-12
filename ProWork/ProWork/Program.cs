@@ -1,6 +1,6 @@
+global using MySqlConnector;
 namespace ProWork
 {
-    using MySql.Data.MySqlClient;
     using Google.Apis.Drive.v3;
     using System.Data;
     internal static class Program
@@ -37,11 +37,23 @@ namespace ProWork
             Application.Run();
         }
 
-        private static void environmentalTryToConnect()
+        public static async Task waitForOpenConnection ()
+        {
+            while(connection.State != ConnectionState.Open)
+            {
+                await Task.Delay(100);
+                if (connection.State == ConnectionState.Closed)
+                {
+                    await tryToConnect();
+                }
+            }
+        }
+
+        private async static Task environmentalTryToConnect()
         {
             try
             {
-                if (!connection.Ping())
+                if (connection.State != ConnectionState.Open && connection.State != ConnectionState.Executing && connection.State != ConnectionState.Connecting)
                 {
                     connection.Open();
                 }
@@ -50,7 +62,7 @@ namespace ProWork
             {
                 if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    environmentalTryToConnect();
+                    await environmentalTryToConnect();
                 }
                 else
                 {
@@ -59,11 +71,11 @@ namespace ProWork
             }
         }
 
-        public static async void tryToConnect()
+        public async static Task tryToConnect()
         {
             try
             {
-                if (!connection.Ping())
+                if (connection.State != ConnectionState.Open && connection.State != ConnectionState.Executing && connection.State != ConnectionState.Connecting)
                 {
                     await connection.OpenAsync();
                 }
@@ -72,7 +84,7 @@ namespace ProWork
             {
                 if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes) 
                 { 
-                    tryToConnect(); 
+                    await tryToConnect(); 
                 } 
                 else 
                 {

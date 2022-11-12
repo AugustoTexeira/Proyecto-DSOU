@@ -7,20 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 
 namespace ProWork
 {
     public partial class frmContactosConfig : Form
     {
         private int id;
-        public frmContactosConfig(int id, string nombre)
+        public frmContactosConfig(int id, string nombre, MySqlDataReader rdr)
         {
             InitializeComponent();
 
-            Program.tryToConnect();
-            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripcion from contacto where idcontacto={id}", Program.connection);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = rdr;
+            
             reader.Read();
 
             this.Text = $"Configuración del contacto {nombre}";
@@ -29,7 +28,10 @@ namespace ProWork
             txbNombre.Text = nombre;
             utbEmail.txbText = reader.GetString(0);
             utbTel.txbText = reader.GetString(1);
-            stbDesc.rtbText = reader.GetString(2);
+            if(!reader.IsDBNull(2))
+            {
+                stbDesc.rtbText = reader.GetString(2);
+            }
             this.id = id;
 
             reader.Close();
@@ -54,8 +56,7 @@ namespace ProWork
                 MessageBox.Show("El nombre y/o teléfono del contacto no puede exeder treinta caracteres.");
                 return;
             }
-            Program.tryToConnect();
-            MySqlCommand cmd = new($"update contacto set correoElectronico='{utbEmail.txbText}', nombre='{txbNombre.Text}', número='{utbTel.txbText}', descripcion='{stbDesc.rtbText}' where idcontacto={id}", Program.connection);
+            MySqlCommand cmd = new($"update contacto set correoElectronico='{utbEmail.txbText}', nombre='{txbNombre.Text}', número='{utbTel.txbText}', descripción='{stbDesc.rtbText}' where idcontacto={id}", Program.connection);
             cmd.ExecuteNonQuery();
             CambioExitoso.Invoke(txbNombre.Text, e);
             this.Close();

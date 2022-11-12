@@ -176,13 +176,13 @@
             if (shift <= aimShift + 1 && aimShift - 1 <= shift)
             {
                 shift = aimShift;
-                this.Refresh();
+                this.Invalidate();
                 tmrScroll.Stop();
             }
             else
             {
                 shift += (aimShift - shift) / 5;
-                this.Refresh();
+                this.Invalidate();
             }
         }
 
@@ -195,14 +195,14 @@
         private void ControlCuentas_MouseEnter(object sender, EventArgs e)
         {
             hovered = true;
-            this.Refresh();
+            this.Invalidate();
         }
 
         private void ControlCuentas_MouseLeave(object sender, EventArgs e)
         {
             hovered = false;
             scrollHovered = false;
-            this.Refresh();
+            this.Invalidate();
         }
 
         private void ControlCuentas_MouseDown(object sender, MouseEventArgs e)
@@ -210,7 +210,7 @@
             tmrScroll.Stop();
             tmrDragScroll.Stop();
             held = true;
-            this.Refresh();
+            this.Invalidate();
         }
 
         private void ControlCuentas_MouseUp(object sender, MouseEventArgs e)
@@ -297,18 +297,18 @@
                 if (!scrollHovered)
                 {
                     scrollHovered = true;
-                    this.Refresh();
+                    this.Invalidate();
                 }
             }
             else if (scrollHovered)
             {
                 scrollHovered = false;
-                this.Refresh();
+                this.Invalidate();
             }
 
             if (!tmrDragScroll.Enabled && !tmrScroll.Enabled && (held || released || Math.Ceiling((double)(mY / this.Font.Height)) != Math.Ceiling((double)(e.Y / this.Font.Height))))
             {
-                this.Refresh();
+                this.Invalidate();
             }
 
             mY = e.Y;
@@ -366,7 +366,7 @@
                     vSpeed -= Math.Sign(vSpeed);
                 }
             }
-            this.Refresh();
+            this.Invalidate();
         }
         private int shiftAltura()
         {

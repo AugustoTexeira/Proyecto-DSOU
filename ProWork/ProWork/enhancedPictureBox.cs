@@ -13,7 +13,7 @@ namespace ProWork
             set
             {
                 circle = value;
-                Refresh();
+                Invalidate();
             }
         }
         public Image BkgImage
@@ -23,7 +23,7 @@ namespace ProWork
             {
                 bkgImage = value;
                 txtBrush = new(Estilo.ResizeImage(bkgImage, Width, Height));
-                Refresh();
+                Invalidate();
             }
         }
         public enhancedPictureBox()

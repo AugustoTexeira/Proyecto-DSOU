@@ -1,4 +1,3 @@
-using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
@@ -91,7 +90,6 @@ namespace ProWork
                 {
                     try
                     {
-                        Program.tryToConnect();
                         MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{ctbNombre.txbText}')", Program.connection);
                         if(Registro.ExecuteNonQuery() == 1)
                         {
@@ -118,7 +116,6 @@ namespace ProWork
             {
                 try
                 {
-                    Program.tryToConnect();
                     MySqlCommand vLogin = new($"select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", Program.connection);
                     MySqlDataReader reader = vLogin.ExecuteReader();
                     bool v = false;

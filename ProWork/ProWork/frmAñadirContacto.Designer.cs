@@ -33,7 +33,6 @@
             this.stbDesc = new ProWork.SurroundedTextBox();
             this.cbtAniadir = new ProWork.CustomButton();
             this.utbTel = new ProWork.UnderlinedTextBox();
-            this.bgwConfirmar = new System.ComponentModel.BackgroundWorker();
             this.enhancedPictureBox1 = new ProWork.enhancedPictureBox();
             this.SuspendLayout();
             // 
@@ -92,11 +91,6 @@
             this.utbTel.txbText = "";
             this.utbTel.UsePasswordChar = false;
             // 
-            // bgwConfirmar
-            // 
-            this.bgwConfirmar.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgwConfirmar_DoWork);
-            this.bgwConfirmar.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgwConfirmar_RunWorkerCompleted);
-            // 
             // enhancedPictureBox1
             // 
             this.enhancedPictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -135,7 +129,6 @@
         private SurroundedTextBox stbDesc;
         private CustomButton cbtAniadir;
         private UnderlinedTextBox utbTel;
-        private System.ComponentModel.BackgroundWorker bgwConfirmar;
         private enhancedPictureBox enhancedPictureBox1;
     }
 }

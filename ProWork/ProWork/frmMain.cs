@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 using ProWork.De_Configuración__Cristian_;
 namespace ProWork
 {
@@ -83,7 +83,7 @@ namespace ProWork
             }
         }
 
-        private void menu_SelectedScreenChanged(object sender, EventArgs e)
+        private async void menu_SelectedScreenChanged(object sender, EventArgs e)
         {
             switch (menu.SelectedScreen)
             {
@@ -148,7 +148,7 @@ namespace ProWork
                             contactosContainer.ResetElementos(this, e);
                             break;
                         case 3:
-                            configContainer.ResetElementos(null);
+                            await configContainer.ResetElementos();
                             break;
                     }
                     break;

@@ -46,7 +46,7 @@ namespace ProWork
             epb.Location = new(Height / 4, Height / 4);
             epb.sizeToHeight(Height / 2);
 
-            Refresh();
+            Invalidate();
         }
 
         private void searchBar_FontChanged(object sender, EventArgs e)

@@ -44,7 +44,7 @@ namespace ProWork
         public string XAxis
         {
             get { return xAxis; }
-            set { xAxis = value; Refresh(); }
+            set { xAxis = value; Invalidate(); }
         }
         public string YAxis
         {
@@ -134,7 +134,7 @@ namespace ProWork
             grf.Size = new Size(Width - TextRenderer.MeasureText(longstring, Font).Width - Estilo.anchoLinea, Height - Font.Height - Estilo.anchoLinea);
             grf.Location = new(Width - grf.Width, 0);
             grf.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            Refresh();
+            Invalidate();
         }
         private void graficaContainer_Click(object sender, EventArgs e)
         {

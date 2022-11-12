@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-
+﻿
 namespace ProWork
 {
     public partial class frmAccConfig : Form

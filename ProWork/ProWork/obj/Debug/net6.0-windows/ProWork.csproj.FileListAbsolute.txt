@@ -88,14 +88,6 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.runtimeconfig.json
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.dll
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.pdb
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Protobuf.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MySql.Data.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
-C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ZstdNet.dll
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.csproj.AssemblyReference.cache
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmLogin.resources
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmMain.resources
@@ -235,3 +227,4 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-wi
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Drive.v3.dll
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.frmUserStats.resources
+C:\Users\Cristian\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MySqlConnector.dll

@@ -56,7 +56,7 @@ namespace ProWork
                             pnlConfig.ForeColor = Estilo.contrasteLigero;
                         }
                         pnlInicio.ForeColor = Color.White;
-                        pnlInicio.Refresh();
+                        pnlInicio.Invalidate();
                         break;
                     case 1:
                         if (pnlInicio.ForeColor == Color.White)
@@ -78,7 +78,7 @@ namespace ProWork
                             pnlConfig.ForeColor = calculateColor();
                         }
                         pnlProyectos.ForeColor = Color.White;
-                        pnlProyectos.Refresh();
+                        pnlProyectos.Invalidate();
                         break;
                     case 2:
                         if (pnlInicio.ForeColor == Color.White)
@@ -100,7 +100,7 @@ namespace ProWork
                             pnlConfig.ForeColor = calculateColor();;
                         }
                         pnlContactos.ForeColor = Color.White;
-                        pnlContactos.Refresh();
+                        pnlContactos.Invalidate();
                         break;
                     case 3:
                         if (pnlInicio.ForeColor == Color.White)
@@ -122,7 +122,7 @@ namespace ProWork
                             pnlContactos.ForeColor = calculateColor();;
                         }
                         pnlConfig.ForeColor = Color.White;
-                        pnlConfig.Refresh();
+                        pnlConfig.Invalidate();
                         break;
                 }
             }

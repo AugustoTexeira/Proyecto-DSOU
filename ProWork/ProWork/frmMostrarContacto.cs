@@ -7,23 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 
 namespace ProWork
 {
     public partial class frmMostrarContacto : Form
     {
-        public frmMostrarContacto(int id, string nombre)
+        public frmMostrarContacto(int id, string nombre, MySqlDataReader rdr)
         {
             InitializeComponent();
-            Program.tryToConnect();
-            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripcion from contacto where idcontacto={id}", Program.connection);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader = rdr;
             reader.Read();
 
             lblEmail.Text = reader.GetString(0);
             lblTel.Text = reader.GetString(1);
-            rtb.Text = reader.GetString(2);
+            if(!reader.IsDBNull(2))
+            {
+                rtb.Text = reader.GetString(2);
+            }
 
             reader.Close();
 

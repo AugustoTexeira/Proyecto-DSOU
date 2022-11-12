@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using MySql.Data.MySqlClient;
+
 
 namespace ProWork.De_Configuración__Cristian_
 {
     public partial class ConfigContainer : UserControl
     {
+        private bool itemExecuting;
         public static event EventHandler ColorSwap;
+        private DateTime startDateMemory = new();
         /*NOMENCLATURA
          * acl = AccountList
          * 
@@ -31,10 +33,10 @@ namespace ProWork.De_Configuración__Cristian_
 
         private void ConfigContainer_Layout(object sender, LayoutEventArgs e)
         {
-            //lst.Width = Width - Padding.Right;
+            //lst.Width = (Width - Padding.Right) / 3 * 2;
+            //cbtAnadir.Width = lst.Width;
 
             //lst.Height = this.Height - lst.Location.Y - cbtAnadir.Height * 2 - Estilo.anchoLinea;
-            //cbtAnadir.Location = new(cbtAnadir.Location.X, lst.Location.Y + lst.Height + Estilo.anchoLinea);
 
             Invalidate();
         }
@@ -46,11 +48,12 @@ namespace ProWork.De_Configuración__Cristian_
             Pen pen = new(Estilo.Contraste, Estilo.anchoLinea);
             pen.StartCap = LineCap.Round;
             pen.EndCap = LineCap.Round;
+            
 
             e.Graphics.DrawLine(pen, new(Padding.Left, lst.Location.Y - 79), new(this.Width - Padding.Right, lst.Location.Y - 79));
         }
 
-        private void ConfigContainer_Load(object sender, EventArgs e)
+        private async void ConfigContainer_Load(object sender, EventArgs e)
         {
             this.BackColor = Estilo.fondo;
             lblConfig.ForeColor = Estilo.Contraste;
@@ -69,21 +72,119 @@ namespace ProWork.De_Configuración__Cristian_
                     pbxClaro.Image = Properties.Resources.Selección_Tema;
                     break;
             }
-            Program.tryToConnect();
-            lst.ResetElementos(new("select idusuario, nombre, administrador from usuario", Program.connection));
-            //MySqlCommand cmd = new("Select fecha, count(fecha) from carga order by fecha", Program.connection);
+            await ResetElementos();
+        }
 
-            //MySqlDataReader rdr = cmd.ExecuteReader();
-            //List<Point> buffer = new List<Point>();
-            //int i = 0;
-            //while (rdr.Read())
-            //{
-            //    buffer.Add(new(i, rdr.GetInt32(1)));
-            //    i++;
-            //}
-            //rdr.Read();
-            //grf.Scale = new(10, 10);
-            //grf.Points = buffer.ToArray();
+        public async Task ResetElementos()
+        {
+            await Program.waitForOpenConnection();
+            await lst.ResetElementos(new("select idusuario, nombre, administrador from usuario order by nombre", Program.connection));
+
+            List<Point> buffer = new List<Point>();
+
+            MySqlCommand cmd = new("Select fecha, count(fecha) from carga group by fecha order by fecha", Program.connection);
+
+            
+            MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
+            await rdr.ReadAsync();
+            List<DateTime> datelist = new();
+            List<long> countList = new();
+
+            dtpStart.Value = rdr.GetDateTime(0);
+            grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
+
+            TimeSpan ts = dtpEnd.Value - rdr.GetDateTime(0);
+
+
+            ts = dtpEnd.Value - rdr.GetDateTime(0);
+            datelist.Add(rdr.GetDateTime(0));
+            countList.Add(rdr.GetInt64(1));
+
+            while (await rdr.ReadAsync())
+            {
+                if (rdr.GetDateTime(0) < dtpStart.Value)
+                {
+                    dtpStart.Value = rdr.GetDateTime(0);
+                    startDateMemory = dtpStart.Value;
+                }
+                if (rdr.GetInt64(1) * 1.2 > grf.Scale.Height)
+                {
+                    grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
+                }
+                datelist.Add(rdr.GetDateTime(0));
+                countList.Add(rdr.GetInt64(1));
+            }
+            await rdr.CloseAsync();
+            string s = "";
+            for (int i = 0; i < datelist.Count; i++)
+            {
+                ts = datelist[i] - dtpStart.Value;
+                buffer.Add(new ((int)ts.TotalDays, (int)countList[i]));
+                s += buffer[i].ToString();
+            }
+
+            ts = dtpEnd.Value - dtpStart.Value;
+
+            grf.Points = buffer.ToArray();
+            grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+
+            DateTime shift = dtpEnd.Value;
+            shift.AddDays(-1);
+            dtpStart.MaxDate = shift;
+            shift = dtpStart.Value;
+            shift.AddDays(2);
+            dtpEnd.MinDate = shift;
+        }
+
+        private async void lst_itemEnterHover(object sender, EventArgs e)
+        {
+            if(itemExecuting)
+            {
+                return;
+            }
+            itemExecuting = true;
+            MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", Program.connection);
+            if (Program.connection.State == ConnectionState.Executing)
+            {
+
+            }
+            MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
+
+            TimeSpan ts;
+            List<Point> buffer = new();
+            while (await rdr.ReadAsync())
+            {
+                ts = rdr.GetDateTime(0) - startDateMemory;
+                buffer.Add(new((int)ts.TotalDays, rdr.GetInt32(1)));
+            }
+            grf.Points = buffer.ToArray();
+            await rdr.CloseAsync();
+            itemExecuting = false;
+        }
+
+
+        private void dtpEnd_ValueChanged(object sender, EventArgs e)
+        {
+            TimeSpan ts = dtpEnd.Value - dtpStart.Value;
+            grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+            DateTime shift = dtpEnd.Value;
+            shift.AddDays(-10);
+            dtpStart.MaxDate = shift;
+        }
+
+        private void dtpStart_ValueChanged(object sender, EventArgs e)
+        {
+            TimeSpan ts = dtpEnd.Value - dtpStart.Value;
+            grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+
+            if (grf.Points.Length > 1)
+            {
+                ts += dtpStart.Value - startDateMemory;
+                grf.XOffset = (int)ts.TotalDays;
+            }
+            DateTime shift = dtpStart.Value;
+            shift.AddDays(10);
+            dtpEnd.MinDate = shift;
         }
 
         public void ResetElementos(MySqlCommand cmd)
@@ -172,13 +273,13 @@ namespace ProWork.De_Configuración__Cristian_
             this.ParentForm.Close();
         }
 
-        private void lst_trashClicked(object sender, EventArgs e)
+        private async void lst_trashClicked(object sender, EventArgs e)
         {
+            await Program.waitForOpenConnection();
             if (((Item)sender).Text == Program.user)
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar SU cuenta?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Program.tryToConnect();
 
                     MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
                     cmd.ExecuteNonQuery();
@@ -192,11 +293,9 @@ namespace ProWork.De_Configuración__Cristian_
             {
                 if (MessageBox.Show($"¿Esta seguro que desea eliminar la cuenta {((Item)sender).Text}?", "Confirmar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Program.tryToConnect();
-
                     MySqlCommand cmd = new($"delete from usuario where nombre='{((Item)sender).Text}';", Program.connection);
                     cmd.ExecuteNonQuery();
-                    lst.ResetElementos(null);
+                    await lst.ResetElementos(null);
                 }
             }
         }
@@ -239,21 +338,12 @@ namespace ProWork.De_Configuración__Cristian_
             frm.Show();
         }
 
-        private void lst_statsClicked(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void grf_Load(object sender, EventArgs e)
-        {
-        }
-
         private void grf_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

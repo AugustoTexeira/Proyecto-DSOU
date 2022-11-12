@@ -38,10 +38,10 @@
             this.lblTema = new System.Windows.Forms.Label();
             this.lst = new ProWork.List();
             this.lblDudas = new System.Windows.Forms.LinkLabel();
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.grf = new ProWork.Grafica();
-            this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOscuro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClaro)).BeginInit();
             this.SuspendLayout();
@@ -170,6 +170,7 @@
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(673, 318);
             this.lst.TabIndex = 15;
+            this.lst.itemEnterHover += new System.EventHandler(this.lst_itemEnterHover);
             this.lst.gearClicked += new System.EventHandler(this.lst_gearClicked);
             this.lst.trashClicked += new System.EventHandler(this.lst_trashClicked);
             this.lst.itemClicked += new System.EventHandler(this.lst_itemClicked);
@@ -195,79 +196,84 @@
             this.lblDudas.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
             this.lblDudas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDudas_LinkClicked);
             // 
-            // datePicker
+            // dtpStart
             // 
-            this.datePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.datePicker.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.datePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.datePicker.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.datePicker.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.datePicker.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.datePicker.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datePicker.Location = new System.Drawing.Point(747, 401);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(115, 25);
-            this.datePicker.TabIndex = 18;
-            this.datePicker.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
-            this.datePicker.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dtpStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpStart.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpStart.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpStart.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpStart.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtpStart.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpStart.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dtpStart.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStart.Location = new System.Drawing.Point(739, 401);
+            this.dtpStart.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(115, 25);
+            this.dtpStart.TabIndex = 18;
+            this.dtpStart.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
+            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
             // 
             // grf
             // 
             this.grf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grf.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.grf.Downwards = false;
             this.grf.highlightDots = false;
             this.grf.isBarGraph = false;
-            this.grf.Location = new System.Drawing.Point(747, 432);
+            this.grf.Location = new System.Drawing.Point(739, 432);
             this.grf.Name = "grf";
             this.grf.onlyDots = false;
             this.grf.Points = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 0),
-        new System.Drawing.Point(2, 10),
-        new System.Drawing.Point(5, 13),
-        new System.Drawing.Point(10, 5)};
+        new System.Drawing.Point(0, 0)};
             this.grf.realCoordsOfPoints = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 358),
-        new System.Drawing.Point(71, 119),
-        new System.Drawing.Point(179, 47),
-        new System.Drawing.Point(358, 238)};
+        new System.Drawing.Point(0, 358)};
             this.grf.Scale = new System.Drawing.Size(10, 15);
-            this.grf.Size = new System.Drawing.Size(358, 358);
+            this.grf.Size = new System.Drawing.Size(364, 358);
             this.grf.TabIndex = 19;
             this.grf.XOffset = 0;
             this.grf.YOffset = 0;
             this.grf.Load += new System.EventHandler(this.grf_Load_1);
             // 
-            // mySqlCommand1
+            // dtpEnd
             // 
-            this.mySqlCommand1.CacheAge = 0;
-            this.mySqlCommand1.Connection = null;
-            this.mySqlCommand1.EnableCaching = false;
-            this.mySqlCommand1.Transaction = null;
+            this.dtpEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpEnd.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpEnd.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpEnd.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpEnd.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtpEnd.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.dtpEnd.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEnd.Location = new System.Drawing.Point(993, 401);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(110, 25);
+            this.dtpEnd.TabIndex = 20;
+            this.dtpEnd.Value = new System.DateTime(2022, 11, 10, 0, 0, 0, 0);
+            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
             // 
-            // dateTimePicker1
+            // label1
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dateTimePicker1.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dateTimePicker1.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(1001, 401);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(110, 25);
-            this.dateTimePicker1.TabIndex = 20;
-            this.dateTimePicker1.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Raleway", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(739, 359);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 39);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Actividad:";
             // 
             // ConfigContainer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.datePicker);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpEnd);
+            this.Controls.Add(this.dtpStart);
             this.Controls.Add(this.lblDudas);
             this.Controls.Add(this.lst);
             this.Controls.Add(this.lblCuentas);
@@ -304,9 +310,9 @@
         private Label lblTema;
         private List lst;
         private LinkLabel lblDudas;
-        private DateTimePicker datePicker;
+        private DateTimePicker dtpStart;
         private Grafica grf;
-        private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpEnd;
+        private Label label1;
     }
 }

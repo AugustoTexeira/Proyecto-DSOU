@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿
 using System.Drawing.Drawing2D;
 
 namespace ProWork
@@ -32,9 +32,27 @@ namespace ProWork
         public static TextureBrush defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, 1, 1));
         public static Image trashImage = Estilo.ResizeImage(Properties.Resources.Basura, 1, 1);
         public static Image gearImage = Estilo.ResizeImage(Properties.Resources.Configuración, 1, 1);
-        private bool hovered
+        private byte hovered
         {
-            get { return (hover > 0); }
+            get { return hover; }
+            set
+            {
+                if (hover < value && value == 1)
+                {
+                    enterHover.Invoke(this, EventArgs.Empty);
+                }
+                if (value == 0)
+                {
+                    exitHover.Invoke(this, EventArgs.Empty);
+                }
+                hover = value;
+            }
+        }
+        public event EventHandler enterHover;
+        public event EventHandler exitHover;
+        private void paqnosequejen (object sender, EventArgs e)
+        {
+
         }
         private byte hover = 0;
         private static bool theme = false; //Oscuro = false; Claro = true;
@@ -42,11 +60,13 @@ namespace ProWork
         public override string Text
         {
             get { return text; }
-            set { text = value; this.Refresh(); }
+            set { text = value; this.Invalidate(); }
         }
         public int id = 0;
         public Item()
         {
+            enterHover += paqnosequejen;
+            exitHover += paqnosequejen;
             InitializeComponent();
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
 
@@ -114,7 +134,7 @@ namespace ProWork
                 mode = 0;
                 if (text == Program.user) { Program.userAdmin = false; }
             }
-            Refresh();
+            Invalidate();
         }
 
         private void colorSwap(object sender, EventArgs e)
@@ -143,7 +163,7 @@ namespace ProWork
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             //Botones
-            if (hovered && Program.userAdmin)
+            if (hovered > 0 && Program.userAdmin)
             {
                 showButtons();
             }
@@ -153,7 +173,7 @@ namespace ProWork
             }
 
             //Degradado on hover
-            if (hovered)
+            if (hovered > 0)
             {
                 LinearGradientBrush grdBrush;
                 if(Estilo.fondo == Color.White)
@@ -294,46 +314,46 @@ namespace ProWork
         }
         private void ContactosItem_MouseEnter(object sender, EventArgs e)
         {
-            hover++;
-            this.Refresh();
+            hovered++;
+            this.Invalidate();
         }
 
         private async void ContactosItem_MouseLeave(object sender, EventArgs e)
         {
             await Task.Delay(1);
-            hover--;
-            this.Refresh();
+            hovered--;
+            this.Invalidate();
         }
 
         private void epbDelete_MouseEnter(object sender, EventArgs e)
         {
-            hover++;
-            this.Refresh();
+            hovered++;
+            this.Invalidate();
         }
 
         private async void epbDelete_MouseLeave(object sender, EventArgs e)
         {
             await Task.Delay(1);
-            hover--;
-            this.Refresh();
+            hovered--;
+            this.Invalidate();
         }
 
         private void btnConfig_MouseEnter(object sender, EventArgs e)
         {
-            hover++;
-            this.Refresh();
+            hovered++;
+            this.Invalidate();
         }
 
         private async void btnConfig_MouseLeave(object sender, EventArgs e)
         {
             await Task.Delay(1);
-            hover--;
-            this.Refresh();
+            hovered--;
+            this.Invalidate();
         }
         public void CallReset(object sender, EventArgs e)
         {
             text = sender.ToString();
-            Refresh();
+            Invalidate();
         }
 
         private void epbDelete_Click(object sender, EventArgs e)

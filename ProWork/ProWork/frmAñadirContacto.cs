@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 
 namespace ProWork
 {
@@ -19,24 +19,18 @@ namespace ProWork
             InitializeComponent();
         }
 
-        private void bgwConfirmar_DoWork(object sender, DoWorkEventArgs e)
+        private async void cbtAniadir_ButtonClick(object sender, EventArgs e)
         {
-            Program.tryToConnect();
-            cmd.ExecuteNonQuery();
-        }
-
-        private void cbtAniadir_ButtonClick(object sender, EventArgs e)
-        {
+            await Program.waitForOpenConnection();
             if(utbNombre.txbText != "" && utbCorreo.txbText.Contains('@'))
             {
-                Program.tryToConnect();
                 cmd = new($"select correoElectronico from contacto", Program.connection);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataReader reader = await cmd.ExecuteReaderAsync();
 
                 bool v = true;
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     if (utbCorreo.txbText == reader.GetString(0))
                     {
@@ -44,7 +38,7 @@ namespace ProWork
                         break;
                     }
                 }
-                reader.Close();
+                await reader.CloseAsync();
 
                 if(!v)
                 {
@@ -52,24 +46,16 @@ namespace ProWork
                     return;
                 }
 
-                if (!bgwConfirmar.IsBusy)
-                {
-                    cmd = new($"insert into contacto(correoElectronico, nombre, número, descripcion) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", Program.connection);
-                    bgwConfirmar.RunWorkerAsync();
-                }
+                cmd = new($"insert into contacto(correoElectronico, nombre, número, descripción) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", Program.connection);
+                await cmd.ExecuteNonQueryAsync();
+                CambioExitoso.Invoke(sender, e);
+                this.Close();
             }
             else
             {
                 MessageBox.Show("El contacto debe tener nombre y un correo electrónico válido.");
             }
         }
-
-        private void bgwConfirmar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            CambioExitoso.Invoke(sender, e);
-            this.Close();
-        }
-
         private void frmAñadirContacto_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
