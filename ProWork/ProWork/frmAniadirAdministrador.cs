@@ -65,7 +65,7 @@ namespace ProWork
                     MessageBox.Show("Contraseña incorrecta");
                 }
             }
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
         }
 
         public event EventHandler ascendido;

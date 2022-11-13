@@ -71,7 +71,10 @@ namespace ProWork
 
         private void CustomButton_Resize(object sender, EventArgs e)
         {
-            updateBrush();
+            if (Size.Height != 0)
+            {
+                updateBrush();
+            }
         }
         private void updateBrush()
         {

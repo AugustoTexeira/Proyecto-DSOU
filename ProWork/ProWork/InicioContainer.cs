@@ -16,6 +16,12 @@ namespace ProWork
         {
             InitializeComponent();
             BackColor = Estilo.fondo;
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+            if(BackColor == Color.White)
+            {
+                lblProyecto.ForeColor = Estilo.Contraste;
+                lblArrastre.ForeColor = Estilo.Contraste;
+            }
         }
 
         private void crearbtn_Click(object sender, EventArgs e)
@@ -30,6 +36,13 @@ namespace ProWork
                     MessageBox.Show(archivo);
                 }
             }
+        }
+
+        private void colorSwap (object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+            lblArrastre.ForeColor = Estilo.Contraste;
+            lblProyecto.ForeColor = Estilo.Contraste;
         }
 
         private void InicioContainer_Load(object sender, EventArgs e)

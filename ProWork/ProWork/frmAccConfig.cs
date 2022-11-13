@@ -67,7 +67,7 @@ namespace ProWork
                         }
                     }
                 }
-                await Program.closeOpenConnectionAsync(con);
+                Program.closeOpenConnection();
             }
             else
             {

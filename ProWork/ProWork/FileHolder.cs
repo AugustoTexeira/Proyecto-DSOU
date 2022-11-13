@@ -37,7 +37,7 @@ namespace ProWork
             }
             Entrar.Invoke(null, null);
             await reader.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
         }
         private void FileHolder_Resize(object sender, EventArgs e)
         {
@@ -113,7 +113,7 @@ namespace ProWork
             }
             Entrar.Invoke(sender, e);
             await reader.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
         }
 
         public event EventHandler Entrar;

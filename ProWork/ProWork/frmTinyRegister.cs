@@ -37,7 +37,7 @@ namespace ProWork
             }
         }
 
-        private async void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
+        private void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
         {
             if (utbCContra.Visible) // Registro
             {
@@ -45,7 +45,7 @@ namespace ProWork
                 {
                     try
                     {
-                        var con = await Program.openConnectionAsync();
+                        var con = Program.openConnection();
                         MySqlCommand vRegistro = new("select nombre from usuario;", con);
                         MySqlDataReader reader = vRegistro.ExecuteReader();
 
@@ -75,7 +75,7 @@ namespace ProWork
                         {
                             MessageBox.Show("La cuenta ya existe.");
                         }
-                        await Program.closeOpenConnectionAsync(con);
+                        Program.closeOpenConnection();
                     }
                     catch (Exception ex)
                     {
@@ -91,14 +91,14 @@ namespace ProWork
             {
                 try
                 {
-                    var con = await Program.openConnectionAsync();
+                    var con = Program.openConnection();
                     MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", con);
-                    MySqlDataReader reader = await vLogin.ExecuteReaderAsync();
+                    MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
                     bool admin = false;
 
-                    while (await reader.ReadAsync())
+                    while (reader.Read())
                     {
                         if (utbNombre.txbText == reader.GetString(0))
                         {
@@ -117,8 +117,8 @@ namespace ProWork
                     {
                         MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
                     }
-                    await reader.CloseAsync();
-                    await Program.closeOpenConnectionAsync(con);
+                    reader.Close();
+                    Program.closeOpenConnection();
                 }
                 catch (Exception ex)
                 {

@@ -65,6 +65,7 @@ namespace ProWork
         public int id = 0;
         public Item()
         {
+            
             enterHover += paqnosequejen;
             exitHover += paqnosequejen;
             InitializeComponent();

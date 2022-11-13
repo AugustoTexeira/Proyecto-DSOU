@@ -39,7 +39,7 @@ namespace ProWork
                     this.Controls.Add(lbl);
                 }
                 reader.Close();
-                await Program.closeOpenConnectionAsync(con);
+                Program.closeOpenConnection();
             }
             else
             {

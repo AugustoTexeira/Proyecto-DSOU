@@ -55,7 +55,7 @@ namespace ProWork
 
         private void enhancedPictureBox_Layout(object sender, LayoutEventArgs e)
         {
-            if (bkgImage != null && txtBrush.Image.Size != Size)
+            if (bkgImage != null && txtBrush.Image.Size != Size && Size.Height != 0 && Size.Width != 0)
             {
                 txtBrush = new(Estilo.ResizeImage(bkgImage, (int)Width, (int)Height));
             }

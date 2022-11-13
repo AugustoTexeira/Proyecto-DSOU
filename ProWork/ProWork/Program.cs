@@ -37,29 +37,9 @@ namespace ProWork
 
             Application.Run();
         }
-        public async static Task closeOpenConnectionAsync (MySqlConnection con)
+        public static void closeOpenConnection ()
         {
-            if (con.ConnectionString == sql.ConnectionString)
-            {
-                executingsql = false;
-                return;
-            }
-            else
-            {
-                await con.CloseAsync();
-                return;
-            }
-        }
-        public static void closeOpenConnection(MySqlConnection con)
-        {
-            if (con.ConnectionString == sql.ConnectionString)
-            {
-                executingsql = false;
-            }
-            else
-            {
-                con.Close();
-            }
+            executingsql = false;
         }
         public async static Task<MySqlConnection> openConnectionAsync ()
         {
@@ -73,23 +53,6 @@ namespace ProWork
             {
                 var con = await openConnectionAsync();
                 return con;
-                //MySqlConnection con = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
-                //try
-                //{
-                //    await con.OpenAsync();
-                //}
-                //catch
-                //{
-                //    if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                //    {
-                //        return await openConnectionAsync();
-                //    }
-                //    else
-                //    {
-                //        Application.Exit();
-                //    }
-                //}
-                //return con;
             }
         }
         public static MySqlConnection openConnection()

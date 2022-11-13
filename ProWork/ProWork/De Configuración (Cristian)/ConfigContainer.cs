@@ -137,7 +137,7 @@ namespace ProWork.De_Configuración__Cristian_
                 dtpEnd.MinDate = shift;
             }
             await rdr.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
             MessageBox.Show(this.Controls.Count.ToString());
         }
 
@@ -156,7 +156,7 @@ namespace ProWork.De_Configuración__Cristian_
             }
             grf.Points = buffer.ToArray();
             await rdr.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
         }
 
 
@@ -295,7 +295,7 @@ namespace ProWork.De_Configuración__Cristian_
                     await lst.ResetElementos(null);
                 }
             }
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
         }
 
         private void lst_gearClicked(object sender, EventArgs e)

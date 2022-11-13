@@ -49,7 +49,7 @@ namespace ProWork
                 cmd = new($"insert into contacto(correoElectronico, nombre, número, descripción) values('{utbCorreo.txbText}', '{utbNombre.txbText}', '{utbTel.txbText}', '{stbDesc.rtbText}')", con);
                 await cmd.ExecuteNonQueryAsync();
                 CambioExitoso.Invoke(sender, e);
-                await Program.closeOpenConnectionAsync(con);
+                Program.closeOpenConnection();
                 this.Close();
             }
             else

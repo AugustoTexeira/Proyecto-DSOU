@@ -100,7 +100,7 @@ namespace ProWork
             this.Invalidate();
 
             await lector.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
             return;
         }
         public event EventHandler itemEnterHover;

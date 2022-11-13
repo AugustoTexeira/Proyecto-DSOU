@@ -60,7 +60,7 @@ namespace ProWork
             MySqlCommand cmd = new($"update contacto set correoElectronico='{utbEmail.txbText}', nombre='{txbNombre.Text}', número='{utbTel.txbText}', descripción='{stbDesc.rtbText}' where idcontacto={id}", con);
             cmd.ExecuteNonQuery();
             CambioExitoso.Invoke(txbNombre.Text, e);
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
             this.Close();
         }
 

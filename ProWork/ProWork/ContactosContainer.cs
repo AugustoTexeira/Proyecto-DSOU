@@ -65,7 +65,7 @@ namespace ProWork
                     string texto = srbBuscar.txb.Text.Replace($"\\", String.Empty);
                     await clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';", con));
                 }
-                await Program.closeOpenConnectionAsync(con);
+                Program.closeOpenConnection();
                 e.Handled = true;
             }
         }
@@ -78,7 +78,7 @@ namespace ProWork
             frmContactosConfig config = new(((Item)sender).id, ((Item)sender).Text, reader);
             config.CambioExitoso += ((Item)sender).CallReset;
             await reader.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
             config.Show();
         }
 
@@ -90,7 +90,7 @@ namespace ProWork
                 MySqlCommand cmd = new($"delete from contacto where idcontacto='{((Item)sender).id}';", con);
                 await cmd.ExecuteNonQueryAsync();
                 await clt.ResetElementos(null);
-                await Program.closeOpenConnectionAsync(con);
+                Program.closeOpenConnection();
             }
         }
 
@@ -102,7 +102,7 @@ namespace ProWork
             MySqlDataReader reader = await cmd.ExecuteReaderAsync();
             frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text, reader);
             await reader.CloseAsync();
-            await Program.closeOpenConnectionAsync(con);
+            Program.closeOpenConnection();
             frm.Show();
         }
     }

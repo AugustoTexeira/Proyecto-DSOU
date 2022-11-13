@@ -101,7 +101,7 @@ namespace ProWork
                         {
                             MessageBox.Show("La cuenta ya existe.");
                         }
-                        Program.closeOpenConnection(con);
+                        Program.closeOpenConnection();
                     }
                     catch (Exception ex)
                     {
@@ -133,7 +133,7 @@ namespace ProWork
                     }
 
                     reader.Close();
-                    Program.closeOpenConnection(con);
+                    Program.closeOpenConnection();
                     if (v)
                     {
                         Program.user = ctbNombre.txbText;
