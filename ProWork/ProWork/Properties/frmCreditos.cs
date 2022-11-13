@@ -162,8 +162,15 @@ namespace ProWork.Properties
 
         private void linkAugusto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Clipboard.SetText("Email: augustotexeira23@gmail.com\n Teléfono: 092 313 392");
-            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+            /*Clipboard.SetText("Email: augustotexeira23@gmail.com\n Teléfono: 092 313 392");
+            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");*/
+            //System.Diagnostics.Process.Start("cmd", "/C start" + " " + "www.youtube.com");
+            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=VpCqJTBhrKDpSjSGqsDJJDnqNTnPjzxVNwHKpmFHGfJfqZBvzptxgjtqRKKDzctkPgQVcNQ";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
         }
 
         private void linkPinto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

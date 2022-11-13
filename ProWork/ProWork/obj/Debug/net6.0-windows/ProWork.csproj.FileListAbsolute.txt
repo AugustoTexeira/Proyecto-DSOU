@@ -247,7 +247,6 @@ C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-win
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.CustomButton.resources
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.ConfigContainer.resources
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ControlCuentas.resources
-C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.frmUserStats.resources
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.enhancedPictureBox.resources
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.FileHolder.resources
 C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAccConfig.resources
