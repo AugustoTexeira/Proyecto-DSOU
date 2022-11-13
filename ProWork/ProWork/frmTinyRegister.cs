@@ -92,7 +92,7 @@ namespace ProWork
                 try
                 {
                     var con = Program.openConnection();
-                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('" + utbContra.txbText + "', 224);", con);
+                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and binary nombre='{ctbNombre.txbText}';;", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
 
                     bool v = false;
@@ -232,6 +232,11 @@ namespace ProWork
                 pbPlusUser.Visible = false;
                 tmrIntoLogin.Stop();
             }
+        }
+
+        private void cbtCrear_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

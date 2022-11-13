@@ -28,11 +28,24 @@ namespace ProWork
             }
             this.id = id;
             ascendido += paqnosequeje;
+            BackColor = Estilo.fondo;
+            lblInfo.ForeColor = Estilo.Contraste;
+            lvlVuestro.ForeColor = Estilo.Contraste;
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+            utbContra.BackColor = BackColor;
+            utbContra.ForeColor = ForeColor;
+        }
+        private void colorSwap (object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+            lblInfo.ForeColor = Estilo.Contraste;
+            lvlVuestro.ForeColor = Estilo.Contraste;
+            utbContra.BackColor = BackColor;
+            utbContra.ForeColor = ForeColor;
         }
 
         private void paqnosequeje(object sender, EventArgs e)
         {
-
         }
 
         private async void cbtAscender_Click(object sender, EventArgs e)
@@ -74,6 +87,10 @@ namespace ProWork
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
             this.Dispose();
+        }
+
+        private void utbContra_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }

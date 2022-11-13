@@ -47,6 +47,7 @@
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(258, 63);
             this.btnCrear.TabIndex = 0;
+            this.btnCrear.TabStop = false;
             this.btnCrear.Texto = "Crear";
             this.btnCrear.ButtonClick += new System.EventHandler(this.crearbtn_Click);
             // 

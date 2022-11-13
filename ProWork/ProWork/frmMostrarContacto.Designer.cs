@@ -38,6 +38,8 @@
             // lblEmail
             // 
             this.lblEmail.ActiveLinkColor = System.Drawing.Color.White;
+            this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmail.DisabledLinkColor = System.Drawing.Color.White;
             this.lblEmail.Font = new System.Drawing.Font("Raleway", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblEmail.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
@@ -54,6 +56,8 @@
             // lblTel
             // 
             this.lblTel.ActiveLinkColor = System.Drawing.Color.White;
+            this.lblTel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTel.DisabledLinkColor = System.Drawing.Color.White;
             this.lblTel.Font = new System.Drawing.Font("Raleway", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
@@ -69,6 +73,8 @@
             // 
             // lblNombre
             // 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNombre.AutoEllipsis = true;
             this.lblNombre.Font = new System.Drawing.Font("Raleway", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblNombre.ForeColor = System.Drawing.Color.White;
@@ -81,6 +87,9 @@
             // 
             // rtb
             // 
+            this.rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rtb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtb.Font = new System.Drawing.Font("Raleway", 8.95F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -96,6 +105,7 @@
             // 
             // epb
             // 
+            this.epb.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.epb.BackColor = System.Drawing.Color.Transparent;
             this.epb.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
             this.epb.Circle = true;
@@ -115,8 +125,8 @@
             this.Controls.Add(this.lblTel);
             this.Controls.Add(this.lblEmail);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(549, 704);
             this.Name = "frmMostrarContacto";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -293,6 +293,16 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MasUsuario_Azul {
+            get {
+                object obj = ResourceManager.GetObject("MasUsuario_Azul", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ojito_no {
             get {
                 object obj = ResourceManager.GetObject("Ojito no", resourceCulture);
@@ -446,6 +456,16 @@ namespace ProWork.Properties {
         internal static System.Drawing.Bitmap Usuario {
             get {
                 object obj = ResourceManager.GetObject("Usuario", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Usuario_azul {
+            get {
+                object obj = ResourceManager.GetObject("Usuario_azul", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

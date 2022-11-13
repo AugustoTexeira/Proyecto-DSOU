@@ -19,7 +19,6 @@ namespace ProWork
             srbBuscar.BackColor = Estilo.fondo;
             lblContactos.ForeColor = Estilo.Contraste;
             clt.mode = 1;
-            clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;"));
             srbBuscar.txb.KeyPress += txb_KeyPress;
             if(!Program.userAdmin)
             {
@@ -55,17 +54,15 @@ namespace ProWork
         {
             if(e.KeyChar == (char)Keys.Enter)
             {
-                var con = await Program.openConnectionAsync();
                 if(srbBuscar.txb.Text == "")
                 {
-                    await clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;", con));
+                    await clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;"));
                 }
                 else
                 {
                     string texto = srbBuscar.txb.Text.Replace($"\\", String.Empty);
-                    await clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';", con));
+                    await clt.ResetElementos(new($"select idcontacto, nombre from (select * from contacto where match(correoElectronico, nombre, número, descripción) against('%{texto}%' in boolean mode)) as tabla order by nombre != '{texto}' and correoElectronico != '{texto}' and número != '{texto}' and descripción != '{texto}';"));
                 }
-                Program.closeOpenConnection();
                 e.Handled = true;
             }
         }
@@ -104,6 +101,11 @@ namespace ProWork
             await reader.CloseAsync();
             Program.closeOpenConnection();
             frm.Show();
+        }
+
+        private async void ContactosContainer_Load(object sender, EventArgs e)
+        {
+            await clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;"));
         }
     }
 }

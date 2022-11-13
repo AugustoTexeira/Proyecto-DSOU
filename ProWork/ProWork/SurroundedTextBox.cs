@@ -37,7 +37,12 @@ namespace ProWork
             InitializeComponent();
             lbl.Location = new(Estilo.curva / 2, 0);
             rtb.BackColor = this.BackColor;
-        }   
+            EnterPressed += paqnosequeje;
+        }
+        private void paqnosequeje (object sender, EventArgs e)
+        {
+
+        }
 
         private void ProWorkBigText_Paint(object sender, PaintEventArgs e)
         {
@@ -69,11 +74,6 @@ namespace ProWork
 
         private void ProWorkBigText_Resize(object sender, EventArgs e)
         {
-            lbl.Location = new(Estilo.curva / 2, 0);
-            lbl.Height = this.fontTitulo.Height;
-            rtb.Location = new(Estilo.curva / 2, lbl.Height + Estilo.curva / 2);
-            rtb.Width = this.Width - Estilo.curva;
-            rtb.Height = this.Height - Estilo.curva - lbl.Height;
         }
 
         private void tmrSurayado_Tick(object sender, EventArgs e)
@@ -149,5 +149,24 @@ namespace ProWork
         {
             System.Diagnostics.Process.Start("explorer", e.LinkText);
         }
+
+        private void SurroundedTextBox_Layout(object sender, LayoutEventArgs e)
+        {
+            lbl.Location = new(Estilo.curva / 2, 0);
+            lbl.Height = this.fontTitulo.Height;
+            rtb.Location = new(Estilo.curva / 2, lbl.Height + Estilo.curva / 2);
+            rtb.Width = this.Width - Estilo.curva;
+            rtb.Height = this.Height - Estilo.curva - lbl.Height;
+            Invalidate();
+        }
+
+        private void rtb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                EnterPressed.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler EnterPressed;
     }
 }

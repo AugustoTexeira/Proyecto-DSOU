@@ -33,12 +33,15 @@ namespace ProWork
         {
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            brush = new LinearGradientBrush(
-                new Point(0, 0),
-                new Point(this.Width, 0),
-                Estilo.enfasis,
-                Estilo.degrEnfasis
-                );
+            if (ClientSize.Width != 0)
+            {
+                brush = new LinearGradientBrush(
+                    new Point(0, 0),
+                    new Point(this.Width, 0),
+                    Estilo.enfasis,
+                    Estilo.degrEnfasis
+                    );
+            }
         }
 
         private void CustomButton_Paint(object sender, PaintEventArgs e)
@@ -78,13 +81,16 @@ namespace ProWork
         }
         private void updateBrush()
         {
-            brush = new(
-                new Point(0, 0),
-                new Point(this.Width, 0),
-                Estilo.enfasis,
-                Estilo.degrEnfasis
-                );
-            this.Invalidate();
+            if (ClientSize.Width != 0)
+            {
+                brush = new(
+                    new Point(0, 0),
+                    new Point(this.Width, 0),
+                    Estilo.enfasis,
+                    Estilo.degrEnfasis
+                    );
+                this.Invalidate();
+            }
         }
 
         private void lbl_MouseEnter(object sender, EventArgs e)

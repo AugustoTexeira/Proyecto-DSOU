@@ -93,6 +93,7 @@
             this.Name = "ContactosContainer";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 25, 25);
             this.Size = new System.Drawing.Size(985, 719);
+            this.Load += new System.EventHandler(this.ContactosContainer_Load);
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.ContactosContainer_Layout);
             this.ResumeLayout(false);
             this.PerformLayout();

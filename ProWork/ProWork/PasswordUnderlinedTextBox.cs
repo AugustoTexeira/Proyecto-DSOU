@@ -19,6 +19,7 @@ namespace ProWork
             epb.sizeToHeight(txb.Height);
             epb.Location = new(txb.Width - epb.Width, 0);
             epb.Cursor = Cursors.Hand;
+            epb.TabStop = false;
             Controls.Add(epb);
             epb.BringToFront();
         }

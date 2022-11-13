@@ -38,6 +38,8 @@
             // 
             // txbNombre
             // 
+            this.txbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txbNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.txbNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbNombre.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -51,6 +53,8 @@
             // 
             // utbEmail
             // 
+            this.utbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.utbEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.utbEmail.Location = new System.Drawing.Point(103, 278);
             this.utbEmail.Name = "utbEmail";
@@ -59,9 +63,12 @@
             this.utbEmail.TabIndex = 2;
             this.utbEmail.txbText = "";
             this.utbEmail.UsePasswordChar = false;
+            this.utbEmail.EnterPressed += new System.EventHandler(this.cbtGuardar_ButtonClick);
             // 
             // utbTel
             // 
+            this.utbTel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.utbTel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.utbTel.Location = new System.Drawing.Point(103, 333);
             this.utbTel.Name = "utbTel";
@@ -70,9 +77,13 @@
             this.utbTel.TabIndex = 3;
             this.utbTel.txbText = "";
             this.utbTel.UsePasswordChar = false;
+            this.utbTel.EnterPressed += new System.EventHandler(this.cbtGuardar_ButtonClick);
             // 
             // stbDesc
             // 
+            this.stbDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.stbDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.stbDesc.fontTitulo = new System.Drawing.Font("Segoe UI", 1.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.stbDesc.Location = new System.Drawing.Point(103, 388);
@@ -82,9 +93,11 @@
             this.stbDesc.Size = new System.Drawing.Size(324, 158);
             this.stbDesc.TabIndex = 0;
             this.stbDesc.textTitulo = "";
+            this.stbDesc.EnterPressed += new System.EventHandler(this.cbtGuardar_ButtonClick);
             // 
             // cbtGuardar
             // 
+            this.cbtGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cbtGuardar.Font = new System.Drawing.Font("Raleway", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cbtGuardar.Location = new System.Drawing.Point(173, 565);
             this.cbtGuardar.Name = "cbtGuardar";
@@ -95,6 +108,7 @@
             // 
             // enhancedPictureBox1
             // 
+            this.enhancedPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.enhancedPictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.enhancedPictureBox1.BkgImage = global::ProWork.Properties.Resources.ContactoOscuro;
             this.enhancedPictureBox1.Circle = false;
@@ -114,8 +128,8 @@
             this.Controls.Add(this.utbEmail);
             this.Controls.Add(this.txbNombre);
             this.Controls.Add(this.enhancedPictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
+            this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(549, 704);
             this.Name = "frmContactosConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmContactosConfig";

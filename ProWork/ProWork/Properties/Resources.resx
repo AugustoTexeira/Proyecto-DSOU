@@ -241,4 +241,10 @@
   <data name="fondito 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondito 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MasUsuario_Azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MasUsuario Azul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Usuario_azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Usuario azul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

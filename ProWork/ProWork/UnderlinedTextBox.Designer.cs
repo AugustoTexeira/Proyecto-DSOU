@@ -54,6 +54,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.txb);
+            this.DoubleBuffered = true;
             this.Name = "UnderlinedTextBox";
             this.Size = new System.Drawing.Size(259, 41);
             this.Load += new System.EventHandler(this.UnderlinedTextBox_Load);
@@ -61,6 +62,7 @@
             this.FontChanged += new System.EventHandler(this.UnderlinedTextBox_FontChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.UnderlinedTextBox_Paint);
             this.Enter += new System.EventHandler(this.UnderlinedTextBox_Enter);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.UnderlinedTextBox_Layout);
             this.Resize += new System.EventHandler(this.UnderlinedTextBox_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();

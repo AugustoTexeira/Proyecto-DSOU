@@ -49,6 +49,7 @@
             this.rtb.Text = "";
             this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
             this.rtb.Enter += new System.EventHandler(this.rtb_Enter);
+            this.rtb.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtb_KeyPress);
             this.rtb.Leave += new System.EventHandler(this.rtb_Leave);
             // 
             // lbl
@@ -87,6 +88,7 @@
             this.FontChanged += new System.EventHandler(this.ProWorkBigText_FontChanged);
             this.Click += new System.EventHandler(this.ProWorkBigText_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ProWorkBigText_Paint);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.SurroundedTextBox_Layout);
             this.Resize += new System.EventHandler(this.ProWorkBigText_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();

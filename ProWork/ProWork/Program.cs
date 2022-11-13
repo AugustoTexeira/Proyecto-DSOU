@@ -37,6 +37,10 @@ namespace ProWork
 
             Application.Run();
         }
+        private static void tryToConnect()
+        {
+
+        }
         public static void closeOpenConnection ()
         {
             executingsql = false;

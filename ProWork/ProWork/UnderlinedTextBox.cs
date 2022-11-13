@@ -39,7 +39,22 @@ namespace ProWork
             InitializeComponent();
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             txb.ForeColor = Estilo.Contraste;
+            txb.KeyPress += checkEnter;
+            EnterPressed += paqnosequeje;
         }
+        private void paqnosequeje (object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkEnter (object sender,KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                EnterPressed.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public event EventHandler EnterPressed;
 
         private void UnderlinedTextBox_Paint(object sender, PaintEventArgs e)
         {
@@ -67,12 +82,6 @@ namespace ProWork
 
         private void UnderlinedTextBox_Resize(object sender, EventArgs e)
         {
-            if (this.Height > txb.Height + Estilo.anchoLinea)
-            {
-                this.Height = txb.Height + Estilo.anchoLinea + 1;
-            }
-            txb.Location = new(Estilo.medioAnchoLinea, 0);
-            txb.Width = this.Width - Estilo.anchoLinea;
         }
 
         private void UnderlinedTextBox_Load(object sender, EventArgs e)
@@ -178,6 +187,17 @@ namespace ProWork
         private void UnderlinedTextBox_BackColorChanged(object sender, EventArgs e)
         {
             txb.BackColor = this.BackColor;
+        }
+
+        private void UnderlinedTextBox_Layout(object sender, LayoutEventArgs e)
+        {
+            if (this.Height > txb.Height + Estilo.anchoLinea)
+            {
+                this.Height = txb.Height + Estilo.anchoLinea + 1;
+            }
+            txb.Location = new(Estilo.medioAnchoLinea, 0);
+            txb.Width = this.Width - Estilo.anchoLinea;
+            Invalidate();
         }
     }
 }

@@ -136,7 +136,7 @@
             // 
             this.epbUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.epbUser.BackColor = System.Drawing.Color.Transparent;
-            this.epbUser.BkgImage = global::ProWork.Properties.Resources.Usuario;
+            this.epbUser.BkgImage = global::ProWork.Properties.Resources.Usuario_azul;
             this.epbUser.Circle = false;
             this.epbUser.Location = new System.Drawing.Point(1024, 134);
             this.epbUser.Name = "epbUser";
@@ -147,7 +147,7 @@
             // 
             this.epbPlusUser.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.epbPlusUser.BackColor = System.Drawing.Color.Transparent;
-            this.epbPlusUser.BkgImage = global::ProWork.Properties.Resources.MasUsuario;
+            this.epbPlusUser.BkgImage = global::ProWork.Properties.Resources.MasUsuario_Azul;
             this.epbPlusUser.Circle = false;
             this.epbPlusUser.Location = new System.Drawing.Point(1121, 180);
             this.epbPlusUser.Name = "epbPlusUser";

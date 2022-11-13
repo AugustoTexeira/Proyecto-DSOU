@@ -14,6 +14,21 @@ namespace ProWork
             utbNombre.PlaceholderText = user;
             utbContra.PlaceholderText = "Vacío: Contraseña anterior";
             utbCContra.PlaceholderText = "Vacío: Contraseña anterior";
+            BackColor = Estilo.fondo;
+            lblCContra.ForeColor = Estilo.Contraste;
+            lblContra.ForeColor = Estilo.Contraste;
+            lblNombre.ForeColor = Estilo.Contraste;
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += swapColor;
+        }
+        private void swapColor (object sender, EventArgs e)
+        {
+            BackColor = Estilo.fondo;
+            lblCContra.ForeColor = Estilo.Contraste;
+            lblContra.ForeColor = Estilo.Contraste;
+            lblNombre.ForeColor = Estilo.Contraste;
+            utbCContra.BackColor = Estilo.fondo;
+            utbContra.BackColor = Estilo.fondo;
+            utbNombre.BackColor = Estilo.fondo;
         }
 
         private async void cbtGuardar_Click(object sender, EventArgs e)
@@ -80,6 +95,11 @@ namespace ProWork
         {
             if (Application.OpenForms.Count == 0) { Application.Exit(); }
             Dispose();
+        }
+
+        private void frmAccConfig_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
