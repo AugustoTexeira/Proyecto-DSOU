@@ -82,7 +82,7 @@
             // pbxFondoLogo
             // 
             this.pbxFondoLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pbxFondoLogo.Image = global::ProWork.Properties.Resources.Fondito;
+            this.pbxFondoLogo.Image = global::ProWork.Properties.Resources.fondito_2;
             this.pbxFondoLogo.Location = new System.Drawing.Point(-364, -113);
             this.pbxFondoLogo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbxFondoLogo.Name = "pbxFondoLogo";
