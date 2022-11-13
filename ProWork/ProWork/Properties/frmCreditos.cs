@@ -156,26 +156,42 @@ namespace ProWork.Properties
 
         private void linksAlan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Clipboard.SetText("Email: cucho11moreira@gmail.com\n Teléfono: 097 414 433");
-            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNRHQBmJPnrzcpRJQgjzQcrMSjcVljnjWScftHgxlwtPVPhhkFSjhwTSzGMMHGDlVcmJJ";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
         }
 
         private void linkAugusto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Clipboard.SetText("Email: augustotexeira23@gmail.com\n Teléfono: 092 313 392");
-            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMTgmMvfGXCFNsSNNCwSzsdxRMglXrhrwmFlTHDRRjVJKCrsbMsfbxJPNbVxmfjMngqDPDt";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
         }
 
         private void linkPinto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Clipboard.SetText("Email: julianpinto444@gmail.com\n Teléfono: 091287027");
-            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRwQnlSHJRtPKxjMvvFmkfBGDDcPsCZjFvhkpjDJfQPjJlGHSKgVhKJWcZqTgxxHZQHbgBzl";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
         }
 
         private void linkCristian_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Clipboard.SetText("Email: ezponjares@gmail.com\n Teléfono: 098479701");
-            MessageBox.Show("Se ha copiado su información de contacto a vuestro portapapeles.");
+            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRwPkjPKsvrKCsPgTbcZwKhpZDsBDKWHbtCCpBCrPTnXkTVVMCGQVlBsFnxkSxZpDXCLdmhR";
+            var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
+            {
+                UseShellExecute = true,
+            };
+            System.Diagnostics.Process.Start(sInfo);
         }
 
         private void epb_DoubleClick(object sender, EventArgs e)

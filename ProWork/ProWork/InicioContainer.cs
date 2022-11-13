@@ -15,6 +15,10 @@ namespace ProWork
         public InicioContainer()
         {
             InitializeComponent();
+            uTxtNombreCliente.Visible = false;
+            uTxtNombreProyecto.Visible = false;
+            uTxtTipoProyecto.Visible = false;
+            sTxtDescripcion.Visible = false;
             BackColor = Estilo.fondo;
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
             if(BackColor == Color.White)
@@ -36,6 +40,15 @@ namespace ProWork
                     MessageBox.Show(archivo);
                 }
             }
+
+            epbNuevoProyecto.Visible = false;
+            lblArrastre.Visible = false;
+
+            uTxtNombreCliente.Visible = true;
+            uTxtNombreProyecto.Visible = true;
+            uTxtTipoProyecto.Visible = true;
+            sTxtDescripcion.Visible = true;
+
         }
 
         private void colorSwap (object sender, EventArgs e)
