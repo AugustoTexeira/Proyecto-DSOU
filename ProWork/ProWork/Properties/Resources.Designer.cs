@@ -221,6 +221,16 @@ namespace ProWork.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        /// </summary>
+        internal static System.Drawing.Icon ICO_PROWORKA {
+            get {
+                object obj = ResourceManager.GetObject("ICO_PROWORKA", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Icono_Inicio_de_sesion {
@@ -276,6 +286,16 @@ namespace ProWork.Properties {
         internal static System.Drawing.Bitmap Logo_en_login {
             get {
                 object obj = ResourceManager.GetObject("Logo en login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo_Proworka {
+            get {
+                object obj = ResourceManager.GetObject("Logo_Proworka", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

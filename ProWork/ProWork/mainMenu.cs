@@ -174,8 +174,8 @@ namespace ProWork
 
             //Logo
             Controls.Add(epbLogo);
-            epbLogo.BkgImage = Properties.Resources.Carpetas;
-            epbLogo.sizeToWidth((int)(pnlConfig.Width / 2));
+            epbLogo.BkgImage = Properties.Resources.Logo_Proworka;
+            epbLogo.sizeToWidth((int)(pnlConfig.Width / 2.1));
             epbLogo.Location = new((pnlConfig.Width- epbLogo.Width) / 2, (pnlInicio.Location.Y - epbLogo.Height) / 2);
             epbLogo.Cursor = Cursors.Hand;
             epbLogo.MouseEnter += mainMenu_MouseEnter;
@@ -548,5 +548,10 @@ namespace ProWork
         }
 
         public event EventHandler SelectedScreenChanged;
+
+        private void mainMenu_Load(object sender, EventArgs e)
+        {
+            Width = minWidth;
+        }
     }
 }

@@ -111,6 +111,7 @@
             this.Font = new System.Drawing.Font("Raleway", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Name = "mainMenu";
             this.Size = new System.Drawing.Size(326, 574);
+            this.Load += new System.EventHandler(this.mainMenu_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.mainMenu_Paint);
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.mainMenu_Layout);
             this.MouseEnter += new System.EventHandler(this.mainMenu_MouseEnter);

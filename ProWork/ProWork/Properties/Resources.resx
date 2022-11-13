@@ -241,6 +241,12 @@
   <data name="fondito 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondito 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ICO_PROWORKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ICO PROWORKA.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo_Proworka" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo Proworka.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MasUsuario_Azul" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MasUsuario Azul.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

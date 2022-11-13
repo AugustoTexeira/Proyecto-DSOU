@@ -264,7 +264,7 @@ namespace ProWork
                 if (defaultImage.Image.Height != (int)(Height / 2))
                 {
                     defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoModoClaro, (int)(Height / 2), (int)(Height / 2)));
-                    defaultImage.TranslateTransform(Height / 4 + 0.5F, Height / 4 + 0.5F);
+                    defaultImage.TranslateTransform(Height / 4, Height / 4);
                 }
             }
             else
@@ -272,7 +272,7 @@ namespace ProWork
                 if (defaultImage.Image.Height != (int)(Height / 2))
                 {
                     defaultImage = new(Estilo.ResizeImage(Properties.Resources.ContactoOscuro, (int)(Height / 2), (int)(Height / 2)));
-                    defaultImage.TranslateTransform(Height / 4 + 0.5F, Height / 4 + 0.5F);
+                    defaultImage.TranslateTransform(Height / 4, Height / 4);
                 }
             }
             if (trashImage.Height != (int)(Height / 2) && Program.userAdmin)

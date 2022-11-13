@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.btnSwap = new System.Windows.Forms.Button();
             this.pnlForeground = new System.Windows.Forms.Panel();
             this.pbxFondoLogo = new System.Windows.Forms.PictureBox();
@@ -193,6 +194,7 @@
             this.Controls.Add(this.ctbCContra);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(423, 535);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
