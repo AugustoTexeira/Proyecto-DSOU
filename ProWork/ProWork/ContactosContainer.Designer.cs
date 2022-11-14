@@ -40,12 +40,12 @@
             this.clt.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.clt.Location = new System.Drawing.Point(23, 163);
             this.clt.Margin = new System.Windows.Forms.Padding(6);
+            this.clt.mode = ((byte)(0));
             this.clt.Name = "clt";
             this.clt.Size = new System.Drawing.Size(931, 441);
             this.clt.TabIndex = 0;
             this.clt.gearClicked += new System.EventHandler(this.clt_gearClicked);
             this.clt.trashClicked += new System.EventHandler(this.clt_trashClicked);
-            this.clt.itemClicked += new System.EventHandler(this.clt_itemClicked);
             // 
             // cbnAniadir
             // 

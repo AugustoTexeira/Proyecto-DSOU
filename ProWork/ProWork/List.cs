@@ -14,7 +14,7 @@ namespace ProWork
 {
     public partial class List : UserControl
     {
-        public byte mode = 0; // 0=usuarios; 1=contactos; >1 = indefinido
+        public byte mode { get; set; } = 0; // 0=usuarios; 1=contactos; >1 = indefinido
         private MySqlCommand cmd = new();
         public List()
         {
@@ -68,7 +68,7 @@ namespace ProWork
                         item.Location = new Point(0, Estilo.medioAnchoLinea + i * item.Height);
                         item.gearClicked += gearClicked;
                         item.trashClicked += trashClicked;
-                        item.Click += itemClicked;
+                        item.MouseClick += itemClicked;
                         item.enterHover += itemEnterHover;
                         item.exitHover += itemExitHover;
                         this.Controls.Add(item);
@@ -90,7 +90,7 @@ namespace ProWork
                         item.Location = new Point(0, Estilo.medioAnchoLinea + i * item.Height);
                         item.gearClicked += gearClicked;
                         item.trashClicked += trashClicked;
-                        item.Click += itemClicked;
+                        item.MouseClick += itemClicked;
                         this.Controls.Add(item);
 
                         i++;
@@ -142,7 +142,12 @@ namespace ProWork
 
         public event EventHandler gearClicked;
         public event EventHandler trashClicked;
-        public event EventHandler itemClicked;
+        public event MouseEventHandler itemClicked;
         public event EventHandler statsClicked;
+
+        private void List_MouseClick(object sender, MouseEventArgs e)
+        {
+            itemClicked.Invoke(sender,e);
+        }
     }
 }

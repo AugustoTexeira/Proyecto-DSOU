@@ -7,7 +7,7 @@ namespace ProWork
     {
         private enhancedPictureBox epbConfig = new();
         private enhancedPictureBox epbDelete = new();
-        private byte pmode = 0; // 0=usuarios; 1=contactos; 2=usuario admin; >2 = indefinido
+        private byte pmode = 0; // 0=usuarios; 1=contactos; 2=usuario admin; 3=carpetas; >2 = indefinido
         public byte mode
         {
             get { return pmode; }
@@ -48,6 +48,7 @@ namespace ProWork
                 hover = value;
             }
         }
+        public event EventHandler winformsHover;
         public event EventHandler enterHover;
         public event EventHandler exitHover;
         private void paqnosequejen (object sender, EventArgs e)
@@ -68,6 +69,7 @@ namespace ProWork
             
             enterHover += paqnosequejen;
             exitHover += paqnosequejen;
+            winformsHover += paqnosequejen;
             InitializeComponent();
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
 
@@ -92,7 +94,7 @@ namespace ProWork
                 }
                 theme = false;
             }
-            if (Program.userAdmin)
+            if (Program.userAdmin || mode == 3)
             {
                 //Config
                 
@@ -250,11 +252,7 @@ namespace ProWork
                     e.Graphics.FillPie(brush, new Rectangle(new(Estilo.anchoLinea * 2, (int)(this.Height * 0.6)), new(this.Height / 2, this.Height / 2)), 180, 180);
                     break;
             }
-
         }
-
-
-
         private void ContactosItem_FontChanged(object sender, EventArgs e)
         {
             this.Height = (int)(this.Font.Height * 1.5);
@@ -372,5 +370,11 @@ namespace ProWork
         private void ContactosItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void Item_MouseHover(object sender, EventArgs e)
+        {
+            winformsHover.Invoke(sender, e);
+        }
+
     }
 }

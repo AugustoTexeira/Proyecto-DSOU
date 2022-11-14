@@ -167,13 +167,14 @@
             this.lst.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lst.Location = new System.Drawing.Point(20, 401);
             this.lst.Margin = new System.Windows.Forms.Padding(6, 6, 6, 20);
+            this.lst.mode = ((byte)(0));
             this.lst.Name = "lst";
             this.lst.Size = new System.Drawing.Size(673, 318);
             this.lst.TabIndex = 15;
             this.lst.itemEnterHover += new System.EventHandler(this.lst_itemEnterHover);
             this.lst.gearClicked += new System.EventHandler(this.lst_gearClicked);
             this.lst.trashClicked += new System.EventHandler(this.lst_trashClicked);
-            this.lst.itemClicked += new System.EventHandler(this.lst_itemClicked);
+            this.lst.itemClicked += new System.Windows.Forms.MouseEventHandler(this.lst_itemClicked);
             // 
             // lblDudas
             // 
@@ -228,9 +229,13 @@
             this.grf.Name = "grf";
             this.grf.onlyDots = false;
             this.grf.Points = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 0)};
+        new System.Drawing.Point(0, 0),
+        new System.Drawing.Point(5, 15),
+        new System.Drawing.Point(8, 4)};
             this.grf.realCoordsOfPoints = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 358)};
+        new System.Drawing.Point(0, 358),
+        new System.Drawing.Point(182, 0),
+        new System.Drawing.Point(291, 262)};
             this.grf.Scale = new System.Drawing.Size(10, 15);
             this.grf.Size = new System.Drawing.Size(364, 358);
             this.grf.TabIndex = 19;

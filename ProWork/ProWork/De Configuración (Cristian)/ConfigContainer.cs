@@ -77,13 +77,11 @@ namespace ProWork.De_Configuración__Cristian_
         public async Task ResetElementos()
         {
             await lst.ResetElementos(new("select idusuario, nombre, administrador from usuario order by nombre"));
-            var con = await Program.openConnectionAsync();
 
-            con = await Program.openConnectionAsync();
+            var con = await Program.openConnectionAsync();
             List<Point> buffer = new List<Point>();
 
             MySqlCommand cmd = new("Select fecha, count(fecha) from carga group by fecha order by fecha", con);
-
 
             MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
             if (rdr.HasRows)
@@ -125,9 +123,22 @@ namespace ProWork.De_Configuración__Cristian_
                 }
 
                 ts = dtpEnd.Value - dtpStart.Value;
+                Point[] buffer2 = buffer.ToArray();
+                Array.Sort(buffer2, new xComparer());
+                buffer = buffer2.ToList();
+
+                //for (int i = 0; i < buffer.Count; i++)
+                //{
+                //    if (buffer[i + 1].X - buffer[i].X > 1)
+                //    {
+                        
+                //    }
+                //}
 
                 grf.Points = buffer.ToArray();
                 grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+
+                
 
                 DateTime shift = dtpEnd.Value;
                 shift.AddDays(-1);
@@ -135,28 +146,15 @@ namespace ProWork.De_Configuración__Cristian_
                 shift = dtpStart.Value;
                 shift.AddDays(2);
                 dtpEnd.MinDate = shift;
+                MessageBox.Show(s);
+                MessageBox.Show($"{grf.Scale.Width} {grf.XOffset}");
             }
             await rdr.CloseAsync();
             Program.closeOpenConnection();
-            MessageBox.Show(this.Controls.Count.ToString());
         }
 
         private async void lst_itemEnterHover(object sender, EventArgs e)
         {
-            var con = await Program.openConnectionAsync();
-            MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", con);
-            MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
-
-            TimeSpan ts;
-            List<Point> buffer = new();
-            while (await rdr.ReadAsync())
-            {
-                ts = rdr.GetDateTime(0) - startDateMemory;
-                buffer.Add(new((int)ts.TotalDays, rdr.GetInt32(1)));
-            }
-            grf.Points = buffer.ToArray();
-            await rdr.CloseAsync();
-            Program.closeOpenConnection();
         }
 
 
@@ -171,22 +169,22 @@ namespace ProWork.De_Configuración__Cristian_
 
         private void dtpStart_ValueChanged(object sender, EventArgs e)
         {
-            TimeSpan ts = dtpEnd.Value - dtpStart.Value;
-            grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+            //TimeSpan ts = dtpEnd.Value - dtpStart.Value;
+            //grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
 
-            if (grf.Points.Length > 1)
-            {
-                ts += dtpStart.Value - startDateMemory;
-                grf.XOffset = (int)ts.TotalDays;
-            }
-            DateTime shift = dtpStart.Value;
-            shift.AddDays(10);
-            dtpEnd.MinDate = shift;
+            //if (grf.Points.Length > 1)
+            //{
+            //    ts += dtpStart.Value - startDateMemory;
+            //    grf.XOffset = (int)ts.TotalDays;
+            //}
+            //DateTime shift = dtpStart.Value;
+            //shift.AddDays(10);
+            //dtpEnd.MinDate = shift;
         }
 
-        public void ResetElementos(MySqlCommand cmd)
+        public async void ResetElementos(MySqlCommand cmd)
         {
-            lst.ResetElementos(cmd);
+            await lst.ResetElementos(cmd);
         }
 
         private void pbxOscuro_MouseEnter(object sender, EventArgs e)
@@ -245,13 +243,6 @@ namespace ProWork.De_Configuración__Cristian_
             ColorSwap.Invoke(false, e);
             RecolorControl();
         }
-
-        private void pbxPersonalizado_Click(object sender, EventArgs e)
-        {
-            Estilo.selectedStyle = 2;
-            pbxOscuro.Image = null;
-            pbxClaro.Image = null;
-        }
         private void RecolorControl()
         {
             BackColor = Estilo.fondo;
@@ -305,31 +296,6 @@ namespace ProWork.De_Configuración__Cristian_
             config.Show();
         }
 
-        private void lst_itemClicked(object sender, EventArgs e)
-        {
-            if (!Program.userAdmin) { return; }
-
-            int i = 0;
-
-            foreach (Item item in lst.Controls)
-            {
-                if(item.mode == 2)
-                {
-                    i++;
-                }
-            }
-
-            if(((Item)sender).Text == Program.user && i == 1)
-            {
-                MessageBox.Show("Siempre debe existir por lo menos un administrador.\nSi desea descenderse, primero otorgue privilegios de administrador a otro usuario.");
-                return;
-            }
-
-            frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 0);
-            frm.ascendido += ((Item)sender).cambioPrivilegio;
-            frm.Show();
-        }
-
         private void lblDudas_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Properties.frmCreditos frm = new();
@@ -344,6 +310,33 @@ namespace ProWork.De_Configuración__Cristian_
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private async void lst_itemClicked(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var con = await Program.openConnectionAsync();
+                MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", con);
+                MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
+
+                TimeSpan ts;
+                List<Point> buffer = new();
+                while (await rdr.ReadAsync())
+                {
+                    ts = rdr.GetDateTime(0) - startDateMemory;
+                    buffer.Add(new((int)ts.TotalDays, rdr.GetInt32(1)));
+                }
+                grf.Points = buffer.ToArray();
+                await rdr.CloseAsync();
+                Program.closeOpenConnection();
+            }
+            if (e.Button == MouseButtons.Right && Program.userAdmin)
+            {
+                frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 2);
+                frm.ascendido += ((Item)sender).cambioPrivilegio;
+                frm.Show();
+            }
         }
     }
 }

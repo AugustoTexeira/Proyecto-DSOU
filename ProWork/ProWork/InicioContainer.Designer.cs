@@ -67,7 +67,6 @@
             // lblArrastre
             // 
             this.lblArrastre.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblArrastre.AutoSize = true;
             this.lblArrastre.BackColor = System.Drawing.Color.Transparent;
             this.lblArrastre.Font = new System.Drawing.Font("Raleway", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblArrastre.ForeColor = System.Drawing.Color.White;

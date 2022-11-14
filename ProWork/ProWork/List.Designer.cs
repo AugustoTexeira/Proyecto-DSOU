@@ -30,18 +30,19 @@
         {
             this.SuspendLayout();
             // 
-            // ContactosList
+            // List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 41F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(6);
-            this.Name = "ContactosList";
+            this.Name = "List";
             this.Size = new System.Drawing.Size(319, 308);
             this.Load += new System.EventHandler(this.AccountList_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.AccountList_Paint);
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.AccountList_Layout);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.List_MouseClick);
             this.ResumeLayout(false);
 
         }

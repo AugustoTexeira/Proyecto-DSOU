@@ -43,6 +43,7 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ContactosItem_Paint);
             this.MouseEnter += new System.EventHandler(this.ContactosItem_MouseEnter);
             this.MouseLeave += new System.EventHandler(this.ContactosItem_MouseLeave);
+            this.MouseHover += new System.EventHandler(this.Item_MouseHover);
             this.ResumeLayout(false);
 
         }

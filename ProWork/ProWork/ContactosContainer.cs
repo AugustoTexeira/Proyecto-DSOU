@@ -93,14 +93,7 @@ namespace ProWork
 
         private async void clt_itemClicked(object sender, EventArgs e)
         {
-            var con = await Program.openConnectionAsync();
 
-            MySqlCommand cmd = new MySqlCommand($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", con);
-            MySqlDataReader reader = await cmd.ExecuteReaderAsync();
-            frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text, reader);
-            await reader.CloseAsync();
-            Program.closeOpenConnection();
-            frm.Show();
         }
 
         private async void ContactosContainer_Load(object sender, EventArgs e)
