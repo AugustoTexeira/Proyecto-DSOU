@@ -13,6 +13,8 @@ namespace ProWork
 {
     public partial class Ruta : UserControl
     {
+        public static string carpetaActual = "";
+        public static int proyectoActual = 0;
         public Ruta()
         {
             InitializeComponent();
@@ -22,23 +24,31 @@ namespace ProWork
             if (sender != null)
             {
                 var con = await Program.openConnectionAsync();
-                MySqlCommand cmd = new MySqlCommand("WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.carpetaPadre, C.nombre FROM Carpeta AS C WHERE idcarpeta=" + sender.ToString() + " UNION SELECT c.idcarpeta, c.carpetaPadre, c.nombre FROM consulta INNER JOIN Carpeta AS c ON consulta.carpetaPadre = c.idcarpeta )SELECT * FROM consulta;", con);
+                MySqlCommand cmd = new MySqlCommand($"WITH RECURSIVE consulta AS ( SELECT C.idcarpeta, C.idcarpetaPadre, C.nombre, C.idproyecto, null FROM Carpeta AS C WHERE idcarpeta = '{sender}' UNION SELECT c.idcarpeta, c.idcarpetaPadre, c.nombre, c.idproyecto, null FROM consulta INNER JOIN Carpeta AS c ON consulta.idcarpetaPadre = c.idcarpeta )SELECT * FROM consulta UNION select null, null, null, idproyecto, idcarpeta from carpeta where idcarpeta = '{sender}';", con);
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync();
                 this.Controls.Clear();
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
-                    lblRuta lbl = new lblRuta(reader.GetInt32(0), $"/{reader.GetString(2)}");
-                    lbl.Dock = DockStyle.Left;
-                    lbl.Font = this.Font;
-                    lbl.ForeColor = Estilo.Contraste;
-                    lbl.Click += lbl_OnClick;
-                    lbl.AutoSize = false;
-                    lbl.Height = this.Height;
-                    lbl.Width = TextRenderer.MeasureText(lbl.Text, lbl.Font).Width;
-                    this.Controls.Add(lbl);
+                    if (await reader.IsDBNullAsync(0))
+                    {
+                        Ruta.carpetaActual = reader.GetString(4);
+                        Ruta.proyectoActual = reader.GetInt32(3);
+                    }
+                    else
+                    {
+                        lblRuta lbl = new lblRuta(reader.GetString(0), $"/{reader.GetString(2)}");
+                        lbl.Dock = DockStyle.Left;
+                        lbl.Font = this.Font;
+                        lbl.ForeColor = Estilo.Contraste;
+                        lbl.Click += lbl_OnClick;
+                        lbl.AutoSize = false;
+                        lbl.Height = this.Height;
+                        lbl.Width = TextRenderer.MeasureText(lbl.Text, lbl.Font).Width;
+                        this.Controls.Add(lbl);
+                    }
                 }
-                reader.Close();
+                await reader.CloseAsync();
                 Program.closeOpenConnection();
             }
             else
@@ -46,7 +56,7 @@ namespace ProWork
                 this.Controls.Clear();
             }
 
-            lblRuta lbl1 = new(0, "ProWork");
+            lblRuta lbl1 = new("0", "ProWork");
             lbl1.Dock = DockStyle.Left;
             lbl1.Font = this.Font;
             lbl1.ForeColor = Estilo.Contraste;
@@ -77,8 +87,8 @@ namespace ProWork
 
     public class lblRuta : Label
     {
-        public int id;
-        public lblRuta(int id, string nom)
+        public string id;
+        public lblRuta(string id, string nom)
         {
             this.id = id;
             this.Text = nom;

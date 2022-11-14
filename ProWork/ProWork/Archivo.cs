@@ -12,6 +12,8 @@ namespace ProWork
 {
     public partial class Archivo : UserControl
     {
+        public string Nombre;
+        public string id;
         public Archivo(Image imagen)
         {
             InitializeComponent();

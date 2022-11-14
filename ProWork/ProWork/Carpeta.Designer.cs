@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbl = new System.Windows.Forms.Label();
+            this.cms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cambiarNombreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pcb = new System.Windows.Forms.PictureBox();
+            this.eliminarCarpetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,7 +48,23 @@
             this.lbl.TabIndex = 0;
             this.lbl.Text = "Carpeta indefinida";
             this.lbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lbl.DoubleClick += new System.EventHandler(this.Carpeta_DoubleClick);
+            this.lbl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseClick);
+            this.lbl.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseDoubleClick);
+            // 
+            // cms
+            // 
+            this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cambiarNombreToolStripMenuItem,
+            this.eliminarCarpetaToolStripMenuItem});
+            this.cms.Name = "cms";
+            this.cms.Size = new System.Drawing.Size(181, 70);
+            // 
+            // cambiarNombreToolStripMenuItem
+            // 
+            this.cambiarNombreToolStripMenuItem.Name = "cambiarNombreToolStripMenuItem";
+            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarNombreToolStripMenuItem.Text = "Cambiar nombre";
+            this.cambiarNombreToolStripMenuItem.Click += new System.EventHandler(this.cambiarNombreToolStripMenuItem_Click);
             // 
             // pcb
             // 
@@ -53,9 +74,17 @@
             this.pcb.Name = "pcb";
             this.pcb.Size = new System.Drawing.Size(100, 69);
             this.pcb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb.TabIndex = 1;
+            this.pcb.TabIndex = 3;
             this.pcb.TabStop = false;
-            this.pcb.DoubleClick += new System.EventHandler(this.Carpeta_DoubleClick);
+            this.pcb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseClick);
+            this.pcb.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseDoubleClick);
+            // 
+            // eliminarCarpetaToolStripMenuItem
+            // 
+            this.eliminarCarpetaToolStripMenuItem.Name = "eliminarCarpetaToolStripMenuItem";
+            this.eliminarCarpetaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarCarpetaToolStripMenuItem.Text = "Eliminar carpeta";
+            this.eliminarCarpetaToolStripMenuItem.Click += new System.EventHandler(this.eliminarCarpetaToolStripMenuItem_Click);
             // 
             // Carpeta
             // 
@@ -67,7 +96,9 @@
             this.Name = "Carpeta";
             this.Size = new System.Drawing.Size(100, 100);
             this.Load += new System.EventHandler(this.Carpeta_Load);
-            this.DoubleClick += new System.EventHandler(this.Carpeta_DoubleClick);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseClick);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseDoubleClick);
+            this.cms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcb)).EndInit();
             this.ResumeLayout(false);
 
@@ -76,6 +107,9 @@
         #endregion
 
         private Label lbl;
+        private ContextMenuStrip cms;
+        private ToolStripMenuItem cambiarNombreToolStripMenuItem;
         private PictureBox pcb;
+        private ToolStripMenuItem eliminarCarpetaToolStripMenuItem;
     }
 }

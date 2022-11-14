@@ -39,13 +39,14 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.añadirCarpetaToolStripMenuItem});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(181, 48);
+            this.cms.Size = new System.Drawing.Size(152, 26);
             // 
             // añadirCarpetaToolStripMenuItem
             // 
             this.añadirCarpetaToolStripMenuItem.Name = "añadirCarpetaToolStripMenuItem";
-            this.añadirCarpetaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.añadirCarpetaToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.añadirCarpetaToolStripMenuItem.Text = "Añadir carpeta";
+            this.añadirCarpetaToolStripMenuItem.Click += new System.EventHandler(this.añadirCarpetaToolStripMenuItem_Click);
             // 
             // FileHolder
             // 
@@ -54,6 +55,7 @@
             this.AutoScroll = true;
             this.Name = "FileHolder";
             this.Size = new System.Drawing.Size(455, 403);
+            this.Load += new System.EventHandler(this.FileHolder_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FileHolder_MouseClick);
             this.Resize += new System.EventHandler(this.FileHolder_Resize);
             this.cms.ResumeLayout(false);

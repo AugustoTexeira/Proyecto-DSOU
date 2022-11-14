@@ -17,7 +17,9 @@ namespace ProWork
             get { return lbl.Text; }
             set { lbl.Text = value; }
         }
-        public int id;
+        public string id;
+        public List<string> mimeTypes;
+        public RichTextBox rtb;
         public Carpeta()
         {
             InitializeComponent();
@@ -30,14 +32,64 @@ namespace ProWork
             pcb.BackColor = Estilo.fondo;
         }
         public event EventHandler CarpetaDoubleClick;
+        public event EventHandler LostFoco;
+        public event EventHandler Eliminar;
 
         public virtual void OnDoubleClick(EventArgs e)
         {
             CarpetaDoubleClick.Invoke(id, e);
         }
-        public virtual void Carpeta_DoubleClick(object sender, EventArgs e)
+
+        public async Task CambiarNombre()
         {
-            OnDoubleClick(e);
+            rtb = new RichTextBox();
+            Controls.Add(rtb);
+            rtb.Size = lbl.Size;
+            rtb.Location = lbl.Location;
+            rtb.Text = lbl.Text;
+            rtb.Dock = lbl.Dock;
+
+            lbl.Visible = false;
+
+            rtb.KeyPress += LostFoc;
+        }
+
+        public void LostFoc(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                Nombre = ((RichTextBox)sender).Text;
+                LostFoco.Invoke(this, e);
+                Controls.Remove((RichTextBox)sender);
+                lbl.Visible = true;
+            }
+        }
+
+        private void Carpeta_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                cms.Show(this, new Point(e.Location.X + ((Control)sender).Location.X, e.Location.Y + ((Control)sender).Location.Y));
+            }
+        }
+
+        private void Carpeta_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                OnDoubleClick(e);
+            }
+        }
+
+        private void cambiarNombreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CambiarNombre();
+        }
+
+        private void eliminarCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Eliminar.Invoke(this, e);
         }
     }
-}
+}   

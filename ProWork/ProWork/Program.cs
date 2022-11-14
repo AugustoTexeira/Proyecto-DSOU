@@ -5,11 +5,9 @@ namespace ProWork
     using System.Data;
     internal static class Program
     {
-        public static string[] Scope = { DriveService.Scope.Drive };
-        public static string ApplicationName = "Patata";
         public static bool userAdmin = false;
         public static string user = "";
-        private static MySqlConnection sql = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4");
+        private static MySqlConnection sql = new("Server=localhost; Database=prowork; Uid=root; Pwd=");
         private static bool executingsql = false;
         /// <summary>
         ///  The main entry point for the application.
@@ -30,6 +28,8 @@ namespace ProWork
             Estilo.Contraste = Color.White;
             Estilo.contrasteLigero = Color.Gray;
             Estilo.degrContraste = Color.LightGray;
+
+            GoogleInfo.CrearToken();
 
             frmLogin frm = new();
             frm.CreateControl();
