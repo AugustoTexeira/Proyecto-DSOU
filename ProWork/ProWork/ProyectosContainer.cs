@@ -21,12 +21,11 @@ namespace ProWork
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
         }
 
-        private void colorSwap(object sender, EventArgs e) 
+        private void colorSwap(object sender, EventArgs e)
         {
             this.BackColor = Estilo.fondo;
             lblProyectos.ForeColor = Estilo.Contraste;
             flh.BackColor = Estilo.fondo;
-            srb.BackColor = Estilo.fondo;
             rt.BackColor = Estilo.fondo;
             rt.ForeColor = Estilo.Contraste;
         }
@@ -38,7 +37,7 @@ namespace ProWork
 
         private void DatosPasar(object sender, EventArgs e)
         {
-            if(sender.ToString() == "0")
+            if (sender.ToString() == "0")
             {
                 flh.MostrarCarpetas();
             }
@@ -52,4 +51,5 @@ namespace ProWork
         {
             this.BackColor = Estilo.fondo;
         }
+    }
 }

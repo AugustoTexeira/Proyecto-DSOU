@@ -8,7 +8,7 @@ namespace ProWork
         public static bool userAdmin = false;
         public static string user = "";
         public static long userId = 0;
-        private static MySqlConnection sql = new("Server=localhost; Database=prowork; Uid=root; Pwd=");
+        private static MySqlConnection sql = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4");
         private static bool executingsql = false;
         /// <summary>
         ///  The main entry point for the application.
