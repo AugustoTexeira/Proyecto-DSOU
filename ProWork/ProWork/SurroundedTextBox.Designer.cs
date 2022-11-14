@@ -40,11 +40,10 @@
             this.rtb.BackColor = System.Drawing.Color.Yellow;
             this.rtb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtb.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.rtb.Location = new System.Drawing.Point(29, 90);
-            this.rtb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rtb.Location = new System.Drawing.Point(25, 68);
             this.rtb.Name = "rtb";
             this.rtb.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.rtb.Size = new System.Drawing.Size(114, 133);
+            this.rtb.Size = new System.Drawing.Size(100, 100);
             this.rtb.TabIndex = 0;
             this.rtb.Text = "";
             this.rtb.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtb_LinkClicked);
@@ -59,7 +58,7 @@
             this.lbl.ForeColor = System.Drawing.Color.White;
             this.lbl.Location = new System.Drawing.Point(0, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(313, 46);
+            this.lbl.Size = new System.Drawing.Size(245, 37);
             this.lbl.TabIndex = 1;
             this.lbl.Text = "SurroundedTextBox";
             this.lbl.Click += new System.EventHandler(this.lbl_Click);
@@ -76,14 +75,12 @@
             // 
             // SurroundedTextBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.rtb);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SurroundedTextBox";
-            this.Size = new System.Drawing.Size(338, 238);
+            this.Size = new System.Drawing.Size(296, 178);
             this.Load += new System.EventHandler(this.SurroundedTextBox_Load);
             this.FontChanged += new System.EventHandler(this.ProWorkBigText_FontChanged);
             this.Click += new System.EventHandler(this.ProWorkBigText_Click);

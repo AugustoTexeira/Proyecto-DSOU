@@ -110,14 +110,6 @@ C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.runtimeconfig.json
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.dll
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ProWork.pdb
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Protobuf.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MySql.Data.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Ubiety.Dns.Core.dll
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\ZstdNet.dll
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.csproj.AssemblyReference.cache
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.CustomButton.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmLogin.resources
@@ -184,12 +176,8 @@ C:\Users\Cristian\Desktop\src visual studio\Proyecto-DSOU-main\ProWork\ProWork\o
 C:\Users\Cristian\Desktop\src visual studio\Proyecto-DSOU-main\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmTinyRegister.resources
 C:\Users\Cristian\Desktop\src visual studio\Proyecto-DSOU-main\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAccConfig.resources
 C:\Users\Cristian\Desktop\src visual studio\Proyecto-DSOU-main\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmTinyLogin.resources
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.AccountItem.resources
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.AccountList.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.De_Configuración__Cristian_.ConfigContainer.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAccConfig.resources
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmPruebaa.resources
-C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmTinyLogin.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmTinyRegister.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ProyectosContainer.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Ruta.resources
@@ -390,3 +378,28 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOUAugusto\ProWork\ProWork\obj\Debug\ne
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUAugusto\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.pdb
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUAugusto\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUAugusto\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.ContactosContainer.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.enhancedPictureBox.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAniadirAdministrador.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmAñadirContacto.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmContactosConfig.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmMostrarContacto.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Grafica.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.graficaContainer.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.InicioContainer.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Item.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.List.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.mainMenu.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.PasswordUnderlinedTextBox.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.Properties.frmCreditos.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.searchBar.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Auth.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Core.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Google.Apis.Drive.v3.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MySqlConnector.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.boringList.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.loadingGIF.resources
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmCarpetaConf.resources

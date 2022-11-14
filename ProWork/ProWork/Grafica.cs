@@ -72,7 +72,7 @@ namespace ProWork
                     realCoordsOfPoints = new Point[Points.Length];
                     for (int i = 0; i < Points.Length; i++)
                     {
-                        realCoordsOfPoints[i] = new(Points[i].X * Width / Scale.Width, Height);
+                        realCoordsOfPoints[i] = new((int)((double)Points[i].X * Width / Scale.Width), Height);
                     }
                     if (!tmrBlend.Enabled)
                     {
@@ -245,7 +245,7 @@ namespace ProWork
             {
                 if (aimPoints.Length > i)
                 {
-                    aimPoints[i] = new((int)((Points[i].X + xOffset) * xscale) + xOffset, (int)(Height - (Points[i].Y + yOffset) * yscale) + yOffset);
+                    aimPoints[i] = new((int)(((Points[i].X + xOffset) * (double)xscale)), (int)(Height - (Points[i].Y + yOffset) * (double)yscale));
 
                     if (realCoordsOfPoints[i].Y <= aimPoints[i].Y + 3 && realCoordsOfPoints[i].Y >= aimPoints[i].Y - 3 && realCoordsOfPoints[i].X <= aimPoints[i].X + 3 && realCoordsOfPoints[i].X >= aimPoints[i].X - 3)
                     {

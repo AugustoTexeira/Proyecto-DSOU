@@ -32,6 +32,11 @@ namespace ProWork
             get { return rtb.Text; }
             set { rtb.Text = value; }
         }
+        public RichTextBox Rtb 
+        {
+            get { return rtb; }
+            set { rtb = value; }
+        }
         public SurroundedTextBox()
         {
             InitializeComponent();

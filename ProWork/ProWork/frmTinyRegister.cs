@@ -39,37 +39,20 @@ namespace ProWork
 
         private void bgwCheck_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (utbCContra.Visible) // Registro
+            if (utbNombre.Visible) // Registro
             {
                 if (utbCContra.txbText == utbContra.txbText && utbNombre.txbText != "")
                 {
                     try
                     {
-                        var con = Program.openConnection();
-                        MySqlCommand vRegistro = new("select nombre from usuario;", con);
-                        MySqlDataReader reader = vRegistro.ExecuteReader();
-
-                        bool v = true;
-
-                        while (reader.Read())
+                        MySqlConnection con = Program.openConnection();
+                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{utbNombre.txbText}', SHA2('{utbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{utbNombre.txbText}')", con);
+                        if (Registro.ExecuteNonQuery() == 1)
                         {
-                            if (utbNombre.txbText == reader.GetString(0))
-                            {
-                                v = false;
-                            }
-                        }
-                        reader.Close();
-                        if (v)
-                        {
-                            MySqlCommand iRegistro = new("insert into usuario (nombre, password, administrador) " +
-                                                        "values ('" + utbNombre.txbText + "', sha2('" + utbContra.txbText + "', 224), false);",
-                                                        con
-                                                        );
-                            iRegistro.ExecuteNonQuery();
-                            Program.userAdmin = false;
                             Program.user = utbNombre.txbText;
+                            Program.userAdmin = false;
+                            Program.userId = Registro.LastInsertedId;
                             e.Result = true;
-                            //e.Result = new frmMain(utbNombre.txbText, false);
                         }
                         else
                         {
@@ -91,10 +74,9 @@ namespace ProWork
             {
                 try
                 {
-                    var con = Program.openConnection();
-                    MySqlCommand vLogin = new("select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and binary nombre='{ctbNombre.txbText}';;", con);
+                    MySqlConnection con = Program.openConnection();
+                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password=sha2('{utbContra.txbText}', 224) and nombre='{utbNombre.txbText}';", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
-
                     bool v = false;
                     bool admin = false;
 
@@ -104,21 +86,22 @@ namespace ProWork
                         {
                             v = true;
                             admin = reader.GetBoolean(2);
+                            Program.userId = reader.GetInt64(3);
                         }
                     }
 
+                    reader.Close();
+                    Program.closeOpenConnection();
                     if (v)
                     {
-                        Program.userAdmin = admin;
                         Program.user = utbNombre.txbText;
+                        Program.userAdmin = admin;
                         e.Result = true;
                     }
                     else
                     {
                         MessageBox.Show("No existe cuenta con tal nombre y contraseña.");
                     }
-                    reader.Close();
-                    Program.closeOpenConnection();
                 }
                 catch (Exception ex)
                 {

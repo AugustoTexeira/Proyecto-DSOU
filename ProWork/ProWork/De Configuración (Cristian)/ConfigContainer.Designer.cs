@@ -180,7 +180,6 @@
             // 
             this.lblDudas.ActiveLinkColor = System.Drawing.SystemColors.Highlight;
             this.lblDudas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDudas.AutoSize = true;
             this.lblDudas.BackColor = System.Drawing.Color.Transparent;
             this.lblDudas.DisabledLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
             this.lblDudas.Font = new System.Drawing.Font("Raleway", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);

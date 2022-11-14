@@ -12,6 +12,7 @@ namespace ProWork
 {
     public partial class Carpeta : UserControl
     {
+        private bool clicked = false;
         public string Nombre
         {
             get { return lbl.Text; }
@@ -20,6 +21,7 @@ namespace ProWork
         public string id;
         public List<string> mimeTypes;
         public RichTextBox rtb;
+        public bool seleccionado;
         public Carpeta()
         {
             InitializeComponent();
@@ -34,6 +36,8 @@ namespace ProWork
         public event EventHandler CarpetaDoubleClick;
         public event EventHandler LostFoco;
         public event EventHandler Eliminar;
+        public event EventHandler Deseleccionar;
+        public event EventHandler DescargarCarpeta;
 
         public virtual void OnDoubleClick(EventArgs e)
         {
@@ -68,7 +72,21 @@ namespace ProWork
 
         private void Carpeta_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
+            
+            if (e.Button == MouseButtons.Left)
+            {
+                if (Control.ModifierKeys == Keys.Control)
+                {
+                    seleccionado = true;
+                    this.BackColor = Color.FromArgb(69, Estilo.enfasis);
+                }
+                else
+                {
+                    Deseleccionar.Invoke(this, e);
+                    this.BackColor = Estilo.fondo;
+                }
+            }
+            if (e.Button == MouseButtons.Right)
             {
                 cms.Show(this, new Point(e.Location.X + ((Control)sender).Location.X, e.Location.Y + ((Control)sender).Location.Y));
             }
@@ -90,6 +108,18 @@ namespace ProWork
         private void eliminarCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Eliminar.Invoke(this, e);
+        }
+
+        private void descargarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (seleccionado == true)
+            {
+                DescargarCarpeta.Invoke(this, e);
+            }
+            else
+            {
+                MessageBox.Show("Seleccione la carpeta correctamente.");
+            }
         }
     }
 }   

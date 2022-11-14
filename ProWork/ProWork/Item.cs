@@ -7,6 +7,7 @@ namespace ProWork
     {
         private enhancedPictureBox epbConfig = new();
         private enhancedPictureBox epbDelete = new();
+        public string varcharId = "";
         private byte pmode = 0; // 0=usuarios; 1=contactos; 2=usuario admin; 3=carpetas; >2 = indefinido
         public byte mode
         {
@@ -70,6 +71,7 @@ namespace ProWork
             enterHover += paqnosequejen;
             exitHover += paqnosequejen;
             winformsHover += paqnosequejen;
+            gearClicked += paqnosequejen;
             InitializeComponent();
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
 
@@ -166,7 +168,7 @@ namespace ProWork
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             //Botones
-            if (hovered > 0 && Program.userAdmin)
+            if (hovered > 0 && (Program.userAdmin || mode == 3))
             {
                 showButtons();
             }
@@ -197,8 +199,6 @@ namespace ProWork
                     Estilo.contrasteLigero
                     );
                 }
-                
-
                 e.Graphics.FillRectangle(grdBrush, 0, 0, this.Width, this.Height);
             }
             //Bordes
@@ -223,7 +223,14 @@ namespace ProWork
             }
             else
             {
-                e.Graphics.DrawString(text, Font, brush, new Rectangle(Height, 0, Width - Height, Height), formato);
+                if (mode == 3)
+                {
+                    e.Graphics.DrawString(text, Font, brush, new Rectangle(0, 0, Width - Height, Height), formato);
+                }
+                else
+                {
+                    e.Graphics.DrawString(text, Font, brush, new Rectangle(Height, 0, Width - Height, Height), formato);
+                }
             }
 
             //Imagenes
@@ -376,5 +383,9 @@ namespace ProWork
             winformsHover.Invoke(sender, e);
         }
 
+        private void Item_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

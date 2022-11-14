@@ -31,46 +31,6 @@ namespace ProWork
             InitializeComponent();
             yContra = ctbContra.Location.Y;
             xPlus = epbPlusUser.Location.X;
-
-            //UserCredential credencial;
-
-            //using (var stream = new FileStream(@"C:\Users\Cristian\source\repos\Proyecto-DSOU\ProWork\ProWork\archivo1.json", FileMode.Open, FileAccess.Read))
-            //{
-            //    string creadPath = "token.json";
-
-            //    credencial = GoogleWebAuthorizationBroker.AuthorizeAsync(
-            //        GoogleClientSecrets.Load(stream).Secrets,
-            //        Program.Scope,
-            //        "user",
-            //        CancellationToken.None,
-            //        new FileDataStore(creadPath, true)).Result;
-            //}
-
-            //var service = new DriveService(new BaseClientService.Initializer()
-            //{
-            //    HttpClientInitializer = credencial,
-            //    ApplicationName = Program.ApplicationName
-            //});
-
-            //string pageToken = null;
-
-            //FilesResource.ListRequest list = service.Files.List();
-            //list.PageSize = 10;
-            //list.PageToken = pageToken;
-            //list.Fields = "nextPageToken, files(id), files(name)";
-
-            //var request = list.Execute();
-
-            //if (request.Files != null && request.Files.Count > 0)
-            //{
-            //    string a = "";
-            //    foreach (var file in request.Files)
-            //    {
-            //        a += $"id: {file.Id} Name: {file.Name}\n";
-            //    }
-
-            //    MessageBox.Show(a);
-            //}
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -95,6 +55,7 @@ namespace ProWork
                         {
                             Program.user = ctbNombre.txbText;
                             Program.userAdmin = false;
+                            Program.userId = Registro.LastInsertedId;
                             e.Result = true;
                         }
                         else
@@ -118,7 +79,7 @@ namespace ProWork
                 try
                 {
                     MySqlConnection con = Program.openConnection();
-                    MySqlCommand vLogin = new($"select nombre, password, administrador from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", con);
+                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
                     bool v = false;
                     bool admin = false;
@@ -129,6 +90,7 @@ namespace ProWork
                         {
                             v = true;
                             admin = reader.GetBoolean(2);
+                            Program.userId = reader.GetInt64(3);
                         }
                     }
 

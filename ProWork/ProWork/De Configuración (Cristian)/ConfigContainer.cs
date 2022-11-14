@@ -91,6 +91,7 @@ namespace ProWork.De_Configuración__Cristian_
                 List<long> countList = new();
 
                 dtpStart.Value = rdr.GetDateTime(0);
+                startDateMemory = dtpStart.Value;
                 grf.Scale = new(grf.Scale.Width, (int)(rdr.GetInt64(1) * 1.2));
 
                 TimeSpan ts = dtpEnd.Value - rdr.GetDateTime(0);
@@ -114,12 +115,10 @@ namespace ProWork.De_Configuración__Cristian_
                     datelist.Add(rdr.GetDateTime(0));
                     countList.Add(rdr.GetInt64(1));
                 }
-                string s = "";
                 for (int i = 0; i < datelist.Count; i++)
                 {
                     ts = datelist[i] - dtpStart.Value;
                     buffer.Add(new((int)ts.TotalDays, (int)countList[i]));
-                    s += buffer[i].ToString();
                 }
 
                 ts = dtpEnd.Value - dtpStart.Value;
@@ -127,18 +126,20 @@ namespace ProWork.De_Configuración__Cristian_
                 Array.Sort(buffer2, new xComparer());
                 buffer = buffer2.ToList();
 
-                //for (int i = 0; i < buffer.Count; i++)
-                //{
-                //    if (buffer[i + 1].X - buffer[i].X > 1)
-                //    {
-                        
-                //    }
-                //}
+                for (int i = 0; i < buffer.Count - 1; i++)
+                {
+                    if (buffer[i + 1].X - buffer[i].X > 1 && buffer[i].Y != 0)
+                    {
+                        buffer.Add(new(buffer[i].X + 1, 0));
+                    }
+                    if (i == 0 || (buffer[i].X - buffer[i - 1].X > 1 && buffer[i].Y != 0))
+                    {
+                        buffer.Add(new(buffer[i].X - 1, 0));
+                    }
+                }
 
                 grf.Points = buffer.ToArray();
                 grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
-
-                
 
                 DateTime shift = dtpEnd.Value;
                 shift.AddDays(-1);
@@ -146,8 +147,7 @@ namespace ProWork.De_Configuración__Cristian_
                 shift = dtpStart.Value;
                 shift.AddDays(2);
                 dtpEnd.MinDate = shift;
-                MessageBox.Show(s);
-                MessageBox.Show($"{grf.Scale.Width} {grf.XOffset}");
+                //MessageBox.Show($"{grf.Scale.Width} {grf.XOffset}");
             }
             await rdr.CloseAsync();
             Program.closeOpenConnection();
@@ -169,17 +169,19 @@ namespace ProWork.De_Configuración__Cristian_
 
         private void dtpStart_ValueChanged(object sender, EventArgs e)
         {
-            //TimeSpan ts = dtpEnd.Value - dtpStart.Value;
-            //grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+            if (startDateMemory.Year != 1)
+            {
 
-            //if (grf.Points.Length > 1)
-            //{
-            //    ts += dtpStart.Value - startDateMemory;
-            //    grf.XOffset = (int)ts.TotalDays;
-            //}
-            //DateTime shift = dtpStart.Value;
-            //shift.AddDays(10);
-            //dtpEnd.MinDate = shift;
+                //MessageBox.Show($"{dtpStart.Value} {startDateMemory}");
+                TimeSpan ts = startDateMemory - dtpStart.Value;
+                grf.XOffset = (int)ts.TotalDays;
+
+                ts = dtpEnd.Value - dtpStart.Value;
+                grf.Scale = new((int)ts.TotalDays, grf.Scale.Height);
+                DateTime shift = dtpEnd.Value;
+                shift.AddDays(-10);
+                dtpStart.MaxDate = shift;
+            }
         }
 
         public async void ResetElementos(MySqlCommand cmd)
@@ -306,36 +308,75 @@ namespace ProWork.De_Configuración__Cristian_
         {
 
         }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private async void lst_itemClicked(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 var con = await Program.openConnectionAsync();
-                MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", con);
-                MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
+                List<Point> buffer = new List<Point>();
 
-                TimeSpan ts;
-                List<Point> buffer = new();
-                while (await rdr.ReadAsync())
+                MySqlCommand cmd = new($"Select fecha, count(fecha) from carga where idusuario={((Item)sender).id} group by fecha order by fecha", con);
+
+                MySqlDataReader rdr = await cmd.ExecuteReaderAsync();
+                if (rdr.HasRows)
                 {
-                    ts = rdr.GetDateTime(0) - startDateMemory;
-                    buffer.Add(new((int)ts.TotalDays, rdr.GetInt32(1)));
+                    await rdr.ReadAsync();
+                    List<DateTime> datelist = new();
+                    List<long> countList = new();
+                    TimeSpan ts;
+                    while (await rdr.ReadAsync())
+                    {
+                        datelist.Add(rdr.GetDateTime(0));
+                        countList.Add(rdr.GetInt64(1));
+                    }
+                    string s = "";
+                    for (int i = 0; i < datelist.Count; i++)
+                    {
+                        ts = datelist[i] - dtpStart.Value;
+                        buffer.Add(new((int)ts.TotalDays, (int)countList[i]));
+                    }
+
+                    ts = dtpEnd.Value - dtpStart.Value;
+                    Point[] buffer2 = buffer.ToArray();
+                    Array.Sort(buffer2, new xComparer());
+                    buffer = buffer2.ToList();
+
+                    for (int i = 0; i < buffer.Count; i++)
+                    {
+                        if(i == buffer.Count - 1)
+                        {
+                            buffer.Add(new(buffer[i].X + 1, 0));
+                            break;
+                        }
+                        else
+                        {
+                            if(i != buffer.Count)
+                            {
+                                if (buffer[i + 1].X - buffer[i].X > 1 && buffer[i].Y != 0)
+                                {
+                                    buffer.Add(new(buffer[i].X + 1, 0));
+                                }
+                            }
+                            if (i == 0 || (buffer[i].X - buffer[i - 1].X > 1 && buffer[i].Y != 0))
+                            {
+                                buffer.Add(new(buffer[i].X - 1, 0));
+                            }
+                        }
+                    }
+
+                    grf.Points = buffer.ToArray();
+                    foreach (Point point in grf.Points)
+                    {
+                        s += point.ToString();
+                    }
+                    MessageBox.Show(s);
                 }
-                grf.Points = buffer.ToArray();
-                await rdr.CloseAsync();
-                Program.closeOpenConnection();
-            }
-            if (e.Button == MouseButtons.Right && Program.userAdmin)
-            {
-                frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 2);
-                frm.ascendido += ((Item)sender).cambioPrivilegio;
-                frm.Show();
+                if (e.Button == MouseButtons.Right && Program.userAdmin)
+                {
+                    frmAniadirAdministrador frm = new(((Item)sender).Text, ((Item)sender).id, ((Item)sender).mode == 2);
+                    frm.ascendido += ((Item)sender).cambioPrivilegio;
+                    frm.Show();
+                }
             }
         }
     }

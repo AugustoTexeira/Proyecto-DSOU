@@ -92,6 +92,15 @@ namespace ProWork
         {
             this.id = id;
             this.Text = nom;
+            BackColor = Estilo.fondo;
+            ForeColor = Estilo.Contraste;
+
+            De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
+        }
+        private void colorSwap(object sender, EventArgs e)
+        {
+            this.BackColor = Estilo.fondo;
+            this.ForeColor = Estilo.Contraste;
         }
 
         private void onEnter()
