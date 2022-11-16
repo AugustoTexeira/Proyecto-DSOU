@@ -403,3 +403,6 @@ C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.boringList.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.loadingGIF.resources
 C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmCarpetaConf.resources
+C:\Users\Usuario\source\repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.boringList.resources
+C:\Users\Usuario\source\repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmCarpetaConf.resources
+C:\Users\Usuario\source\repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.loadingGIF.resources

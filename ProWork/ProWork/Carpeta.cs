@@ -19,7 +19,7 @@ namespace ProWork
             set { lbl.Text = value; }
         }
         public string id;
-        public List<string> mimeTypes;
+        public string mimeTypes;
         public RichTextBox rtb;
         public bool seleccionado;
         public Carpeta()

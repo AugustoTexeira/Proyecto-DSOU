@@ -302,6 +302,7 @@ namespace ProWork
 
         public static async Task RefreshData(string fileID, int proyecto, MySqlConnection con)
         {
+            //Para arreglar.
             List<string> names = new();
             List<string> ids = new();
             List<string> format = new();
@@ -340,17 +341,13 @@ namespace ProWork
                     {
                         if(format[i] == "No")
                         {
-                            if (ids.Count == 1)
+                            if (ids.Count == i)
                             {
                                 consulta = $"SELECT  IF('{ids[i]}' IN (select idcarpeta from carpeta where idcarpetapadre = '{fileID}'), '{ids[i]}', null),'{ids[i]}','{names[i]}','No';";
                             }
-                            else if (i != (ids.Count - 1))
-                            {
-                                consulta += $"SELECT IF('{ids[i]}' IN (select idcarpeta from carpeta where idcarpetapadre = '{fileID}'), '{ids[i]}', null),'{ids[i]}','{names[i]}', 'No' from carpeta UNION ";
-                            }
                             else
                             {
-                                consulta += $"SELECT IF('{ids[i]}' IN (select idcarpeta from carpeta where idcarpetapadre = '{fileID}'), '{ids[i]}', null),'{ids[i]}','{names[i]}', 'No' from carpeta; ";
+                                consulta += $"SELECT IF('{ids[i]}' IN (select idcarpeta from carpeta where idcarpetapadre = '{fileID}'), '{ids[i]}', null),'{ids[i]}','{names[i]}', 'No' from carpeta UNION ";
                             }
                         }
                         else
@@ -369,7 +366,6 @@ namespace ProWork
                             }
                         }
                     }
-                    Clipboard.SetText(consulta);
                     MySqlCommand cmd1 = new(consulta, con);
                     MySqlDataReader reader = await cmd1.ExecuteReaderAsync();
                     while (await reader.ReadAsync())
@@ -398,11 +394,11 @@ namespace ProWork
                         {
                             if (formatnot[i] == "No")
                             {
-                                consultaDerivada += $"insert into carpeta(idcarpetapadre, idproyecto, idcarpeta, nombre, existencia) values('{fileID}',{proyecto},'{idsnot[i]}','{namesnot[i]}', true); insert into carga(descripcion, idcarpeta, idproyecto) values('n', '{idsnot[i]}',{proyecto}); ";
+                                consultaDerivada += $"insert into carpeta(idcarpetapadre, idproyecto, idcarpeta, nombre, existencia) values('{fileID}',{proyecto},'{idsnot[i]}','{namesnot[i]}', true), insert into carga(descripcion, idcarpeta, idproyecto) values('n', '{idsnot[i]}',{proyecto}); ";
                             }
                             else
                             {
-                                consultaDerivada += $"insert into archivo(formato, idarchivo, nombre, existencia) values('{formatnot[i]}','{idsnot[i]}','{namesnot[i]}', true); insert into carga(descripcion, idcarpeta, idproyecto, idarchivo) values('n', '{fileID}', {proyecto}, '{idsnot[i]}'); insert into contiene(idarchivo, idcarpeta) values('{idsnot[i]}','{fileID}'); ";
+                                consultaDerivada += $"insert into archivo(formato, idarchivo, nombre, existencia) values('{formatnot[i]}','{idsnot[i]}','{namesnot[i]}', true); insert into carga(descripcion, idcarpeta, idproyecto, idarchivo) values('n', '{fileID}', {proyecto}, '{idsnot[i]}'), insert into contiene(idarchivo, idcarpeta) values('{idsnot[i]}','{fileID}'); ";
                             }
                         }
                         if (consultaDerivada != "")
@@ -504,13 +500,13 @@ namespace ProWork
                 }
             }
         }
-        public static async Task<string> Subir(Carpeta carpeta, string idcarpetapadre)
+        public static async Task<string> Subir(Carpeta carpeta, string idcarpetapadre, string nombre)
         {
             try
             {
                 var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                 {
-                    Name = "Carpeta indefinida",
+                    Name = nombre,
                     MimeType = "application/vnd.google-apps.folder",
                     Parents = new List<string>
                         {
@@ -545,9 +541,9 @@ namespace ProWork
 
                 return file.Id;
             }
-            catch
+            catch( Exception e )
             {
-                MessageBox.Show("Ha ocurrido un error.");
+                MessageBox.Show(e.Message);
                 return null;
             }
         }
@@ -559,13 +555,13 @@ namespace ProWork
                 List<string> filtros = new List<string>();
                 List<string> newCarpeta = new List<string>();
                 var con = await Program.openConnectionAsync();
-                MySqlCommand cmd = new($"select idcarpeta, filtro from carpeta where idcarpeta = '{carpeta.id}'", con);
+                MySqlCommand cmd = new($"select idcarpeta, filtro from carpeta where idcarpetapadre = '{carpeta.id}'", con);
 
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync();
                 Clipboard.SetDataObject(cmd);
                 while (await reader.ReadAsync())
                 {
-                    if(await reader.IsDBNullAsync(1))
+                    if (await reader.IsDBNullAsync(1))
                     {
                         newCarpeta.Add(reader.GetString(0));
                         filtros.Add("null");
@@ -578,7 +574,7 @@ namespace ProWork
                 }
                 await reader.CloseAsync();
                 string consulta = "";
-                foreach (var item in filePath)
+                foreach (string item in filePath)
                 {
                     var fileMetadata = new Google.Apis.Drive.v3.Data.File()
                     {
@@ -598,7 +594,7 @@ namespace ProWork
 
                         string format = file.MimeType.Split('/')[1];
 
-                        for(int i = 0; i < filtros.Count; i++)
+                        for (int i = 0; i < filtros.Count; i++)
                         {
                             string[] filtrar = filtros[i].ToLower().Replace(" ", string.Empty).Split(',');
 
@@ -608,8 +604,8 @@ namespace ProWork
                                 {
                                     FilesResource.UpdateRequest updateRequest = GoogleInfo.Servicio.Files.Update(new Google.Apis.Drive.v3.Data.File(), file.Id);
                                     updateRequest.Fields = "id";
-                                    updateRequest.RemoveParents = carpeta.id;
                                     updateRequest.AddParents = newCarpeta[i];
+                                    updateRequest.RemoveParents = carpeta.id;
                                     consulta += $"insert into archivo(formato, idarchivo, nombre, size) values('{format}','{file.Id}','{file.Name}', {file.Size}); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, idarchivo) values('{Program.userId}','s', '{newCarpeta[i]}', {idproyecto}, '{file.Id}'); insert into contiene(idarchivo, idcarpeta) values('{file.Id}','{newCarpeta[i]}'); ";
                                     file = updateRequest.Execute();
                                 }
@@ -632,6 +628,7 @@ namespace ProWork
                         }
                     }
                 }
+                MessageBox.Show(consulta);
                 MySqlCommand cmd1 = new(consulta, con);
                 await cmd.ExecuteNonQueryAsync();
                 Program.closeOpenConnection();
@@ -655,7 +652,7 @@ namespace ProWork
                 var con = await Program.openConnectionAsync();
                 try
                 {
-                    carpeta.id = await Subir(carpeta, Ruta.carpetaActual);
+                    carpeta.id = await Subir(carpeta, Ruta.carpetaActual, "Carpeta indefinida");
                     MySqlCommand cmd = new($"insert into carpeta(idcarpeta, idcarpetapadre, idproyecto, nombre) values('{carpeta.id}','{Ruta.carpetaActual}',{Ruta.proyectoActual},'Nueva carpeta'); insert into carga(idcarpeta, idusuario, idproyecto, descripcion) values('{carpeta.id}',{Program.userId},{Ruta.proyectoActual},'s')", con);
                     this.Add(carpeta);
                     await carpeta.CambiarNombre();

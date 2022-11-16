@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "FKxikwfDQoOvKo0j0flnI3CGZujQYzCVVPjqsgOTC8RrF/jjEdZiUM3leAfzV1jU48wgc0VHdiE+AYxEQltgdg==",
+  "dgSpecHash": "bAXW3r+Gv1RW8qcxDQu6xl7Aa9dMARUwboPEe7pC/DDjpGLS9XQlBn3H7XeUWnZJWDE8ZKD5Y088/2LxvC95qA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Julian\\Documents\\GitHub\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\source\\repos\\Proyecto-DSOU\\ProWork\\ProWork\\ProWork.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Julian\\.nuget\\packages\\google.apis\\1.57.0\\google.apis.1.57.0.nupkg.sha512",
-    "C:\\Users\\Julian\\.nuget\\packages\\google.apis.auth\\1.57.0\\google.apis.auth.1.57.0.nupkg.sha512",
-    "C:\\Users\\Julian\\.nuget\\packages\\google.apis.core\\1.57.0\\google.apis.core.1.57.0.nupkg.sha512",
-    "C:\\Users\\Julian\\.nuget\\packages\\google.apis.drive.v3\\1.57.0.2859\\google.apis.drive.v3.1.57.0.2859.nupkg.sha512",
-    "C:\\Users\\Julian\\.nuget\\packages\\mysqlconnector\\2.2.0\\mysqlconnector.2.2.0.nupkg.sha512",
-    "C:\\Users\\Julian\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\Usuario\\.nuget\\packages\\google.apis\\1.57.0\\google.apis.1.57.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\google.apis.auth\\1.57.0\\google.apis.auth.1.57.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\google.apis.core\\1.57.0\\google.apis.core.1.57.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\google.apis.drive.v3\\1.57.0.2859\\google.apis.drive.v3.1.57.0.2859.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\mysqlconnector\\2.2.0\\mysqlconnector.2.2.0.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
