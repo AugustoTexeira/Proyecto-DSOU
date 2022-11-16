@@ -38,8 +38,10 @@ namespace ProWork
             ctbNombre.Enabled = false;
             ctbContra.Enabled = false;
             ctbCContra.Enabled = false;
-
-            bgwCheck.RunWorkerAsync();
+            if(!bgwCheck.IsBusy)
+            {
+                bgwCheck.RunWorkerAsync();
+            }
         }
         private void checkLogin(object sender, System.ComponentModel.DoWorkEventArgs e)
         {

@@ -117,6 +117,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(297, 51);
             this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabStop = false;
             this.btnLogin.Texto = "Crear";
             this.btnLogin.ButtonClick += new System.EventHandler(this.btnLogin_Click);
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -132,6 +133,7 @@
             this.ctbNombre.TabIndex = 19;
             this.ctbNombre.txbText = "";
             this.ctbNombre.UsePasswordChar = false;
+            this.ctbNombre.EnterPressed += new System.EventHandler(this.btnLogin_Click);
             // 
             // epbUser
             // 
@@ -143,6 +145,7 @@
             this.epbUser.Name = "epbUser";
             this.epbUser.Size = new System.Drawing.Size(104, 141);
             this.epbUser.TabIndex = 20;
+            this.epbUser.TabStop = false;
             // 
             // epbPlusUser
             // 
@@ -154,6 +157,7 @@
             this.epbPlusUser.Name = "epbPlusUser";
             this.epbPlusUser.Size = new System.Drawing.Size(37, 37);
             this.epbPlusUser.TabIndex = 21;
+            this.epbPlusUser.TabStop = false;
             // 
             // ctbContra
             // 
@@ -166,6 +170,7 @@
             this.ctbContra.TabIndex = 22;
             this.ctbContra.txbText = "";
             this.ctbContra.UsePasswordChar = true;
+            this.ctbContra.EnterPressed += new System.EventHandler(this.btnLogin_Click);
             // 
             // ctbCContra
             // 
@@ -178,6 +183,7 @@
             this.ctbCContra.TabIndex = 23;
             this.ctbCContra.txbText = "";
             this.ctbCContra.UsePasswordChar = true;
+            this.ctbCContra.EnterPressed += new System.EventHandler(this.btnLogin_Click);
             // 
             // frmLogin
             // 

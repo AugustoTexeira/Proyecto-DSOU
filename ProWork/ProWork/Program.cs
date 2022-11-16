@@ -18,10 +18,9 @@ namespace ProWork
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
-
-            sql.Open();
-
+            
             ApplicationConfiguration.Initialize();
+            tryToConnectEnvironment();
 
             Estilo.enfasis = Color.FromArgb(5, 49, 247);
             Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
@@ -38,9 +37,59 @@ namespace ProWork
 
             Application.Run();
         }
+        private static async Task tryToConnectAsync()
+        {
+            try
+            {
+                await sql.OpenAsync();
+            }
+            catch
+            {
+                if(MessageBox.Show("Se ha perdido la conexión con el servidor. ¿Desea Reconectar?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    await tryToConnectAsync();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+        }
         private static void tryToConnect()
         {
-
+            try
+            {
+                sql.OpenAsync();
+            }
+            catch
+            {
+                if (MessageBox.Show("Se ha perdido la conexión con el servidor. ¿Desea Reconectar?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    tryToConnect();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+        }
+        private static void tryToConnectEnvironment()
+        {
+            try
+            {
+                sql.Open();
+            }
+            catch
+            {
+                if (MessageBox.Show("Se ha perdido la conexión con el servidor. ¿Desea Reconectar?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    tryToConnectEnvironment();
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
         }
         public static void closeOpenConnection ()
         {
@@ -48,7 +97,6 @@ namespace ProWork
         }
         public async static Task<MySqlConnection> openConnectionAsync ()
         {
-            await Task.Delay(5);
             if (!executingsql)
             {
                 executingsql = true;
@@ -56,8 +104,8 @@ namespace ProWork
             }
             else
             {
-                var con = await openConnectionAsync();
-                return con;
+                await Task.Delay(5);
+                return await openConnectionAsync();
             }
         }
         public static MySqlConnection openConnection()
@@ -69,23 +117,8 @@ namespace ProWork
             }
             else
             {
-                MySqlConnection con = new("Server=h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com; Database=ac2ds4m3udhpr2r9; Uid=m615ts369w6vo3nu; Pwd=xh288kbnw4ixluu4;");
-                try
-                {
-                    con.Open();
-                }
-                catch
-                {
-                    if (MessageBox.Show("Se ha perdido la conexión con la base de datos.\n¿Desea intentar reconectar?", "Error de conexión", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        return openConnection();
-                    }
-                    else
-                    {
-                        Application.Exit();
-                    }
-                }
-                return con;
+                Task.Delay(5);
+                return openConnection();
             }
         }
     }

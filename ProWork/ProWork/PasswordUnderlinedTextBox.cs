@@ -21,6 +21,7 @@ namespace ProWork
             epb.Cursor = Cursors.Hand;
             epb.TabStop = false;
             Controls.Add(epb);
+            epb.TabStop = false;
             epb.BringToFront();
         }
 

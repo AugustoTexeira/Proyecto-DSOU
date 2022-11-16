@@ -32,6 +32,7 @@ namespace ProWork
         public CustomButton()
         {
             InitializeComponent();
+            this.TabStop = false;
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             if (ClientSize.Width != 0)
             {

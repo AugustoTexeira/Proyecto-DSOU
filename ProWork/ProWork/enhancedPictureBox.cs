@@ -29,6 +29,7 @@ namespace ProWork
         public enhancedPictureBox()
         {
             InitializeComponent();
+            TabStop = false;
         }
 
         private void enhancedPictureBox_Paint(object sender, PaintEventArgs e)
