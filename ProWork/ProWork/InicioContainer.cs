@@ -16,6 +16,7 @@ namespace ProWork
         public InicioContainer()
         {
             InitializeComponent();
+            btnCancelar.Font = lblProyecto.Font;
             pnl.Anchor = AnchorStyles.Left;
             pnl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnl.Visible = false;
@@ -49,10 +50,26 @@ namespace ProWork
             }
             else
             {
-                await CrearProyecto(lista);
+                if(uTxtNombreProyecto.txbText != "")
+                {
+                    await CrearProyecto(lista);
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un nombre de proyecto antes de continuar.", "Error al intentar crear");
+                }
+               
             }
         }
 
+        private void Limpiar()
+        {
+            blsCarpeta.Controls.Clear();
+            blsFechas.Controls.Clear();
+            sTxtDescripcion.rtbText = "";
+            uTxtNombreProyecto.txbText = "";
+            uTxtTipoProyecto.txbText = "";
+        }
         private async Task CrearProyecto(List<string> result)
         {
             List<(string desc, string nom, string tipo)> proy = new();
@@ -70,14 +87,14 @@ namespace ProWork
                 {
                     day = $"0{DateTime.Now.Day}";
                 }
-                else { month = DateTime.Now.Day.ToString(); }
+                else { day = DateTime.Now.Day.ToString(); }
                 proy.Add((sTxtDescripcion.rtbText, uTxtNombreProyecto.txbText, uTxtTipoProyecto.txbText));
                 var con = await Program.openConnectionAsync();
-                MySqlCommand pro = new($"insert into proyecto(descripción, tipoProyecto, nombreProyecto, fechaDeCreación) values('{proy[0].desc}','{proy[0].tipo}','{proy[0].nom}','{DateTime.Now.Year}-{month}-{day}')", con);
+                MySqlCommand pro = new($"insert into proyecto(descripción, tipoProyecto, nombreProyecto, fechaDeCreación) values('{proy[0].desc}','{proy[0].tipo}','{proy[0].nom}','{DateTime.Now.Year}-{month}-{day}');", con);
                 await pro.ExecuteNonQueryAsync();
                 Carpeta carpetaC = new();
                 carpetaC.id = await FileHolder.SubirProyecto(carpetaC, proy[0].nom);
-                MySqlCommand car = new($"insert into carpeta(idcarpeta, nombre, existencia, idproyecto) values('{carpetaC.id}','{proy[0].nom}', true, {pro.LastInsertedId})", con);
+                MySqlCommand car = new($"insert into carga(idusuario, descripcion, idproyecto, fecha) values({Program.userId},'c', {pro.LastInsertedId}, '{DateTime.Now.Year}-{month}-{day}'); insert into carpeta(idcarpeta, nombre, existencia, idproyecto) values('{carpetaC.id}','{proy[0].nom}', true, {pro.LastInsertedId}); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, fecha) values({Program.userId},'c', '{carpetaC.id}', {pro.LastInsertedId}, '{DateTime.Now.Year}-{month}-{day}');", con);
                 await car.ExecuteNonQueryAsync();
 
                 string consulta = "";
@@ -86,7 +103,7 @@ namespace ProWork
                     Carpeta hijas = new();
                     hijas.id = await FileHolder.Subir(hijas, carpetaC.id, a.Text);
                     hijas.mimeTypes = a.varcharId;
-                    consulta += $"insert into carpeta(idcarpeta, nombre, existencia, idproyecto, idcarpetapadre, filtro) values('{hijas.id}','{a.Text}',true,{pro.LastInsertedId},'{carpetaC.id}','{hijas.mimeTypes}'); ";
+                    consulta += $"insert into carpeta(idcarpeta, nombre, existencia, idproyecto, idcarpetapadre, filtro) values('{hijas.id}','{a.Text}',true,{pro.LastInsertedId},'{carpetaC.id}','{hijas.mimeTypes}'); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, fecha) values({Program.userId},'c', '{hijas.id}', {pro.LastInsertedId}, '{DateTime.Now.Year}-{month}-{day}');";
                 }
                 MySqlCommand cmd = new(consulta, con);
                 await cmd.ExecuteNonQueryAsync();
@@ -94,6 +111,7 @@ namespace ProWork
                 Program.closeOpenConnection();
                 await FileHolder.Subir(result, carpetaC, pro.LastInsertedId);
                 pnl.Visible = false;
+                Limpiar();
             }
             else 
             { 
@@ -173,10 +191,6 @@ namespace ProWork
                 }
             }
         }
-        private void pnl_DragLeave(object sender, EventArgs e)
-        {
-            
-        }
 
         private void customButton2_ButtonClick(object sender, EventArgs e)
         {
@@ -188,6 +202,20 @@ namespace ProWork
             frmCarpetaConf config = new(((Item)sender).varcharId,((Item)sender).Text);
             config.Show();
             config.Filtrar += Filtrado;
+        }
+
+        private void btnCancelar_ButtonClick(object sender, EventArgs e)
+        {
+            if(pnl.Visible == true)
+            {
+                DialogResult resultado = MessageBox.Show("¿Seguro que quiere cancelar la creación de proyecto?", "Confirmación", MessageBoxButtons.YesNo);
+                if(resultado == DialogResult.Yes)
+                {
+                    pnl.Visible = false;
+                    Limpiar();
+                    lista.Clear();
+                }
+            }
         }
     }
 }

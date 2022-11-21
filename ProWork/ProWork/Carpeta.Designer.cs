@@ -35,6 +35,7 @@
             this.eliminarCarpetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descargarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pcb = new System.Windows.Forms.PictureBox();
+            this.cambiarFiltrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb)).BeginInit();
             this.SuspendLayout();
@@ -57,28 +58,29 @@
             this.cms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cambiarNombreToolStripMenuItem,
             this.eliminarCarpetaToolStripMenuItem,
-            this.descargarToolStripMenuItem});
+            this.descargarToolStripMenuItem,
+            this.cambiarFiltrosToolStripMenuItem});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(165, 70);
+            this.cms.Size = new System.Drawing.Size(181, 114);
             // 
             // cambiarNombreToolStripMenuItem
             // 
             this.cambiarNombreToolStripMenuItem.Name = "cambiarNombreToolStripMenuItem";
-            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.cambiarNombreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cambiarNombreToolStripMenuItem.Text = "Cambiar nombre";
             this.cambiarNombreToolStripMenuItem.Click += new System.EventHandler(this.cambiarNombreToolStripMenuItem_Click);
             // 
             // eliminarCarpetaToolStripMenuItem
             // 
             this.eliminarCarpetaToolStripMenuItem.Name = "eliminarCarpetaToolStripMenuItem";
-            this.eliminarCarpetaToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.eliminarCarpetaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eliminarCarpetaToolStripMenuItem.Text = "Eliminar carpeta";
             this.eliminarCarpetaToolStripMenuItem.Click += new System.EventHandler(this.eliminarCarpetaToolStripMenuItem_Click);
             // 
             // descargarToolStripMenuItem
             // 
             this.descargarToolStripMenuItem.Name = "descargarToolStripMenuItem";
-            this.descargarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.descargarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.descargarToolStripMenuItem.Text = "Descargar";
             this.descargarToolStripMenuItem.Click += new System.EventHandler(this.descargarToolStripMenuItem_Click);
             // 
@@ -94,6 +96,13 @@
             this.pcb.TabStop = false;
             this.pcb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseClick);
             this.pcb.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Carpeta_MouseDoubleClick);
+            // 
+            // cambiarFiltrosToolStripMenuItem
+            // 
+            this.cambiarFiltrosToolStripMenuItem.Name = "cambiarFiltrosToolStripMenuItem";
+            this.cambiarFiltrosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cambiarFiltrosToolStripMenuItem.Text = "Cambiar filtros";
+            this.cambiarFiltrosToolStripMenuItem.Click += new System.EventHandler(this.cambiarFiltrosToolStripMenuItem_Click);
             // 
             // Carpeta
             // 
@@ -121,5 +130,6 @@
         private PictureBox pcb;
         private ToolStripMenuItem eliminarCarpetaToolStripMenuItem;
         private ToolStripMenuItem descargarToolStripMenuItem;
+        private ToolStripMenuItem cambiarFiltrosToolStripMenuItem;
     }
 }

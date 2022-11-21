@@ -73,6 +73,16 @@ namespace ProWork.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Audio {
+            get {
+                object obj = ResourceManager.GetObject("Audio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Basura {
             get {
                 object obj = ResourceManager.GetObject("Basura", resourceCulture);
@@ -416,6 +426,16 @@ namespace ProWork.Properties {
         internal static System.Drawing.Bitmap OJoOcultoModoClaro {
             get {
                 object obj = ResourceManager.GetObject("OJoOcultoModoClaro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Otros {
+            get {
+                object obj = ResourceManager.GetObject("Otros", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

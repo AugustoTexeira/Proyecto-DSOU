@@ -35,7 +35,8 @@
             this.uTxtNombreProyecto = new ProWork.UnderlinedTextBox();
             this.uTxtTipoProyecto = new ProWork.UnderlinedTextBox();
             this.pnl = new System.Windows.Forms.Panel();
-            this.boringList2 = new ProWork.boringList();
+            this.btnCancelar = new ProWork.CustomButton();
+            this.blsFechas = new ProWork.boringList();
             this.blsCarpeta = new ProWork.boringList();
             this.customButton2 = new ProWork.CustomButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -68,6 +69,7 @@
             this.epbNuevoProyecto.Name = "epbNuevoProyecto";
             this.epbNuevoProyecto.Size = new System.Drawing.Size(125, 121);
             this.epbNuevoProyecto.TabIndex = 1;
+            this.epbNuevoProyecto.TabStop = false;
             this.epbNuevoProyecto.DragDrop += new System.Windows.Forms.DragEventHandler(this.epbNuevoProyecto_DragDrop);
             this.epbNuevoProyecto.DragEnter += new System.Windows.Forms.DragEventHandler(this.epbNuevoProyecto_DragDropEnter);
             // 
@@ -132,7 +134,8 @@
             this.pnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnl.Controls.Add(this.boringList2);
+            this.pnl.Controls.Add(this.btnCancelar);
+            this.pnl.Controls.Add(this.blsFechas);
             this.pnl.Controls.Add(this.blsCarpeta);
             this.pnl.Controls.Add(this.customButton2);
             this.pnl.Controls.Add(this.dateTimePicker1);
@@ -143,18 +146,28 @@
             this.pnl.Name = "pnl";
             this.pnl.Size = new System.Drawing.Size(1021, 755);
             this.pnl.TabIndex = 8;
-            this.pnl.DragLeave += new System.EventHandler(this.pnl_DragLeave);
             // 
-            // boringList2
+            // btnCancelar
             // 
-            this.boringList2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.boringList2.AutoScroll = true;
-            this.boringList2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.boringList2.Location = new System.Drawing.Point(693, 398);
-            this.boringList2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.boringList2.Name = "boringList2";
-            this.boringList2.Size = new System.Drawing.Size(295, 251);
-            this.boringList2.TabIndex = 11;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(616, 19);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(50, 50);
+            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.TabStop = false;
+            this.btnCancelar.Texto = "X";
+            this.btnCancelar.ButtonClick += new System.EventHandler(this.btnCancelar_ButtonClick);
+            // 
+            // blsFechas
+            // 
+            this.blsFechas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.blsFechas.AutoScroll = true;
+            this.blsFechas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.blsFechas.Location = new System.Drawing.Point(693, 398);
+            this.blsFechas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.blsFechas.Name = "blsFechas";
+            this.blsFechas.Size = new System.Drawing.Size(295, 251);
+            this.blsFechas.TabIndex = 11;
             // 
             // blsCarpeta
             // 
@@ -238,7 +251,8 @@
         private CustomButton customButton2;
         private DateTimePicker dateTimePicker1;
         private SurroundedTextBox sTxtDescripcion;
-        private boringList boringList2;
+        private boringList blsFechas;
         private boringList blsCarpeta;
+        private CustomButton btnCancelar;
     }
 }

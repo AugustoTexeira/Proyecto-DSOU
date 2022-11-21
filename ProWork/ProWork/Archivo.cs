@@ -19,6 +19,7 @@ namespace ProWork
         }
         public string id;
         public bool seleccionado = false;
+        public string previsual;
         public Archivo(Image imagen)
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace ProWork
 
         public event EventHandler Eliminar;
         public event EventHandler Deseleccionar;
-        public event EventHandler DescargarCarpeta;
+        public event EventHandler Descargar;
         public Archivo()
         {
             InitializeComponent();
@@ -39,12 +40,12 @@ namespace ProWork
             if (epb.BkgImage.Width > epb.BkgImage.Height)
             {
                 epb.sizeToWidth(Width);
-                epb.Location = new(0, 0);
+                epb.Location = new(Width / 2 - epb.Width / 2, 0);
             }
             else
             {
                 epb.sizeToHeight(Height - lbl.Height);
-                epb.Location = new(0, 0);
+                epb.Location = new(Width / 2 - epb.Width / 2, 0);
             }
             epb.sizeToHeight(Height - lbl.Height);
         }
@@ -53,7 +54,7 @@ namespace ProWork
         {
             if (seleccionado == true)
             {
-                DescargarCarpeta.Invoke(this, e);
+                Descargar.Invoke(this, e);
             }
             else
             {
@@ -61,7 +62,7 @@ namespace ProWork
             }
         }
 
-        private void Carpeta_MouseClick(object sender, MouseEventArgs e)
+        private void Archivo_MouseClick(object sender, MouseEventArgs e)
         {
 
             if (e.Button == MouseButtons.Left)
@@ -81,6 +82,11 @@ namespace ProWork
             {
                 cms.Show(this, new Point(e.Location.X + ((Control)sender).Location.X, e.Location.Y + ((Control)sender).Location.Y));
             }
+        }
+
+        private async void Archivo_DoubleClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

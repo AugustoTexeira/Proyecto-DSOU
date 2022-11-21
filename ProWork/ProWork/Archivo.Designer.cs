@@ -61,6 +61,7 @@
             this.descargarToolStripMenuItem.Name = "descargarToolStripMenuItem";
             this.descargarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.descargarToolStripMenuItem.Text = "Descargar";
+            this.descargarToolStripMenuItem.Click += new System.EventHandler(this.descargarToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
@@ -71,13 +72,16 @@
             // epb
             // 
             this.epb.BackColor = System.Drawing.Color.Transparent;
-            this.epb.BkgImage = global::ProWork.Properties.Resources.Proyectos_Gris;
+            this.epb.BkgImage = global::ProWork.Properties.Resources.Otros;
             this.epb.Circle = false;
             this.epb.Location = new System.Drawing.Point(0, 0);
             this.epb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.epb.Name = "epb";
             this.epb.Size = new System.Drawing.Size(100, 69);
             this.epb.TabIndex = 3;
+            this.epb.TabStop = false;
+            this.epb.DoubleClick += new System.EventHandler(this.Archivo_DoubleClick);
+            this.epb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Archivo_MouseClick);
             // 
             // Archivo
             // 
@@ -88,17 +92,17 @@
             this.Controls.Add(this.lbl);
             this.Name = "Archivo";
             this.Size = new System.Drawing.Size(100, 100);
+            this.DoubleClick += new System.EventHandler(this.Archivo_DoubleClick);
             this.cms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Label lbl;
         private ContextMenuStrip cms;
         private ToolStripMenuItem descargarToolStripMenuItem;
         private ToolStripMenuItem eliminarToolStripMenuItem;
         public enhancedPictureBox epb;
+        public Label lbl;
     }
 }

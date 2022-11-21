@@ -38,7 +38,7 @@ namespace ProWork
         public event EventHandler Eliminar;
         public event EventHandler Deseleccionar;
         public event EventHandler DescargarCarpeta;
-
+        public event EventHandler<string> CambiarFiltros;
         public virtual void OnDoubleClick(EventArgs e)
         {
             CarpetaDoubleClick.Invoke(id, e);
@@ -105,6 +105,11 @@ namespace ProWork
             CambiarNombre();
         }
 
+        private void Filtros(object sender, string filtros)
+        {
+            mimeTypes = filtros;
+            CambiarFiltros.Invoke(this, filtros);
+        }
         private void eliminarCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Eliminar.Invoke(this, e);
@@ -120,6 +125,13 @@ namespace ProWork
             {
                 MessageBox.Show("Seleccione la carpeta correctamente.");
             }
+        }
+
+        private void cambiarFiltrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCarpetaConf config = new(mimeTypes,Nombre);
+            config.Show();
+            config.Filtrar += Filtros;
         }
     }
 }   

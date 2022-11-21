@@ -463,3 +463,8 @@ C:\Users\Cristian\Source\Repos\Proyecto-DSOUUUUUUUUUUUUUU\ProWork\ProWork\obj\De
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUUUUUUUUUUUUUU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.pdb
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUUUUUUUUUUUUUU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\Proyecto-DSOUUUUUUUUUUUUUU\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MedallionShell.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MediaToolkit.Standard.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MediaToolkit.Standard.Core.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Julian\Documents\GitHub\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\System.IO.Abstractions.dll
