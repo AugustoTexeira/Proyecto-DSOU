@@ -13,6 +13,7 @@ namespace ProWork
     public partial class Carpeta : UserControl
     {
         private bool clicked = false;
+        private Point ClickPoint;
         public string Nombre
         {
             get { return lbl.Text; }
@@ -132,6 +133,31 @@ namespace ProWork
             frmCarpetaConf config = new(mimeTypes,Nombre);
             config.Show();
             config.Filtrar += Filtros;
+        }
+
+        private void Carpeta_MouseDown(object sender, MouseEventArgs e)
+        {
+            clicked = true;
+            ClickPoint = e.Location;
+        }
+
+        private void Carpeta_MouseUp(object sender, MouseEventArgs e)
+        {
+            clicked = false;
+        }
+
+        private void Carpeta_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (clicked && e.Location != ClickPoint)
+            {
+                DoDragDrop(id, DragDropEffects.Move);
+            }
+        }
+
+        private void Carpeta_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) != id) 
+                e.Effect = DragDropEffects.Move;
         }
     }
 }   

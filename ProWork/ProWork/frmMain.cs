@@ -36,6 +36,8 @@ namespace ProWork
             Controls.Add(contactosContainer);
             Controls.Add(proyectosContainer);
 
+            ShowIcon = true;
+
             if(Estilo.fondo == Color.White)
             {
                 menu.BackColor = Estilo.contrasteLigero;

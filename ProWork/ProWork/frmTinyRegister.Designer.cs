@@ -39,6 +39,7 @@
             this.utbCContra = new ProWork.PasswordUnderlinedTextBox();
             this.pbxUser = new ProWork.enhancedPictureBox();
             this.pbPlusUser = new ProWork.enhancedPictureBox();
+            this.chb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // utbNombre
@@ -48,7 +49,7 @@
             this.utbNombre.Location = new System.Drawing.Point(119, 349);
             this.utbNombre.Name = "utbNombre";
             this.utbNombre.PlaceholderText = "Nombre";
-            this.utbNombre.Size = new System.Drawing.Size(344, 36);
+            this.utbNombre.Size = new System.Drawing.Size(344, 45);
             this.utbNombre.TabIndex = 2;
             this.utbNombre.txbText = "";
             this.utbNombre.UsePasswordChar = false;
@@ -62,6 +63,7 @@
             this.cbtCrear.Name = "cbtCrear";
             this.cbtCrear.Size = new System.Drawing.Size(366, 68);
             this.cbtCrear.TabIndex = 5;
+            this.cbtCrear.TabStop = false;
             this.cbtCrear.Texto = "CREAR";
             this.cbtCrear.ButtonClick += new System.EventHandler(this.cbtCrear_Click);
             this.cbtCrear.Click += new System.EventHandler(this.cbtCrear_Click);
@@ -104,7 +106,7 @@
             this.utbContra.Location = new System.Drawing.Point(119, 400);
             this.utbContra.Name = "utbContra";
             this.utbContra.PlaceholderText = "Contraseña";
-            this.utbContra.Size = new System.Drawing.Size(344, 36);
+            this.utbContra.Size = new System.Drawing.Size(344, 45);
             this.utbContra.TabIndex = 16;
             this.utbContra.txbText = "";
             this.utbContra.UsePasswordChar = true;
@@ -117,7 +119,7 @@
             this.utbCContra.Location = new System.Drawing.Point(119, 451);
             this.utbCContra.Name = "utbCContra";
             this.utbCContra.PlaceholderText = "Confirmar Contraseña";
-            this.utbCContra.Size = new System.Drawing.Size(344, 36);
+            this.utbCContra.Size = new System.Drawing.Size(344, 45);
             this.utbCContra.TabIndex = 17;
             this.utbCContra.txbText = "";
             this.utbCContra.UsePasswordChar = true;
@@ -130,10 +132,11 @@
             this.pbxUser.BkgImage = global::ProWork.Properties.Resources.Usuario_azul;
             this.pbxUser.Circle = false;
             this.pbxUser.Location = new System.Drawing.Point(217, 117);
-            this.pbxUser.Margin = new System.Windows.Forms.Padding(6);
+            this.pbxUser.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pbxUser.Name = "pbxUser";
             this.pbxUser.Size = new System.Drawing.Size(153, 211);
             this.pbxUser.TabIndex = 18;
+            this.pbxUser.TabStop = false;
             // 
             // pbPlusUser
             // 
@@ -142,16 +145,31 @@
             this.pbPlusUser.BkgImage = global::ProWork.Properties.Resources.MasUsuario_Azul;
             this.pbPlusUser.Circle = false;
             this.pbPlusUser.Location = new System.Drawing.Point(357, 191);
-            this.pbPlusUser.Margin = new System.Windows.Forms.Padding(6);
+            this.pbPlusUser.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pbPlusUser.Name = "pbPlusUser";
             this.pbPlusUser.Size = new System.Drawing.Size(62, 62);
             this.pbPlusUser.TabIndex = 19;
+            this.pbPlusUser.TabStop = false;
+            // 
+            // chb
+            // 
+            this.chb.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.chb.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chb.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.chb.Location = new System.Drawing.Point(227, 717);
+            this.chb.Name = "chb";
+            this.chb.Size = new System.Drawing.Size(129, 24);
+            this.chb.TabIndex = 25;
+            this.chb.Text = "Recordarme";
+            this.chb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chb.UseVisualStyleBackColor = true;
             // 
             // frmTinyRegister
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(582, 753);
+            this.Controls.Add(this.chb);
             this.Controls.Add(this.pbPlusUser);
             this.Controls.Add(this.pbxUser);
             this.Controls.Add(this.lblLogin);
@@ -161,7 +179,7 @@
             this.Controls.Add(this.utbCContra);
             this.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(417, 616);
+            this.MinimumSize = new System.Drawing.Size(417, 658);
             this.Name = "frmTinyRegister";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -182,5 +200,6 @@
         private PasswordUnderlinedTextBox utbCContra;
         private enhancedPictureBox pbxUser;
         private enhancedPictureBox pbPlusUser;
+        private CheckBox chb;
     }
 }

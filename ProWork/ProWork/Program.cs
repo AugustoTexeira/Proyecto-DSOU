@@ -20,21 +20,62 @@ namespace ProWork
             // see https://aka.ms/applicationconfiguration.
             
             ApplicationConfiguration.Initialize();
-            tryToConnectEnvironment();
-
-            Estilo.enfasis = Color.FromArgb(5, 49, 247);
-            Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
-            Estilo.fondo = Color.FromArgb(15, 12, 15);
-            Estilo.Contraste = Color.White;
-            Estilo.contrasteLigero = Color.Gray;
-            Estilo.degrContraste = Color.LightGray;
+            MessageBox.Show(Properties.Setttings.Default.Theme.ToString());
+            if (Properties.Setttings.Default.Theme)
+            {
+                Estilo.enfasis = Color.FromArgb(5, 49, 247);
+                Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
+                Estilo.fondo = Color.White;
+                Estilo.Contraste = Color.FromArgb(15, 12, 15);
+                Estilo.contrasteLigero = Color.LightGray;
+                Estilo.degrContraste = Color.Gray;
+            }
+            else
+            {
+                Estilo.enfasis = Color.FromArgb(5, 49, 247);
+                Estilo.degrEnfasis = Color.FromArgb(5, 233, 237);
+                Estilo.fondo = Color.FromArgb(15, 12, 15);
+                Estilo.Contraste = Color.White;
+                Estilo.contrasteLigero = Color.Gray;
+                Estilo.degrContraste = Color.LightGray;
+            }
 
             GoogleInfo.CrearToken();
+            tryToConnectEnvironment();
+            if(Properties.Setttings.Default.User == "")
+            {
+                frmLogin frm = new();
+                frm.CreateControl();
+                frm.Show();
+            }
+            else
+            {
+                MySqlConnection con = openConnection();
+                MySqlCommand vLogin = new($"select administrador, idusuario from usuario where binary password=sha2('{Properties.Setttings.Default.UserPassword}', 224) and nombre='{Properties.Setttings.Default.User}';", con);
+                MySqlDataReader reader = vLogin.ExecuteReader();
+                bool v = false;
 
-            frmLogin frm = new();
-            frm.CreateControl();
-            frm.Show();
-
+                while (reader.Read())
+                {
+                    v = true;
+                    userAdmin = reader.GetBoolean(0);
+                    userId = reader.GetInt64(1);
+                    user = Properties.Setttings.Default.User;
+                }
+                reader.Close();
+                if (v)
+                {
+                    frmMain main = new();
+                    main.Show();
+                }
+                else
+                {
+                    frmLogin frm = new();
+                    frm.CreateControl();
+                    frm.Show();
+                }
+            }
+            closeOpenConnection();
             Application.Run();
         }
         private static async Task tryToConnectAsync()

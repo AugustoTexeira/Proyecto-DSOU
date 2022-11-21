@@ -42,6 +42,7 @@
             this.epbPlusUser = new ProWork.enhancedPictureBox();
             this.ctbContra = new ProWork.PasswordUnderlinedTextBox();
             this.ctbCContra = new ProWork.PasswordUnderlinedTextBox();
+            this.chb = new System.Windows.Forms.CheckBox();
             this.pnlForeground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxFondoLogo)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.btnSwap.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSwap.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSwap.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
+            this.btnSwap.ForeColor = System.Drawing.SystemColors.Highlight;
             this.btnSwap.Location = new System.Drawing.Point(930, 511);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(297, 29);
@@ -185,19 +186,33 @@
             this.ctbCContra.UsePasswordChar = true;
             this.ctbCContra.EnterPressed += new System.EventHandler(this.btnLogin_Click);
             // 
+            // chb
+            // 
+            this.chb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chb.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.chb.Location = new System.Drawing.Point(1024, 638);
+            this.chb.Name = "chb";
+            this.chb.Size = new System.Drawing.Size(112, 24);
+            this.chb.TabIndex = 24;
+            this.chb.Text = "Recordarme";
+            this.chb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chb.UseVisualStyleBackColor = true;
+            // 
             // frmLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
             this.ClientSize = new System.Drawing.Size(1277, 674);
+            this.ControlBox = false;
+            this.Controls.Add(this.chb);
             this.Controls.Add(this.epbPlusUser);
             this.Controls.Add(this.ctbNombre);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSwap);
-            this.Controls.Add(this.pnlForeground);
             this.Controls.Add(this.epbUser);
             this.Controls.Add(this.ctbContra);
             this.Controls.Add(this.ctbCContra);
+            this.Controls.Add(this.pnlForeground);
             this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -227,5 +242,6 @@
         private enhancedPictureBox epbPlusUser;
         private PasswordUnderlinedTextBox ctbContra;
         private PasswordUnderlinedTextBox ctbCContra;
+        private CheckBox chb;
     }
 }

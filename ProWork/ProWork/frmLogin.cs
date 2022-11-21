@@ -52,7 +52,7 @@ namespace ProWork
                     try
                     {
                         MySqlConnection con = Program.openConnection();
-                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{ctbNombre.txbText}')", con);
+                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{ctbNombre.txbText}', SHA2('{ctbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre= binary '{ctbNombre.txbText}')", con);
                         if(Registro.ExecuteNonQuery() == 1)
                         {
                             Program.user = ctbNombre.txbText;
@@ -81,7 +81,7 @@ namespace ProWork
                 try
                 {
                     MySqlConnection con = Program.openConnection();
-                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password=sha2('{ctbContra.txbText}', 224) and nombre='{ctbNombre.txbText}';", con);
+                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password= binary sha2('{ctbContra.txbText}', 224) and nombre= binary '{ctbNombre.txbText}';", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
                     bool v = false;
                     bool admin = false;
@@ -231,6 +231,12 @@ namespace ProWork
 
             if(e.Result != null)
             {
+                if (chb.Checked)
+                {
+                    Properties.Setttings.Default.User = ctbNombre.txbText;
+                    Properties.Setttings.Default.UserPassword = ctbContra.txbText;
+                    Properties.Setttings.Default.Save();
+                }
                 frmMain main = new();
                 main.Show();
                 this.Close();

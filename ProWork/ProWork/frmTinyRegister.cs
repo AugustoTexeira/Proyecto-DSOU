@@ -46,7 +46,7 @@ namespace ProWork
                     try
                     {
                         MySqlConnection con = Program.openConnection();
-                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{utbNombre.txbText}', SHA2('{utbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where nombre='{utbNombre.txbText}')", con);
+                        MySqlCommand Registro = new($"insert into usuario(nombre, password, administrador) select * from (select '{utbNombre.txbText}', SHA2('{utbCContra.txbText}', 224), false) as t where not exists(select nombre from usuario where binary nombre= binary '{utbNombre.txbText}')", con);
                         if (Registro.ExecuteNonQuery() == 1)
                         {
                             Program.user = utbNombre.txbText;
@@ -75,7 +75,7 @@ namespace ProWork
                 try
                 {
                     MySqlConnection con = Program.openConnection();
-                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password=sha2('{utbContra.txbText}', 224) and nombre='{utbNombre.txbText}';", con);
+                    MySqlCommand vLogin = new($"select nombre, password, administrador, idusuario from usuario where password= binary sha2('{utbContra.txbText}', 224) and nombre=  binary '{utbNombre.txbText}';", con);
                     MySqlDataReader reader = vLogin.ExecuteReader();
                     bool v = false;
                     bool admin = false;
@@ -118,6 +118,12 @@ namespace ProWork
 
             if (e.Result != null)
             {
+                if (chb.Checked)
+                {
+                    Properties.Setttings.Default.User = utbNombre.txbText;
+                    Properties.Setttings.Default.UserPassword = utbContra.txbText;
+                    Properties.Setttings.Default.Save();
+                }
                 frmMain main = new();
                 main.Show();
                 this.Close();
