@@ -531,3 +531,9 @@ C:\Users\Cristian\Source\Repos\DSOUmepasojulian\ProWork\ProWork\obj\Debug\net6.0
 C:\Users\Cristian\Source\Repos\DSOUmepasojulian\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.pdb
 C:\Users\Cristian\Source\Repos\DSOUmepasojulian\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.genruntimeconfig.cache
 C:\Users\Cristian\Source\Repos\DSOUmepasojulian\ProWork\ProWork\obj\Debug\net6.0-windows\ref\ProWork.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MedallionShell.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MediaToolkit.Standard.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\MediaToolkit.Standard.Core.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\bin\Debug\net6.0-windows\System.IO.Abstractions.dll
+C:\Users\Usuario\Source\Repos\Proyecto-DSOU\ProWork\ProWork\obj\Debug\net6.0-windows\ProWork.frmPedirContra.resources

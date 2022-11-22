@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -156,7 +157,7 @@ namespace ProWork.Properties
 
         private void linksAlan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSBnNRHQBmJPnrzcpRJQgjzQcrMSjcVljnjWScftHgxlwtPVPhhkFSjhwTSzGMMHGDlVcmJJ";
+            var destinationurl = "mailto:Alanmoreiramar2016@gmail.com" + "?subject=Soporte técnico de DSOU SRL";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,
@@ -166,7 +167,7 @@ namespace ProWork.Properties
 
         private void linkAugusto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMTgmMvfGXCFNsSNNCwSzsdxRMglXrhrwmFlTHDRRjVJKCrsbMsfbxJPNbVxmfjMngqDPDt";
+            var destinationurl = "mailto:augustotexeira23@gmail.com" + "?subject=Soporte técnico de DSOU SRL";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,
@@ -176,7 +177,7 @@ namespace ProWork.Properties
 
         private void linkPinto_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRwQnlSHJRtPKxjMvvFmkfBGDDcPsCZjFvhkpjDJfQPjJlGHSKgVhKJWcZqTgxxHZQHbgBzl";
+            var destinationurl = "mailto:julianpinto444@gmail.com" + "?subject=Soporte técnico de DSOU SRL";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,
@@ -186,7 +187,7 @@ namespace ProWork.Properties
 
         private void linkCristian_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var destinationurl = "https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRwPkjPKsvrKCsPgTbcZwKhpZDsBDKWHbtCCpBCrPTnXkTVVMCGQVlBsFnxkSxZpDXCLdmhR";
+            var destinationurl = "mailto:ezponjares@gmail.com" + "?subject=Soporte técnico de DSOU SRL";
             var sInfo = new System.Diagnostics.ProcessStartInfo(destinationurl)
             {
                 UseShellExecute = true,

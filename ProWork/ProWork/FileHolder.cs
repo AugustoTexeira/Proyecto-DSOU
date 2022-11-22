@@ -22,7 +22,6 @@ namespace ProWork
         public const short FileSize = 100;
         public List<Carpeta> carpetasL = new List<Carpeta>();
         public List<Archivo> archivosL = new List<Archivo>();
-        private static string ver = "";
         public FileHolder()
         {
             InitializeComponent();

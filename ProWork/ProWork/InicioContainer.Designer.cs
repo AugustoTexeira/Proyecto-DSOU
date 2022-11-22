@@ -98,7 +98,7 @@
             this.lblProyecto.ForeColor = System.Drawing.Color.White;
             this.lblProyecto.Location = new System.Drawing.Point(17, 19);
             this.lblProyecto.Name = "lblProyecto";
-            this.lblProyecto.Size = new System.Drawing.Size(254, 37);
+            this.lblProyecto.Size = new System.Drawing.Size(315, 46);
             this.lblProyecto.TabIndex = 3;
             this.lblProyecto.Text = "Nuevo proyecto";
             this.lblProyecto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -111,7 +111,7 @@
             this.uTxtNombreProyecto.Location = new System.Drawing.Point(17, 98);
             this.uTxtNombreProyecto.Name = "uTxtNombreProyecto";
             this.uTxtNombreProyecto.PlaceholderText = "Nombre del proyecto";
-            this.uTxtNombreProyecto.Size = new System.Drawing.Size(649, 30);
+            this.uTxtNombreProyecto.Size = new System.Drawing.Size(649, 36);
             this.uTxtNombreProyecto.TabIndex = 4;
             this.uTxtNombreProyecto.txbText = "";
             this.uTxtNombreProyecto.UsePasswordChar = false;
@@ -124,7 +124,7 @@
             this.uTxtTipoProyecto.Location = new System.Drawing.Point(17, 183);
             this.uTxtTipoProyecto.Name = "uTxtTipoProyecto";
             this.uTxtTipoProyecto.PlaceholderText = "Tipo del proyecto";
-            this.uTxtTipoProyecto.Size = new System.Drawing.Size(649, 30);
+            this.uTxtTipoProyecto.Size = new System.Drawing.Size(649, 36);
             this.uTxtTipoProyecto.TabIndex = 5;
             this.uTxtTipoProyecto.txbText = "";
             this.uTxtTipoProyecto.UsePasswordChar = false;
@@ -150,12 +150,13 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnCancelar.Location = new System.Drawing.Point(616, 19);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(50, 50);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.TabStop = false;
-            this.btnCancelar.Texto = "X";
+            this.btnCancelar.Texto = "❌";
             this.btnCancelar.ButtonClick += new System.EventHandler(this.btnCancelar_ButtonClick);
             // 
             // blsFechas
@@ -200,7 +201,7 @@
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Location = new System.Drawing.Point(693, 370);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(295, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(295, 27);
             this.dateTimePicker1.TabIndex = 9;
             // 
             // sTxtDescripcion
