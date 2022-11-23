@@ -46,6 +46,7 @@
             this.clt.TabIndex = 0;
             this.clt.gearClicked += new System.EventHandler(this.clt_gearClicked);
             this.clt.trashClicked += new System.EventHandler(this.clt_trashClicked);
+            this.clt.itemClicked += new System.Windows.Forms.MouseEventHandler(this.clt_itemClicked);
             // 
             // cbnAniadir
             // 
@@ -56,6 +57,7 @@
             this.cbnAniadir.Padding = new System.Windows.Forms.Padding(25);
             this.cbnAniadir.Size = new System.Drawing.Size(258, 63);
             this.cbnAniadir.TabIndex = 1;
+            this.cbnAniadir.TabStop = false;
             this.cbnAniadir.Texto = "Añadir ➕";
             this.cbnAniadir.ButtonClick += new System.EventHandler(this.cbnAniadir_Click);
             this.cbnAniadir.Click += new System.EventHandler(this.cbnAniadir_Click);

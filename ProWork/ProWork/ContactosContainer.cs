@@ -100,5 +100,17 @@ namespace ProWork
         {
             await clt.ResetElementos(new MySqlCommand("Select idcontacto, nombre from contacto order by nombre;"));
         }
+
+        private async void clt_itemClicked(object sender, MouseEventArgs e)
+        {
+            var con = await Program.openConnectionAsync();
+            MySqlCommand cmd = new($"select correoElectronico, número, descripción from contacto where idcontacto={((Item)sender).id}", con);
+            var rdr = await cmd.ExecuteReaderAsync();
+
+            frmMostrarContacto frm = new(((Item)sender).id, ((Item)sender).Text, rdr);
+            await rdr.CloseAsync();
+            Program.closeOpenConnection();
+            frm.Show();
+        }
     }
 }

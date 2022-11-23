@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WK/81wIsAVd3DXQi1QOI1H3+ceX19u96zWFH4DeQtQUG+O9rngNlvkKIETpw2sjrCQCu8GuWF2BLxr1CCQGImA==",
+  "dgSpecHash": "4KWSD1w+qSeQR9npFErTSEiHfafiajYCFEk5oEPWV7AVNYHhM3/FaJ6yvsIZRHHc2AwHDHrO0lx54RTuH2bawA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cristian\\Source\\Repos\\Proyecto-Last\\ProWork\\ProWork\\ProWork.csproj",
+  "projectFilePath": "C:\\Users\\Cristian\\Source\\Repos\\Proyecto-Mejoras\\ProWork\\ProWork\\ProWork.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cristian\\.nuget\\packages\\google.apis\\1.57.0\\google.apis.1.57.0.nupkg.sha512",
     "C:\\Users\\Cristian\\.nuget\\packages\\google.apis.auth\\1.57.0\\google.apis.auth.1.57.0.nupkg.sha512",
