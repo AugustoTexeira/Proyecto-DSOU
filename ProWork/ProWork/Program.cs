@@ -20,7 +20,6 @@ namespace ProWork
             // see https://aka.ms/applicationconfiguration.
             
             ApplicationConfiguration.Initialize();
-            MessageBox.Show(Properties.Setttings.Default.Theme.ToString());
             if (Properties.Setttings.Default.Theme)
             {
                 Estilo.enfasis = Color.FromArgb(5, 49, 247);

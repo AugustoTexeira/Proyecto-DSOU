@@ -38,10 +38,9 @@
             this.lblTema = new System.Windows.Forms.Label();
             this.lst = new ProWork.List();
             this.lblDudas = new System.Windows.Forms.LinkLabel();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
             this.grf = new ProWork.Grafica();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblActividad = new System.Windows.Forms.Label();
+            this.tree = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.pbxOscuro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxClaro)).BeginInit();
             this.SuspendLayout();
@@ -56,6 +55,7 @@
             this.cbtAnadir.Name = "cbtAnadir";
             this.cbtAnadir.Size = new System.Drawing.Size(673, 55);
             this.cbtAnadir.TabIndex = 1;
+            this.cbtAnadir.TabStop = false;
             this.cbtAnadir.Texto = "Cuenta nueva  ➕";
             this.cbtAnadir.ButtonClick += new System.EventHandler(this.cbtAnadir_Click);
             this.cbtAnadir.Click += new System.EventHandler(this.cbtAnadir_Click);
@@ -196,26 +196,6 @@
             this.lblDudas.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(49)))), ((int)(((byte)(247)))));
             this.lblDudas.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblDudas_LinkClicked);
             // 
-            // dtpStart
-            // 
-            this.dtpStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpStart.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpStart.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpStart.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpStart.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dtpStart.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpStart.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtpStart.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpStart.Location = new System.Drawing.Point(739, 401);
-            this.dtpStart.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(115, 25);
-            this.dtpStart.TabIndex = 18;
-            this.dtpStart.Value = new System.DateTime(2022, 1, 1, 11, 3, 0, 0);
-            this.dtpStart.ValueChanged += new System.EventHandler(this.dtpStart_ValueChanged);
-            // 
             // grf
             // 
             this.grf.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -224,7 +204,7 @@
             this.grf.Downwards = false;
             this.grf.highlightDots = false;
             this.grf.isBarGraph = false;
-            this.grf.Location = new System.Drawing.Point(739, 432);
+            this.grf.Location = new System.Drawing.Point(739, 401);
             this.grf.Name = "grf";
             this.grf.onlyDots = false;
             this.grf.Points = new System.Drawing.Point[] {
@@ -232,52 +212,45 @@
         new System.Drawing.Point(5, 15),
         new System.Drawing.Point(8, 4)};
             this.grf.realCoordsOfPoints = new System.Drawing.Point[] {
-        new System.Drawing.Point(0, 358),
+        new System.Drawing.Point(0, 389),
         new System.Drawing.Point(182, 0),
-        new System.Drawing.Point(291, 262)};
+        new System.Drawing.Point(291, 285)};
             this.grf.Scale = new System.Drawing.Size(10, 15);
-            this.grf.Size = new System.Drawing.Size(364, 358);
+            this.grf.Size = new System.Drawing.Size(364, 389);
             this.grf.TabIndex = 19;
             this.grf.XOffset = 0;
             this.grf.YOffset = 0;
             this.grf.Load += new System.EventHandler(this.grf_Load_1);
             // 
-            // dtpEnd
+            // lblActividad
             // 
-            this.dtpEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpEnd.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpEnd.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpEnd.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpEnd.CalendarTitleForeColor = System.Drawing.Color.White;
-            this.dtpEnd.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.dtpEnd.Font = new System.Drawing.Font("Raleway", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEnd.Location = new System.Drawing.Point(993, 401);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(110, 25);
-            this.dtpEnd.TabIndex = 20;
-            this.dtpEnd.Value = new System.DateTime(2022, 11, 10, 0, 0, 0, 0);
-            this.dtpEnd.ValueChanged += new System.EventHandler(this.dtpEnd_ValueChanged);
+            this.lblActividad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblActividad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblActividad.Font = new System.Drawing.Font("Raleway", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblActividad.ForeColor = System.Drawing.Color.White;
+            this.lblActividad.Location = new System.Drawing.Point(739, 359);
+            this.lblActividad.Name = "lblActividad";
+            this.lblActividad.Size = new System.Drawing.Size(141, 39);
+            this.lblActividad.TabIndex = 21;
+            this.lblActividad.Text = "Actividad:";
+            this.lblActividad.Click += new System.EventHandler(this.lblActividad_Click);
             // 
-            // label1
+            // tree
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Raleway", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(739, 359);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 39);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Actividad:";
+            this.tree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
+            this.tree.ForeColor = System.Drawing.Color.White;
+            this.tree.Location = new System.Drawing.Point(739, 401);
+            this.tree.Name = "tree";
+            this.tree.Size = new System.Drawing.Size(364, 389);
+            this.tree.TabIndex = 22;
             // 
             // ConfigContainer
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(12)))), ((int)(((byte)(15)))));
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dtpEnd);
-            this.Controls.Add(this.dtpStart);
+            this.Controls.Add(this.lblActividad);
             this.Controls.Add(this.lblDudas);
             this.Controls.Add(this.lst);
             this.Controls.Add(this.lblCuentas);
@@ -289,6 +262,7 @@
             this.Controls.Add(this.lblConfig);
             this.Controls.Add(this.cbtAnadir);
             this.Controls.Add(this.grf);
+            this.Controls.Add(this.tree);
             this.DoubleBuffered = true;
             this.Name = "ConfigContainer";
             this.Padding = new System.Windows.Forms.Padding(20);
@@ -314,9 +288,8 @@
         private Label lblTema;
         private List lst;
         private LinkLabel lblDudas;
-        private DateTimePicker dtpStart;
         private Grafica grf;
-        private DateTimePicker dtpEnd;
-        private Label label1;
+        private Label lblActividad;
+        private TreeView tree;
     }
 }
