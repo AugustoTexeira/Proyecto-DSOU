@@ -23,6 +23,7 @@ namespace ProWork
         public string mimeTypes;
         public RichTextBox rtb;
         public bool seleccionado;
+        public bool proyecto = false;
         public Carpeta()
         {
             InitializeComponent();
@@ -130,9 +131,16 @@ namespace ProWork
 
         private void cambiarFiltrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmCarpetaConf config = new(mimeTypes,Nombre);
-            config.Show();
-            config.Filtrar += Filtros;
+            if(proyecto == false)
+            {
+                frmCarpetaConf config = new(mimeTypes, Nombre);
+                config.Show();
+                config.Filtrar += Filtros;
+            }
+            else
+            {
+                MessageBox.Show("No puedes configurar una carpeta de proyecto", "Error");
+            }
         }
 
         private void Carpeta_MouseDown(object sender, MouseEventArgs e)

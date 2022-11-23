@@ -29,10 +29,13 @@ namespace ProWork
             lbl.ForeColor = Estilo.Contraste;
             epb.BackColor = Estilo.fondo;
         }
+        public bool video = false;
+        public bool mouse = false;
 
         public event EventHandler Eliminar;
         public event EventHandler Deseleccionar;
         public event EventHandler Descargar;
+        public event EventHandler<bool> Cargar;
         public Archivo()
         {
             InitializeComponent();
@@ -113,6 +116,18 @@ namespace ProWork
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat) && (string)e.Data.GetData(DataFormats.StringFormat) != id)
                 e.Effect = DragDropEffects.Move;
+        }
+
+        private void epb_MouseEnter(object sender, EventArgs e)
+        {
+            mouse = true;
+            Cargar.Invoke(this, mouse);
+        }
+
+        private void epb_MouseLeave(object sender, EventArgs e)
+        {
+            mouse = false;
+            Cargar.Invoke(this, mouse);
         }
     }
 

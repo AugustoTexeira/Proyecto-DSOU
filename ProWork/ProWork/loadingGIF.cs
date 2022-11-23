@@ -13,7 +13,7 @@ namespace ProWork
         public bool Animar 
         {
             get { return animar; }
-            set { if (value) { talvezfunciona.Invoke(this, EventArgs.Empty); }; animar = value;  }
+            set { if (value) { moveGIF(this, EventArgs.Empty); }; animar = value;  }
         }
         public loadingGIF()
         {

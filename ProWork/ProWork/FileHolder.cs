@@ -23,6 +23,8 @@ namespace ProWork
         public List<Carpeta> carpetasL = new List<Carpeta>();
         public List<Archivo> archivosL = new List<Archivo>();
         private static string ver = "";
+
+        public event EventHandler<bool> Cargar;
         public FileHolder()
         {
             InitializeComponent();
@@ -35,16 +37,19 @@ namespace ProWork
             MySqlCommand nombres = new("select idcarpeta, nombre from carpeta where idcarpetaPadre is NULL and existencia = true;", con);
             MySqlDataReader reader = await nombres.ExecuteReaderAsync();
             Truncate();
+            PantCarga();
             while (await reader.ReadAsync())
             {
                 Carpeta carpeta = new Carpeta();
                 carpeta.id = reader.GetString(0);
                 carpeta.Nombre = reader.GetString(1);
+                carpeta.proyecto = true;
                 this.Add(carpeta);
             }
             await reader.CloseAsync();
             Program.closeOpenConnection();
             Entrar.Invoke(null, null);
+            PantCarga();
         }
 
         private void FileHolder_Resize(object sender, EventArgs e)
@@ -104,6 +109,7 @@ namespace ProWork
             a.Descargar += IniciarDescarga;
             a.Deseleccionar += DeseleccionArch;
             a.Eliminar += Eliminar;
+            a.Cargar += CargarVideo;
             this.Controls.Add(a);
             ResetElementos();
         }
@@ -322,20 +328,13 @@ namespace ProWork
 
             var request = await listRequest.ExecuteAsync();
 
-            MySqlCommand idsR = new("select idarchivo,0 from archivo UNION select idcarpeta,1 from carpeta UNION select imagenPrevisualizacion,0 from archivo;", con);
+            MySqlCommand idsR = new("select idarchivo from archivo UNION select idcarpeta from carpeta UNION select imagenPrevisualizacion from archivo;", con);
             MySqlDataReader read = await idsR.ExecuteReaderAsync();
             while (await read.ReadAsync())
             {
-                if (read.GetBoolean(1))
+                if(!(await read.IsDBNullAsync(0)))
                 {
                     ids.Add(read.GetString(0));
-                }
-                else
-                {
-                    if(!(await read.IsDBNullAsync(0)))
-                    {
-                        ids.Add(read.GetString(0));
-                    }
                 }
             }
             await read.CloseAsync();
@@ -349,7 +348,6 @@ namespace ProWork
                         idsnot.Add(file.Id);
                         string formato = file.MimeType.Split('/')[1];
                         format.Add(formato);
-
                     }
                 }
                 string consulta = "";
@@ -357,7 +355,7 @@ namespace ProWork
                 {
                     if (format[i] == "vnd.google-apps.folder")
                     {
-                        consulta += $"insert into carpeta(idcarpetapadre, idproyecto, idcarpeta, nombre, existencia) values('{fileID}',{proyecto},'{idsnot[i]}','{names[i]}', true); insert into carga(descripcion, idcarpeta, idproyecto, fehca) values('n', '{idsnot[i]}',{proyecto}, '{DateTime.Now.Year}-{month}-{day}'); ";
+                        consulta += $"insert into carpeta(idcarpetapadre, idproyecto, idcarpeta, nombre, existencia) values('{fileID}',{proyecto},'{idsnot[i]}','{names[i]}', true); insert into carga(descripcion, idcarpeta, idproyecto, fecha) values('n', '{idsnot[i]}',{proyecto}, '{DateTime.Now.Year}-{month}-{day}'); ";
                     }
                     else
                     {
@@ -378,13 +376,21 @@ namespace ProWork
 
         public void Truncate()
         {
-            this.Controls.Clear();
+            foreach(Archivo a in ConseguirA(this))
+            {
+                Controls.Remove(a);
+            }
+            foreach(Carpeta c in ConseguirC(this))
+            {
+                Controls.Remove(c);
+            }
             carpetasL.Clear();
             archivosL.Clear();
         }
 
         public async void Open(object sender, EventArgs e)
         {
+            PantCarga();
             Truncate();
             var con = await Program.openConnectionAsync();
 
@@ -425,6 +431,7 @@ namespace ProWork
             Entrar.Invoke(sender, e);
 
             await CargarImagen();
+            PantCarga();
         }
 
         public event EventHandler Entrar;
@@ -468,10 +475,36 @@ namespace ProWork
             Program.closeOpenConnection();
         }
 
+        public void PantCarga()
+        {
+            if(this.Visible == true)
+            {
+                Cargar.Invoke(this, true);
+                gifcarga.Animar = true;
+                gifcarga.Visible = true;
+            }
+            {
+                Cargar.Invoke(this, false);
+                gifcarga.Animar = false;
+                gifcarga.Visible = false;
+            }
+        }
         public async void Eliminar(object sender, EventArgs e)
         {
             List<(string id, string Nombre)> carpetas = new();
             List<(string id, string Nombre, string prev)> archivos = new();
+
+            List<string> excluir = new();
+            var con = await Program.openConnectionAsync();
+            MySqlCommand prev = new("select imagenPrevisualizacion from archivo;", con);
+            MySqlDataReader read = await prev.ExecuteReaderAsync();
+            while (await read.ReadAsync())
+            {
+                if (!(await read.IsDBNullAsync(0)))
+                    excluir.Add(read.GetString(0));
+            }
+            await read.CloseAsync();
+            Program.closeOpenConnection();
 
             foreach (Carpeta c in ConseguirC(this))
             {
@@ -482,26 +515,51 @@ namespace ProWork
             }
             if (carpetas.Count == 1)
             {
-                DialogResult result = MessageBox.Show($"¿Estas seguro que quieres eliminar la carpeta {carpetas[0].Nombre}?", "Eliminar carpeta", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show($"¿Estas seguro que quiere eliminar la carpeta {carpetas[0].Nombre}?", "Eliminar carpeta", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    await EliminarCarpeta(carpetas);
+                    await EliminarCarpeta(carpetas, excluir);
                     await GoogleInfo.Servicio.Files.Delete(carpetas[0].id).ExecuteAsync();
                     foreach(Carpeta c in ConseguirC(this))
                     {
-                        Controls.Remove(c);
-                        carpetasL.Remove(c);
-                        ResetElementos();
+                        if(c.seleccionado == true)
+                        {
+                            Controls.Remove(c);
+                            carpetasL.Remove(c);
+                            ResetElementos();
+                        }
+                      
                     }
                 }
             }
             else if (carpetas.Count > 0)
             {
-                await EliminarCarpeta(carpetas);
-                foreach(var c in carpetas)
+                try
                 {
-                    await GoogleInfo.Servicio.Files.Delete(c.id).ExecuteAsync();
+                    DialogResult result1 = MessageBox.Show($"¿Esta seguro que quiere eliminar {carpetas.Count} carpetas?", "Eliminar carpetas", MessageBoxButtons.YesNo);
+                    if (result1 == DialogResult.Yes)
+                    {
+                        await EliminarCarpeta(carpetas, excluir);
+                        foreach (var c in carpetas)
+                        {
+                            await GoogleInfo.Servicio.Files.Delete(c.id).ExecuteAsync();
+                        }
+                        foreach (Carpeta c in ConseguirC(this))
+                        {
+                            if (c.seleccionado == true)
+                            {
+                                Controls.Remove(c);
+                                carpetasL.Remove(c);
+                                ResetElementos();
+                            }
+                        }
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Ha ocurrido un error al intentar borrar las carpetas.", "Error al borrar");
+                }
+                
             }
 
             foreach (Archivo a in ConseguirA(this))
@@ -509,48 +567,85 @@ namespace ProWork
                 if (a.seleccionado == true)
                 {
                     archivos.Add((a.id, a.Nombre, a.previsual));
-                    Controls.Remove(a);
-                    archivosL.Remove(a);
-                    ResetElementos();
                 }
-                if (archivos.Count == 1)
+            }
+            if (archivos.Count == 1)
+            {
+                DialogResult result2 = MessageBox.Show($"¿Estas seguro que quiere eliminar el archivo {archivos[0].Nombre}?", "Eliminar archivo", MessageBoxButtons.YesNo);
+                if (result2 == DialogResult.Yes)
                 {
-                    DialogResult result = MessageBox.Show($"¿Estas seguro que quieres eliminar el archivo {archivos[0].Nombre}?", "Eliminar archivo", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
+                    try
                     {
-                        try
+                        await GoogleInfo.Servicio.Files.Delete(archivos[0].id).ExecuteAsync();
+                        var con1 = await Program.openConnectionAsync();
+                        MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{archivos[0].id}'", con1);
+                        await borrar.ExecuteNonQueryAsync();
+                        Program.closeOpenConnection();
+                        if (archivos[0].prev != null && archivos[0].prev != "Audio")
                         {
-                            await GoogleInfo.Servicio.Files.Delete(archivos[0].id).ExecuteAsync();
-                            var con = await Program.openConnectionAsync();
-                            MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{archivos[0].id}'",con);
-                            await borrar.ExecuteNonQueryAsync();
-                            Program.closeOpenConnection();
-                            if (archivos[0].prev != null && archivos[0].prev != "Audio")
+                            await GoogleInfo.Servicio.Files.Delete(archivos[0].prev).ExecuteAsync();
+                        }
+                        foreach (Archivo a in ConseguirA(this))
+                        {
+                            if (a.seleccionado == true)
                             {
-                                await GoogleInfo.Servicio.Files.Delete(archivos[0].prev).ExecuteAsync();
+                                Controls.Remove(a);
+                                archivosL.Remove(a);
+                                ResetElementos();
                             }
                         }
-                        catch
+                    }
+                    catch
+                    {
+                        Program.closeOpenConnection();
+                        MessageBox.Show("Ha ocurrido un error al intentar borrar el archivo.", "Error al borrar");
+                    }
+                }
+            }
+            else if (archivos.Count > 0)
+            {
+                try
+                {
+                    DialogResult result = MessageBox.Show($"¿Estas seguro que quiere eliminar {archivos.Count} archivos?", "Eliminar archivo", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        await EliminarArchivo(archivos);
+                        foreach (Archivo a in ConseguirA(this))
                         {
-                            Program.closeOpenConnection();
-                            MessageBox.Show("Ha ocurrido un error al intentar borrar el archivo.", "Error al borrar");
+                            if (a.seleccionado == true)
+                            {
+                                Controls.Remove(a);
+                                archivosL.Remove(a);
+                                ResetElementos();
+                            }
                         }
                     }
                 }
-                else if (archivos.Count > 0)
+                catch
                 {
-                    await EliminarArchivo(archivos);
+                    MessageBox.Show("Ha ocurrido un error al intentar borrar el archivo.", "Error al borrar");
                 }
             }
 
-            
+
         }
 
-        private async Task EliminarCarpeta(List<(string id, string Nombre)> carpetas)
+        private async Task EliminarCarpeta(List<(string id, string Nombre)> carpetas, List<string> excluir)
         {
             List<(string id, string Nombre)> carpetaE = new();
             List<(string id, string Nombre)> archivoE = new();
-
+            string month = "";
+            string day = "";
+            if (DateTime.Now.Month < 10)
+            {
+                month = $"0{DateTime.Now.Month}";
+            }
+            else { month = DateTime.Now.Month.ToString(); }
+            if (DateTime.Now.Day < 10)
+            {
+                day = $"0{DateTime.Now.Day}";
+            }
+            else { day = DateTime.Now.Day.ToString(); }
             foreach (var carpeta in carpetas)
             {
                 var contenido = GoogleInfo.Servicio.Files.List();
@@ -569,41 +664,44 @@ namespace ProWork
                     {
                         archivoE.Add((file.Id, file.Name));
                     }
-                    await EliminarCarpeta(carpetaE);
+                    await EliminarCarpeta(carpetaE, excluir);
                     carpetaE.Clear();
-                    await EliminarArchivo(archivoE);
+                    await EliminarArchivo(archivoE, excluir);
                     archivoE.Clear();
                 }
 
                 var con = await Program.openConnectionAsync();
-                MySqlCommand borrar = new($"update carpeta set existencia = false where idcarpeta = '{carpeta.id}';", con);
+                MySqlCommand borrar = new($"update carpeta set existencia = false where idcarpeta = '{carpeta.id}'; insert into carga(idusuario, idcarpeta, descripcion, fecha) values({Program.userId},'{carpeta.id}','e','{DateTime.Now.Year}-{month}-{day}')", con);
                 await borrar.ExecuteNonQueryAsync();
                 Program.closeOpenConnection();
             }
            
 
         }
-        private async Task EliminarArchivo(List<(string id, string Nombre)> archivos)
-        {
-            List<string> excluir = new();
-            var con = await Program.openConnectionAsync();
-            MySqlCommand prev = new("select imagenPrevisualizacion from archivo;", con);
-            MySqlDataReader read = await prev.ExecuteReaderAsync();
-            while (await read.ReadAsync())
-            {
-                if (!(await read.IsDBNullAsync(0)))
-                    excluir.Add(read.GetString(0));
-            }
-            await read.CloseAsync();
 
+        private async Task EliminarArchivo(List<(string id, string Nombre)> archivos, List<string> excluir)
+        {
+            string month = "";
+            string day = "";
+            if (DateTime.Now.Month < 10)
+            {
+                month = $"0{DateTime.Now.Month}";
+            }
+            else { month = DateTime.Now.Month.ToString(); }
+            if (DateTime.Now.Day < 10)
+            {
+                day = $"0{DateTime.Now.Day}";
+            }
+            else { day = DateTime.Now.Day.ToString(); }
             foreach (var a in archivos)
             {
                 try
                 {
+                    var con = await Program.openConnectionAsync();
                     if (!(excluir.Contains(a.id)))
                     {
                         await GoogleInfo.Servicio.Files.Delete(a.id).ExecuteAsync();
-                        MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{a.id}'", con);
+                        MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{a.id}'; insert into carga(idusuario, idarchivo, descripcion, fecha) values({Program.userId},'{a.id}','e','{DateTime.Now.Year}-{month}-{day}')", con);
                         await borrar.ExecuteNonQueryAsync();
                     }
                     Program.closeOpenConnection();
@@ -618,13 +716,26 @@ namespace ProWork
 
         private async Task EliminarArchivo(List<(string id, string Nombre, string prev)> archivos)
         {
+            string month = "";
+            string day = "";
+            if (DateTime.Now.Month < 10)
+            {
+                month = $"0{DateTime.Now.Month}";
+            }
+            else { month = DateTime.Now.Month.ToString(); }
+            if (DateTime.Now.Day < 10)
+            {
+                day = $"0{DateTime.Now.Day}";
+            }
+            else { day = DateTime.Now.Day.ToString(); }
+
             foreach (var a in archivos)
             {
                 try
                 {
                     await GoogleInfo.Servicio.Files.Delete(a.id).ExecuteAsync();
                     var con = await Program.openConnectionAsync();
-                    MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{a.id}'", con);
+                    MySqlCommand borrar = new($"update archivo set existencia = false where idarchivo = '{a.id}'; insert into carga(idusuario, idarchivo, descripcion, fecha) values({Program.userId},'{a.id}','e','{DateTime.Now.Year}-{month}-{day}')", con);
                     await borrar.ExecuteNonQueryAsync();
                     Program.closeOpenConnection();
                     if (a.prev != null && a.prev != "Audio")
@@ -687,12 +798,12 @@ namespace ProWork
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Error al crear la carpeta de previsualización.", "Error al subir");
                 return null;
             }
         }
 
-        public static async Task Subir(List<string> filePath, Carpeta carpeta, long idproyecto)
+        public static async Task Subir(List<string> filePath, string carpeta, long idproyecto, bool filtrado)
         {
             try
             {
@@ -713,7 +824,7 @@ namespace ProWork
                 else { day = DateTime.Now.Day.ToString(); }
 
                 var con = await Program.openConnectionAsync();
-                MySqlCommand cmd = new($"select idcarpeta, filtro from carpeta where idcarpetapadre = '{carpeta.id}'", con);
+                MySqlCommand cmd = new($"select idcarpeta, filtro from carpeta where idcarpetapadre = '{carpeta}'", con);
                 MySqlDataReader reader = await cmd.ExecuteReaderAsync();
                 
                 while (await reader.ReadAsync())
@@ -738,7 +849,7 @@ namespace ProWork
                         Name = Path.GetFileName(item),
                         Parents = new List<string>
                         {
-                            carpeta.id
+                            carpeta
                         }
                     };
                     using (var stream = new FileStream(item, FileMode.Open))
@@ -752,31 +863,34 @@ namespace ProWork
                         string format = file.MimeType.Split('/')[1];
                         string type = file.MimeType.Split('/')[0];
                         string prevname = file.Name.Split('.')[0];
-                        string parent = carpeta.id;
+                        string parent = carpeta;
 
-                        for (int i = 0; i < filtros.Count; i++)
+                        if(filtrado == true)
                         {
-                            string[] filtrar = filtros[i].ToLower().Replace(" ", string.Empty).Split(',');
-                            if (newCarpeta[i] != carpeta.id)
+                            for (int i = 0; i < filtros.Count; i++)
                             {
-                                if (Array.Exists(filtrar, i => i == file.MimeType))
+                                string[] filtrar = filtros[i].ToLower().Replace(" ", string.Empty).Split(',');
+                                if (newCarpeta[i] != carpeta)
                                 {
-                                    FilesResource.UpdateRequest updateRequest = GoogleInfo.Servicio.Files.Update(new Google.Apis.Drive.v3.Data.File(), file.Id);
-                                    updateRequest.Fields = "id";
-                                    updateRequest.AddParents = newCarpeta[i];
-                                    updateRequest.RemoveParents = carpeta.id;
-                                    consulta += $"insert into archivo(formato, idarchivo, nombre, size, existencia) values('{format}','{file.Id}','{file.Name}', {file.Size}, true); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, idarchivo, fecha) values('{Program.userId}','s', '{newCarpeta[i]}', {idproyecto}, '{file.Id}','{DateTime.Now.Year}-{month}-{day}'); insert into contiene(idarchivo, idcarpeta) values('{file.Id}','{newCarpeta[i]}'); ";
-                                    file = updateRequest.Execute();
-                                    ordfile.Add(file.Id);
-                                    parent = newCarpeta[i];
+                                    if (Array.Exists(filtrar, i => i == file.MimeType))
+                                    {
+                                        FilesResource.UpdateRequest updateRequest = GoogleInfo.Servicio.Files.Update(new Google.Apis.Drive.v3.Data.File(), file.Id);
+                                        updateRequest.Fields = "id";
+                                        updateRequest.AddParents = newCarpeta[i];
+                                        updateRequest.RemoveParents = carpeta;
+                                        consulta += $"insert into archivo(formato, idarchivo, nombre, size, existencia) values('{format}','{file.Id}','{file.Name}', {file.Size}, true); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, idarchivo, fecha) values('{Program.userId}','s', '{newCarpeta[i]}', {idproyecto}, '{file.Id}','{DateTime.Now.Year}-{month}-{day}'); insert into contiene(idarchivo, idcarpeta) values('{file.Id}','{newCarpeta[i]}'); ";
+                                        file = updateRequest.Execute();
+                                        ordfile.Add(file.Id);
+                                        parent = newCarpeta[i];
+                                    }
                                 }
                             }
                         }
 
                         if (!(ordfile.Contains(file.Id)))
                         {
-                            consulta += $"insert into archivo(formato, idarchivo, nombre, size, existencia) values('{format}','{file.Id}','{file.Name}', {file.Size}, true); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, idarchivo, fehca) values('{Program.userId}','s', '{carpeta.id}', {idproyecto}, '{file.Id}','{DateTime.Now.Year}-{month}-{day}'); insert into contiene(idarchivo, idcarpeta) values('{file.Id}','{carpeta.id}'); ";
-                            parent = carpeta.id;
+                            consulta += $"insert into archivo(formato, idarchivo, nombre, size, existencia) values('{format}','{file.Id}','{file.Name}', {file.Size}, true); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, idarchivo, fecha) values('{Program.userId}','s', '{carpeta}', {idproyecto}, '{file.Id}','{DateTime.Now.Year}-{month}-{day}'); insert into contiene(idarchivo, idcarpeta) values('{file.Id}','{carpeta}'); ";
+                            parent = carpeta;
                         }
 
                         if (type == "video")
@@ -881,7 +995,7 @@ namespace ProWork
             catch (Exception e)
             {
                 Program.closeOpenConnection();
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Ha ocurrido un error al intentar subir los archivos.", "Error al subir");
             }
         }
 
@@ -902,7 +1016,7 @@ namespace ProWork
             }
             catch( Exception e )
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Ha ocurrido un error al intentar subir la carpeta de proyecto.", "Error al subir");
                 return null;
             }
         }
@@ -937,7 +1051,10 @@ namespace ProWork
             {
                 var prev = GoogleInfo.Servicio.Files.List();
                 prev.Fields = "files(id)";
-                prev.Q = $"'{a.previsual}' in parents";
+                if(a.previsual != null)
+                {
+                    prev.Q = $"'{a.previsual}' in parents";
+                }
 
                 var stream = new MemoryStream();
                 var request = await prev.ExecuteAsync();
@@ -969,9 +1086,21 @@ namespace ProWork
                             }
                         }
                     }
-                    else
+                    else if (request.Files.Count == 5)
                     {
-                        //Video
+                        a.video = true;
+                        a.epb.BkgImage = Properties.Resources.Video;
+                        if (a.epb.BkgImage.Width > a.epb.BkgImage.Height)
+                        {
+                            a.epb.sizeToWidth(a.Width);
+                            a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                        }
+                        else
+                        {
+                            a.epb.sizeToHeight(a.Height - a.lbl.Height);
+                            a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                        }
+                        a.epb.sizeToHeight(a.Height - a.lbl.Height);
                     }
                 }
                 else
@@ -995,9 +1124,57 @@ namespace ProWork
             }
         }
 
-        public async Task Mover()
+        public async void CargarVideo(object sender, bool mouse)
         {
+            var a = ((Archivo)sender);
+            if(a.video == true)
+            {
+                var prev = GoogleInfo.Servicio.Files.List();
+                prev.Fields = "files(id)";
+                prev.Q = $"'{a.previsual}' in parents";
 
+                var stream = new MemoryStream();
+                var request = await prev.ExecuteAsync();
+
+                if (request != null && request.Files.Count > 0)
+                {
+                    if(mouse == true)
+                    {
+                        foreach (var files in request.Files)
+                        {
+                            var desc = GoogleInfo.Servicio.Files.Get(files.Id);
+                            await desc.DownloadAsync(stream);
+                            a.epb.BkgImage = Image.FromStream(stream);
+                            if (a.epb.BkgImage.Width > a.epb.BkgImage.Height)
+                            {
+                                a.epb.sizeToWidth(a.Width);
+                                a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                            }
+                            else
+                            {
+                                a.epb.sizeToHeight(a.Height - a.lbl.Height);
+                                a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                            }
+                            a.epb.sizeToHeight(a.Height - a.lbl.Height);
+                        }
+                    }
+                    else
+                    {
+                        a.epb.BkgImage = Properties.Resources.Video;
+                        if (a.epb.BkgImage.Width > a.epb.BkgImage.Height)
+                        {
+                            a.epb.sizeToWidth(a.Width);
+                            a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                        }
+                        else
+                        {
+                            a.epb.sizeToHeight(a.Height - a.lbl.Height);
+                            a.epb.Location = new(a.Width / 2 - a.epb.Width / 2, 0);
+                        }
+                        a.epb.sizeToHeight(a.Height - a.lbl.Height);
+                    }
+                }
+            }
         }
 
         private async void añadirCarpetaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1032,6 +1209,37 @@ namespace ProWork
                     MessageBox.Show("Ha ocurrido un error al agregar la carpeta.");
                 }
                 Program.closeOpenConnection();
+            }
+        }
+
+        private void FileHolder_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
+
+        private async void FileHolder_DragDrop(object sender, DragEventArgs e)
+        {
+            List<string> rutas = new();
+            foreach (string droppedFile in (string[])e.Data.GetData(DataFormats.FileDrop))
+            {
+                if (droppedFile.Contains('.'))
+                {
+                    rutas.Add(droppedFile);
+                }
+                else
+                {
+                    rutas.AddRange(InicioContainer.getFiles(Directory.GetDirectories(droppedFile).ToList()));
+                    rutas.AddRange(Directory.GetFiles(droppedFile).ToList());
+                }
+            }
+            DialogResult result = MessageBox.Show("¿Quisiera que se usen los filtros al subir estos archivos?", "Filtrado", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                await Subir(rutas, Ruta.carpetaActual, Ruta.proyectoActual, true);
+            }
+            else
+            {
+                await Subir(rutas, Ruta.carpetaActual, Ruta.proyectoActual, false);
             }
         }
     }
