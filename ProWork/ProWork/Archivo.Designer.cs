@@ -59,19 +59,19 @@
             this.descargarToolStripMenuItem,
             this.eliminarToolStripMenuItem});
             this.cms.Name = "cms";
-            this.cms.Size = new System.Drawing.Size(146, 52);
+            this.cms.Size = new System.Drawing.Size(127, 48);
             // 
             // descargarToolStripMenuItem
             // 
             this.descargarToolStripMenuItem.Name = "descargarToolStripMenuItem";
-            this.descargarToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.descargarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.descargarToolStripMenuItem.Text = "Descargar";
             this.descargarToolStripMenuItem.Click += new System.EventHandler(this.descargarToolStripMenuItem_Click);
             // 
             // eliminarToolStripMenuItem
             // 
             this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(145, 24);
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.eliminarToolStripMenuItem.Text = "Eliminar";
             // 
             // epb
@@ -80,6 +80,7 @@
             this.epb.BkgImage = global::ProWork.Properties.Resources.Otros;
             this.epb.Circle = false;
             this.epb.Location = new System.Drawing.Point(0, 0);
+            this.epb.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.epb.Name = "epb";
             this.epb.Size = new System.Drawing.Size(114, 92);
             this.epb.TabIndex = 3;
@@ -88,6 +89,8 @@
             this.epb.DoubleClick += new System.EventHandler(this.Archivo_DoubleClick);
             this.epb.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Archivo_MouseClick);
             this.epb.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Archivo_MouseDown);
+            this.epb.MouseEnter += new System.EventHandler(this.epb_MouseEnter);
+            this.epb.MouseLeave += new System.EventHandler(this.epb_MouseLeave);
             this.epb.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Archivo_MouseMove);
             this.epb.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Archivo_MouseUp);
             // 

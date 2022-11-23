@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicioContainer));
             this.btnCrear = new ProWork.CustomButton();
             this.epbNuevoProyecto = new ProWork.enhancedPictureBox();
             this.lblArrastre = new System.Windows.Forms.Label();
@@ -41,7 +42,9 @@
             this.customButton2 = new ProWork.CustomButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.sTxtDescripcion = new ProWork.SurroundedTextBox();
+            this.gif = new ProWork.loadingGIF();
             this.pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gif)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCrear
@@ -98,7 +101,7 @@
             this.lblProyecto.ForeColor = System.Drawing.Color.White;
             this.lblProyecto.Location = new System.Drawing.Point(17, 19);
             this.lblProyecto.Name = "lblProyecto";
-            this.lblProyecto.Size = new System.Drawing.Size(315, 46);
+            this.lblProyecto.Size = new System.Drawing.Size(254, 37);
             this.lblProyecto.TabIndex = 3;
             this.lblProyecto.Text = "Nuevo proyecto";
             this.lblProyecto.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -111,7 +114,7 @@
             this.uTxtNombreProyecto.Location = new System.Drawing.Point(17, 98);
             this.uTxtNombreProyecto.Name = "uTxtNombreProyecto";
             this.uTxtNombreProyecto.PlaceholderText = "Nombre del proyecto";
-            this.uTxtNombreProyecto.Size = new System.Drawing.Size(649, 36);
+            this.uTxtNombreProyecto.Size = new System.Drawing.Size(646, 30);
             this.uTxtNombreProyecto.TabIndex = 4;
             this.uTxtNombreProyecto.txbText = "";
             this.uTxtNombreProyecto.UsePasswordChar = false;
@@ -124,7 +127,7 @@
             this.uTxtTipoProyecto.Location = new System.Drawing.Point(17, 183);
             this.uTxtTipoProyecto.Name = "uTxtTipoProyecto";
             this.uTxtTipoProyecto.PlaceholderText = "Tipo del proyecto";
-            this.uTxtTipoProyecto.Size = new System.Drawing.Size(649, 36);
+            this.uTxtTipoProyecto.Size = new System.Drawing.Size(646, 30);
             this.uTxtTipoProyecto.TabIndex = 5;
             this.uTxtTipoProyecto.txbText = "";
             this.uTxtTipoProyecto.UsePasswordChar = false;
@@ -134,6 +137,7 @@
             this.pnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl.Controls.Add(this.gif);
             this.pnl.Controls.Add(this.btnCancelar);
             this.pnl.Controls.Add(this.blsFechas);
             this.pnl.Controls.Add(this.blsCarpeta);
@@ -144,19 +148,18 @@
             this.pnl.Controls.Add(this.uTxtTipoProyecto);
             this.pnl.Location = new System.Drawing.Point(0, 0);
             this.pnl.Name = "pnl";
-            this.pnl.Size = new System.Drawing.Size(1021, 755);
+            this.pnl.Size = new System.Drawing.Size(1018, 755);
             this.pnl.TabIndex = 8;
             // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCancelar.Location = new System.Drawing.Point(616, 19);
+            this.btnCancelar.Location = new System.Drawing.Point(613, 19);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(50, 50);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.TabStop = false;
-            this.btnCancelar.Texto = "❌";
+            this.btnCancelar.Texto = "X";
             this.btnCancelar.ButtonClick += new System.EventHandler(this.btnCancelar_ButtonClick);
             // 
             // blsFechas
@@ -164,7 +167,7 @@
             this.blsFechas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.blsFechas.AutoScroll = true;
             this.blsFechas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.blsFechas.Location = new System.Drawing.Point(693, 398);
+            this.blsFechas.Location = new System.Drawing.Point(690, 398);
             this.blsFechas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.blsFechas.Name = "blsFechas";
             this.blsFechas.Size = new System.Drawing.Size(295, 251);
@@ -176,7 +179,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.blsCarpeta.AutoScroll = true;
             this.blsCarpeta.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.blsCarpeta.Location = new System.Drawing.Point(693, 19);
+            this.blsCarpeta.Location = new System.Drawing.Point(690, 19);
             this.blsCarpeta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.blsCarpeta.Name = "blsCarpeta";
             this.blsCarpeta.Size = new System.Drawing.Size(295, 278);
@@ -188,7 +191,7 @@
             this.customButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.customButton2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.customButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.customButton2.Location = new System.Drawing.Point(693, 302);
+            this.customButton2.Location = new System.Drawing.Point(690, 302);
             this.customButton2.Name = "customButton2";
             this.customButton2.Size = new System.Drawing.Size(295, 63);
             this.customButton2.TabIndex = 9;
@@ -199,10 +202,11 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(693, 370);
+            this.dateTimePicker1.Location = new System.Drawing.Point(690, 370);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(295, 27);
+            this.dateTimePicker1.Size = new System.Drawing.Size(295, 23);
             this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // sTxtDescripcion
             // 
@@ -215,9 +219,24 @@
             this.sTxtDescripcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.sTxtDescripcion.Name = "sTxtDescripcion";
             this.sTxtDescripcion.rtbText = "";
-            this.sTxtDescripcion.Size = new System.Drawing.Size(649, 406);
+            this.sTxtDescripcion.Size = new System.Drawing.Size(646, 406);
             this.sTxtDescripcion.TabIndex = 7;
             this.sTxtDescripcion.textTitulo = "Descripción";
+            // 
+            // gif
+            // 
+            this.gif.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.gif.Animar = false;
+            this.gif.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.gif.delay = 250;
+            this.gif.Image = ((System.Drawing.Image)(resources.GetObject("gif.Image")));
+            this.gif.Location = new System.Drawing.Point(434, 302);
+            this.gif.Name = "gif";
+            this.gif.Size = new System.Drawing.Size(150, 150);
+            this.gif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.gif.TabIndex = 13;
+            this.gif.TabStop = false;
+            this.gif.Visible = false;
             // 
             // InicioContainer
             // 
@@ -235,6 +254,7 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.epbNuevoProyecto_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.epbNuevoProyecto_DragDropEnter);
             this.pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gif)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +275,6 @@
         private boringList blsFechas;
         private boringList blsCarpeta;
         private CustomButton btnCancelar;
+        private loadingGIF gif;
     }
 }

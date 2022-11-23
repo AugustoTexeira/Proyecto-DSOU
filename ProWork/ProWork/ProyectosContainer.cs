@@ -17,10 +17,25 @@ namespace ProWork
         {
             InitializeComponent();
             flh.Entrar += PasarDatos;
+            flh.Cargar += PantCarga;
             rt.Clack += DatosPasar;
             De_Configuración__Cristian_.ConfigContainer.ColorSwap += colorSwap;
         }
+        public void PantCarga(object sender, bool b)
+        {
+            if (b == true)
+            {
+                flh.Visible = false;
+                rt.Visible = false;
+            }
+            else
+            {
+                flh.Visible = true;
+                rt.Visible = true;
 
+            }
+           
+        }
         private void colorSwap(object sender, EventArgs e)
         {
             this.BackColor = Estilo.fondo;

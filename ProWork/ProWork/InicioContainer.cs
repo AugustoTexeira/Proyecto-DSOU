@@ -105,11 +105,15 @@ namespace ProWork
                     hijas.mimeTypes = a.varcharId;
                     consulta += $"insert into carpeta(idcarpeta, nombre, existencia, idproyecto, idcarpetapadre, filtro) values('{hijas.id}','{a.Text}',true,{pro.LastInsertedId},'{carpetaC.id}','{hijas.mimeTypes}'); insert into carga(idusuario, descripcion, idcarpeta, idproyecto, fecha) values({Program.userId},'c', '{hijas.id}', {pro.LastInsertedId}, '{DateTime.Now.Year}-{month}-{day}');";
                 }
+                foreach(Item f in blsFechas.Controls)
+                {
+                    consulta += $"insert into fechadeentrega values({pro.LastInsertedId},'{f.varcharId}');";
+                }
                 MySqlCommand cmd = new(consulta, con);
                 await cmd.ExecuteNonQueryAsync();
 
                 Program.closeOpenConnection();
-                await FileHolder.Subir(result, carpetaC, pro.LastInsertedId);
+                await FileHolder.Subir(result, carpetaC.id, pro.LastInsertedId, true);
                 pnl.Visible = false;
                 Limpiar();
             }
@@ -158,7 +162,7 @@ namespace ProWork
             await CrearProyecto(rutas);
             
         }
-        private List<string> getFiles(List<string> ss)
+        public static List<string> getFiles(List<string> ss)
         {
             if (ss.Count == 0)
             {
@@ -216,6 +220,23 @@ namespace ProWork
                     lista.Clear();
                 }
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            string month = "";
+            string day = "";
+            if (dateTimePicker1.Value.Month < 10)
+            {
+                month = $"0{dateTimePicker1.Value.Month}";
+            }
+            else { month = dateTimePicker1.Value.Month.ToString(); }
+            if (dateTimePicker1.Value.Day < 10)
+            {
+                day = $"0{dateTimePicker1.Value.Day}";
+            }
+            else { day = dateTimePicker1.Value.Day.ToString(); }
+            blsFechas.addItem(dateTimePicker1.Value.Date.ToString(), $"{dateTimePicker1.Value.Year}-{month}-{day}");
         }
     }
 }
